@@ -26,5 +26,23 @@ Feature: Clerk using software
     When a patient needs to be admitted
     Then I should be able to add the patient to the patient register
     And assign him a unique serialnumber
+    
+  @tag2
+  Scenario: Searching for patients
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient
+  	And see their patients information
+  	
+  @tag3
+  Scenario: Editing a patients information
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient
+  	And edit their information
+  	
+  	
 
 
