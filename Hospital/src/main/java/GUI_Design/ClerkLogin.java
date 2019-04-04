@@ -74,8 +74,12 @@ public class ClerkLogin extends JFrame {
 //					JOptionPane.showMessageDialog(frame, "Invalid Clerk ID number, please try again! ");
 //				}
 //					
+				Clerk_Menu clerk = new Clerk_Menu();
+				clerk.setVisible(true);
 			}
 		});
+		
+		
 		btnLogin.setBounds(73, 296, 171, 41);
 		contentPane.add(btnLogin);
 	}

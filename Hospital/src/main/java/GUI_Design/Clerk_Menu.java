@@ -1,0 +1,76 @@
+package GUI_Design;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+public class Clerk_Menu extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Clerk_Menu frame = new Clerk_Menu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Clerk_Menu() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1006, 655);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnAddPatient = new JButton("Add Patient");
+		btnAddPatient.setBounds(37, 100, 171, 41);
+		contentPane.add(btnAddPatient);
+		
+		JButton btnAddStaff = new JButton("Add Staff");
+		btnAddStaff.setBounds(37, 175, 171, 41);
+		contentPane.add(btnAddStaff);
+		
+		JButton btnMovePatient = new JButton("Move Patient");
+		btnMovePatient.setBounds(37, 254, 171, 41);
+		contentPane.add(btnMovePatient);
+		
+		JButton btnRemovePatient = new JButton("Discharge patient");
+		btnRemovePatient.setBounds(37, 323, 279, 41);
+		contentPane.add(btnRemovePatient);
+		
+		JButton btnNewButton = new JButton("Move Staff");
+		btnNewButton.setBounds(37, 392, 171, 41);
+		contentPane.add(btnNewButton);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.setBounds(37, 461, 171, 41);
+		contentPane.add(btnSearch);
+		
+		JButton btnChangeInfo = new JButton("Update Info");
+		btnChangeInfo.setBounds(369, 100, 175, 41);
+		contentPane.add(btnChangeInfo);
+		
+		JLabel lblWelcomeToThe = new JLabel("Welcome to the Clerk Menu");
+		lblWelcomeToThe.setBounds(37, 28, 467, 33);
+		contentPane.add(lblWelcomeToThe);
+	}
+
+}
