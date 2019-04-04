@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -71,8 +72,13 @@ public class StaffLogin extends JFrame {
 				String username = email.getText();
 				String password = passwordField.getText();
 				
-				//if (map.containsKey(password) && mao)
-			
+//				if (.containsKey(password) && mao) {
+//					
+//					JOptionPane.showMessageDialog(frame, "valid Clerk ID number, directing to Staff page! ");
+//				} else {
+//					JOptionPane.showMessageDialog(frame, "Invalid Staff ID number, please try again! ");
+//				}
+//			
 			}
 		});
 		btnLogin.setBounds(334, 419, 171, 41);
@@ -81,6 +87,10 @@ public class StaffLogin extends JFrame {
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.setBounds(0, 498, 171, 41);
 		contentPane.add(btnGoBack);
+		
+		JLabel lblWelcomeToThe = new JLabel("Welcome to the Staff login page!");
+		lblWelcomeToThe.setBounds(64, 39, 407, 33);
+		contentPane.add(lblWelcomeToThe);
 	}
 
 }

@@ -1,11 +1,11 @@
 package GUI_Design;
 
-import java.awt.EventQueue;
+import Hospital.*;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -51,6 +51,8 @@ public class graphic_user_Interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Hospital H = new Hospital();
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().setLayout(null);
@@ -63,7 +65,7 @@ public class graphic_user_Interface {
 				loginPage.setVisible(true);
 			}
 		});
-		btnStaff.setBounds(102, 214, 171, 41);
+		btnStaff.setBounds(323, 214, 171, 41);
 		frame.getContentPane().add(btnStaff);
 		
 		JButton btnPatient = new JButton("Patient");
@@ -75,8 +77,20 @@ public class graphic_user_Interface {
 				
 			}
 		});
-		btnPatient.setBounds(518, 214, 171, 41);
+		btnPatient.setBounds(609, 214, 171, 41);
 		frame.getContentPane().add(btnPatient);
+		
+		JButton btnClerk = new JButton("Clerk");
+		btnClerk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ClerkLogin loginPage = new ClerkLogin();
+				loginPage.setVisible(true);
+				
+			}
+		});
+		btnClerk.setBounds(56, 214, 171, 41);
+		frame.getContentPane().add(btnClerk);
 		
 		
 		}
