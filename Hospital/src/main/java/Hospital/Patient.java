@@ -117,25 +117,6 @@ public class Patient extends HospitalUser {
 		hash += 13 * this.serialnum;
 		return hash;
 	}
-	
-	
-	public static void main(String[] args) {
-		PatientRegister pr;
-		Clerk clerk;
-		int serialnum1;
-		int serialnum2;
-		
-		clerk = new Clerk("Smead@b.com","Turk","Turkelton",new Date(), "male","ER");
-		pr = new PatientRegister();
-		pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
-		pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(), "female", "USA", 12355590, true, "ER", true);
-		pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
-		System.out.println(pr);
-		String[] result = pr.searchGender("female");
-		for (String r : result) {
-			System.out.println(r);
-		}
-	}
 }
 
 
