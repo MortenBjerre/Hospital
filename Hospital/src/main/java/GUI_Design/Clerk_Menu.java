@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Clerk_Menu extends JFrame {
 
@@ -41,6 +43,12 @@ public class Clerk_Menu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnAddPatient = new JButton("Add Patient");
+		btnAddPatient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		btnAddPatient.setBounds(37, 100, 171, 41);
 		contentPane.add(btnAddPatient);
 		

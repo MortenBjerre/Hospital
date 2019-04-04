@@ -40,7 +40,7 @@ public class Staff_menu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Staff menu");
-		lblWelcomeToThe.setBounds(26, 44, 474, 33);
+		lblWelcomeToThe.setBounds(26, 44, 340, 33);
 		contentPane.add(lblWelcomeToThe);
 	}
 
