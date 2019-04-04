@@ -15,6 +15,8 @@ public class Patient extends HospitalUser {
 	private int phoneNumber;
 	private boolean alive;
 	private boolean inpatient;
+	private static int serialnumCounter = 0;
+	private int serialnum;
 
 	
 	//This is protected so that there can't be free floating patients. Can only make one in a register
@@ -37,6 +39,8 @@ public class Patient extends HospitalUser {
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setInpatient(inpatient);
+		serialnum = serialnumCounter;
+		serialnumCounter++;
 		
 	}
 	
@@ -46,6 +50,7 @@ public class Patient extends HospitalUser {
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
+		
 		//need to add department
 	}
 
@@ -74,7 +79,7 @@ public class Patient extends HospitalUser {
 	}
 	
 	public String toString() {
-		return ("Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
+		return ("Serialnum: " + serialnum + "; Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
 				+ " ; Birthday: " + getBirthday() + " ; Email: " + getEmail()); 
 	}
 
@@ -90,6 +95,48 @@ public class Patient extends HospitalUser {
 	public boolean hasWriteAccessTo(Register r) {
 		return false;
 	}
+
+	public int getSerialnum() {
+		return serialnum;
+	}
+
+	public void setSerialnum(int serialnum) {
+		this.serialnum = serialnum;
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof Patient) {
+			Patient obj2 = (Patient) obj;
+			return (super.equals(obj) && obj2.serialnum == this.serialnum); 
+		}
+		return false;
+	}
+	
+	public int hashCode() {
+		int hash = super.hashCode();
+		hash += 13 * this.serialnum;
+		return hash;
+	}
+	
+	
+	public static void main(String[] args) {
+		PatientRegister pr;
+		Clerk clerk;
+		int serialnum1;
+		int serialnum2;
+		
+		clerk = new Clerk("Smead@b.com","Turk","Turkelton",new Date(), "male","ER");
+		pr = new PatientRegister();
+		pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
+		pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(), "female", "USA", 12355590, true, "ER", true);
+		pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
+		System.out.println(pr);
+		String[] result = pr.searchGender("female");
+		for (String r : result) {
+			System.out.println(r);
+		}
+	}
 }
+
 
 

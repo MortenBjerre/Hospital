@@ -45,7 +45,10 @@ public abstract class Register<T extends HospitalUser> {
 	public String[] searchEmail(String email) {
 		ArrayList<T> matches = findEmail(email);
 		String[] m = new String[matches.size()];
-		return matches.toArray(m);
+		for (int i = 0; i < matches.size(); i++) {
+			m[i] = matches.get(i).toString();
+		}
+		return m;
 	}
 	
 	/**

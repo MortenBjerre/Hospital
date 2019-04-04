@@ -15,9 +15,9 @@ public class StaffRegister extends Register<Staff> {
 	 * @param gender
 	 */
 	public int add(String email, String name, String surname, Date birthday, String gender, String department) {
-		users.put(serialnum, new Staff(email, name, surname, birthday, gender, department));
-		serialnum++;
-		return serialnum - 1;
+		Staff s = new Staff(email, name, surname, birthday, gender, department);
+		users.put(serialnum, s);
+		return serialnum;
 	}
 	
 	/**

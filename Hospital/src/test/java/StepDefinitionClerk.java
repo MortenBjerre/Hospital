@@ -43,7 +43,46 @@ public class StepDefinitionClerk {
 
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
-		serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Roskilde", 12355590, true, "ER", true);
+		serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true);
 		assertFalse(serialnum1 == serialnum2);
+	}
+	
+	@Given("^the patient register contains several patients$")
+	public void the_patient_register_contains_several_patients() {
+		pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
+		pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(), "female", "USA", 12355590, true, "ER", true);
+		pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
+		
+	}
+
+	@Then("^I should be able to search for a patient$")
+	public void i_should_be_able_to_search_for_a_patient() {
+		if (clerk.hasWriteAccessTo(pr)) {
+			System.out.println(pr);
+			String[] result = pr.searchGender("female");
+			// The user looks at the output containing serialnumbers and
+			// picks the patient needed
+			for (String r : result) {
+				System.out.println(r);
+			}
+			
+		}
+	}
+
+	@Then("^edit their information$")
+	public void edit_their_information() {
+		
+	}
+
+	@Given("^I have a a staff register$")
+	public void i_have_a_a_staff_register() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^I should not be able to add staff to the staff register$")
+	public void i_should_not_be_able_to_add_staff_to_the_staff_register() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
 	}
 }

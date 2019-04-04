@@ -11,9 +11,10 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient) {
-		users.put(serialnum, new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient));
-		serialnum++;
-		return serialnum - 1;
+		Patient p = new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient);
+		users.put(p.getSerialnum(), p);
+		
+		return serialnum;
 	}
 	
 	
