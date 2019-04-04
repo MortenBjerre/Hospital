@@ -27,6 +27,7 @@ public class StepDefinitionClerk {
 	@Given("^I have a patient register$")
 	public void i_have_a_patient_register() {
 		pr = new PatientRegister();
+	
 	}
 
 	@When("^a patient needs to be admitted$")
