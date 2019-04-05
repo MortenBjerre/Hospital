@@ -3,6 +3,8 @@ package GUI_Design;
 import Hospital.*;
 
 import java.awt.EventQueue;
+import java.awt.Window;
+
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -51,8 +53,7 @@ public class graphic_user_Interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Hospital H = new Hospital();
-		
+//		Hospital H = new Hospital();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().setLayout(null);
@@ -86,6 +87,7 @@ public class graphic_user_Interface {
 				
 				ClerkLogin loginPage = new ClerkLogin();
 				loginPage.setVisible(true);
+				
 				
 			}
 		});

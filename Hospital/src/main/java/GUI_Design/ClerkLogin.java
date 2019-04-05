@@ -66,16 +66,19 @@ public class ClerkLogin extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				String password = passwordField.getText();
-//				
-//				if (staffRegister.containsKey(password)) {
+				String password = passwordField.getText();
+				int attempts = 3;
+				
+				while (attempts != 0) {
+	//				if (staffRegister.containsKey(password)) {
+	//						Clerk_Menu clerk = new Clerk_Menu();
+	//				clerk.setVisible(true);
+	//				} else {
+	//					JOptionPane.showMessageDialog(frame, "Invalid Clerk ID number, please try again! ");
+	//				}
+				}
 //					
-//				} else {
-//					JOptionPane.showMessageDialog(frame, "Invalid Clerk ID number, please try again! ");
-//				}
-//					
-				Clerk_Menu clerk = new Clerk_Menu();
-				clerk.setVisible(true);
+			
 			}
 		});
 		

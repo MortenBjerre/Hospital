@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-public class Staff_menu extends JFrame {
+public class Staff_Menu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +19,7 @@ public class Staff_menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Staff_menu frame = new Staff_menu();
+					Staff_Menu frame = new Staff_Menu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class Staff_menu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Staff_menu() {
+	public Staff_Menu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1016, 672);
 		contentPane = new JPanel();

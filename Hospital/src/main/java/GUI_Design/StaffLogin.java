@@ -1,6 +1,7 @@
 package GUI_Design;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,6 +14,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JEditorPane;
+import javax.swing.JToggleButton;
+import javax.swing.JMenuBar;
 
 
 public class StaffLogin extends JFrame {
@@ -56,6 +60,11 @@ public class StaffLogin extends JFrame {
 		lblSerialNumber.setBounds(64, 291, 235, 33);
 		contentPane.add(lblSerialNumber);
 		
+		JLabel invalidLogin = new JLabel("Incorrect Login");
+		invalidLogin.setBounds(332, 338, 193, 33);
+		contentPane.add(invalidLogin);
+		invalidLogin.setForeground(Color.red);
+		
 		email = new JTextField();
 		email.setBounds(309, 158, 236, 39);
 		contentPane.add(email);
@@ -70,27 +79,37 @@ public class StaffLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String username = email.getText();
+				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
+				int attempts = 3;
 				
-//				if (.containsKey(password) && mao) {
-//					
-//					JOptionPane.showMessageDialog(frame, "valid Clerk ID number, directing to Staff page! ");
-//				} else {
-//					JOptionPane.showMessageDialog(frame, "Invalid Staff ID number, please try again! ");
-//				}
-//			
+				while (attempts != 0) {
+				
+					if (username.equals("alexfc@live.dk") && password.equals("s174355")) {
+						Staff_Menu menu = new Staff_Menu();
+						menu.setVisible(true);
+					} else {
+						invalidLogin.setVisible(true);
+					}
+				}
 			}
 		});
 		btnLogin.setBounds(334, 419, 171, 41);
 		contentPane.add(btnLogin);
 		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		btnGoBack.setBounds(0, 498, 171, 41);
 		contentPane.add(btnGoBack);
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Staff login page!");
 		lblWelcomeToThe.setBounds(64, 39, 407, 33);
 		contentPane.add(lblWelcomeToThe);
+		
 	}
-
 }
