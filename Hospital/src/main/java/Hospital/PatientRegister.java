@@ -112,4 +112,25 @@ public class PatientRegister extends Register<Patient> {
 		Patient p = this.findSerialnum(serialnum);
 		p.setBirthday(birthday);		
 	}
+	
+	public void editPhoneNumber(int serialnum, int phoneNumber) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setPhoneNumber(phoneNumber);	
+	}
+	
+	public void editAddress(int serialnum, String address) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAddress(address);		
+	}
+	
+	public void editAlive(int serialnum, boolean alive) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAlive(alive);	
+	}
+	
+	public void editInpatient(int serialnum, boolean inpatient) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAlive(inpatient);	
+	}
+	
 }

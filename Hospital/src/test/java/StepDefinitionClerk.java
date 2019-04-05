@@ -78,11 +78,11 @@ public class StepDefinitionClerk {
 		assertTrue(pr.searchSerialnum(1)[0].equals("Serialnum: 1; Patient name: Josefine Bjerre ; Gender: female ; Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"));
 	
 		String email = "JosefineB@gmail.com";
-		pr.editEmail(serialnum,email);
+		pr.editEmail(serialnum, email);
 		assertTrue(pr.searchSerialnum(1)[0].equals("Serialnum: 1; Patient name: Josefine Bjerre ; Gender: female ; Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: JosefineB@gmail.com"));
 	
 		String gender = "male";
-		pr.editGender(serialnum,gender);
+		pr.editGender(serialnum, gender);
 		
 		Date birthday = new Date(1996-1900,10,10);
 		// Using Date the year is the year minus 1900.
@@ -90,7 +90,8 @@ public class StepDefinitionClerk {
 		System.out.println(pr);
 		assertTrue(pr.searchSerialnum(1)[0].equals("Serialnum: 1; Patient name: Josefine Bjerre ; Gender: male ; Birthday: Sun Nov 10 00:00:00 CET 1996 ; Email: JosefineB@gmail.com"));
 	
-		
+		// Edit address, phoneNumber, alive and inpatient don't need testing since the implementation
+		// is exactly the same as above, only the second argument is different. 
 	}
 
 	@Given("^I have a a staff register$")
