@@ -5,6 +5,7 @@ import java.util.Date;
 
 import Hospital.Clerk;
 import Hospital.PatientRegister;
+import Hospital.StaffRegister;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -19,6 +20,7 @@ public class StepDefinitionClerk {
 	Clerk clerk;
 	int serialnum1;
 	int serialnum2;
+	StaffRegister sr;
 	
 	@Given("^That I am a clerk$")
 	public void that_I_am_a_clerk() {
@@ -45,16 +47,19 @@ public class StepDefinitionClerk {
 
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
-		serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true);
+		if (clerk.hasWriteAccessTo(pr)) {
+			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true);
+		}
 		assertFalse(serialnum1 == serialnum2);
 	}
 	
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
-		pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
-		pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, "ER", true);
-		pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
-		
+		if (clerk.hasWriteAccessTo(pr)) {
+			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
+			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, "ER", true);
+			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
+		}
 	}
 
 	@Then("^I should be able to search for a patient$")
@@ -96,14 +101,16 @@ public class StepDefinitionClerk {
 	}
 
 	@Given("^I have a a staff register$")
-	public void i_have_a_a_staff_register() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void i_have_a_a_staff_register() {
+		sr = new StaffRegister();
 	}
 
 	@Then("^I should not be able to add staff to the staff register$")
-	public void i_should_not_be_able_to_add_staff_to_the_staff_register() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void i_should_not_be_able_to_add_staff_to_the_staff_register() {
+		if (clerk.hasWriteAccessTo(sr)) {
+			sr.add("test@email.com", "Joe", "Brand", new Date(), "male", "ER");
+		}
+		assertTrue(sr.toString().length() == 0);
+		// nothing has been added so the length of the staff register i zero. 
 	}
 }

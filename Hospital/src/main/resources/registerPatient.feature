@@ -46,9 +46,3 @@ Feature: Clerk using software
   	Then I should be able to search for a patient
   	And edit their information
 
-  	
-
-  	
-  	
-
-
