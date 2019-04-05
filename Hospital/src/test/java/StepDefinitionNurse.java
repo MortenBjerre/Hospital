@@ -1,3 +1,5 @@
+import java.util.Date;
+
 import Hospital.Nurse;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -5,7 +7,7 @@ import cucumber.api.java.en.Then;
 public class StepDefinitionNurse {
 	@Given("^That I am a nurse$")
 	public void that_I_am_a_nurse() {
-		Nurse nurse = new Nurse();
+		Nurse nurse = new Nurse("nurse@mail.dk","John","Hancock", new Date(), "male", "ER");
 	}
 
 	@Then("^edit the patients heatlh data$")
