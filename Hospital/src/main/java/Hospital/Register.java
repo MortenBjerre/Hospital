@@ -45,7 +45,10 @@ public abstract class Register<T extends HospitalUser> {
 	public String[] searchEmail(String email) {
 		ArrayList<T> matches = findEmail(email);
 		String[] m = new String[matches.size()];
-		return matches.toArray(m);
+		for (int i = 0; i < matches.size(); i++) {
+			m[i] = matches.get(i).toString();
+		}
+		return m;
 	}
 	
 	/**
@@ -177,5 +180,30 @@ public abstract class Register<T extends HospitalUser> {
 			}
 		}
 		return matches;
+	}
+	
+	// Edit:
+	
+	public void editName(int serialnum, String name) {
+		T user = this.findSerialnum(serialnum);
+		user.setName(name);
+		users.put(serialnum, user);
+	}	
+	
+	public void editSurname(int serialnum, String surname) {
+		T user = this.findSerialnum(serialnum);
+		user.setSurname(surname);
+		users.put(serialnum, user);	
+	}
+	
+	public void editEmail(int serialnum, String email) {
+		T user = this.findSerialnum(serialnum);
+		user.setEmail(email);
+		users.put(serialnum, user);	
+	}
+	public void editGender(int serialnum, String gender) {
+		T user = this.findSerialnum(serialnum);
+		user.setGender(gender);
+		users.put(serialnum, user);	
 	}
 }

@@ -5,15 +5,20 @@ import java.util.Date;
 
 public class PatientRegister extends Register<Patient> {
 	
+	public PatientRegister() {
+		Patient.resetSerialnumCounter();
+	}
+	
 	/**
 	 * Adds a patient to the register
 	 * @param p Patient
 	 */
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient) {
-		users.put(serialnum, new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient));
-		serialnum++;
-		return serialnum - 1;
+		Patient p = new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient);
+		users.put(p.getSerialnum(), p);
+		
+		return p.getSerialnum();
 	}
 	
 	
@@ -102,4 +107,30 @@ public class PatientRegister extends Register<Patient> {
 		}
 		return matches;
 	}
+
+	public void editBirthday(int serialnum, Date birthday) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setBirthday(birthday);		
+	}
+	
+	public void editPhoneNumber(int serialnum, int phoneNumber) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setPhoneNumber(phoneNumber);	
+	}
+	
+	public void editAddress(int serialnum, String address) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAddress(address);		
+	}
+	
+	public void editAlive(int serialnum, boolean alive) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAlive(alive);	
+	}
+	
+	public void editInpatient(int serialnum, boolean inpatient) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAlive(inpatient);	
+	}
+	
 }

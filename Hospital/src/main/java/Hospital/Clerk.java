@@ -16,3 +16,4 @@ public class Clerk extends Staff {
 		return false;
 	}
 }
+
