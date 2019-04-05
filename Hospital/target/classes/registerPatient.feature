@@ -32,7 +32,7 @@ Feature: Clerk using software
   	And I have a patient register
   	And the patient register contains several patients
   	Then I should be able to search for a patient
-  	And edit their information
+ 
   
   Scenario: Searching for a staff member
   	Given That I am a clerk

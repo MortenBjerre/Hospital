@@ -23,6 +23,10 @@ public class Staff extends HospitalUser {
 	public boolean hasWriteAccessTo(Register r) {
 		return false;
 	}
+	
+	public static void resetSerialnumCounter() {
+		serialnumCounter = 0;
+	}
 
 	public int getSerialnum() {
 		return serialnum;

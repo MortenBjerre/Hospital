@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class StaffRegister extends Register<Staff> {
 	
+	public StaffRegister() {
+		Staff.resetSerialnumCounter();
+	}
+	
 	/**
 	 * Adds a staff member to the register
 	 * @param serialnum

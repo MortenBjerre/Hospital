@@ -107,4 +107,9 @@ public class PatientRegister extends Register<Patient> {
 		}
 		return matches;
 	}
+
+	public void editBirthday(int serialnum, Date birthday) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setBirthday(birthday);		
+	}
 }

@@ -41,12 +41,11 @@ public class Patient extends HospitalUser {
 		setInpatient(inpatient);
 		serialnum = serialnumCounter;
 		serialnumCounter++;
-		
 	}
 	
 	public void setPatient(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, String department) {
-		set( email, name, surname, birthday, gender, department);
+		set(email, name, surname, birthday, gender, department);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
