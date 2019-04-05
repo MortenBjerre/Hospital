@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class PatientRegister extends Register<Patient> {
 	
+	public PatientRegister() {
+		Patient.resetSerialnumCounter();
+	}
+	
 	/**
 	 * Adds a patient to the register
 	 * @param p Patient
@@ -14,7 +18,7 @@ public class PatientRegister extends Register<Patient> {
 		Patient p = new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient);
 		users.put(p.getSerialnum(), p);
 		
-		return serialnum;
+		return p.getSerialnum();
 	}
 	
 	

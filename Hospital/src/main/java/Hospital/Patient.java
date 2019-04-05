@@ -104,6 +104,10 @@ public class Patient extends HospitalUser {
 		this.serialnum = serialnum;
 	}
 	
+	public static void resetSerialnumCounter() {
+		serialnumCounter = 0;
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Patient) {
 			Patient obj2 = (Patient) obj;

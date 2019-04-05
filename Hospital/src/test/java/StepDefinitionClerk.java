@@ -44,6 +44,8 @@ public class StepDefinitionClerk {
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
 		serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true);
+		System.out.println(pr);
+		System.out.println("Serialnumber: " + serialnum1 + " ; " + serialnum2);
 		assertFalse(serialnum1 == serialnum2);
 	}
 	
@@ -57,16 +59,16 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to search for a patient$")
 	public void i_should_be_able_to_search_for_a_patient() {
-		if (clerk.hasWriteAccessTo(pr)) {
-			System.out.println(pr);
-			String[] result = pr.searchGender("female");
-			// The user looks at the output containing serialnumbers and
-			// picks the patient needed
-			for (String r : result) {
-				System.out.println(r);
-			}
-			
-		}
+//		if (clerk.hasWriteAccessTo(pr)) {
+//			System.out.println(pr);
+//			String[] result = pr.searchGender("female");
+//			// The user looks at the output containing serialnumbers and
+//			// picks the patient needed
+//			for (String r : result) {
+//				System.out.println(r);
+//			}
+//			
+//		}
 	}
 
 	@Then("^edit their information$")
