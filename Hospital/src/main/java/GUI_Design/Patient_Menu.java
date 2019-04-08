@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
 public class Patient_Menu extends JFrame {
 
@@ -43,5 +44,4 @@ public class Patient_Menu extends JFrame {
 		lblWelcomeToThe.setBounds(46, 44, 358, 33);
 		contentPane.add(lblWelcomeToThe);
 	}
-
 }

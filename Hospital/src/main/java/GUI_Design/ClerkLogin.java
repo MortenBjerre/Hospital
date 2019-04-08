@@ -85,6 +85,10 @@ public class ClerkLogin extends JFrame {
 		
 		btnLogin.setBounds(73, 296, 171, 41);
 		contentPane.add(btnLogin);
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setBounds(0, 526, 171, 41);
+		contentPane.add(btnGoBack);
 	}
 
 }

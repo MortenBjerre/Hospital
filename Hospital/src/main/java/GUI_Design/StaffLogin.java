@@ -64,6 +64,7 @@ public class StaffLogin extends JFrame {
 		invalidLogin.setBounds(332, 338, 193, 33);
 		contentPane.add(invalidLogin);
 		invalidLogin.setForeground(Color.red);
+		invalidLogin.setVisible(false);
 		
 		email = new JTextField();
 		email.setBounds(309, 158, 236, 39);
@@ -91,6 +92,7 @@ public class StaffLogin extends JFrame {
 					} else {
 						invalidLogin.setVisible(true);
 					}
+					attempts--;
 				}
 			}
 		});
