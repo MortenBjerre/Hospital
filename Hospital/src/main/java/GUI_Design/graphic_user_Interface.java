@@ -54,7 +54,7 @@ public class graphic_user_Interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		Hospital H = new Hospital();
+		Hospital H = new Hospital();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().setLayout(null);
@@ -63,7 +63,7 @@ public class graphic_user_Interface {
 		btnStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				StaffLogin loginPage = new StaffLogin();
+				StaffLogin loginPage = new StaffLogin(H);
 				loginPage.setVisible(true);
 			}
 		});
@@ -74,7 +74,7 @@ public class graphic_user_Interface {
 		btnPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				PatientLogin loginPage = new PatientLogin();
+				PatientLogin loginPage = new PatientLogin(H);
 				loginPage.setVisible(true);
 				
 			}
@@ -86,7 +86,7 @@ public class graphic_user_Interface {
 		btnClerk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ClerkLogin loginPage = new ClerkLogin();
+				ClerkLogin loginPage = new ClerkLogin(H);
 				loginPage.setVisible(true);
 				
 				

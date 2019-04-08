@@ -3,6 +3,7 @@ package GUI_Design;
 import Hospital.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,7 +23,7 @@ public class ClerkLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-
+	static Hospital H;
 	/**
 	 * Launch the application.
 	 */
@@ -30,7 +31,7 @@ public class ClerkLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClerkLogin frame = new ClerkLogin();
+					ClerkLogin frame = new ClerkLogin(H);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,13 +43,21 @@ public class ClerkLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClerkLogin() {
+	public ClerkLogin(Hospital H) {
+		ClerkLogin.H = H;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 998, 655);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel invalidLogin = new JLabel("Incorrect Login");
+		invalidLogin.setBounds(324, 231, 193, 33);
+		contentPane.add(invalidLogin);
+		invalidLogin.setForeground(Color.red);
+		invalidLogin.setVisible(false);
 		
 		JLabel lblClerkId = new JLabel("Clerk ID : ");
 		lblClerkId.setBounds(73, 188, 202, 33);
@@ -64,18 +73,21 @@ public class ClerkLogin extends JFrame {
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
+			@SuppressWarnings("unlikely-arg-type")
 			public void actionPerformed(ActionEvent e) {
 				
+				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
-				int attempts = 3;
+				int attempts = 100;
 				
 				while (attempts != 0) {
-	//				if (staffRegister.containsKey(password)) {
-	//						Clerk_Menu clerk = new Clerk_Menu();
-	//				clerk.setVisible(true);
-	//				} else {
-	//					JOptionPane.showMessageDialog(frame, "Invalid Clerk ID number, please try again! ");
-	//				}
+					if (H.staffRegister.users.containsKey(password)) {
+							Clerk_Menu clerk = new Clerk_Menu(H);
+					clerk.setVisible(true);
+					} else {
+						invalidLogin.setVisible(true);
+						attempts--;
+					}
 				}
 //					
 			
@@ -87,8 +99,13 @@ public class ClerkLogin extends JFrame {
 		contentPane.add(btnLogin);
 		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnGoBack.setBounds(0, 526, 171, 41);
 		contentPane.add(btnGoBack);
 	}
-
 }
+

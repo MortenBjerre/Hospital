@@ -3,6 +3,7 @@ package GUI_Design;
 import Hospital.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ public class PatientLogin extends JFrame {
 	private JTextField firstName;
 	private JTextField Surname;
 	private JTextField email;
+	static Hospital H;
 
 	/**
 	 * Launch the application.
@@ -29,7 +31,7 @@ public class PatientLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PatientLogin frame = new PatientLogin();
+					PatientLogin frame = new PatientLogin(H);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +43,8 @@ public class PatientLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PatientLogin() {
+	public PatientLogin(Hospital H) {
+		PatientLogin.H =H;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 975, 701);
 		contentPane = new JPanel();
@@ -49,11 +52,22 @@ public class PatientLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel invalidLogin = new JLabel("Incorrect Login");
+		invalidLogin.setBounds(287, 404, 193, 33);
+		contentPane.add(invalidLogin);
+		invalidLogin.setForeground(Color.red);
+		invalidLogin.setVisible(false);
+		
 		JLabel lblWelcomeToPatient = new JLabel("Welcome to patient login page");
 		lblWelcomeToPatient.setBounds(240, 72, 377, 33);
 		contentPane.add(lblWelcomeToPatient);
 		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnGoBack.setBounds(0, 572, 171, 41);
 		contentPane.add(btnGoBack);
 		
@@ -91,18 +105,17 @@ public class PatientLogin extends JFrame {
 				String nameFirst = firstName.getText();
 				String nameSecond = Surname.getText();
 				String mail = email.getText();
-				int attempts = 3;
+				int attempts = 100;
 				
 				while (attempts != 0) {
 				
 					if (nameFirst.equals("Alexander") && nameSecond.equals("Christensen") && mail.equals("alexfc@live.dk")) {
-						Patient_Menu menu = new Patient_Menu();
+						Patient_Menu menu = new Patient_Menu(H);
 						menu.setVisible(true);
-						
+						break;
 					} else {
+						invalidLogin.setVisible(true);
 						attempts--;
-						JOptionPane.showMessageDialog(rootPane, "Incorrect Login, Please try again!");
-						
 					}
 				}
 			}

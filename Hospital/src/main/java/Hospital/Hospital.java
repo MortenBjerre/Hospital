@@ -3,7 +3,7 @@ package Hospital;
 import java.util.Date;
 
 public class Hospital {
-	StaffRegister staffRegister = new StaffRegister();
+	public StaffRegister staffRegister = new StaffRegister();
 	PatientRegister patientRegister = new PatientRegister();
 	DepartmentRegister departmentRegister = new DepartmentRegister();
 	

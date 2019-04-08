@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Hospital.Hospital;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -14,7 +17,7 @@ import java.awt.event.ActionEvent;
 public class Clerk_Menu extends JFrame {
 
 	private JPanel contentPane;
-
+	static Hospital H;
 	/**
 	 * Launch the application.
 	 */
@@ -22,7 +25,7 @@ public class Clerk_Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Clerk_Menu frame = new Clerk_Menu();
+					Clerk_Menu frame = new Clerk_Menu(H);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +37,9 @@ public class Clerk_Menu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Clerk_Menu() {
+	public Clerk_Menu(Hospital H) {
+		Clerk_Menu.H = H;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1006, 655);
 		contentPane = new JPanel();
@@ -79,6 +84,15 @@ public class Clerk_Menu extends JFrame {
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Clerk Menu");
 		lblWelcomeToThe.setBounds(37, 28, 467, 33);
 		contentPane.add(lblWelcomeToThe);
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnGoBack.setBounds(0, 528, 171, 41);
+		contentPane.add(btnGoBack);
 	}
 
 }

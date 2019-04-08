@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Register<T extends HospitalUser> {
-	protected Map<Integer, T> users = new HashMap<Integer, T>();
+	public Map<Integer, T> users = new HashMap<Integer, T>();
 	
 	protected int serialnum = 0;
 	

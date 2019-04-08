@@ -7,12 +7,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Hospital.Hospital;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JEditorPane;
 import javax.swing.JToggleButton;
@@ -24,15 +28,21 @@ public class StaffLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField email;
 	private JPasswordField passwordField;
+	static Hospital H;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Hospital H = new Hospital();
+		H.createDepartment("lol");
+		H.staffRegister.add("email", "name", "surname", new Date(), "gender", "lol");
+		System.out.println(H.staffRegister.searchEmail("email"));
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StaffLogin frame = new StaffLogin();
+					StaffLogin frame = new StaffLogin(H);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +54,8 @@ public class StaffLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StaffLogin() {
+	public StaffLogin(Hospital H) {
+		StaffLogin.H = H;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 981, 627);
 		contentPane = new JPanel();
@@ -79,15 +90,15 @@ public class StaffLogin extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String username = email.getText();
+				String Email = email.getText();
 				@SuppressWarnings("deprecation")
-				String password = passwordField.getText();
+				int password = Integer.parseInt(passwordField.getText());
 				int attempts = 100;
 				
 				while (attempts != 0) {
 				
-					if (username.equals("alexfc@live.dk") && password.equals("s174355")) {
-						Staff_Menu menu = new Staff_Menu();
+					if (Email.equals(H.staffRegister.searchEmail(Email)[0]) &&  String.valueOf(password).equals(H.staffRegister.searchSerialnum(password)[0])) {
+						Staff_Menu menu = new Staff_Menu(H);
 						menu.setVisible(true);
 						break;
 					} else {
@@ -103,8 +114,7 @@ public class StaffLogin extends JFrame {
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				dispose();
 			}
 		});
 		btnGoBack.setBounds(0, 498, 171, 41);
