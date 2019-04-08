@@ -57,7 +57,7 @@ public class Clerk_Menu extends JFrame {
 		contentPane.add(btnAddStaff);
 		
 		JButton btnMovePatient = new JButton("Move Patient");
-		btnMovePatient.setBounds(37, 254, 171, 41);
+		btnMovePatient.setBounds(37, 254, 185, 41);
 		contentPane.add(btnMovePatient);
 		
 		JButton btnRemovePatient = new JButton("Discharge patient");
@@ -65,15 +65,15 @@ public class Clerk_Menu extends JFrame {
 		contentPane.add(btnRemovePatient);
 		
 		JButton btnNewButton = new JButton("Move Staff");
-		btnNewButton.setBounds(37, 392, 171, 41);
+		btnNewButton.setBounds(520, 175, 171, 41);
 		contentPane.add(btnNewButton);
 		
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(37, 461, 171, 41);
+		btnSearch.setBounds(520, 254, 171, 41);
 		contentPane.add(btnSearch);
 		
 		JButton btnChangeInfo = new JButton("Update Info");
-		btnChangeInfo.setBounds(369, 100, 175, 41);
+		btnChangeInfo.setBounds(520, 100, 175, 41);
 		contentPane.add(btnChangeInfo);
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Clerk Menu");

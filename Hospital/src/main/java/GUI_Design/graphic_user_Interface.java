@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.JComboBox;
 
 public class graphic_user_Interface {
 
@@ -66,7 +67,7 @@ public class graphic_user_Interface {
 				loginPage.setVisible(true);
 			}
 		});
-		btnStaff.setBounds(323, 214, 171, 41);
+		btnStaff.setBounds(364, 214, 171, 41);
 		frame.getContentPane().add(btnStaff);
 		
 		JButton btnPatient = new JButton("Patient");
@@ -78,7 +79,7 @@ public class graphic_user_Interface {
 				
 			}
 		});
-		btnPatient.setBounds(609, 214, 171, 41);
+		btnPatient.setBounds(647, 214, 171, 41);
 		frame.getContentPane().add(btnPatient);
 		
 		JButton btnClerk = new JButton("Clerk");
