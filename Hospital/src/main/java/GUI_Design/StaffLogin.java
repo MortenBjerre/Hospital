@@ -40,12 +40,12 @@ public class StaffLogin extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
 	public StaffLogin() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 981, 627);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,13 +82,14 @@ public class StaffLogin extends JFrame {
 				String username = email.getText();
 				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
-				int attempts = 3;
+				int attempts = 100;
 				
 				while (attempts != 0) {
 				
 					if (username.equals("alexfc@live.dk") && password.equals("s174355")) {
 						Staff_Menu menu = new Staff_Menu();
 						menu.setVisible(true);
+						break;
 					} else {
 						invalidLogin.setVisible(true);
 					}
