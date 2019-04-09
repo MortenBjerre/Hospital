@@ -32,7 +32,6 @@ Feature: Nurse/doctor using software
     And I have a patient register
     And the patient register contains several patients
     Then I should be able to search for a patient
-    And edit or view the patients health data
     
   Scenario: Nurse trying to edit staff register
     Given That I am a nurse

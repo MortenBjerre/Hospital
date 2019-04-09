@@ -127,7 +127,7 @@ public class PatientRegister extends Register<Patient> {
 	
 	public void editAlive(int serialnum, boolean alive) {
 		Patient p = this.findSerialnum(serialnum);
-		p.setAlive(alive);	
+		p.setAlive(alive);
 	}
 	
 	public void editInpatient(int serialnum, boolean inpatient) {
@@ -136,8 +136,13 @@ public class PatientRegister extends Register<Patient> {
 	}
 
 	public void editHealthData(int serialnum, String healthData) {
+		Patient p = findSerialnum(serialnum);
+		p.setHealthData(healthData);
 		
 		
 	}
-	
+
+	public String viewHealthData(int serialnum) {
+		return findSerialnum(serialnum).getHealthData();	
+	}
 }
