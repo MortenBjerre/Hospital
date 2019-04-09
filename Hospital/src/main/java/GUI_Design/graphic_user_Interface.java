@@ -100,6 +100,15 @@ public class graphic_user_Interface {
 		btnClerk.setBounds(56, 214, 171, 41);
 		frame.getContentPane().add(btnClerk);
 		
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuit.setBounds(0, 539, 171, 41);
+		frame.getContentPane().add(btnQuit);
+		
 		
 		}
 	}

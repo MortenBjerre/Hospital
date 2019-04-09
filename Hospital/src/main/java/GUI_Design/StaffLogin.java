@@ -30,6 +30,7 @@ public class StaffLogin extends JFrame {
 	private JTextField email;
 	private JPasswordField passwordField;
 	static Hospital H;
+	private int attempts = 2;
 
 	/**
 	 * Launch the application.
@@ -38,8 +39,8 @@ public class StaffLogin extends JFrame {
 		Hospital H = new Hospital();
 		H.createDepartment("lol");
 		H.staffRegister.add("email", "name", "surname", new Date(), "gender", "lol");
-		System.out.println(H.staffRegister.searchEmail("email"));
-		
+//		System.out.println(H.staffRegister.searchEmail("email"));
+	
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -90,24 +91,19 @@ public class StaffLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				String Email = email.getText();
 				@SuppressWarnings("deprecation")
 				int password = Integer.parseInt(passwordField.getText());
-				int attempts = 100;
 				
-				while (attempts != 0) {
-				
+				if (attempts != 0) {
 					if (Email.equals(H.staffRegister.searchEmail(Email)[0]) &&  String.valueOf(password).equals(H.staffRegister.searchSerialnum(password)[0])) {
 						Staff_Menu menu = new Staff_Menu(H);
 						menu.setVisible(true);
-						break;
 					} else {
 						invalidLogin.setVisible(true);
+						attempts--;
 					}
-					attempts--;
-				}
-				if (attempts == 0) {
+				} else {
 					dispose();
 				}
 			}

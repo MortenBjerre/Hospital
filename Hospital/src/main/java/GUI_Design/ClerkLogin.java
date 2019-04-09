@@ -25,6 +25,7 @@ public class ClerkLogin extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	static Hospital H;
+	private int attempts = 2;
 	/**
 	 * Launch the application.
 	 */
@@ -79,9 +80,8 @@ public class ClerkLogin extends JFrame {
 				
 				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
-				int attempts = 100;
 				
-				while (attempts != 0) {
+				if (attempts != 0) {
 					if (H.staffRegister.users.containsKey(password)) {
 							Clerk_Menu clerk = new Clerk_Menu(H);
 					clerk.setVisible(true);
@@ -89,8 +89,7 @@ public class ClerkLogin extends JFrame {
 						invalidLogin.setVisible(true);
 						attempts--;
 					}
-				}
-				if (attempts == 0) {
+				} else { 
 					dispose();
 				}
 //					

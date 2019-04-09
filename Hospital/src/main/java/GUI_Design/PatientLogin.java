@@ -24,6 +24,7 @@ public class PatientLogin extends JFrame {
 	private JTextField Surname;
 	private JTextField email;
 	static Hospital H;
+	private int attempts = 2;
 
 	/**
 	 * Launch the application.
@@ -106,22 +107,19 @@ public class PatientLogin extends JFrame {
 				String nameFirst = firstName.getText();
 				String nameSecond = Surname.getText();
 				String mail = email.getText();
-				int attempts = 100;
 				
-				while (attempts != 0) {
+				if (attempts != 0) {
 				
 					if (nameFirst.equals("Alexander") && nameSecond.equals("Christensen") && mail.equals("alexfc@live.dk")) {
 						Patient_Menu menu = new Patient_Menu(H);
 						menu.setVisible(true);
-						break;
 					} else {
 						invalidLogin.setVisible(true);
 						attempts--;
 					}
-				}
-				if (attempts == 0) {
-					dispose();
-				}
+				} else {
+						dispose();
+					}
 			}
 		});
 		btnLogin.setBounds(294, 491, 171, 41);
