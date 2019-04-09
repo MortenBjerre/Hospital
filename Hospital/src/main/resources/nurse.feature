@@ -23,11 +23,21 @@ Feature: Nurse/doctor using software
   Scenario: Nurse searching for patients
     Given That I am a nurse
     And I have a patient register
+    And the patient register contains several patients
     Then I should be able to search for a patient
     And edit the patients heatlh data
     
-  Scenario: Nurse searching for patients
+  Scenario: Doctor searching for patients
     Given That I am a doctor
     And I have a patient register
+    And the patient register contains several patients
     Then I should be able to search for a patient
     And edit the patients heatlh data
+    
+  Scenario: Nurse trying to edit staff register
+    Given That I am a nurse
+		And I have a a staff register
+		Then I should not be able to add staff to the staff register
+
+
+    

@@ -4,7 +4,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 
 import Hospital.Clerk;
+import Hospital.Nurse;
 import Hospital.PatientRegister;
+import Hospital.Staff;
 import Hospital.StaffRegister;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -17,14 +19,14 @@ import cucumber.api.java.en.When;
 public class StepDefinitionClerk {
 	
 	PatientRegister pr;
-	Clerk clerk;
+	Staff s;
 	int serialnum1;
 	int serialnum2;
 	StaffRegister sr;
 	
 	@Given("^That I am a clerk$")
 	public void that_I_am_a_clerk() {
-		clerk = new Clerk("Smead@b.com","Turk","Turkelton",new Date(), "male","ER");	
+		s = new Clerk("Smead@b.com","Turk","Turkelton",new Date(), "male","ER");	
 	}
 
 	@Given("^I have a patient register$")
@@ -40,14 +42,14 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to add the patient to the patient register$")
 	public void i_should_be_able_to_add_the_patient_to_the_patient_register() {
-		if (clerk.hasWriteAccessTo(pr)) {
+		if (s.hasWriteAccessTo(pr)) {
 			serialnum1 = pr.add("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true, "ER", true);
 		}
 	}
 
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
-		if (clerk.hasWriteAccessTo(pr)) {
+		if (s.hasWriteAccessTo(pr)) {
 			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true);
 		}
 		assertFalse(serialnum1 == serialnum2);
@@ -55,7 +57,7 @@ public class StepDefinitionClerk {
 	
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
-		if (clerk.hasWriteAccessTo(pr)) {
+		if (s.hasWriteAccessTo(pr)) {
 			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
 			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, "ER", true);
 			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
@@ -64,7 +66,7 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to search for a patient$")
 	public void i_should_be_able_to_search_for_a_patient() {
-		if (clerk.hasWriteAccessTo(pr)) {
+		if (s.hasWriteAccessTo(pr)) {
 			String[] result = pr.searchGender("female");
 			assertTrue(result[0].equals(("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ; Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk")));
 			// The result of the search gave us the female in the register.
@@ -107,10 +109,15 @@ public class StepDefinitionClerk {
 
 	@Then("^I should not be able to add staff to the staff register$")
 	public void i_should_not_be_able_to_add_staff_to_the_staff_register() {
-		if (clerk.hasWriteAccessTo(sr)) {
+		if (s.hasWriteAccessTo(sr)) {
 			sr.add("test@email.com", "Joe", "Brand", new Date(), "male", "ER");
 		}
 		assertTrue(sr.toString().length() == 0);
 		// nothing has been added so the length of the staff register i zero. 
+	}
+	
+	@Given("^That I am a nurse$")
+	public void that_I_am_a_nurse() {
+		s = new Nurse("nurse@mail.dk","John","Hancock", new Date(), "male", "ER");
 	}
 }
