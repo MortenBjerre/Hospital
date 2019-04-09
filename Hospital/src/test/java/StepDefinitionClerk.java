@@ -44,14 +44,14 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to add the patient to the patient register$")
 	public void i_should_be_able_to_add_the_patient_to_the_patient_register() {
 		if (s.hasWriteAccessTo(pr)) {
-			serialnum1 = pr.add("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true, "ER", true);
+			serialnum1 = pr.add("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true, "ER", true,"");
 		}
 	}
 
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
 		if (s.hasWriteAccessTo(pr)) {
-			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true);
+			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true,"");
 		}
 		assertFalse(serialnum1 == serialnum2);
 	}
@@ -59,9 +59,9 @@ public class StepDefinitionClerk {
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
 		if (s.hasWriteAccessTo(pr)) {
-			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true);
-			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, "ER", true);
-			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true);
+			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true,"");
+			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, "ER", true,"");
+			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true,"");
 		}
 	}
 
@@ -109,11 +109,8 @@ public class StepDefinitionClerk {
 
 	@Then("^I should not be able to add staff to the staff register$")
 	public void i_should_not_be_able_to_add_staff_to_the_staff_register() {
-		if (s.hasWriteAccessTo(sr)) {
-			sr.add("test@email.com", "Joe", "Brand", new Date(), "male", "ER");
-		}
-		assertTrue(sr.toString().length() == 0);
-		// nothing has been added so the length of the staff register i zero. 
+		assertFalse(s.hasWriteAccessTo(sr));
+		 
 	}
 	
 	@Given("^That I am a nurse$")
@@ -134,8 +131,13 @@ public class StepDefinitionClerk {
 	@Then("^edit or view the patients health data$")
 	// There is no differentiating between viewing and editing health data.
 	public void edit_or_view_the_patients_health_data() {
+
+		assertTrue(s.hasHealthDataAccess());
+	
+		
 		if (s.hasHealthDataAccess()) {
-			
+			String healthData = "Patient needs a colonoscopy";
+			pr.editHealthData(1,healthData);
 		}
 	}
 	

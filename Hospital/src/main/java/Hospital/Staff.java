@@ -55,7 +55,6 @@ public class Staff extends HospitalUser {
 	}
 
 	public boolean hasHealthDataAccess() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

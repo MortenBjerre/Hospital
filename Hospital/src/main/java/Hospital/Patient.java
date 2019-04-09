@@ -17,6 +17,7 @@ public class Patient extends HospitalUser {
 	private boolean inpatient;
 	private static int serialnumCounter = 0;
 	private int serialnum;
+	private String healthData = "";
 
 	
 	//This is protected so that there can't be free floating patients. Can only make one in a register
@@ -31,25 +32,27 @@ public class Patient extends HospitalUser {
 	 * @param address
 	 * @param number
 	 * @param alive
+	 * @param healthData 
 	 */
 	protected Patient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient) {
+			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient, String healthData) {
 		set(email, name, surname, birthday, gender, department);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setInpatient(inpatient);
+		setHealthData(healthData);
 		serialnum = serialnumCounter;
 		serialnumCounter++;
 	}
 	
 	public void setPatient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department) {
+			String gender, String address, int phoneNumber, boolean alive, String department, String healthData) {
 		set(email, name, surname, birthday, gender, department);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
-		
+		setHealthData(healthData);
 		//need to add department
 	}
 
@@ -119,6 +122,15 @@ public class Patient extends HospitalUser {
 		int hash = super.hashCode();
 		hash += 13 * this.serialnum;
 		return hash;
+	}
+
+	public String getHealthData() {
+		return healthData;
+	}
+
+	public void setHealthData(String healthData) {
+		this.healthData += healthData;
+		// healthData is added but never deleted
 	}
 }
 

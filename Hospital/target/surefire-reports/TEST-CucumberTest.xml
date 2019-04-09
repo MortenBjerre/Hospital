@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="51" failures="0" name="CucumberTest" time="0.03" errors="0" skipped="4">
+<testsuite tests="53" failures="0" name="CucumberTest" time="0.016" errors="2" skipped="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\morte\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4395993323527232892.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\morte\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf1671250296249980254.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_201\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\CineForm\Tools;C:\Program Files (x86)\GoPro\Tools;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\PuTTY\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2018a\bin;C:\Users\morte\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\morte\AppData\Local\Programs\Python\Python37\;C:\Python\Scripts\;C:\Python\;C:\Users\morte\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\morte\Downloads\FsLexYacc.7.0.6\build;C:\Users\morte\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Graphviz2.38\bin;;C:\Program Files (x86)\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -65,23 +65,12 @@
   <testcase classname="Scenario: Nurse searching for patients" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: Nurse searching for patients" name="And the patient register contains several patients" time="0"/>
   <testcase classname="Scenario: Nurse searching for patients" name="Then I should be able to search for a patient" time="0"/>
-  <testcase classname="Scenario: Nurse searching for patients" name="And edit or view the patients health data" time="0">
-    <skipped/>
-  </testcase>
-  <testcase classname="Scenario: Nurse searching for patients" name="Scenario: Nurse searching for patients" time="0">
-    <skipped/>
-  </testcase>
   <testcase classname="Scenario: Nurse searching for patients" name="Scenario: Nurse searching for patients" time="0"/>
   <testcase classname="Scenario: Doctor searching for patients" name="Given That I am a doctor" time="0"/>
   <testcase classname="Scenario: Doctor searching for patients" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: Doctor searching for patients" name="And the patient register contains several patients" time="0"/>
   <testcase classname="Scenario: Doctor searching for patients" name="Then I should be able to search for a patient" time="0"/>
-  <testcase classname="Scenario: Doctor searching for patients" name="And edit the patients heatlh data" time="0">
-    <skipped/>
-  </testcase>
-  <testcase classname="Scenario: Doctor searching for patients" name="Scenario: Doctor searching for patients" time="0">
-    <skipped/>
-  </testcase>
+  <testcase classname="Scenario: Doctor searching for patients" name="And edit or view the patients health data" time="0"/>
   <testcase classname="Scenario: Doctor searching for patients" name="Scenario: Doctor searching for patients" time="0"/>
   <testcase classname="Scenario: Nurse trying to edit staff register" name="Given That I am a nurse" time="0"/>
   <testcase classname="Scenario: Nurse trying to edit staff register" name="And I have a a staff register" time="0"/>
@@ -99,6 +88,23 @@
   <testcase classname="Scenario: Doctor trying to search staff register" name="And I have a a staff register" time="0"/>
   <testcase classname="Scenario: Doctor trying to search staff register" name="Then I should not be able search for staff" time="0"/>
   <testcase classname="Scenario: Doctor trying to search staff register" name="Scenario: Doctor trying to search staff register" time="0"/>
+  <testcase classname="Scenario: Nurse viewing/editing health data" name="Given That I am a nurse" time="0"/>
+  <testcase classname="Scenario: Nurse viewing/editing health data" name="And I have a patient register" time="0"/>
+  <testcase classname="Scenario: Nurse viewing/editing health data" name="Then I should be able to search for a patient" time="0">
+    <error message="0" type="java.lang.ArrayIndexOutOfBoundsException">java.lang.ArrayIndexOutOfBoundsException: 0
+	at StepDefinitionClerk.i_should_be_able_to_search_for_a_patient(StepDefinitionClerk.java:72)
+	at ✽.Then I should be able to search for a patient(nurse.feature:60)
+</error>
+  </testcase>
+  <testcase classname="Scenario: Nurse viewing/editing health data" name="Scenario: Nurse viewing/editing health data" time="0">
+    <error message="0" type="java.lang.ArrayIndexOutOfBoundsException">java.lang.ArrayIndexOutOfBoundsException: 0
+	at StepDefinitionClerk.i_should_be_able_to_search_for_a_patient(StepDefinitionClerk.java:72)
+	at ✽.Then I should be able to search for a patient(nurse.feature:60)
+</error>
+  </testcase>
+  <testcase classname="Scenario: Nurse viewing/editing health data" name="And edit or view the patients health data" time="0.016">
+    <skipped/>
+  </testcase>
   <testcase classname="Scenario: Registering a patient" name="Given That I am a clerk" time="0"/>
   <testcase classname="Scenario: Registering a patient" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: Registering a patient" name="When a patient needs to be admitted" time="0"/>
@@ -112,8 +118,8 @@
   <testcase classname="Scenario: Searching for a patient" name="Scenario: Searching for a patient" time="0"/>
   <testcase classname="Scenario: Searching for a staff member" name="Given That I am a clerk" time="0"/>
   <testcase classname="Scenario: Searching for a staff member" name="And I have a a staff register" time="0"/>
-  <testcase classname="Scenario: Searching for a staff member" name="Then I should not be able to add staff to the staff register" time="0.015"/>
-  <testcase classname="Scenario: Searching for a staff member" name="Scenario: Searching for a staff member" time="0.015"/>
+  <testcase classname="Scenario: Searching for a staff member" name="Then I should not be able to add staff to the staff register" time="0"/>
+  <testcase classname="Scenario: Searching for a staff member" name="Scenario: Searching for a staff member" time="0"/>
   <testcase classname="Scenario: Editing a patients information" name="Given That I am a clerk" time="0"/>
   <testcase classname="Scenario: Editing a patients information" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: Editing a patients information" name="And the patient register contains several patients" time="0"/>
