@@ -23,6 +23,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JMenuBar;
 
 
+@SuppressWarnings({ "serial", "unused" })
 public class StaffLogin extends JFrame {
 
 	private JPanel contentPane;

@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
+@SuppressWarnings({ "unused", "serial" })
 public class Patient_Menu extends JFrame {
 
 	private JPanel contentPane;
