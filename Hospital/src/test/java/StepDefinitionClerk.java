@@ -5,6 +5,7 @@ import java.util.Date;
 
 import Hospital.Clerk;
 import Hospital.Doctor;
+import Hospital.ICTOfficer;
 import Hospital.Nurse;
 import Hospital.PatientRegister;
 import Hospital.Staff;
@@ -140,5 +141,27 @@ public class StepDefinitionClerk {
 			pr.editHealthData(1,healthData);
 			assertTrue(pr.viewHealthData(1).equals(healthData));
 		}
+	}
+	
+	// ICT Officer scenarios
+	
+	@Given("^That I am an ICT Officer$")
+	public void that_I_am_an_ICT_Officer() {
+		s = new ICTOfficer("ICTemail@dtu.dk", "Dermot", "Mulroney", new Date(), "male", "Headquarters");
+	}
+
+	@Given("^I have a staff register$")
+	public void i_have_a_staff_register() {
+		sr = new StaffRegister();
+	}
+
+	@Then("^I should be able to register a staff member$")
+	public void i_should_be_able_to_register_a_staff_member() {
+		if (s.hasWriteAccessTo(sr)) {
+			sr.add("Dylan@90210.com", "Dylan", "McKay", new Date(), "male", "ER");
+		}
+		System.out.println(sr);
+		assertTrue(sr.toString().length() != 0);
+		
 	}
 }
