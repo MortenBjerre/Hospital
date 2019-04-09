@@ -39,5 +39,20 @@ Feature: Nurse/doctor using software
 		And I have a a staff register
 		Then I should not be able to add staff to the staff register
 
+  Scenario: Nurse trying to search staff register
+    Given That I am a nurse
+		And I have a a staff register
+		Then I should not be able search for staff
+		
+	Scenario: Doctor trying to edit staff register
+    Given That I am a doctor
+		And I have a a staff register
+		Then I should not be able to add staff to the staff register
+		
+  Scenario: Doctor trying to search staff register
+    Given That I am a doctor
+		And I have a a staff register
+		Then I should not be able search for staff
+
 
     

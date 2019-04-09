@@ -50,4 +50,8 @@ public class Staff extends HospitalUser {
 		return hash;
 	}
 
+	public boolean hasViewAccessTo(StaffRegister sr) {
+		return false;
+	}
+
 }

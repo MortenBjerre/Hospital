@@ -1,10 +1,12 @@
 Hospital\Department.class
 Hospital\PatientRegister.class
+Hospital\Doctor.class
 Hospital\DepartmentRegister.class
 Hospital\Patient.class
 Hospital\Staff.class
 Hospital\Hospital.class
 Hospital\HospitalUser.class
+Hospital\Nurse.class
 Hospital\Register.class
 Hospital\StaffRegister.class
 Hospital\Clerk.class

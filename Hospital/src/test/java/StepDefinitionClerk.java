@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 
 import Hospital.Clerk;
+import Hospital.Doctor;
 import Hospital.Nurse;
 import Hospital.PatientRegister;
 import Hospital.Staff;
@@ -119,5 +120,15 @@ public class StepDefinitionClerk {
 	@Given("^That I am a nurse$")
 	public void that_I_am_a_nurse() {
 		s = new Nurse("nurse@mail.dk","John","Hancock", new Date(), "male", "ER");
+	}
+	
+	@Given("^That I am a doctor$")
+	public void that_I_am_a_doctor() {
+		s = new Doctor("doctor@gmail.com", "Dr", "Cox", new Date(), "male", "ER");
+	}
+	
+	@Then("^I should not be able search for staff$")
+	public void i_should_not_be_able_search_for_staff() {
+		assertFalse(s.hasViewAccessTo(sr));
 	}
 }
