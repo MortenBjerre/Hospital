@@ -58,7 +58,8 @@ public class graphic_user_Interface {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().setLayout(null);
-		
+//		frame.isResizable(true);
+//		
 		JButton btnStaff = new JButton("Staff");
 		btnStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

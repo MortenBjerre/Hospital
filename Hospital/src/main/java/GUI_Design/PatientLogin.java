@@ -59,7 +59,7 @@ public class PatientLogin extends JFrame {
 		invalidLogin.setVisible(false);
 		
 		JLabel lblWelcomeToPatient = new JLabel("Welcome to patient login page");
-		lblWelcomeToPatient.setBounds(240, 72, 377, 33);
+		lblWelcomeToPatient.setBounds(240, 72, 361, 33);
 		contentPane.add(lblWelcomeToPatient);
 		
 		JButton btnGoBack = new JButton("Go Back");
@@ -72,15 +72,15 @@ public class PatientLogin extends JFrame {
 		contentPane.add(btnGoBack);
 		
 		JLabel lblEmail = new JLabel("Email :  ");
-		lblEmail.setBounds(63, 364, 115, 33);
+		lblEmail.setBounds(63, 364, 98, 33);
 		contentPane.add(lblEmail);
 		
 		JLabel lblNewLabel = new JLabel("First Name :");
-		lblNewLabel.setBounds(63, 156, 154, 33);
+		lblNewLabel.setBounds(63, 156, 146, 33);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblSurname = new JLabel("Surname :");
-		lblSurname.setBounds(56, 263, 140, 33);
+		lblSurname.setBounds(56, 263, 124, 33);
 		contentPane.add(lblSurname);
 		
 		firstName = new JTextField();
@@ -117,6 +117,9 @@ public class PatientLogin extends JFrame {
 						invalidLogin.setVisible(true);
 						attempts--;
 					}
+				}
+				if (attempts == 0) {
+					dispose();
 				}
 			}
 		});

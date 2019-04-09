@@ -89,6 +89,9 @@ public class ClerkLogin extends JFrame {
 						attempts--;
 					}
 				}
+				if (attempts == 0) {
+					dispose();
+				}
 //					
 			
 			}

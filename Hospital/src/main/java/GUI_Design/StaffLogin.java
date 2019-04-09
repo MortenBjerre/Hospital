@@ -106,6 +106,9 @@ public class StaffLogin extends JFrame {
 					}
 					attempts--;
 				}
+				if (attempts == 0) {
+					dispose();
+				}
 			}
 		});
 		btnLogin.setBounds(334, 419, 171, 41);
