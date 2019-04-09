@@ -96,7 +96,6 @@ public class StepDefinitionClerk {
 		Date birthday = new Date(1996-1900,10,10);
 		// Using Date the year is the year minus 1900.
 		pr.editBirthday(serialnum, birthday);
-		System.out.println(pr);
 		assertTrue(pr.searchSerialnum(1)[0].equals("Serialnum: 1; Patient name: Josefine Bjerre ; Gender: male ; Birthday: Sun Nov 10 00:00:00 CET 1996 ; Email: JosefineB@gmail.com"));
 	
 		// Edit address, phoneNumber, alive and inpatient don't need testing since the implementation
@@ -131,4 +130,15 @@ public class StepDefinitionClerk {
 	public void i_should_not_be_able_search_for_staff() {
 		assertFalse(s.hasViewAccessTo(sr));
 	}
+	
+	@Then("^edit or view the patients health data$")
+	// There is no differentiating between viewing and editing health data.
+	public void edit_or_view_the_patients_health_data() {
+		if (s.hasHealthDataAccess()) {
+			
+		}
+	}
+	
+	
+	
 }
