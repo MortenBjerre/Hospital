@@ -1,5 +1,4 @@
 # Hospital
-# AgileProject
 
 ## Smeadb Inc.
 
