@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({ "serial", "unused" })
 public class ClerkLogin extends JFrame {
 
 	private JPanel contentPane;

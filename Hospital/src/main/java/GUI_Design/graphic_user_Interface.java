@@ -1,8 +1,11 @@
 package GUI_Design;
 
+
 import Hospital.*;
 
+
 import java.awt.EventQueue;
+
 import java.awt.Window;
 
 import javax.swing.JFrame;
@@ -20,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JComboBox;
 
+@SuppressWarnings("unused")
 public class graphic_user_Interface {
 
 	private JFrame frame;

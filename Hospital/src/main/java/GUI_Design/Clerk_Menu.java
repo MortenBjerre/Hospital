@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({ "unused", "serial" })
 public class Clerk_Menu extends JFrame {
 
 	private JPanel contentPane;

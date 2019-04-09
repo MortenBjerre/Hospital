@@ -14,6 +14,7 @@ import Hospital.Hospital;
 
 import javax.swing.JLabel;
 
+@SuppressWarnings({ "unused", "serial" })
 public class Staff_Menu extends JFrame {
 
 	private JPanel contentPane;
