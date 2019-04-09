@@ -139,7 +139,6 @@ public class StepDefinitionClerk {
 			String healthData = "Patient needs a colonoscopy";
 			pr.editHealthData(1,healthData);
 			assertTrue(pr.viewHealthData(1).equals(healthData));
-			System.out.println(pr.viewHealthData(1));
 		}
 	}
 }
