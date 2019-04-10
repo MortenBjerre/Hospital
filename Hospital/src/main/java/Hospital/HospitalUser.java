@@ -91,7 +91,26 @@ public abstract class HospitalUser {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+	
+	/**
+	 * Checks if this hospital user has editing permission to Register r
+	 * @param r A Register
+	 * @return true if hospital user has editing permission
+	 */
 	public abstract boolean hasWriteAccessTo(Register r);
+	
+	/**
+	 * Checks if this hospital user has viewing permission to Register r
+	 * @param r A Register
+	 * @return true if hospital user has viewing permission
+	 */
+	public abstract boolean hasViewAccessTo(Register r);
+	
+	/**
+	 * Checks if this hospital user has permission to view health data
+	 * @return true if hospital user has health data access
+	 */
+	public abstract boolean hasHealthDataAccess();
 	
 }
 
