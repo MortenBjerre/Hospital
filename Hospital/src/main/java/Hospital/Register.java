@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Register<T extends HospitalUser> {
-	protected Map<Integer, T> users = new HashMap<Integer, T>();
+	public Map<Integer, T> users = new HashMap<Integer, T>();
 	
 	protected int serialnum = 0;
 	
@@ -23,7 +23,7 @@ public abstract class Register<T extends HospitalUser> {
 	 * @param serialnum
 	 * @return HashMap of matching HospitalUsers
 	 */
-	protected T findSerialnum(int serialnum) {
+	public T findSerialnum(int serialnum) {
 		return users.get(serialnum);
 	}
 	
