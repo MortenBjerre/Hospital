@@ -163,4 +163,19 @@ public class StepDefinitionClerk {
 		assertTrue(sr.toString().length() != 0);
 		// The staff register is no longer empty
 	}
+	
+	@Then("^I want to be able to view the patient register$")
+	public void i_want_to_be_able_to_view_the_patient_register() {
+		assertTrue(s.hasViewAccessTo(pr));
+	}
+
+	@Then("^I want to be able to view the staff register$")
+	public void i_want_to_be_able_to_view_the_staff_register() {
+		assertTrue(s.hasViewAccessTo(sr));
+	}
+
+	@Then("^I want to be able to view the patients' health data$")
+	public void i_want_to_be_able_to_view_the_patients_health_data() {
+		assertTrue(s.hasHealthDataAccess());
+	}
 }
