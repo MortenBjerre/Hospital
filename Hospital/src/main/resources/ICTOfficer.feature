@@ -24,4 +24,14 @@ Feature: ICT Officer using software
   	Given That I am an ICT Officer
   	And I have a staff register
   	Then I should be able to register a staff member
+  	
+  Scenario: As an ICT Officer, I want to be able to see all hospital users' data to have tabs on the system
+  	Given That I am an ICT Officer
+  	And I have a staff register
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I want to be able to view the patient register
+  	And I want to be able to view the staff register
+  	And I want to be able to view the patients' health data
+  	
 

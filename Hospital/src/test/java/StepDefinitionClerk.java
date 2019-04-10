@@ -160,8 +160,7 @@ public class StepDefinitionClerk {
 		if (s.hasWriteAccessTo(sr)) {
 			sr.add("Dylan@90210.com", "Dylan", "McKay", new Date(), "male", "ER");
 		}
-		System.out.println(sr);
 		assertTrue(sr.toString().length() != 0);
-		
+		// The staff register is no longer empty
 	}
 }
