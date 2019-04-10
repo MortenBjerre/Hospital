@@ -20,8 +20,7 @@
 Feature: ICT Officer using software
 
   @tag1
-  Scenario: As an ICT Officer, I want to register staff
-  members so that we know where the staff members are working
+  Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working
   	Given That I am an ICT Officer
   	And I have a staff register
   	Then I should be able to register a staff member

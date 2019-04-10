@@ -20,16 +20,14 @@
 Feature: Nurse/doctor using software
 
   @tag1
-  Scenario: As a nurse, I want to be able to search
-  for patients so that i can easily edit their health data.
+  Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data.
     Given That I am a nurse
     And I have a patient register
     And the patient register contains several patients
     Then I should be able to search for a patient
   
     
-  Scenario: As a doctor, I want to be able to search for 
-  patients so that i can easily edit their health data (part 1).
+  Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 1).
     Given That I am a doctor
     And I have a patient register
     And the patient register contains several patients
@@ -55,8 +53,7 @@ Feature: Nurse/doctor using software
 		And I have a a staff register
 		Then I should not be able search for staff
 
-	Scenario: As a nurse, I want to be able to search for 
-  patients so that i can easily edit their health data (part 2).
+	Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data (part 2).
 		Given That I am a nurse
 		And I have a patient register
     And the patient register contains several patients	
@@ -64,8 +61,7 @@ Feature: Nurse/doctor using software
 		And the patient register contains several patients
 		And edit or view the patients health data
 		
-	Scenario: As a doctor, I want to be able to search for 
-  patients so that i can easily edit their health data (part 2).
+	Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2).
 		Given That I am a doctor
 		And I have a patient register
 		And the patient register contains several patients
