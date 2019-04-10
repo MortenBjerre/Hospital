@@ -183,24 +183,43 @@ public abstract class Register<T extends HospitalUser> {
 	}
 	
 	// Edit:
-	
+	/**
+	 * Changes the name of a given HospitalUser, identified by their serialnum
+	 * @param serialnum
+	 * @param name
+	 */
 	public void editName(int serialnum, String name) {
 		T user = this.findSerialnum(serialnum);
 		user.setName(name);
 		users.put(serialnum, user);
 	}	
-	
+	/**
+	 * Changes the surname of a given HospitalUser, identified by their serialnum
+	 * @param serialnum
+	 * @param surname
+	 */
 	public void editSurname(int serialnum, String surname) {
 		T user = this.findSerialnum(serialnum);
 		user.setSurname(surname);
 		users.put(serialnum, user);	
 	}
 	
+	/**
+	 * Changes the email of a given HospitalUser, identified by their serialnum
+	 * @param serialnum
+	 * @param email
+	 */
 	public void editEmail(int serialnum, String email) {
 		T user = this.findSerialnum(serialnum);
 		user.setEmail(email);
 		users.put(serialnum, user);	
 	}
+	
+	/**
+	 * Changes the gender of a given HospitalUser, identified by their serialnum
+	 * @param serialnum
+	 * @param gender
+	 */
 	public void editGender(int serialnum, String gender) {
 		T user = this.findSerialnum(serialnum);
 		user.setGender(gender);
