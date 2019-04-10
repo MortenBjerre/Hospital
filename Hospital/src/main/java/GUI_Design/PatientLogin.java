@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 @SuppressWarnings({ "serial", "unused" })
 public class PatientLogin extends JFrame {
@@ -55,16 +56,19 @@ public class PatientLogin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel invalidLogin = new JLabel("Incorrect Login");
+		invalidLogin.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		invalidLogin.setBounds(287, 404, 193, 33);
 		contentPane.add(invalidLogin);
 		invalidLogin.setForeground(Color.red);
 		invalidLogin.setVisible(false);
 		
 		JLabel lblWelcomeToPatient = new JLabel("Welcome to patient login page");
+		lblWelcomeToPatient.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		lblWelcomeToPatient.setBounds(240, 72, 361, 33);
 		contentPane.add(lblWelcomeToPatient);
 		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -74,33 +78,40 @@ public class PatientLogin extends JFrame {
 		contentPane.add(btnGoBack);
 		
 		JLabel lblEmail = new JLabel("Email :  ");
+		lblEmail.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		lblEmail.setBounds(63, 364, 98, 33);
 		contentPane.add(lblEmail);
 		
 		JLabel lblNewLabel = new JLabel("First Name :");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		lblNewLabel.setBounds(63, 156, 146, 33);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblSurname = new JLabel("Surname :");
-		lblSurname.setBounds(56, 263, 124, 33);
+		lblSurname.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		lblSurname.setBounds(63, 265, 124, 33);
 		contentPane.add(lblSurname);
 		
 		firstName = new JTextField();
+		firstName.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		firstName.setBounds(265, 153, 236, 39);
 		contentPane.add(firstName);
 		firstName.setColumns(10);
 		
 		Surname = new JTextField();
+		Surname.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		Surname.setBounds(265, 260, 236, 39);
 		contentPane.add(Surname);
 		Surname.setColumns(10);
 		
 		email = new JTextField();
+		email.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		email.setBounds(265, 361, 236, 39);
 		contentPane.add(email);
 		email.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				

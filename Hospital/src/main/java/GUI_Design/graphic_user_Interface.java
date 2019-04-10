@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 @SuppressWarnings("unused")
 public class graphic_user_Interface {
@@ -61,10 +62,12 @@ public class graphic_user_Interface {
 		Hospital H = new Hospital();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-		frame.getContentPane().setLayout(null);
+		frame.setSize(1000,670);
 //		frame.isResizable(true);
 //		
 		JButton btnStaff = new JButton("Staff");
+		btnStaff.setBounds(188, 214, 171, 41);
+		btnStaff.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -72,10 +75,12 @@ public class graphic_user_Interface {
 				loginPage.setVisible(true);
 			}
 		});
-		btnStaff.setBounds(364, 214, 171, 41);
+		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnStaff);
 		
 		JButton btnPatient = new JButton("Patient");
+		btnPatient.setBounds(605, 214, 171, 41);
+		btnPatient.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -84,29 +89,16 @@ public class graphic_user_Interface {
 				
 			}
 		});
-		btnPatient.setBounds(647, 214, 171, 41);
 		frame.getContentPane().add(btnPatient);
 		
-		JButton btnClerk = new JButton("Clerk");
-		btnClerk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				ClerkLogin loginPage = new ClerkLogin(H);
-				loginPage.setVisible(true);
-				
-				
-			}
-		});
-		btnClerk.setBounds(56, 214, 171, 41);
-		frame.getContentPane().add(btnClerk);
-		
 		JButton btnQuit = new JButton("Quit");
+		btnQuit.setBounds(0, 539, 171, 41);
+		btnQuit.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		btnQuit.setBounds(0, 539, 171, 41);
 		frame.getContentPane().add(btnQuit);
 		
 		

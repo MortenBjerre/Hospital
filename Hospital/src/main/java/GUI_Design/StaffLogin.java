@@ -21,14 +21,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JEditorPane;
 import javax.swing.JToggleButton;
 import javax.swing.JMenuBar;
+import java.awt.Font;
 
 
 @SuppressWarnings({ "serial", "unused" })
 public class StaffLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField email;
-	private JPasswordField passwordField;
+	private JPasswordField SerialNumber;
 	static Hospital H;
 	private int attempts = 2;
 
@@ -39,6 +39,7 @@ public class StaffLogin extends JFrame {
 		Hospital H = new Hospital();
 		H.createDepartment("lol");
 		H.staffRegister.add("email", "name", "surname", new Date(), "gender", "lol");
+		H.staffRegister.add("email2", "name2", "surname2", new Date(), "gender2", "lol");
 //		System.out.println(H.staffRegister.searchEmail("email"));
 	
 		EventQueue.invokeLater(new Runnable() {
@@ -65,39 +66,35 @@ public class StaffLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblEmail = new JLabel("Email :");
-		lblEmail.setBounds(64, 161, 115, 33);
-		contentPane.add(lblEmail);
+		System.out.println(H.staffRegister.searchEmail("email")[0]);
 		
 		JLabel lblSerialNumber = new JLabel("Serial Number :");
-		lblSerialNumber.setBounds(64, 291, 235, 33);
+		lblSerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		lblSerialNumber.setBounds(64, 177, 235, 33);
 		contentPane.add(lblSerialNumber);
 		
 		JLabel invalidLogin = new JLabel("Incorrect Login");
-		invalidLogin.setBounds(332, 338, 193, 33);
+		invalidLogin.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		invalidLogin.setBounds(334, 226, 193, 33);
 		contentPane.add(invalidLogin);
 		invalidLogin.setForeground(Color.red);
 		invalidLogin.setVisible(false);
 		
-		email = new JTextField();
-		email.setBounds(309, 158, 236, 39);
-		contentPane.add(email);
-		email.setColumns(10);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(309, 288, 235, 39);
-		contentPane.add(passwordField);
+		SerialNumber = new JPasswordField();
+		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		SerialNumber.setBounds(309, 174, 235, 39);
+		contentPane.add(SerialNumber);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Email = email.getText();
 				@SuppressWarnings("deprecation")
-				int password = Integer.parseInt(passwordField.getText());
+				int serialNumber = Integer.parseInt(SerialNumber.getText());
 				
 				if (attempts != 0) {
-					if (Email.equals(H.staffRegister.searchEmail(Email)[0]) &&  String.valueOf(password).equals(H.staffRegister.searchSerialnum(password)[0])) {
-						Staff_Menu menu = new Staff_Menu(H);
+					if (H.staffRegister.users.containsKey(serialNumber)) {
+						Staff_Menu menu = new Staff_Menu(H,serialNumber);
 						menu.setVisible(true);
 					} else {
 						invalidLogin.setVisible(true);
@@ -108,10 +105,11 @@ public class StaffLogin extends JFrame {
 				}
 			}
 		});
-		btnLogin.setBounds(334, 419, 171, 41);
+		btnLogin.setBounds(334, 300, 171, 41);
 		contentPane.add(btnLogin);
 		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -121,6 +119,7 @@ public class StaffLogin extends JFrame {
 		contentPane.add(btnGoBack);
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Staff login page!");
+		lblWelcomeToThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		lblWelcomeToThe.setBounds(64, 39, 407, 33);
 		contentPane.add(lblWelcomeToThe);
 		

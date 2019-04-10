@@ -23,7 +23,7 @@ public abstract class Register<T extends HospitalUser> {
 	 * @param serialnum
 	 * @return HashMap of matching HospitalUsers
 	 */
-	protected T findSerialnum(int serialnum) {
+	public T findSerialnum(int serialnum) {
 		return users.get(serialnum);
 	}
 	
@@ -45,7 +45,10 @@ public abstract class Register<T extends HospitalUser> {
 	public String[] searchEmail(String email) {
 		ArrayList<T> matches = findEmail(email);
 		String[] m = new String[matches.size()];
-		return matches.toArray(m);
+		for (int i = 0; i < matches.size(); i++) {
+			m[i] = matches.get(i).toString();
+		}
+		return m;
 	}
 	
 	/**
@@ -177,5 +180,14 @@ public abstract class Register<T extends HospitalUser> {
 			}
 		}
 		return matches;
+	}
+	
+	public static void main(String[] args) {
+		PatientRegister p = new PatientRegister();
+		p.add("email", "name", "surname", new Date(), "gender"," address", 12121212, true, "first", true);
+//		System.out.println(p.findEmail("email")[0]);
+		ArrayList<Patient> people = p.findEmail("email");
+		Patient person = (Patient) people.toArray()[0];
+		System.out.println(person.getEmail());
 	}
 }

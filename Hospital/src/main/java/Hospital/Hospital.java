@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Hospital {
 	public StaffRegister staffRegister = new StaffRegister();
-	PatientRegister patientRegister = new PatientRegister();
-	DepartmentRegister departmentRegister = new DepartmentRegister();
+	public PatientRegister patientRegister = new PatientRegister();
+	public DepartmentRegister departmentRegister = new DepartmentRegister();
 	
 	public void registerPatient(String email, String name, String surname, Date birthday,
 			String gender, String address, int number, boolean alive,String department, boolean inpatient) {
@@ -46,6 +46,15 @@ public class Hospital {
 	
 	public void createDepartment(String departmentName, int numberofbeds) {
 		departmentRegister.createDepartment(departmentName, numberofbeds);
+	}
+	
+	
+	public static void main(String[] args) {
+		Hospital H = new Hospital();
+		H.departmentRegister.createDepartment("first");
+		H.registerPatient("email", "name", "surname", new Date(), "gender"," address", 12121212, true, "first", true);
+//		String[] s = H.patientRegister.searchEmail("email");
+		System.out.println(H.patientRegister.searchEmail("email"));
 	}
 }
 //patientmember 
