@@ -151,6 +151,18 @@ public class Patient extends HospitalUser {
 		this.healthData += healthData;
 		// healthData is added but never deleted
 	}
+
+	@Override
+	public boolean hasViewAccessTo(Register r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasHealthDataAccess() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 

@@ -10,8 +10,19 @@ public class PatientRegister extends Register<Patient> {
 	}
 	
 	/**
-	 * Adds a patient to the register
-	 * @param p Patient
+	 * Adds a patient to the patient register
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 * @param address
+	 * @param phoneNumber
+	 * @param alive
+	 * @param department
+	 * @param inpatient
+	 * @param healthData
+	 * @return Returns the serial number of the patient added
 	 */
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
