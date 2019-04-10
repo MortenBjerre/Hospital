@@ -5,15 +5,33 @@ import java.util.Date;
 
 public class PatientRegister extends Register<Patient> {
 	
+	public PatientRegister() {
+		Patient.resetSerialnumCounter();
+	}
+	
 	/**
-	 * Adds a patient to the register
-	 * @param p Patient
+	 * Adds a patient to the patient register
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 * @param address
+	 * @param phoneNumber
+	 * @param alive
+	 * @param department
+	 * @param inpatient
+	 * @param healthData
+	 * @return Returns the serial number of the patient added
 	 */
 	public int add(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient) {
-		users.put(serialnum, new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient));
-		serialnum++;
-		return serialnum - 1;
+			String gender, String address, int phoneNumber, boolean alive, 
+			String department, boolean inpatient, String healthData) {
+		Patient p = new Patient(email, name, surname, birthday, gender, address, 
+								phoneNumber, alive, department, inpatient, healthData);
+		users.put(p.getSerialnum(), p);
+		
+		return p.getSerialnum();
 	}
 	
 	
@@ -101,5 +119,74 @@ public class PatientRegister extends Register<Patient> {
 			}
 		}
 		return matches;
+	}
+	
+	/**
+	 * Changes the birthday of a given patient, identified by their serialnum
+	 * @param serialnum
+	 * @param birthday
+	 */
+	public void editBirthday(int serialnum, Date birthday) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setBirthday(birthday);		
+	}
+	
+	/**
+	 * Changes the phone number of a given patient, identified by their serialnum
+	 * @param serialnum
+	 * @param phoneNumber
+	 */
+	public void editPhoneNumber(int serialnum, int phoneNumber) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setPhoneNumber(phoneNumber);	
+	}
+	
+	/**
+	 * Changes the address of a given patient, identified by their serialnum
+	 * @param serialnum
+	 * @param address
+	 */
+	public void editAddress(int serialnum, String address) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAddress(address);		
+	}
+	
+	/**
+	 * Changes the alive status of a given patient, identified by their serialnum
+	 * @param serialnum
+	 * @param alive
+	 */
+	public void editAlive(int serialnum, boolean alive) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAlive(alive);
+	}
+	
+	/**
+	 * Changes the inpatient status of a given patient, identified by their serialnum
+	 * @param serialnum
+	 * @param inpatient
+	 */
+	public void editInpatient(int serialnum, boolean inpatient) {
+		Patient p = this.findSerialnum(serialnum);
+		p.setAlive(inpatient);	
+	}
+	
+	/**
+	 * Changes the health data of a given patient, identified by their serialnum
+	 * @param serialnum
+	 * @param healthData
+	 */
+	public void editHealthData(int serialnum, String healthData) {
+		Patient p = findSerialnum(serialnum);
+		p.setHealthData(healthData);
+	}
+	
+	/**
+	 * View the health data
+	 * @param serialnum
+	 * @return health data
+	 */
+	public String viewHealthData(int serialnum) {
+		return findSerialnum(serialnum).getHealthData();	
 	}
 }

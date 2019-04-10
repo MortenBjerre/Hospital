@@ -15,6 +15,9 @@ public class Patient extends HospitalUser {
 	private int phoneNumber;
 	private boolean alive;
 	private boolean inpatient;
+	private static int serialnumCounter = 0;
+	private int serialnum;
+	private String healthData = "";
 
 	
 	//This is protected so that there can't be free floating patients. Can only make one in a register
@@ -29,30 +32,51 @@ public class Patient extends HospitalUser {
 	 * @param address
 	 * @param number
 	 * @param alive
+	 * @param healthData 
 	 */
 	protected Patient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient) {
+			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient, String healthData) {
 		set(email, name, surname, birthday, gender, department);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setInpatient(inpatient);
-		
+		setHealthData(healthData);
+		serialnum = serialnumCounter;
+		serialnumCounter++;
 	}
 	
+	/**
+	 * Edit all the patient fields at once
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 * @param address
+	 * @param phoneNumber
+	 * @param alive
+	 * @param department
+	 * @param healthData
+	 */
 	public void setPatient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department) {
-		set( email, name, surname, birthday, gender, department);
+			String gender, String address, int phoneNumber, boolean alive, String department, String healthData) {
+		set(email, name, surname, birthday, gender, department);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
+		setHealthData(healthData);
 		//need to add department
 	}
-
+	
+	/**
+	 * Set alive status
+	 * @param alive
+	 */
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
-
+	
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
@@ -74,7 +98,7 @@ public class Patient extends HospitalUser {
 	}
 	
 	public String toString() {
-		return ("Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
+		return ("Serialnum: " + serialnum + "; Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
 				+ " ; Birthday: " + getBirthday() + " ; Email: " + getEmail()); 
 	}
 
@@ -86,10 +110,60 @@ public class Patient extends HospitalUser {
 		this.inpatient = inpatient;
 	}
 
-	@Override
+	/**
+	 * Checks if patient has write access to a register
+	 */
 	public boolean hasWriteAccessTo(Register r) {
 		return false;
 	}
+
+	public int getSerialnum() {
+		return serialnum;
+	}
+
+	public void setSerialnum(int serialnum) {
+		this.serialnum = serialnum;
+	}
+	
+	public static void resetSerialnumCounter() {
+		serialnumCounter = 0;
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj instanceof Patient) {
+			Patient obj2 = (Patient) obj;
+			return (super.equals(obj) && obj2.serialnum == this.serialnum); 
+		}
+		return false;
+	}
+	
+	public int hashCode() {
+		int hash = super.hashCode();
+		hash += 13 * this.serialnum;
+		return hash;
+	}
+
+	public String getHealthData() {
+		return healthData;
+	}
+
+	public void setHealthData(String healthData) {
+		this.healthData += healthData;
+		// healthData is added but never deleted
+	}
+
+	@Override
+	public boolean hasViewAccessTo(Register r) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasHealthDataAccess() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
+
 
 
