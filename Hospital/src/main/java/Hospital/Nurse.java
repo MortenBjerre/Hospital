@@ -14,4 +14,7 @@ public class Nurse extends Staff {
 		}
 		return false;
 	}
+	public boolean hasHealthDataAccess() {
+		return true;
+	}
 }

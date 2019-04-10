@@ -8,8 +8,8 @@ public class Hospital {
 	DepartmentRegister departmentRegister = new DepartmentRegister();
 	
 	public void registerPatient(String email, String name, String surname, Date birthday,
-			String gender, String address, int number, boolean alive,String department, boolean inpatient) {
-		int serialnum = patientRegister.add(email, name, surname, birthday, gender, address, number, alive, department, inpatient);
+			String gender, String address, int number, boolean alive,String department, boolean inpatient, String healthData) {
+		int serialnum = patientRegister.add(email, name, surname, birthday, gender, address, number, alive, department, inpatient, healthData);
 		departmentRegister.findDepartment(department).addPatient(patientRegister.findSerialnum(serialnum));
 	}
 	

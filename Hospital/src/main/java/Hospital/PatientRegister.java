@@ -14,8 +14,10 @@ public class PatientRegister extends Register<Patient> {
 	 * @param p Patient
 	 */
 	public int add(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient) {
-		Patient p = new Patient(email, name, surname, birthday, gender, address, phoneNumber, alive, department, inpatient);
+			String gender, String address, int phoneNumber, boolean alive, 
+			String department, boolean inpatient, String healthData) {
+		Patient p = new Patient(email, name, surname, birthday, gender, address, 
+								phoneNumber, alive, department, inpatient, healthData);
 		users.put(p.getSerialnum(), p);
 		
 		return p.getSerialnum();
@@ -125,12 +127,22 @@ public class PatientRegister extends Register<Patient> {
 	
 	public void editAlive(int serialnum, boolean alive) {
 		Patient p = this.findSerialnum(serialnum);
-		p.setAlive(alive);	
+		p.setAlive(alive);
 	}
 	
 	public void editInpatient(int serialnum, boolean inpatient) {
 		Patient p = this.findSerialnum(serialnum);
 		p.setAlive(inpatient);	
 	}
-	
+
+	public void editHealthData(int serialnum, String healthData) {
+		Patient p = findSerialnum(serialnum);
+		p.setHealthData(healthData);
+		
+		
+	}
+
+	public String viewHealthData(int serialnum) {
+		return findSerialnum(serialnum).getHealthData();	
+	}
 }
