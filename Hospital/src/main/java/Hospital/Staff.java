@@ -7,6 +7,16 @@ public class Staff extends HospitalUser {
 	private static int serialnumCounter = 0;
 	private int serialnum;
 	
+	/**
+	 * Staff constructor. Takes all fields and sets them. Increments serialnumCounter every time it's called
+	 * so every serialnum is unique between staff members
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 * @param department
+	 */
 	public Staff(String email, String name, String surname, Date birthday, String gender, String department) {
 		set(email, name, surname, birthday, gender, department);
 		serialnum = serialnumCounter;
@@ -16,7 +26,8 @@ public class Staff extends HospitalUser {
 	}
 	
 	public String toString() {
-		return ("Serialnum: " + serialnum + "; Staff name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() + " ; Birthday: " + getBirthday() + " ; Email: " + getEmail() + " ; Role: Staff"); 
+		return ("Serialnum: " + serialnum + "; Staff name: " + getName() + " " + getSurname() + " ; Gender: " 
+				+ getGender() + " ; Birthday: " + getBirthday() + " ; Email: " + getEmail() + " ; Role: Staff"); 
 	}
 	
 	/**
