@@ -46,6 +46,19 @@ public class Patient extends HospitalUser {
 		serialnumCounter++;
 	}
 	
+	/**
+	 * Edit all the patient fields at once
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 * @param address
+	 * @param phoneNumber
+	 * @param alive
+	 * @param department
+	 * @param healthData
+	 */
 	public void setPatient(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, String department, String healthData) {
 		set(email, name, surname, birthday, gender, department);
@@ -55,11 +68,15 @@ public class Patient extends HospitalUser {
 		setHealthData(healthData);
 		//need to add department
 	}
-
+	
+	/**
+	 * Set alive status
+	 * @param alive
+	 */
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
-
+	
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
@@ -93,7 +110,9 @@ public class Patient extends HospitalUser {
 		this.inpatient = inpatient;
 	}
 
-	@Override
+	/**
+	 * Checks if patient has write access to a register
+	 */
 	public boolean hasWriteAccessTo(Register r) {
 		return false;
 	}
