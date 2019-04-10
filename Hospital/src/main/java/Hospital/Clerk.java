@@ -18,9 +18,6 @@ public class Clerk extends Staff {
 		super(email, name, surname, birthday, gender, department);	
 	}
 	
-	/**
-	 * Checks if this staff member has editing permission to a register
-	 */
 	public boolean hasWriteAccessTo(Register r) {
 		if (r instanceof PatientRegister) {
 			return true;
