@@ -2,8 +2,11 @@ package Hospital;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class PatientRegister extends Register<Patient> {
+	
+	HashMap<String, Department> dr = new HashMap<String, Department>();
 	
 	public PatientRegister() {
 		Patient.resetSerialnumCounter();
@@ -188,5 +191,27 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public String viewHealthData(int serialnum) {
 		return findSerialnum(serialnum).getHealthData();	
+	}
+
+	public void admit(int serialnum, String deptName) {
+		if (dr.containsKey(deptName)) {
+			Patient p = findSerialnum(serialnum);
+			p.setDepartment(deptName);
+			dr.get(deptName).addPatient(p);
+		} else {
+			throw new IllegalArgumentException("Invalid department name");
+		}
+	}
+
+	public String getDeptOf(int serialnum) {
+		return this.findSerialnum(serialnum).getDepartment();
+	}
+
+	public void addDept(String deptName, int beds) {
+		if (dr.containsKey(deptName)) {
+			throw new IllegalArgumentException("Department already exists");
+		} else {
+			dr.put(deptName, new Department(deptName, beds));
+		}
 	}
 }
