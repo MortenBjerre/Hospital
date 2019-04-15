@@ -178,4 +178,19 @@ public class StepDefinitionClerk {
 	public void i_want_to_be_able_to_view_the_patients_health_data() {
 		assertTrue(s.hasHealthDataAccess());
 	}
+	
+	@Given("^there exists an ER department$")
+	public void there_exists_an_ER_department() throws Throwable {
+	    pr.addDept("ER", 5);
+	}
+	
+	@Given("^I have a patient admitted to the ER$")
+	public void i_have_a_patient_admitted_to_the_ER() {
+		pr.admit(1, "ER");
+	}
+
+	@Then("^I should be able to find that patient's department$")
+	public void i_should_be_able_to_find_that_patient_s_department() throws Throwable {
+	    assertTrue(pr.getDeptOf(1).equals("ER"));
+	}
 }
