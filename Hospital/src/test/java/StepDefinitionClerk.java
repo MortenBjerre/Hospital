@@ -45,14 +45,14 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to add the patient to the patient register$")
 	public void i_should_be_able_to_add_the_patient_to_the_patient_register() {
 		if (s.hasWriteAccessTo(pr)) {
-			serialnum1 = pr.add("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true, "ER", true,"");
+			serialnum1 = pr.add("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true, true,"");
 		}
 	}
 
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
 		if (s.hasWriteAccessTo(pr)) {
-			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, "ER", true,"");
+			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true, true,"");
 		}
 		assertFalse(serialnum1 == serialnum2);
 	}
@@ -60,9 +60,9 @@ public class StepDefinitionClerk {
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
 		if (s.hasWriteAccessTo(pr)) {
-			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, "ER", true,"");
-			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, "ER", true,"");
-			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, "ER", true,"");
+			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true, true,"");
+			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, true,"");
+			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, true,"");
 		}
 	}
 
@@ -180,7 +180,7 @@ public class StepDefinitionClerk {
 	}
 	
 	@Given("^there exists an ER department$")
-	public void there_exists_an_ER_department() throws Throwable {
+	public void there_exists_an_ER_department() {
 	    pr.addDept("ER", 5);
 	}
 	
@@ -190,7 +190,24 @@ public class StepDefinitionClerk {
 	}
 
 	@Then("^I should be able to find that patient's department$")
-	public void i_should_be_able_to_find_that_patient_s_department() throws Throwable {
+	public void i_should_be_able_to_find_that_patient_s_department() {
 	    assertTrue(pr.getDeptOf(1).equals("ER"));
+	}
+	
+	@Then("^I should know patient two is not admitted$")
+	public void i_should_know_patient_two_is_not_admitted() {
+//		System.out.println("----------------==================-----------------");
+//		System.out.println(pr.getDeptOf(2));
+	    assertTrue(pr.getDeptOf(2).equals("Null"));
+	}
+
+	@Then("^admitting a patient to a nonexistent department should give an error$")
+	public void admitting_a_patient_to_a_nonexistent_department_should_give_an_error() {
+	    try {
+	    	pr.admit(0, "blabla");
+	    } catch (IllegalArgumentException e) {
+	    	assertTrue(e.getMessage() == "Invalid department name");
+	    	
+	    }
 	}
 }

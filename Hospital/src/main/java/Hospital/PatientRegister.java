@@ -29,9 +29,9 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
-			String department, boolean inpatient, String healthData) {
+			boolean inpatient, String healthData) {
 		Patient p = new Patient(email, name, surname, birthday, gender, address, 
-								phoneNumber, alive, department, inpatient, healthData);
+								phoneNumber, alive, "Null", inpatient, healthData);
 		users.put(p.getSerialnum(), p);
 		
 		return p.getSerialnum();

@@ -20,10 +20,18 @@
 Feature: Testing departments
 
   @tag1
-  Scenario: Title of your scenario
+  Scenario: As a nurse, I want to know where a patient is, so I can find and treat him
    Given That I am a nurse
    And I have a patient register
    And the patient register contains several patients
    And there exists an ER department
    And I have a patient admitted to the ER
    Then I should be able to find that patient's department
+   And I should know patient two is not admitted
+   
+  @tag2
+  Scenario: Admitting a patient to a non-existent department
+   Given That I am a nurse
+   And I have a patient register
+   And the patient register contains several patients
+   Then admitting a patient to a nonexistent department should give an error
