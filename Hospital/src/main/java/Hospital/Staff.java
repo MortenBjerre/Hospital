@@ -89,5 +89,7 @@ public class Staff extends HospitalUser {
 	public boolean hasHealthDataAccess() {
 		return false;
 	}
+	
+	
 
 }

@@ -35,3 +35,6 @@ Feature: Testing departments
    And I have a patient register
    And the patient register contains several patients
    Then admitting a patient to a nonexistent department should give an error
+   
+  @tag3
+  Scenario: 
