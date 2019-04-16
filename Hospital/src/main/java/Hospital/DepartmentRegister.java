@@ -23,6 +23,7 @@ public class DepartmentRegister{
 			a += departments.get(dep).getStaff();
 		}
 		return a;
+		// needs fixing
 		
 	}
 	
