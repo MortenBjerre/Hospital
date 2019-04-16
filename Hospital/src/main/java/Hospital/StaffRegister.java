@@ -20,8 +20,8 @@ public class StaffRegister extends Register<Staff> {
 	 */
 	public int add(String email, String name, String surname, Date birthday, String gender) {
 		Staff s = new Staff(email, name, surname, birthday, gender);
-		users.put(serialnum, s);
-		return serialnum;
+		users.put(s.getSerialnum(), s);
+		return s.getSerialnum();
 	}
 
 	
