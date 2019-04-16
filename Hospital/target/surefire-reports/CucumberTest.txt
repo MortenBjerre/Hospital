@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: CucumberTest
 -------------------------------------------------------------------------------
-Tests run: 96, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.557 sec
+Tests run: 104, Failures: 0, Errors: 2, Skipped: 2, Time elapsed: 3.011 sec <<< FAILURE!
+And I have multiple staff members(Scenario: As an ICT Officer, I should be able to move staff from one department to another)  Time elapsed: 0.02 sec  <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at StepDefinitionClerk.i_have_multiple_staff_members(StepDefinitionClerk.java:221)
+	at ?.And I have multiple staff members(department.feature:48)
+
+Scenario: As an ICT Officer, I should be able to move staff from one department to another  Time elapsed: 0.021 sec  <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at StepDefinitionClerk.i_have_multiple_staff_members(StepDefinitionClerk.java:221)
+	at ?.And I have multiple staff members(department.feature:48)
+

@@ -44,38 +44,104 @@ public class DepartmentRegister{
 		departments.remove(deptName);
 	}
 	
-	public void movePatient(Patient p, String deptName) {
+	/**
+	 * Moves patient from current department to specified department by serialnum.
+	 * Throws IllegalArgumentException if specified department exists.
+	 * @param serialnum
+	 * @param deptName
+	 * @param pr PatientRegister
+	 */
+	public void movePatient(int serialnum, String deptName, PatientRegister pr) {
+		Patient p = pr.findSerialnum(serialnum);
+		movePatient(p, deptName);
+	}
+	
+	/**
+	 * Moves patient from current department to specified department by serialnum.
+	 * Throws IllegalArgumentException if specified department exists.
+	 * @param p Patient object
+	 * @param deptName
+	 * @return true if successful 
+	 */
+	private boolean movePatient(Patient p, String deptName) {
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsPatient(p)) {
 				departments.get(dep).deletePatient(p);
 				departments.get(deptName).addPatient(p);
+				return true;
 			}
-		}
+		} 
+		throw new IllegalArgumentException("No such department");
 	}
 	
-	public void moveStaff(Staff s, String deptName) {
+	/**
+	 * Moves staff member from current department to specified department by serialnum.
+	 * Throws IllegalArgumentException if specified department exists.
+	 * @param serialnum
+	 * @param deptName
+	 * @param sr StaffRegister
+	 */
+	public void moveStaff(int serialnum, String deptName, StaffRegister sr) {
+		Staff s = sr.findSerialnum(serialnum);
+		moveStaff(s, deptName);
+	}
+	
+	/**
+	 * Moves staff member from current department to specified department by serialnum.
+	 * Throws IllegalArgumentException if specified department exists.
+	 * @param s Staff object
+	 * @param deptName
+	 * @return true if successful 
+	 */
+	private boolean moveStaff(Staff s, String deptName) {
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsStaff(s)) {
 				departments.get(dep).deleteStaff(s);
 				departments.get(deptName).addStaff(s);
+				return true;
 			}
 		}
+		throw new IllegalArgumentException("No such department");
 	}
 	
-	public void deletePatient(Patient p) {
+	/**
+	 * Discharges a patient from their department and the hospital.
+	 * @param p Patient object
+	 * @return true if successful
+	 */
+	private boolean dischargePatient(Patient p) {
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsPatient(p)) {
 				departments.get(dep).deletePatient(p);
+				return true;
 			}
 		}
+		throw new IllegalArgumentException("No such department");
 	}
 	
-	public void deleteStaff(Staff s) {
+	/**
+	 * Discharges a patient from their department and the hospital.
+	 * @param serialnum
+	 * @param pr PatientRegister
+	 */
+	public void dischargePatient(int serialnum, PatientRegister pr) {
+		Patient p = pr.findSerialnum(serialnum);
+		dischargePatient(p);		
+	}
+	
+	private boolean dischargeStaff(Staff s) {
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsStaff(s)) {
 				departments.get(dep).deleteStaff(s);
+				return true;
 			}
 		}
+		throw new IllegalArgumentException("No such department");
+	}
+	
+	public void dischargeStaff(int serialnum, StaffRegister sr) {
+		Staff s = sr.findSerialnum(serialnum);
+		dischargeStaff(s);		
 	}
 	
 	public String[] searchPatientDepartment(String deptName) {
@@ -128,4 +194,6 @@ public class DepartmentRegister{
 			this.findDepartment(deptName).addStaff(s);
 		}
 	}
+
+
 }

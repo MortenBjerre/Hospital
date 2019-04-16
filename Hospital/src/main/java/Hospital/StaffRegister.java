@@ -23,12 +23,13 @@ public class StaffRegister extends Register<Staff> {
 		users.put(serialnum, s);
 		return serialnum;
 	}
+
 	
-	/**
-	 * Searches for a Staff with a matching Role
-	 * @param role
-	 * @return
-	 */
+//	/**
+//	 * Searches for a Staff with a matching Role
+//	 * @param role
+//	 * @return
+//	 */
 //	public String[] searchRole(String role) {
 //		ArrayList<Staff> matches = findRole(role);
 //		String[] m = new String[matches.size()];

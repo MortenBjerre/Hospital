@@ -48,3 +48,14 @@ Feature: Testing departments
    And I have multiple staff members
    And Staff zero is in ER
    Then I should be able to move a staff member from ER to surgery
+   
+  Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients
+   Given That I am a nurse
+   And I have a patient register
+   And the patient register contains several patients
+   And I have a department register
+   And there exists an ER department
+   And I have a patient admitted to the ER
+   Then I should be able to discharge that patient   
+   
+   

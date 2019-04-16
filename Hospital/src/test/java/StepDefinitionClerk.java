@@ -217,11 +217,18 @@ public class StepDefinitionClerk {
 	public void i_have_multiple_staff_members() {
 	    sr.add("email", "Eric", "Jensen", new Date(), "male");
 	    sr.add("m@hotmail.com", "Morten", "Bjerre", new Date(), "male");
+	    sr.add("msldkf", "Bo", "Burnham", new Date(), "female");
+	    System.out.println("#1 " + sr.searchGender("male")[0]);
+	    System.out.println("#2" + sr.searchGender("male")[1]);
+//	    System.out.println(sr.toString().length());
+//	    assertTrue(sr.toString().length() == 2);
+	    
 	}
 	
 	@Given("^Staff zero is in ER$")
 	public void staff_zero_is_in_ER() {
 		dr.addStaffTo(0, "ER", sr);
+		assertTrue(dr.searchStaffDepartment("ER")[0].equals(""));
 	}
 
 	@Given("^there are multiple departments$")
@@ -234,6 +241,11 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to move a staff member from ER to surgery$")
 	public void i_should_be_able_to_move_a_staff_member_from_ER_to_surgery() {
-		
+		dr.moveStaff(0, "surgery", sr);
+	}
+	
+	@Then("^I should be able to discharge that patient$")
+	public void i_should_be_able_to_discharge_that_patient() {
+		dr.dischargePatient(1, pr);
 	}
 }
