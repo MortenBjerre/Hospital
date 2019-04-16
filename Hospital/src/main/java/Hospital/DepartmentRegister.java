@@ -6,7 +6,7 @@ import java.util.Map;
 public class DepartmentRegister{
 	
 	//departments is a map mapping string department names to objects of department
-	protected Map<String, Department> departments;
+	private Map<String, Department> departments;
 	/**
 	 * creates a new department and adds it to a map of departments (map: department name -> object of department with that name)
 	 * @param deptName name you want to give to department 
@@ -32,7 +32,7 @@ public class DepartmentRegister{
 	 * @param deptName name of department you want to find
 	 * @return
 	 */
-	public Department findDepartment(String deptName) {
+	protected Department findDepartment(String deptName) {
 		return departments.get(deptName);
 	}
 	
@@ -114,6 +114,18 @@ public class DepartmentRegister{
 				return deptName;
 			}
 		}
-		return null;
+		return "";
+	}
+	
+	public boolean containsDept(String deptName) {
+		return departments.containsKey(deptName);
+	}
+	public void addStaffTo(int serialnum, String deptName, StaffRegister sr) {
+		Staff s = sr.findSerialnum(serialnum);
+		if (this.findDepartment(deptName) == null) {
+			throw new IllegalArgumentException("No such department");
+		} else {
+			this.findDepartment(deptName).addStaff(s);
+		}
 	}
 }

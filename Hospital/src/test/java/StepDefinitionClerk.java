@@ -59,7 +59,6 @@ public class StepDefinitionClerk {
 			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, true,"");
 			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, true,"");
 		}
-		System.out.println("\n\n-----------------------\n\n" + pr);
 	}
 
 	@Then("^I should be able to search for a patient$")
@@ -187,6 +186,7 @@ public class StepDefinitionClerk {
 	
 	@Given("^I have a patient admitted to the ER$")
 	public void i_have_a_patient_admitted_to_the_ER() {
+		//System.out.println("\n\n-----------------------\n\n" + pr);
 		dr.admit(1, "ER", pr);
 	}
 
@@ -198,8 +198,8 @@ public class StepDefinitionClerk {
 	@Then("^I should know patient two is not admitted$")
 	public void i_should_know_patient_two_is_not_admitted() {
 //		System.out.println("----------------==================-----------------");
-//		System.out.println(pr.getDeptOf(2));
-		assertTrue(dr.getDeptOf(2).equals(null));
+//		System.out.println(dr.getDeptOf(2));
+		assertTrue(dr.getDeptOf(2).equals(""));
 		
 	}
 
@@ -216,17 +216,24 @@ public class StepDefinitionClerk {
 	@Given("^I have multiple staff members$")
 	public void i_have_multiple_staff_members() {
 	    sr.add("email", "Eric", "Jensen", new Date(), "male");
+	    sr.add("m@hotmail.com", "Morten", "Bjerre", new Date(), "male");
+	}
+	
+	@Given("^Staff zero is in ER$")
+	public void staff_zero_is_in_ER() {
+		dr.addStaffTo(0, "ER", sr);
 	}
 
 	@Given("^there are multiple departments$")
-	public void there_are_multiple_departments() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void there_are_multiple_departments() {
+		dr.createDepartment("ER", 5);
+		dr.createDepartment("surgery", 10);
+		assertTrue(dr.containsDept("ER"));
+		assertTrue(dr.containsDept("surgery"));
 	}
 
 	@Then("^I should be able to move a staff member from ER to surgery$")
-	public void i_should_be_able_to_move_a_staff_member_from_ER_to_surgery() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void i_should_be_able_to_move_a_staff_member_from_ER_to_surgery() {
+		
 	}
 }

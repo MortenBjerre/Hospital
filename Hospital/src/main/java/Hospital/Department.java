@@ -94,10 +94,10 @@ public class Department {
 	
 	/**
 	 * Adds a staff member to the hashmap of staffmembers in a department
-	 * @param employee The staff member to be added
+	 * @param s The staff member to be added
 	 */
-	public void addStaff(Staff employee) {
-		staff.add(employee);
+	public void addStaff(Staff s) {
+		staff.add(s);
 	}
 	/**
 	 * Adds a patient to the hashmap of patients in a department
@@ -116,7 +116,7 @@ public class Department {
 	
 	/**
 	 * remove a staff member from the arraylist of staff in a department
-	 * @param employee employee to be removed
+	 * @param staff staff to be removed
 	 */
 	public void deleteStaff(Staff staff) {
 		this.staff.remove(staff);
