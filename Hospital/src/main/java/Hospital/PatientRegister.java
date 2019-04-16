@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class PatientRegister extends Register<Patient> {
-	
-	HashMap<String, Department> dr = new HashMap<String, Department>();
-	
+		
 	public PatientRegister() {
 		Patient.resetSerialnumCounter();
 	}
@@ -22,7 +20,6 @@ public class PatientRegister extends Register<Patient> {
 	 * @param address
 	 * @param phoneNumber
 	 * @param alive
-	 * @param department
 	 * @param inpatient
 	 * @param healthData
 	 * @return Returns the serial number of the patient added
@@ -31,7 +28,7 @@ public class PatientRegister extends Register<Patient> {
 			String gender, String address, int phoneNumber, boolean alive, 
 			boolean inpatient, String healthData) {
 		Patient p = new Patient(email, name, surname, birthday, gender, address, 
-								phoneNumber, alive, "Null", inpatient, healthData);
+								phoneNumber, alive, inpatient, healthData);
 		users.put(p.getSerialnum(), p);
 		
 		return p.getSerialnum();
@@ -191,27 +188,5 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public String viewHealthData(int serialnum) {
 		return findSerialnum(serialnum).getHealthData();	
-	}
-
-	public void admit(int serialnum, String deptName) {
-		if (dr.containsKey(deptName)) {
-			Patient p = findSerialnum(serialnum);
-			p.setDepartment(deptName);
-			dr.get(deptName).addPatient(p);
-		} else {
-			throw new IllegalArgumentException("Invalid department name");
-		}
-	}
-
-	public String getDeptOf(int serialnum) {
-		return this.findSerialnum(serialnum).getDepartment();
-	}
-
-	public void addDept(String deptName, int beds) {
-		if (dr.containsKey(deptName)) {
-			throw new IllegalArgumentException("Department already exists");
-		} else {
-			dr.put(deptName, new Department(deptName, beds));
-		}
 	}
 }

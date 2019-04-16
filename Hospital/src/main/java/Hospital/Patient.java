@@ -35,8 +35,8 @@ public class Patient extends HospitalUser {
 	 * @param healthData 
 	 */
 	protected Patient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient, String healthData) {
-		set(email, name, surname, birthday, gender, department);
+			String gender, String address, int phoneNumber, boolean alive, boolean inpatient, String healthData) {
+		set(email, name, surname, birthday, gender);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
@@ -60,8 +60,8 @@ public class Patient extends HospitalUser {
 	 * @param healthData
 	 */
 	public void setPatient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, String healthData) {
-		set(email, name, surname, birthday, gender, department);
+			String gender, String address, int phoneNumber, boolean alive, String healthData) {
+		set(email, name, surname, birthday, gender);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);

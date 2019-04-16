@@ -17,8 +17,8 @@ public class Staff extends HospitalUser {
 	 * @param gender
 	 * @param department
 	 */
-	public Staff(String email, String name, String surname, Date birthday, String gender, String department) {
-		set(email, name, surname, birthday, gender, department);
+	public Staff(String email, String name, String surname, Date birthday, String gender) {
+		set(email, name, surname, birthday, gender);
 		serialnum = serialnumCounter;
 		serialnumCounter++;
 
