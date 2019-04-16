@@ -23,7 +23,7 @@ public class StepDefinitionClerk {
 	
 	@Given("^That I am a clerk$")
 	public void that_I_am_a_clerk() {
-		s = new Clerk("Smead@b.com","Turk","Turkelton",new Date(), "male","ER");	
+		s = new Clerk("Smead@b.com","Turk","Turkelton",new Date(), "male");	
 	}
 
 	@Given("^I have a patient register$")
@@ -59,6 +59,7 @@ public class StepDefinitionClerk {
 			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true, true,"");
 			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true, true,"");
 		}
+		System.out.println("\n\n-----------------------\n\n" + pr);
 	}
 
 	@Then("^I should be able to search for a patient$")
@@ -111,12 +112,12 @@ public class StepDefinitionClerk {
 	
 	@Given("^That I am a nurse$")
 	public void that_I_am_a_nurse() {
-		s = new Nurse("nurse@mail.dk","John","Hancock", new Date(), "male", "ER");
+		s = new Nurse("nurse@mail.dk","John","Hancock", new Date(), "male");
 	}
 	
 	@Given("^That I am a doctor$")
 	public void that_I_am_a_doctor() {
-		s = new Doctor("doctor@gmail.com", "Dr", "Cox", new Date(), "male", "ER");
+		s = new Doctor("doctor@gmail.com", "Dr", "Cox", new Date(), "male");
 	}
 	
 	@Then("^I should not be able search for staff$")
@@ -142,7 +143,7 @@ public class StepDefinitionClerk {
 	
 	@Given("^That I am an ICT Officer$")
 	public void that_I_am_an_ICT_Officer() {
-		s = new ICTOfficer("ICTemail@dtu.dk", "Dermot", "Mulroney", new Date(), "male", "Headquarters");
+		s = new ICTOfficer("ICTemail@dtu.dk", "Dermot", "Mulroney", new Date(), "male");
 	}
 
 	@Given("^I have a staff register$")
@@ -172,6 +173,11 @@ public class StepDefinitionClerk {
 	@Then("^I want to be able to view the patients' health data$")
 	public void i_want_to_be_able_to_view_the_patients_health_data() {
 		assertTrue(s.hasHealthDataAccess());
+	}
+	
+	@Given("^I have a department register$")
+	public void i_have_a_department_register() {
+		dr = new DepartmentRegister();
 	}
 	
 	@Given("^there exists an ER department$")

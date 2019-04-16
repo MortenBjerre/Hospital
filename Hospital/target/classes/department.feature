@@ -22,7 +22,7 @@ Feature: Testing departments
   @tag1
   Scenario: As a nurse, I want to know where a patient is, so I can find and treat him
    Given That I am a nurse
-   And I have a patient register
+   And I have a department register
    And the patient register contains several patients
    And there exists an ER department
    And I have a patient admitted to the ER
@@ -32,14 +32,14 @@ Feature: Testing departments
   @tag2
   Scenario: Admitting a patient to a non-existent department
    Given That I am a nurse
-   And I have a patient register
+   And I have a department register
    And the patient register contains several patients
    Then admitting a patient to a nonexistent department should give an error
    
   @tag3
   Scenario: As an ICT Officer, I should be able to move staff from one department to another
    Given That I am an ICT Officer
-   And I have a staff register
+   And I have a department register
    And I have a patient register
    And there are multiple departments
    And I have multiple staff members

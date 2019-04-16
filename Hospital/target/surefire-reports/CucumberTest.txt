@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: CucumberTest
+-------------------------------------------------------------------------------
+Tests run: 93, Failures: 0, Errors: 4, Skipped: 6, Time elapsed: 0.638 sec <<< FAILURE!
+And I have a patient admitted to the ER(Scenario: As a nurse, I want to know where a patient is, so I can find and treat him)  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.NullPointerException
+	at Hospital.DepartmentRegister.admit(DepartmentRegister.java:100)
+	at StepDefinitionClerk.i_have_a_patient_admitted_to_the_ER(StepDefinitionClerk.java:190)
+	at ?.And I have a patient admitted to the ER(department.feature:28)
+
+Scenario: As a nurse, I want to know where a patient is, so I can find and treat him  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.NullPointerException
+	at Hospital.DepartmentRegister.admit(DepartmentRegister.java:100)
+	at StepDefinitionClerk.i_have_a_patient_admitted_to_the_ER(StepDefinitionClerk.java:190)
+	at ?.And I have a patient admitted to the ER(department.feature:28)
+
+Then admitting a patient to a nonexistent department should give an error(Scenario: Admitting a patient to a non-existent department)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at Hospital.DepartmentRegister.admit(DepartmentRegister.java:100)
+	at StepDefinitionClerk.admitting_a_patient_to_a_nonexistent_department_should_give_an_error(StepDefinitionClerk.java:209)
+	at ?.Then admitting a patient to a nonexistent department should give an error(department.feature:37)
+
+Scenario: Admitting a patient to a non-existent department  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException
+	at Hospital.DepartmentRegister.admit(DepartmentRegister.java:100)
+	at StepDefinitionClerk.admitting_a_patient_to_a_nonexistent_department_should_give_an_error(StepDefinitionClerk.java:209)
+	at ?.Then admitting a patient to a nonexistent department should give an error(department.feature:37)
+
