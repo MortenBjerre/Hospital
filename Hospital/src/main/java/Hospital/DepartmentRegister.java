@@ -1,5 +1,6 @@
 package Hospital;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,11 +17,15 @@ public class DepartmentRegister{
 	public String toString() {
 		String a = "Patients in department: \n";
 		for (String dep : departments.keySet()) {
-			a += departments.get(dep).getPatients();
+			for (String patientInDept: departments.get(dep).getPatients()) {
+				a += patientInDept;
+			};
 		}
 		a += "\nStaff members in department \n";
 		for (String dep : departments.keySet()) {
-			a += departments.get(dep).getStaff();
+			for(String staffInDept: departments.get(dep).getStaff()) {
+				a += staffInDept;
+			}
 		}
 		return a;
 		// needs fixing

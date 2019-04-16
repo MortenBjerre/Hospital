@@ -246,6 +246,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_discharge_that_patient() {
 		System.out.println(dr);
 		dr.dischargePatient(1, pr);
+		System.out.println(dr);
 	}
 	
 }
