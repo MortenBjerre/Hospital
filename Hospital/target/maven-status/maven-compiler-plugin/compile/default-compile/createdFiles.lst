@@ -1,0 +1,7 @@
+Hospital\Staff.class
+Hospital\HospitalUser.class
+Hospital\PatientRegister.class
+Hospital\Nurse.class
+Hospital\Register.class
+Hospital\Clerk.class
+Hospital\Patient.class
