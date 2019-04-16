@@ -8,12 +8,11 @@ public class DepartmentRegister{
 	
 	//departments is a map mapping string department names to objects of department
 	private Map<String, Department> departments;
-	/**
-	 * creates a new department and adds it to a map of departments (map: department name -> object of department with that name)
-	 * @param deptName name you want to give to department 
-	 * @param beds number of beds you want to add to newly created department
-	 */
 	
+	/**
+	 * Prints departmentRegister by first listing the admitted patients in the department
+	 * and then the staff members working in the department
+	 */
 	public String toString() {
 		String a = "Patients in department: \n";
 		for (String dep : departments.keySet()) {
@@ -28,13 +27,18 @@ public class DepartmentRegister{
 			}
 		}
 		return a;
-		// needs fixing
 		
 	}
 	
 	public DepartmentRegister() {
 		this.departments = new HashMap<String, Department>();
 	}
+	
+	/**
+	 * creates a new department and adds it to a map of departments (map: department name -> object of department with that name)
+	 * @param deptName name you want to give to department 
+	 * @param beds number of beds you want to add to newly created department
+	 */
 	public void createDepartment(String deptName, int beds) {
 		departments.put(deptName, new Department(deptName, beds));
 	}
@@ -158,10 +162,16 @@ public class DepartmentRegister{
 		throw new IllegalArgumentException("No such department");
 	}
 	
+	/**
+	 * Discharges a staff from a their department
+	 * @param serialnum
+	 * @param sr StaffRegister
+	 */
 	public void dischargeStaff(int serialnum, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
 		dischargeStaff(s);		
 	}
+	
 	
 	public String[] searchPatientDepartment(String deptName) {
 		for (String dept : departments.keySet()) {
@@ -181,6 +191,14 @@ public class DepartmentRegister{
 		return new String[0];
 	}
 	
+	/**
+	 * Admits a patient to a specific department. The patient should
+	 * be registered in the PatientRegister already. Throws exceptions
+	 * if the department does not exist or it is already fully occupied
+	 * @param serialnum
+	 * @param deptName
+	 * @param pr PatientRegister
+	 */
 	public void admit(int serialnum, String deptName, PatientRegister pr) {
 		Patient p = pr.findSerialnum(serialnum);
 		if (this.findDepartment(deptName) == null) {
@@ -193,6 +211,12 @@ public class DepartmentRegister{
 			}
 		}
 	}
+	
+	/**
+	 * Returns the department of the patient specified by specific serialnum.
+	 * @param serialnum
+	 * @return department name or empty string if patient has not yet been admitted
+	 */
 	public String getDeptOf(int serialnum) {
 		for (String deptName : departments.keySet()) {
 			if (departments.get(deptName).containsPatient(serialnum)) {
@@ -202,9 +226,22 @@ public class DepartmentRegister{
 		return "";
 	}
 	
+	/**
+	 * Returns true if the department register contains the department
+	 * @param deptName
+	 * @return true if department exists
+	 */
 	public boolean containsDept(String deptName) {
 		return departments.containsKey(deptName);
 	}
+	
+	/**
+	 * Adds a staff member to a department. Throws an error if the department
+	 * does not exist. 
+	 * @param serialnum
+	 * @param deptName
+	 * @param sr StaffRegister
+	 */
 	public void addStaffTo(int serialnum, String deptName, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
 		if (this.findDepartment(deptName) == null) {

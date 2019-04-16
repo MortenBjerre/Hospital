@@ -247,6 +247,7 @@ public class StepDefinitionClerk {
 		System.out.println(dr);
 		dr.dischargePatient(1, pr);
 		System.out.println(dr);
+	
 	}
 	
 }
