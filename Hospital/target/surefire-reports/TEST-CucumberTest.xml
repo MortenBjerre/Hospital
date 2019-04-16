@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="104" failures="0" name="CucumberTest" time="0.063" errors="0" skipped="0">
+<testsuite tests="104" failures="0" name="CucumberTest" time="0.049" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\morte\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2323629464251414215.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\morte\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3838357738945248843.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_201\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\CineForm\Tools;C:\Program Files (x86)\GoPro\Tools;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\PuTTY\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2018a\bin;C:\Users\morte\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\morte\AppData\Local\Programs\Python\Python37\;C:\Python\Scripts\;C:\Python\;C:\Users\morte\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_201\bin;C:\Users\morte\Downloads\FsLexYacc.7.0.6\build;C:\Users\morte\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Graphviz2.38\bin;;C:\Program Files (x86)\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,7 +61,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" name="Given That I am an ICT Officer" time="0"/>
+  <testcase classname="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" name="Given That I am an ICT Officer" time="0.016"/>
   <testcase classname="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" name="And I have a staff register" time="0"/>
   <testcase classname="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" name="Then I should be able to register a staff member" time="0"/>
   <testcase classname="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" name="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" time="0"/>
@@ -83,7 +83,7 @@
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And I should know patient two is not admitted" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" time="0"/>
   <testcase classname="Scenario: Admitting a patient to a non-existent department" name="Given That I am a nurse" time="0"/>
-  <testcase classname="Scenario: Admitting a patient to a non-existent department" name="And I have a patient register" time="0.016"/>
+  <testcase classname="Scenario: Admitting a patient to a non-existent department" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: Admitting a patient to a non-existent department" name="And I have a department register" time="0"/>
   <testcase classname="Scenario: Admitting a patient to a non-existent department" name="And the patient register contains several patients" time="0"/>
   <testcase classname="Scenario: Admitting a patient to a non-existent department" name="Then admitting a patient to a nonexistent department should give an error" time="0"/>
@@ -100,17 +100,17 @@
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Given That I am a nurse" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And the patient register contains several patients" time="0"/>
-  <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a department register" time="0.015"/>
+  <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a department register" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And there exists an ER department" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a patient admitted to the ER" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Then I should be able to discharge that patient" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." name="Given That I am a nurse" time="0"/>
-  <testcase classname="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." name="And I have a patient register" time="0"/>
+  <testcase classname="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." name="And I have a patient register" time="0.002"/>
   <testcase classname="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." name="And the patient register contains several patients" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." name="Then I should be able to search for a patient" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." name="Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data." time="0"/>
-  <testcase classname="Given That I am a doctor(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 1).)" name="Given That I am a doctor(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0.001"/>
+  <testcase classname="Given That I am a doctor(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 1).)" name="Given That I am a doctor(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="And I have a patient register(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 1).)" name="And I have a patient register(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="And the patient register contains several patients(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 1).)" name="And the patient register contains several patients(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="Then I should be able to search for a patient(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 1).)" name="Then I should be able to search for a patient(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
@@ -119,19 +119,19 @@
   <testcase classname="Scenario: Nurse trying to edit staff register" name="And I have a a staff register" time="0"/>
   <testcase classname="Scenario: Nurse trying to edit staff register" name="Then I should not be able to add staff to the staff register" time="0"/>
   <testcase classname="Scenario: Nurse trying to edit staff register" name="Scenario: Nurse trying to edit staff register" time="0"/>
-  <testcase classname="Scenario: Nurse trying to search staff register" name="Given That I am a nurse" time="0.001"/>
+  <testcase classname="Scenario: Nurse trying to search staff register" name="Given That I am a nurse" time="0"/>
   <testcase classname="Scenario: Nurse trying to search staff register" name="And I have a a staff register" time="0"/>
   <testcase classname="Scenario: Nurse trying to search staff register" name="Then I should not be able search for staff" time="0"/>
   <testcase classname="Scenario: Nurse trying to search staff register" name="Scenario: Nurse trying to search staff register" time="0"/>
   <testcase classname="Scenario: Doctor trying to edit staff register" name="Given That I am a doctor" time="0"/>
   <testcase classname="Scenario: Doctor trying to edit staff register" name="And I have a a staff register" time="0"/>
   <testcase classname="Scenario: Doctor trying to edit staff register" name="Then I should not be able to add staff to the staff register" time="0"/>
-  <testcase classname="Scenario: Doctor trying to edit staff register" name="Scenario: Doctor trying to edit staff register" time="0.001"/>
+  <testcase classname="Scenario: Doctor trying to edit staff register" name="Scenario: Doctor trying to edit staff register" time="0"/>
   <testcase classname="Scenario: Doctor trying to search staff register" name="Given That I am a doctor" time="0"/>
   <testcase classname="Scenario: Doctor trying to search staff register" name="And I have a a staff register" time="0"/>
   <testcase classname="Scenario: Doctor trying to search staff register" name="Then I should not be able search for staff" time="0"/>
   <testcase classname="Scenario: Doctor trying to search staff register" name="Scenario: Doctor trying to search staff register" time="0"/>
-  <testcase classname="Given That I am a nurse(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="Given That I am a nurse(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data " time="0.015"/>
+  <testcase classname="Given That I am a nurse(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="Given That I am a nurse(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="And I have a patient register(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="And I have a patient register(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="And the patient register contains several patients(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="And the patient register contains several patients(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="Then I should be able to search for a patient(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="Then I should be able to search for a patient(Scenario: As a nurse, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
@@ -142,27 +142,27 @@
   <testcase classname="And I have a patient register(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="And I have a patient register(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="And the patient register contains several patients(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="And the patient register contains several patients(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="Then I should be able to search for a patient(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="Then I should be able to search for a patient(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
-  <testcase classname="And edit or view the patients health data(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="And edit or view the patients health data(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0.001"/>
-  <testcase classname="Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2)." name="Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0.001"/>
+  <testcase classname="And edit or view the patients health data(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2).)" name="And edit or view the patients health data(Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
+  <testcase classname="Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data (part 2)." name="Scenario: As a doctor, I want to be able to search for patients so that i can easily edit their health data " time="0"/>
   <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="Given That I am a clerk" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="When a patient needs to be admitted" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="Then I should be able to add the patient to the patient register" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="And assign him a unique serialnumber" time="0"/>
-  <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." time="0.001"/>
+  <testcase classname="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." name="Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital." time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Given That I am a clerk" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="And the patient register contains several patients" time="0"/>
-  <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Then I should be able to search for a patient" time="0.001"/>
-  <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." time="0.003"/>
+  <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Then I should be able to search for a patient" time="0"/>
+  <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." time="0"/>
   <testcase classname="Scenario: Searching for a staff member" name="Given That I am a clerk" time="0"/>
-  <testcase classname="Scenario: Searching for a staff member" name="And I have a a staff register" time="0.003"/>
+  <testcase classname="Scenario: Searching for a staff member" name="And I have a a staff register" time="0.031"/>
   <testcase classname="Scenario: Searching for a staff member" name="Then I should not be able to add staff to the staff register" time="0"/>
-  <testcase classname="Scenario: Searching for a staff member" name="Scenario: Searching for a staff member" time="0.001"/>
-  <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="Given That I am a clerk" time="0.001"/>
+  <testcase classname="Scenario: Searching for a staff member" name="Scenario: Searching for a staff member" time="0"/>
+  <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="Given That I am a clerk" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="And I have a patient register" time="0"/>
-  <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="And the patient register contains several patients" time="0.001"/>
+  <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="And the patient register contains several patients" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="Then I should be able to search for a patient" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="And edit their information" time="0"/>
-  <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." time="0.001"/>
+  <testcase classname="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." name="Scenario: As a clerk, I want to be able to edit a patinent&apos;s personal information so that it is accurate." time="0"/>
 </testsuite>

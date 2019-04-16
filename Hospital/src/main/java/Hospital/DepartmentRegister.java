@@ -13,6 +13,19 @@ public class DepartmentRegister{
 	 * @param beds number of beds you want to add to newly created department
 	 */
 	
+	public String toString() {
+		String a = "Patients in department: \n";
+		for (String dep : departments.keySet()) {
+			a += departments.get(dep).getPatients();
+		}
+		a += "\nStaff members in department \n";
+		for (String dep : departments.keySet()) {
+			a += departments.get(dep).getStaff();
+		}
+		return a;
+		
+	}
+	
 	public DepartmentRegister() {
 		this.departments = new HashMap<String, Department>();
 	}
