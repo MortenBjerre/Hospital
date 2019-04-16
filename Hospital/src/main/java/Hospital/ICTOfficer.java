@@ -29,4 +29,13 @@ public class ICTOfficer extends Staff {
 	public boolean hasHealthDataAccess() {
 		return true;
 	}
+	
+	public boolean canMoveStaff() {
+		return true;
+	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+
 }

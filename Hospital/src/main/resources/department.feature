@@ -37,4 +37,10 @@ Feature: Testing departments
    Then admitting a patient to a nonexistent department should give an error
    
   @tag3
-  Scenario: 
+  Scenario: As an ICT Officer, I should be able to move staff from one department to another
+   Given That I am an ICT Officer
+   And I have a staff register
+   And I have a patient register
+   And there are multiple departments
+   And I have multiple staff members
+   Then I should be able to move a staff member from ER to surgery

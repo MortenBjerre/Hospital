@@ -186,19 +186,25 @@ public class StepDefinitionClerk {
 	
 	@Given("^I have a patient admitted to the ER$")
 	public void i_have_a_patient_admitted_to_the_ER() {
-		pr.admit(1, "ER");
+		if (s.hasWriteAccessTo(pr)) {
+			pr.admit(1, "ER");
+		}
 	}
 
 	@Then("^I should be able to find that patient's department$")
 	public void i_should_be_able_to_find_that_patient_s_department() {
-	    assertTrue(pr.getDeptOf(1).equals("ER"));
+		if (s.hasViewAccessTo(pr)) {
+			assertTrue(pr.getDeptOf(1).equals("ER")); 
+		}
 	}
 	
 	@Then("^I should know patient two is not admitted$")
 	public void i_should_know_patient_two_is_not_admitted() {
 //		System.out.println("----------------==================-----------------");
 //		System.out.println(pr.getDeptOf(2));
-	    assertTrue(pr.getDeptOf(2).equals("Null"));
+		if (s.hasViewAccessTo(pr)) {
+			assertTrue(pr.getDeptOf(2).equals("Null"));
+		}
 	}
 
 	@Then("^admitting a patient to a nonexistent department should give an error$")
@@ -209,5 +215,22 @@ public class StepDefinitionClerk {
 	    	assertTrue(e.getMessage() == "Invalid department name");
 	    	
 	    }
+	}
+	
+	@Given("^I have multiple staff members$")
+	public void i_have_multiple_staff_members() {
+	    sr.add("email", "Eric", "Jensen", new Date(), "male", "ER");
+	}
+
+	@Given("^there are multiple departments$")
+	public void there_are_multiple_departments() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^I should be able to move a staff member from ER to surgery$")
+	public void i_should_be_able_to_move_a_staff_member_from_ER_to_surgery() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
 	}
 }
