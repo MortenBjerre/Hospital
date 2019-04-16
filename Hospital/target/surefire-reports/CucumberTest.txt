@@ -1,20 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: CucumberTest
 -------------------------------------------------------------------------------
-Tests run: 104, Failures: 2, Errors: 0, Skipped: 1, Time elapsed: 1.133 sec <<< FAILURE!
-And Staff zero is in ER(Scenario: As an ICT Officer, I should be able to move staff from one department to another)  Time elapsed: 0.016 sec  <<< FAILURE!
-java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at StepDefinitionClerk.staff_zero_is_in_ER(StepDefinitionClerk.java:231)
-	at ?.And Staff zero is in ER(department.feature:49)
-
-Scenario: As an ICT Officer, I should be able to move staff from one department to another  Time elapsed: 0.016 sec  <<< FAILURE!
-java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at StepDefinitionClerk.staff_zero_is_in_ER(StepDefinitionClerk.java:231)
-	at ?.And Staff zero is in ER(department.feature:49)
-
+Tests run: 104, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.085 sec
