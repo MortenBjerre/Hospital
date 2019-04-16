@@ -13,9 +13,8 @@ public class Clerk extends Staff {
 	 * @param gender
 	 * @param department
 	 */
-	public Clerk(String email, String name, String surname, Date birthday, String gender,
-			String department) {
-		super(email, name, surname, birthday, gender, department);	
+	public Clerk(String email, String name, String surname, Date birthday, String gender) {
+		super(email, name, surname, birthday, gender);	
 	}
 	
 	public boolean hasWriteAccessTo(Register r) {

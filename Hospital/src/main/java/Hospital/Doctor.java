@@ -13,8 +13,8 @@ public class Doctor extends Staff {
 	 * @param gender
 	 * @param department
 	 */
-	public Doctor(String email, String name, String surname, Date birthday, String gender, String department) {
-		super(email, name, surname, birthday, gender, department);		
+	public Doctor(String email, String name, String surname, Date birthday, String gender) {
+		super(email, name, surname, birthday, gender);		
 	}
 	
 	public boolean hasWriteAccessTo(Register r) {

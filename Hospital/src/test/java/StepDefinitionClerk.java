@@ -3,13 +3,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
-import Hospital.Clerk;
-import Hospital.Doctor;
-import Hospital.ICTOfficer;
-import Hospital.Nurse;
-import Hospital.PatientRegister;
-import Hospital.Staff;
-import Hospital.StaffRegister;
+import Hospital.*;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -25,6 +19,7 @@ public class StepDefinitionClerk {
 	int serialnum1;
 	int serialnum2;
 	StaffRegister sr;
+	DepartmentRegister dr;
 	
 	@Given("^That I am a clerk$")
 	public void that_I_am_a_clerk() {
@@ -158,7 +153,7 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to register a staff member$")
 	public void i_should_be_able_to_register_a_staff_member() {
 		if (s.hasWriteAccessTo(sr)) {
-			sr.add("Dylan@90210.com", "Dylan", "McKay", new Date(), "male", "ER");
+			sr.add("Dylan@90210.com", "Dylan", "McKay", new Date(), "male");
 		}
 		assertTrue(sr.toString().length() != 0);
 		// The staff register is no longer empty
@@ -181,45 +176,40 @@ public class StepDefinitionClerk {
 	
 	@Given("^there exists an ER department$")
 	public void there_exists_an_ER_department() {
-	    pr.addDept("ER", 5);
+	    dr.createDepartment("ER", 5);
 	}
 	
 	@Given("^I have a patient admitted to the ER$")
 	public void i_have_a_patient_admitted_to_the_ER() {
-		if (s.hasWriteAccessTo(pr)) {
-			pr.admit(1, "ER");
-		}
+		dr.admit(1, "ER", pr);
 	}
 
 	@Then("^I should be able to find that patient's department$")
 	public void i_should_be_able_to_find_that_patient_s_department() {
-		if (s.hasViewAccessTo(pr)) {
-			assertTrue(pr.getDeptOf(1).equals("ER")); 
-		}
+		assertTrue(dr.getDeptOf(1).equals("ER")); 
 	}
 	
 	@Then("^I should know patient two is not admitted$")
 	public void i_should_know_patient_two_is_not_admitted() {
 //		System.out.println("----------------==================-----------------");
 //		System.out.println(pr.getDeptOf(2));
-		if (s.hasViewAccessTo(pr)) {
-			assertTrue(pr.getDeptOf(2).equals("Null"));
-		}
+		assertTrue(dr.getDeptOf(2).equals(null));
+		
 	}
 
 	@Then("^admitting a patient to a nonexistent department should give an error$")
 	public void admitting_a_patient_to_a_nonexistent_department_should_give_an_error() {
 	    try {
-	    	pr.admit(0, "blabla");
+	    	dr.admit(1, "blabla", pr);
 	    } catch (IllegalArgumentException e) {
-	    	assertTrue(e.getMessage() == "Invalid department name");
+	    	assertTrue(e.getMessage() == "No such department");
 	    	
 	    }
 	}
 	
 	@Given("^I have multiple staff members$")
 	public void i_have_multiple_staff_members() {
-	    sr.add("email", "Eric", "Jensen", new Date(), "male", "ER");
+	    sr.add("email", "Eric", "Jensen", new Date(), "male");
 	}
 
 	@Given("^there are multiple departments$")

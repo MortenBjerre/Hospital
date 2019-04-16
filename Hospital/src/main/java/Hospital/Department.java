@@ -12,8 +12,6 @@ public class Department {
 
 	private String deptName;
 	
-	
-	
 	public Department(String deptName, int beds) {
 		this.deptName = deptName;
 		this.beds = beds;
@@ -144,11 +142,49 @@ public class Department {
 		return m;
 	}
 	
+	/**
+	 * Checks whether this department has a specified patient
+	 * @param p A patient of type Patient
+	 * @return true if department has patient
+	 */
 	public boolean containsPatient(Patient p) {
 		return patients.contains(p);
 	}
 	
+	/**
+	 * Checks whether this department has a patient with a matching serialnum
+	 * @param serialnum The patient's serialnum of type int
+	 * @return true if department has patient
+	 */
+	public boolean containsPatient(int serialnum) {
+		for (Patient p : patients) {
+			if (p.getSerialnum() == serialnum) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks whether this department has a specified staff member
+	 * @param s A staff of type Staff
+	 * @return true if department has staff
+	 */
 	public boolean containsStaff(Staff s) {
 		return staff.contains(s);
+	}
+	
+	/**
+	 * Checks whether this department has a staff with a matching serialnum
+	 * @param serialnum The staff's serialnum of type int
+	 * @return true if department has staff
+	 */
+	public boolean containsStaff(int serialnum) {
+		for (Staff s : staff) {
+			if (s.getSerialnum() == serialnum) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

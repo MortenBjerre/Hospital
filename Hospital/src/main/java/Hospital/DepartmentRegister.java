@@ -48,7 +48,6 @@ public class DepartmentRegister{
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsPatient(p)) {
 				departments.get(dep).deletePatient(p);
-				p.setDepartment(deptName);
 				departments.get(deptName).addPatient(p);
 			}
 		}
@@ -58,7 +57,6 @@ public class DepartmentRegister{
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsStaff(s)) {
 				departments.get(dep).deleteStaff(s);
-				s.setDepartment(deptName);
 				departments.get(deptName).addStaff(s);
 			}
 		}
@@ -78,5 +76,44 @@ public class DepartmentRegister{
 				departments.get(dep).deleteStaff(s);
 			}
 		}
+	}
+	
+	public String[] searchPatientDepartment(String deptName) {
+		for (String dept : departments.keySet()) {
+			if (dept == deptName) {
+				return departments.get(dept).getPatients();
+			}
+		}
+		return new String[0];
+	}
+	
+	public String[] searchStaffDepartment(String deptName) {
+		for (String dept : departments.keySet()) {
+			if (dept == deptName) {
+				return departments.get(dept).getStaff();
+			}
+		}
+		return new String[0];
+	}
+	
+	public void admit(int serialnum, String deptName, PatientRegister pr) {
+		Patient p = pr.findSerialnum(serialnum);
+		if (this.findDepartment(deptName) == null) {
+			throw new IllegalArgumentException("No such department");
+		} else {
+			if (this.findDepartment(deptName).getFreeBeds() > 0) {
+				this.findDepartment(deptName).addPatient(p);
+			} else {
+				throw new IllegalArgumentException("Department is full");
+			}
+		}
+	}
+	public String getDeptOf(int serialnum) {
+		for (String deptName : departments.keySet()) {
+			if (departments.get(deptName).containsPatient(serialnum)) {
+				return deptName;
+			}
+		}
+		return null;
 	}
 }
