@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DepartmentRegister{
+public class DepartmentRegister {
 	
 	//departments is a map mapping string department names to objects of department
 	private Map<String, Department> departments;
@@ -264,6 +264,33 @@ public class DepartmentRegister{
 			return p.toString();
 		}
 		
+	}
+	
+	/**
+	 * Gets the number of unoccupied beds from the department given
+	 * @param deptName
+	 * @return int number of unoccupied beds
+	 */
+	public int getAvailableBeds(String deptName) {
+		if (departments.containsKey(deptName)) {
+			return departments.get(deptName).getFreeBeds();
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+		
+	}
+	
+	/**
+	 * Gets the total number of beds in a department, including occupied beds
+	 * @param deptName
+	 * @return int total number of beds 
+	 */
+	public int getTotalBeds(String deptName) {
+		if (departments.containsKey(deptName)) {
+			return departments.get(deptName).getBedsTotal();
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
 	}
 
 

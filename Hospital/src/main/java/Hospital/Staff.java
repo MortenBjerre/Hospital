@@ -109,6 +109,15 @@ public class Staff extends HospitalUser {
 	}
 	
 	/**
+	 * Determines whether or not a staff member can view the 
+	 * department register
+	 * @return true if they have permission
+	 */
+	public boolean canViewDepartmentRegister() {
+		return true;
+	}
+	
+	/**
 	 * Returns the role of this staff member as a string
 	 * @return String role
 	 */

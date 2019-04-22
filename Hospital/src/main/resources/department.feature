@@ -67,4 +67,21 @@ Feature: Testing departments
    And I should be able to add a nurse
    And I should be able to add a doctor
    
+  @tag5
+  Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient.
+   Given That I am a staff member
+   And I have a department register
+   And there are multiple departments
+   Then I should be able to see how many beds are available in the ER
+   And I should be able to see how many beds there are total in the ER
+   
+  @tag6
+  Scenario:As a nurse/doctor, I want to be able to send a patient to a different department so that he can be treated properly.
+   Given That I am a doctor
+   And I have a department register
+   And I have a patient register
+   And there are multiple departments
+   And the patient register contains several patients
+   And patient zero is in the ER
+   Then I should be able to move patient zero from the ER to surgery
    

@@ -33,5 +33,11 @@ Feature: ICT Officer using software
   	Then I want to be able to view the patient register
   	And I want to be able to view the staff register
   	And I want to be able to view the patients' health data
+  
+  @tag2
+  Scenario: As an ICT Officer, I should have permission to move staff and patients in the department register
+   Given That I am an ICT Officer
+   Then I should have permission to move staff
+   And I should have permission to move patients
   	
 
