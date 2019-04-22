@@ -37,5 +37,9 @@ public class ICTOfficer extends Staff {
 	public boolean canMovePatients() {
 		return true;
 	}
+	
+	public String getRole() {
+		return "ICT Officer";
+	}
 
 }

@@ -27,5 +27,9 @@ public class Doctor extends Staff {
 	public boolean hasHealthDataAccess() {
 		return true;
 	}
+	
+	public String getRole() {
+		return "Doctor";
+	}
 
 }

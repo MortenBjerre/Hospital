@@ -23,5 +23,9 @@ public class Clerk extends Staff {
 		}
 		return false; 
 	}
+	
+	public String getRole() {
+		return "Clerk";
+	}
 }
 

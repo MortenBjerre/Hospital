@@ -217,7 +217,7 @@ public class DepartmentRegister{
 	 * @param serialnum
 	 * @return department name or empty string if patient has not yet been admitted
 	 */
-	public String getDeptOf(int serialnum) {
+	public String getDeptOfPatient(int serialnum) {
 		for (String deptName : departments.keySet()) {
 			if (departments.get(deptName).containsPatient(serialnum)) {
 				return deptName;
@@ -249,6 +249,21 @@ public class DepartmentRegister{
 		} else {
 			this.findDepartment(deptName).addStaff(s);
 		}
+	}
+
+	public String searchSerialNum(int serialnum, PatientRegister pr) {
+		Patient p = null;
+		for (String deptName : departments.keySet()) {
+			if (departments.get(deptName).containsPatient(serialnum)) {
+				p = departments.get(deptName).getPatient(serialnum);
+			}
+		}
+		if (p == null) {
+			throw new IllegalArgumentException("No such patient admitted");
+		} else {
+			return p.toString();
+		}
+		
 	}
 
 

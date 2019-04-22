@@ -26,4 +26,8 @@ public class Nurse extends Staff {
 	public boolean hasHealthDataAccess() {
 		return true;
 	}
+	
+	public String getRole() {
+		return "Nurse";
+	}
 }

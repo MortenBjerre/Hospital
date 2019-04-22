@@ -187,4 +187,19 @@ public class Department {
 		}
 		return false;
 	}
+	
+	/**
+	 * Gets the patient with a matching serialnum. Throws an IllegalArgumentException
+	 * returns null if there is no matching patient
+	 * @param serialnum
+	 * @return matching Patient p
+	 */
+	protected Patient getPatient(int serialnum) {
+		for (Patient p : patients) {
+			if (p.getSerialnum() == serialnum) {
+				return p;
+			}
+		}
+		return null;
+	}
 }

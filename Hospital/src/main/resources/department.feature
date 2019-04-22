@@ -56,6 +56,15 @@ Feature: Testing departments
    And I have a department register
    And there exists an ER department
    And I have a patient admitted to the ER
-   Then I should be able to discharge that patient   
+   Then I should be able to discharge that patient
+   
+  @tag4
+  Scenario: Adding various staff types to the staff register
+   Given That I am an ICT Officer
+   And I have a staff register
+   Then I should be able to add a clerk
+   And I should be able to add an ICT Officer
+   And I should be able to add a nurse
+   And I should be able to add a doctor
    
    

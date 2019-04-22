@@ -18,8 +18,68 @@ public class StaffRegister extends Register<Staff> {
 	 * @param birthday
 	 * @param gender
 	 */
-	public int add(String email, String name, String surname, Date birthday, String gender) {
+	public int addStaff(String email, String name, String surname, Date birthday, String gender) {
 		Staff s = new Staff(email, name, surname, birthday, gender);
+		users.put(s.getSerialnum(), s);
+		return s.getSerialnum();
+	}
+	
+	/**
+	 * Adds an ICT Officer to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addICTOfficer(String email, String name, String surname, Date birthday, String gender) {
+		ICTOfficer s = new ICTOfficer(email, name, surname, birthday, gender);
+		users.put(s.getSerialnum(), s);
+		return s.getSerialnum();
+	}
+	
+	/**
+	 * Adds a nurse to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addNurse(String email, String name, String surname, Date birthday, String gender) {
+		Nurse s = new Nurse(email, name, surname, birthday, gender);
+		users.put(s.getSerialnum(), s);
+		return s.getSerialnum();
+	}
+	
+	/**
+	 * Adds a doctor to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addDoctor(String email, String name, String surname, Date birthday, String gender) {
+		Doctor s = new Doctor(email, name, surname, birthday, gender);
+		users.put(s.getSerialnum(), s);
+		return s.getSerialnum();
+	}
+	
+	/**
+	 * Adds a clerk to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addClerk(String email, String name, String surname, Date birthday, String gender) {
+		Clerk s = new Clerk(email, name, surname, birthday, gender);
 		users.put(s.getSerialnum(), s);
 		return s.getSerialnum();
 	}

@@ -26,8 +26,8 @@ public class Staff extends HospitalUser {
 	}
 	
 	public String toString() {
-		return ("Serialnum: " + serialnum + "; Staff name: " + getName() + " " + getSurname() + " ; Gender: " 
-				+ getGender() + " ; Birthday: " + getBirthday() + " ; Email: " + getEmail() + " ; Role: Staff"); 
+		return ("Serialnum: " + serialnum + " ; Name: " + getName() + " " + getSurname() + " ; Gender: " 
+				+ getGender() + " ; Birthday: " + getBirthday() + " ; Email: " + getEmail() + " ; Role: " + this.getRole()); 
 	}
 	
 	/**
@@ -106,6 +106,14 @@ public class Staff extends HospitalUser {
 	 */
 	public boolean canMovePatients() {
 		return true;
+	}
+	
+	/**
+	 * Returns the role of this staff member as a string
+	 * @return String role
+	 */
+	public String getRole() {
+		return "Staff";
 	}
 
 }

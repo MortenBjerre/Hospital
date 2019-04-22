@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -153,7 +154,7 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to register a staff member$")
 	public void i_should_be_able_to_register_a_staff_member() {
 		if (s.hasWriteAccessTo(sr)) {
-			sr.add("Dylan@90210.com", "Dylan", "McKay", new Date(), "male");
+			sr.addStaff("Dylan@90210.com", "Dylan", "McKay", new Date(), "male");
 		}
 		assertTrue(sr.toString().length() != 0);
 		// The staff register is no longer empty
@@ -192,14 +193,14 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to find that patient's department$")
 	public void i_should_be_able_to_find_that_patient_s_department() {
-		assertTrue(dr.getDeptOf(1).equals("ER")); 
+		assertTrue(dr.getDeptOfPatient(1).equals("ER")); 
 	}
 	
 	@Then("^I should know patient two is not admitted$")
 	public void i_should_know_patient_two_is_not_admitted() {
 //		System.out.println("----------------==================-----------------");
-//		System.out.println(dr.getDeptOf(2));
-		assertTrue(dr.getDeptOf(2).equals(""));
+//		System.out.println(dr.getDeptOfPatient(2));
+		assertTrue(dr.getDeptOfPatient(2).equals(""));
 		
 	}
 
@@ -215,16 +216,16 @@ public class StepDefinitionClerk {
 	
 	@Given("^I have multiple staff members$")
 	public void i_have_multiple_staff_members() {
-	    sr.add("email", "Eric", "Jensen", new Date(1998-1900,1,1), "male");
-	    sr.add("m@hotmail.com", "Morten", "Bjerre", new Date(), "male");
-	    sr.add("msldkf", "Bo", "Burnham", new Date(), "female");
+	    sr.addStaff("email", "Eric", "Jensen", new Date(1998-1900,1,1), "male");
+	    sr.addStaff("m@hotmail.com", "Morten", "Bjerre", new Date(), "male");
+	    sr.addStaff("msldkf", "Bo", "Burnham", new Date(), "female");
 	    assertTrue(sr.toString().length() != 0);
 	}
 	
 	@Given("^Staff zero is in ER$")
 	public void staff_zero_is_in_ER() {
 		dr.addStaffTo(0, "ER", sr);
-		assertTrue(dr.searchStaffDepartment("ER")[0].equals("Serialnum: 0; Staff name: Eric Jensen ; Gender: male ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: email ; Role: Staff"));
+		assertTrue(dr.searchStaffDepartment("ER")[0].equals("Serialnum: 0 ; Name: Eric Jensen ; Gender: male ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: email ; Role: Staff"));
 	}
 
 	@Given("^there are multiple departments$")
@@ -238,16 +239,54 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to move a staff member from ER to surgery$")
 	public void i_should_be_able_to_move_a_staff_member_from_ER_to_surgery() {
 		dr.moveStaff(0, "surgery", sr);
-		assertTrue(dr.searchStaffDepartment("surgery")[0].equals("Serialnum: 0; Staff name: Eric Jensen ; Gender: male ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: email ; Role: Staff"));
+		assertTrue(dr.searchStaffDepartment("surgery")[0].equals("Serialnum: 0 ; Name: Eric Jensen ; Gender: male ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: email ; Role: Staff"));
 		
 	}
 	
 	@Then("^I should be able to discharge that patient$")
 	public void i_should_be_able_to_discharge_that_patient() {
-		System.out.println(dr);
+		//System.out.println(dr);
 		dr.dischargePatient(1, pr);
-		System.out.println(dr);
-	
+		try {
+			String s = dr.searchSerialNum(1, pr);
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getMessage() == "No such patient admitted");
+		}
+		//System.out.println(dr);
 	}
+	
+	@Then("^I should be able to add a clerk$")
+	public void i_should_be_able_to_add_a_clerk() {
+		int serialclerk = sr.addClerk("clerk", "Clark", "Clerkson", new Date(1998-1900,1,1), "Superman");
+		System.out.println("++++++++++++++++++++++++\n" + sr + "\n++++++++++++++++++++++++");
+		System.out.println(sr.searchSerialnum(serialclerk)[0]);
+		assertEquals(sr.searchSerialnum(serialclerk)[0], "Serialnum: 0 ; Name: Clark Clerkson ; "
+				+ "Gender: Superman ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: clerk ; Role: Clerk");
+	}
+
+	@Then("^I should be able to add an ICT Officer$")
+	public void i_should_be_able_to_add_an_ICT_Officer() {
+		int serialict = sr.addICTOfficer("officer@sir.com", "Mr.", "Sir", new Date(1998-1900,1,1), "manly");
+		System.out.println("++++++++++++++++++++++++\n" + sr + "\n++++++++++++++++++++++++");
+		assertEquals(sr.searchSerialnum(serialict)[0], ("Serialnum: 1 ; Name: Mr. Sir ; "
+				+ "Gender: manly ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: officer@sir.com ; Role: ICT Officer"));
+	}
+
+	@Then("^I should be able to add a nurse$")
+	public void i_should_be_able_to_add_a_nurse() {
+		int serialnurse = sr.addNurse("f@night.com", "Florence", "Nightingale", new Date(1998-1900,1,1), "female");
+		System.out.println("++++++++++++++++++++++++\n" + sr + "\n++++++++++++++++++++++++");
+		assertEquals(sr.searchSerialnum(serialnurse)[0],("Serialnum: 2 ; Name: Florence Nightingale ; "
+				+ "Gender: female ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: f@night.com ; Role: Nurse"));
+	}
+
+	@Then("^I should be able to add a doctor$")
+	public void i_should_be_able_to_add_a_doctor() {
+		int serialdoc = sr.addDoctor("~~~@~~~.com", "Neil", "Degrasse Thyson", new Date(1998-1900,1,1), "black science man");
+		System.out.println("++++++++++++++++++++++++\n" + sr + "\n++++++++++++++++++++++++");
+		assertEquals(sr.searchSerialnum(serialdoc)[0], ("Serialnum: 3 ; Name: Neil Degrasse Thyson ; "
+				+ "Gender: black science man ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: ~~~@~~~.com ; Role: Doctor"));
+	}
+
 	
 }

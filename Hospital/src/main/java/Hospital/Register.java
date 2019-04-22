@@ -21,7 +21,7 @@ public abstract class Register<T extends HospitalUser> {
 	/**
 	 * Searches for HospitalUsers with a matching serial number
 	 * @param serialnum
-	 * @return HashMap of matching HospitalUsers
+	 * @return matching HospitalUser, or null if none exists
 	 */
 	public T findSerialnum(int serialnum) {
 		return users.get(serialnum);
