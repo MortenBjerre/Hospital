@@ -94,7 +94,19 @@ public class StepDefinitionClerk {
 		// Using Date the year is the year minus 1900.
 		pr.editBirthday(serialnum, birthday);
 		assertTrue(pr.searchSerialnum(1)[0].equals("Serialnum: 1; Patient name: Josefine Bjerre ; Gender: male ; Birthday: Sun Nov 10 00:00:00 CET 1996 ; Email: JosefineB@gmail.com"));
-	
+		
+		int phonenumber = 696969;
+		pr.editPhoneNumber(serialnum, phonenumber);
+		assertTrue(pr.searchSerialnum(1)[0].equals("Serialnum: 1; Patient name: Josefine Bjerre ; Gender: male ; Birthday: Sun Nov 10 00:00:00 CET 1996 ; Email: JosefineB@gmail.com"));
+		assertTrue(pr.findSerialnum(serialnum).getPhoneNumber() == 696969);
+		
+		String address = "sunset boulevard";
+		pr.editAddress(serialnum, address);
+		assertTrue(pr.findSerialnum(serialnum).getAddress() == address);
+		
+		boolean alive = false;
+		pr.editAlive(serialnum, alive);
+		assertTrue(pr.findSerialnum(serialnum).getAlive() == false);
 		// Edit address, phoneNumber, alive and inpatient don't need testing since the implementation
 		// is exactly the same as above, only the second argument is different. 
 	}
