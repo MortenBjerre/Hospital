@@ -27,7 +27,6 @@ public class DepartmentRegister {
 			}
 		}
 		return a;
-		
 	}
 	
 	public DepartmentRegister() {
@@ -225,7 +224,8 @@ public class DepartmentRegister {
 	 */
 	public String getDeptOfPatient(int serialnum) {
 		for (String deptName : departments.keySet()) {
-			if (departments.get(deptName).containsPatient(serialnum)) {
+			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
+			if (deptContainsPatient) {
 				return deptName;
 			}
 		}
@@ -265,8 +265,10 @@ public class DepartmentRegister {
 	public String searchSerialNum(int serialnum, PatientRegister pr) {
 		Patient p = null;
 		for (String deptName : departments.keySet()) {
-			if (departments.get(deptName).containsPatient(serialnum)) {
-				p = departments.get(deptName).getPatient(serialnum);
+			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
+			if (deptContainsPatient) {
+				Patient patientInDept = departments.get(deptName).getPatient(serialnum);
+				p = patientInDept;
 			}
 		}
 		if (p == null) {
