@@ -119,7 +119,7 @@ public abstract class Register<T extends HospitalUser> {
 
 		for (Integer serialnum : users.keySet()) {
 			T user = users.get(serialnum);
-			if (user.getBirthday() == birthday) {
+			if (user.getBirthday().equals(birthday)) {
 				matches.add(user);
 			}
 		}
