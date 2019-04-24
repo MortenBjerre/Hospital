@@ -9,7 +9,6 @@ public class Department {
 	private int beds;
 	private ArrayList<Patient> patients;
 	private ArrayList<Staff> staff;
-
 	private String deptName;
 	
 	public Department(String deptName, int beds) {
