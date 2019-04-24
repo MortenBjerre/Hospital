@@ -121,6 +121,10 @@ public class Department {
 		this.staff.remove(staff);
 	}
 	
+	/**
+	 * Gives the patients in department 
+	 * @return string array of patients in department
+	 */
 	public String[] getPatients() {
 		ArrayList<String> patientslist = new ArrayList<String>();
 		for (Patient patient : patients) {
@@ -131,6 +135,10 @@ public class Department {
 		return patientListString;
 	}
 	
+	/**
+	 * Gives the staff members working in department
+	 * @return string array of staff members in department
+	 */
 	public String[] getStaff() {
 		ArrayList<String> stafflist = new ArrayList<String>();
 		for (Staff s : staff) {
