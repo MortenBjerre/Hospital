@@ -100,5 +100,23 @@ public abstract class HospitalUser {
 	 */
 	public abstract boolean hasHealthDataAccess();
 	
+	/**
+	 * Determines whether or not a staff member can move staff members
+	 * from one department to another
+	 * @return true if they have permission
+	 */
+	public boolean canMoveStaff() {
+		return false;
+	}
+	
+	/**
+	 * Determines whether or not a staff member can move patients
+	 * from one department to another
+	 * @return true if they have permission
+	 */
+	public boolean canMovePatients() {
+		return false;
+	}
+	
 }
 
