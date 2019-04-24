@@ -10,8 +10,8 @@ public abstract class Register<T extends HospitalUser> {
 		
 	public String toString() {
 		String a = "";
-		for (Integer u : users.keySet()) {
-			a += users.get(u).toString() +"\n";
+		for (Integer serialnum : users.keySet()) {
+			a += users.get(serialnum).toString() +"\n";
 		}
 		return a;
 	}
@@ -42,11 +42,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchEmail(String email) {
 		ArrayList<T> matches = findEmail(email);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -56,9 +56,10 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findEmail(String email) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getEmail() == email) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
+			if (user.getEmail() == email) {
+				matches.add(user);
 			}
 		}
 		return matches;
@@ -71,11 +72,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchName(String name) {
 		ArrayList<T> matches = findName(name);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -85,9 +86,10 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findName(String name) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getName() == name) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
+			if (user.getName() == name) {
+				matches.add(user);
 			}
 		}
 		return matches;
@@ -100,11 +102,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchBirthday(Date birthday) {
 		ArrayList<T> matches = findBirthday(birthday);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -114,9 +116,10 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findBirthday(Date birthday) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getBirthday() == birthday) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
+			if (user.getBirthday() == birthday) {
+				matches.add(user);
 			}
 		}
 		return matches;
@@ -129,11 +132,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchSurname(String surname) {
 		ArrayList<T> matches = findSurname(surname);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -143,9 +146,10 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findSurname(String surname) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getSurname() == surname) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
+			if (user.getSurname() == surname) {
+				matches.add(user);
 			}
 		}
 		return matches;
@@ -158,11 +162,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchGender(String Gender) {
 		ArrayList<T> matches = findGender(Gender);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -172,9 +176,10 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findGender(String Gender) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getGender() == Gender) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
+			if (user.getGender() == Gender) {
+				matches.add(user);
 			}
 		}
 		return matches;

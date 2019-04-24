@@ -27,7 +27,6 @@ public class DepartmentRegister {
 			}
 		}
 		return a;
-		
 	}
 	
 	public DepartmentRegister() {
@@ -88,9 +87,11 @@ public class DepartmentRegister {
 	 */
 	private boolean movePatient(Patient p, String deptName) {
 		for (String dep : departments.keySet()) {
-			if (departments.get(dep).containsPatient(p)) {
-				departments.get(dep).deletePatient(p);
-				departments.get(deptName).addPatient(p);
+			Department department = departments.get(dep);
+			if (department.containsPatient(p)) {
+				department.deletePatient(p);
+				Department newDepartment = departments.get(deptName);
+				newDepartment.addPatient(p);
 				return true;
 			}
 		} 
@@ -118,9 +119,11 @@ public class DepartmentRegister {
 	 */
 	private boolean moveStaff(Staff s, String deptName) {
 		for (String dep : departments.keySet()) {
-			if (departments.get(dep).containsStaff(s)) {
-				departments.get(dep).deleteStaff(s);
-				departments.get(deptName).addStaff(s);
+			Department department = departments.get(dep);
+			if (department.containsStaff(s)) {
+				department.deleteStaff(s);
+				Department newDepartment = departments.get(deptName);
+				newDepartment.addStaff(s);
 				return true;
 			}
 		}
@@ -134,8 +137,9 @@ public class DepartmentRegister {
 	 */
 	private boolean dischargePatient(Patient p) {
 		for (String dep : departments.keySet()) {
-			if (departments.get(dep).containsPatient(p)) {
-				departments.get(dep).deletePatient(p);
+			Department department = departments.get(dep);
+			if (department.containsPatient(p)) {
+				department.deletePatient(p);
 				return true;
 			}
 		}
@@ -155,13 +159,14 @@ public class DepartmentRegister {
 	/**
 	 * Removes staff member s from their department. Otherwise, throws IllegalArgumentException
 	 * "No such staff member in a department"
-	 * @param s
+	 * @param s Staff
 	 * @return true if successful
 	 */
 	private boolean dischargeStaff(Staff s) {
 		for (String dep : departments.keySet()) {
-			if (departments.get(dep).containsStaff(s)) {
-				departments.get(dep).deleteStaff(s);
+			Department department = departments.get(dep);
+			if (department.containsStaff(s)) {
+				department.deleteStaff(s);
 				return true;
 			}
 		}
@@ -206,12 +211,13 @@ public class DepartmentRegister {
 	 * @param pr PatientRegister
 	 */
 	public void admit(int serialnum, String deptName, PatientRegister pr) {
-		Patient p = pr.findSerialnum(serialnum);
-		if (this.findDepartment(deptName) == null) {
+		Patient patient = pr.findSerialnum(serialnum);
+		Department department = this.findDepartment(deptName);
+		if (department == null) {
 			throw new IllegalArgumentException("No such department");
 		} else {
-			if (this.findDepartment(deptName).getFreeBeds() > 0) {
-				this.findDepartment(deptName).addPatient(p);
+			if (department.getFreeBeds() > 0) {
+				department.addPatient(patient);
 			} else {
 				throw new IllegalArgumentException("Department is full");
 			}
@@ -225,7 +231,8 @@ public class DepartmentRegister {
 	 */
 	public String getDeptOfPatient(int serialnum) {
 		for (String deptName : departments.keySet()) {
-			if (departments.get(deptName).containsPatient(serialnum)) {
+			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
+			if (deptContainsPatient) {
 				return deptName;
 			}
 		}
@@ -249,24 +256,26 @@ public class DepartmentRegister {
 	 * @param sr StaffRegister
 	 */
 	public void addStaffTo(int serialnum, String deptName, StaffRegister sr) {
-		Staff s = sr.findSerialnum(serialnum);
+		Staff staff = sr.findSerialnum(serialnum);
 		if (this.findDepartment(deptName) == null) {
 			throw new IllegalArgumentException("No such department");
 		} else {
 			try {
-				this.dischargeStaff(s);
+				this.dischargeStaff(staff);
 			} catch (IllegalArgumentException e) {
 				; //pass
 			}
-			this.findDepartment(deptName).addStaff(s);
+			this.findDepartment(deptName).addStaff(staff);
 		}
 	}
 
 	public String searchSerialNum(int serialnum, PatientRegister pr) {
 		Patient p = null;
 		for (String deptName : departments.keySet()) {
-			if (departments.get(deptName).containsPatient(serialnum)) {
-				p = departments.get(deptName).getPatient(serialnum);
+			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
+			if (deptContainsPatient) {
+				Patient patientInDept = departments.get(deptName).getPatient(serialnum);
+				p = patientInDept;
 			}
 		}
 		if (p == null) {
