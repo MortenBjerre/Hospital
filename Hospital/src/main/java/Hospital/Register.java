@@ -42,11 +42,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchEmail(String email) {
 		ArrayList<T> matches = findEmail(email);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -72,11 +72,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchName(String name) {
 		ArrayList<T> matches = findName(name);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -102,11 +102,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchBirthday(Date birthday) {
 		ArrayList<T> matches = findBirthday(birthday);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -132,11 +132,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchSurname(String surname) {
 		ArrayList<T> matches = findSurname(surname);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -162,11 +162,11 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	public String[] searchGender(String Gender) {
 		ArrayList<T> matches = findGender(Gender);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
