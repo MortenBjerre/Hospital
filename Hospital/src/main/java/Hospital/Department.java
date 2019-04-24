@@ -9,10 +9,7 @@ public class Department {
 	private int beds;
 	private ArrayList<Patient> patients;
 	private ArrayList<Staff> staff;
-
 	private String deptName;
-	
-	
 	
 	public Department(String deptName, int beds) {
 		this.deptName = deptName;
@@ -21,12 +18,12 @@ public class Department {
 		staff = new ArrayList<Staff>();
 	}
 	
-	public Department(String deptName) {
-		this.deptName = deptName;
-		this.beds = 0;
-		patients = new ArrayList<Patient>();
-		staff = new ArrayList<Staff>();
-	}
+//	public Department(String deptName) {
+//		this.deptName = deptName;
+//		this.beds = 0;
+//		patients = new ArrayList<Patient>();
+//		staff = new ArrayList<Staff>();
+//	}
 
 	/**
 	 *  returns the number of beds in a department
@@ -96,31 +93,31 @@ public class Department {
 	
 	/**
 	 * Adds a staff member to the hashmap of staffmembers in a department
-	 * @param employee The staff member to be added
+	 * @param s The staff member to be added
 	 */
-	public void addStaff(Staff employee) {
-		staff.add(employee);
+	protected void addStaff(Staff s) {
+		staff.add(s);
 	}
 	/**
 	 * Adds a patient to the hashmap of patients in a department
 	 * @param patient the patient to be added
 	 */
-	public void addPatient(Patient patient) {
+	protected void addPatient(Patient patient) {
 		patients.add(patient);
 	}
 	/**
 	 * remove a patient from the arraylist of patientes in a department
 	 * @param patient patient to be removed
 	 */
-	public void deletePatient(Patient patient) {
+	protected void deletePatient(Patient patient) {
 		patients.remove(patient);
 	}
 	
 	/**
 	 * remove a staff member from the arraylist of staff in a department
-	 * @param employee employee to be removed
+	 * @param staff staff to be removed
 	 */
-	public void deleteStaff(Staff staff) {
+	protected void deleteStaff(Staff staff) {
 		this.staff.remove(staff);
 	}
 	
@@ -144,11 +141,64 @@ public class Department {
 		return m;
 	}
 	
-	public boolean containsPatient(Patient p) {
+	/**
+	 * Checks whether this department has a specified patient
+	 * @param p A patient of type Patient
+	 * @return true if department has patient
+	 */
+	protected boolean containsPatient(Patient p) {
 		return patients.contains(p);
 	}
 	
+	/**
+	 * Checks whether this department has a patient with a matching serialnum
+	 * @param serialnum The patient's serialnum of type int
+	 * @return true if department has patient
+	 */
+	public boolean containsPatient(int serialnum) {
+		for (Patient p : patients) {
+			if (p.getSerialnum() == serialnum) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks whether this department has a specified staff member
+	 * @param s A staff of type Staff
+	 * @return true if department has staff
+	 */
 	public boolean containsStaff(Staff s) {
 		return staff.contains(s);
+	}
+	
+	/**
+	 * Checks whether this department has a staff with a matching serialnum
+	 * @param serialnum The staff's serialnum of type int
+	 * @return true if department has staff
+	 */
+	public boolean containsStaff(int serialnum) {
+		for (Staff s : staff) {
+			if (s.getSerialnum() == serialnum) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Gets the patient with a matching serialnum. Throws an IllegalArgumentException
+	 * returns null if there is no matching patient
+	 * @param serialnum
+	 * @return matching Patient p
+	 */
+	protected Patient getPatient(int serialnum) {
+		for (Patient p : patients) {
+			if (p.getSerialnum() == serialnum) {
+				return p;
+			}
+		}
+		return null;
 	}
 }

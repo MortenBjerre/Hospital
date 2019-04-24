@@ -14,7 +14,6 @@ public class Patient extends HospitalUser {
 	private String address;
 	private int phoneNumber;
 	private boolean alive;
-	private boolean inpatient;
 	private static int serialnumCounter = 0;
 	private int serialnum;
 	private String healthData = "";
@@ -22,25 +21,23 @@ public class Patient extends HospitalUser {
 	
 	//This is protected so that there can't be free floating patients. Can only make one in a register
 	/**
-	 * creates a patient
-	 * @param serialnum
+	 * Creates a patient
 	 * @param email
 	 * @param name
 	 * @param surname
 	 * @param birthday
 	 * @param gender
 	 * @param address
-	 * @param number
+	 * @param phoneNumber
 	 * @param alive
-	 * @param healthData 
+	 * @param healthData
 	 */
 	protected Patient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, boolean inpatient, String healthData) {
-		set(email, name, surname, birthday, gender, department);
+			String gender, String address, int phoneNumber, boolean alive, String healthData) {
+		set(email, name, surname, birthday, gender);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
-		setInpatient(inpatient);
 		setHealthData(healthData);
 		serialnum = serialnumCounter;
 		serialnumCounter++;
@@ -56,12 +53,11 @@ public class Patient extends HospitalUser {
 	 * @param address
 	 * @param phoneNumber
 	 * @param alive
-	 * @param department
 	 * @param healthData
 	 */
 	public void setPatient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String department, String healthData) {
-		set(email, name, surname, birthday, gender, department);
+			String gender, String address, int phoneNumber, boolean alive, String healthData) {
+		set(email, name, surname, birthday, gender);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
@@ -101,15 +97,7 @@ public class Patient extends HospitalUser {
 		return ("Serialnum: " + serialnum + "; Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
 				+ " ; Birthday: " + getBirthday() + " ; Email: " + getEmail()); 
 	}
-
-	public boolean getInpatient() {
-		return inpatient;
-	}
-
-	public void setInpatient(boolean inpatient) {
-		this.inpatient = inpatient;
-	}
-
+	
 	/**
 	 * Checks if patient has write access to a register
 	 */

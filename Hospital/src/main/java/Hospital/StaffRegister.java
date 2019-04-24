@@ -18,38 +18,69 @@ public class StaffRegister extends Register<Staff> {
 	 * @param birthday
 	 * @param gender
 	 */
-	public int add(String email, String name, String surname, Date birthday, String gender, String department) {
-		Staff s = new Staff(email, name, surname, birthday, gender, department);
-		users.put(serialnum, s);
-		return serialnum;
+	public int addStaff(String email, String name, String surname, Date birthday, String gender) {
+		Staff s = new Staff(email, name, surname, birthday, gender);
+		users.put(s.getSerialnum(), s);
+		return s.getSerialnum();
 	}
 	
 	/**
-	 * Searches for a Staff with a matching Role
-	 * @param role
-	 * @return
+	 * Adds an ICT Officer to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
 	 */
-//	public String[] searchRole(String role) {
-//		ArrayList<Staff> matches = findRole(role);
-//		String[] m = new String[matches.size()];
-//		for (int i = 0; i < matches.size(); i++) {
-//			m[i] = matches.get(i).toString();
-//		}
-//		return m;
-//	}
-//	
-//	/**
-//	 * Searches for a Staff with a matching Role
-//	 * @param role
-//	 * @return
-//	 */
-//	protected ArrayList<Staff> findRole(String role) {
-//		ArrayList<Staff> matches = new ArrayList<Staff>();
-//		for (Integer key : users.keySet()) {
-//			if (users.get(key).getRole() == role) {
-//				matches.add(users.get(key));
-//			}
-//		}
-//		return matches;
-//	}
+	public int addICTOfficer(String email, String name, String surname, Date birthday, String gender) {
+		ICTOfficer ict = new ICTOfficer(email, name, surname, birthday, gender);
+		users.put(ict.getSerialnum(), ict);
+		return ict.getSerialnum();
+	}
+	
+	/**
+	 * Adds a nurse to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addNurse(String email, String name, String surname, Date birthday, String gender) {
+		Nurse nurse = new Nurse(email, name, surname, birthday, gender);
+		users.put(nurse.getSerialnum(), nurse);
+		return nurse.getSerialnum();
+	}
+	
+	/**
+	 * Adds a doctor to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addDoctor(String email, String name, String surname, Date birthday, String gender) {
+		Doctor doctor = new Doctor(email, name, surname, birthday, gender);
+		users.put(doctor.getSerialnum(), doctor);
+		return doctor.getSerialnum();
+	}
+	
+	/**
+	 * Adds a clerk to the register
+	 * @param serialnum
+	 * @param email
+	 * @param name
+	 * @param surname
+	 * @param birthday
+	 * @param gender
+	 */
+	public int addClerk(String email, String name, String surname, Date birthday, String gender) {
+		Clerk clerk = new Clerk(email, name, surname, birthday, gender);
+		users.put(clerk.getSerialnum(), clerk);
+		return clerk.getSerialnum();
+	}
 }

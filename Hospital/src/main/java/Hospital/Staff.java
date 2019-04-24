@@ -17,8 +17,8 @@ public class Staff extends HospitalUser {
 	 * @param gender
 	 * @param department
 	 */
-	public Staff(String email, String name, String surname, Date birthday, String gender, String department) {
-		set(email, name, surname, birthday, gender, department);
+	public Staff(String email, String name, String surname, Date birthday, String gender) {
+		set(email, name, surname, birthday, gender);
 		serialnum = serialnumCounter;
 		serialnumCounter++;
 
@@ -26,8 +26,8 @@ public class Staff extends HospitalUser {
 	}
 	
 	public String toString() {
-		return ("Serialnum: " + serialnum + "; Staff name: " + getName() + " " + getSurname() + " ; Gender: " 
-				+ getGender() + " ; Birthday: " + getBirthday() + " ; Email: " + getEmail() + " ; Role: Staff"); 
+		return ("Serialnum: " + serialnum + " ; Name: " + getName() + " " + getSurname() + " ; Gender: " 
+				+ getGender() + " ; Birthday: " + getBirthday() + " ; Email: " + getEmail() + " ; Role: " + this.getRole()); 
 	}
 	
 	/**
@@ -50,14 +50,6 @@ public class Staff extends HospitalUser {
 	 */
 	public int getSerialnum() {
 		return serialnum;
-	}
-	
-	/**
-	 * Sets the serial number of the staff member
-	 * @param serialnum
-	 */
-	protected void setSerialnum(int serialnum) {
-		this.serialnum = serialnum;
 	}
 	
 	public boolean equals(Object obj) {
@@ -88,6 +80,41 @@ public class Staff extends HospitalUser {
 	 */
 	public boolean hasHealthDataAccess() {
 		return false;
+	}
+	
+	/**
+	 * Determines whether or not a staff member can move patients
+	 * from one department to another
+	 * @return true if they have permission
+	 */
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	/**
+	 * Determines whether or not a staff member can move staff members
+	 * from one department to another
+	 * @return true if they have permission
+	 */
+	public boolean canMoveStaff() {
+		return false;
+	}
+	
+	/**
+	 * Determines whether or not a staff member can view the 
+	 * department register
+	 * @return true if they have permission
+	 */
+	public boolean canViewDepartmentRegister() {
+		return true;
+	}
+	
+	/**
+	 * Returns the role of this staff member as a string
+	 * @return String role
+	 */
+	public String getRole() {
+		return "Staff";
 	}
 
 }

@@ -13,8 +13,8 @@ public class ICTOfficer extends Staff {
 	 * @param gender
 	 * @param department
 	 */
-	public ICTOfficer(String email, String name, String surname, Date birthday, String gender, String department) {
-		super(email, name, surname, birthday, gender, department);
+	public ICTOfficer(String email, String name, String surname, Date birthday, String gender) {
+		super(email, name, surname, birthday, gender);
 		
 	}
 	
@@ -29,4 +29,17 @@ public class ICTOfficer extends Staff {
 	public boolean hasHealthDataAccess() {
 		return true;
 	}
+	
+	public boolean canMoveStaff() {
+		return true;
+	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	public String getRole() {
+		return "ICT Officer";
+	}
+
 }
