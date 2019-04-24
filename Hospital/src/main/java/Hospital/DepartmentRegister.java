@@ -326,4 +326,13 @@ public class DepartmentRegister {
 			throw new IllegalArgumentException("No such department");
 		}
 	}
+
+	public void addBeds(String deptName, int addedBeds) {
+		if (departments.containsKey(deptName)) {
+			Department department = departments.get(deptName);
+			department.addNewBeds(addedBeds);
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}	
+	}
 }

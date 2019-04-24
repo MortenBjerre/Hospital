@@ -111,6 +111,7 @@ Feature: Testing departments
 	  And there are multiple departments
 	  Then I should be able to see how many beds are available in the ER
 	  And I should be able to add some beds 
+	  And I should be able to remove beds
 	  And The number of beds should be updated
 	  
 	  

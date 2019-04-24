@@ -442,5 +442,21 @@ public class StepDefinitionClerk {
 		
 	}
 	
+	@Then("^I should be able to add some beds$")
+	public void i_should_be_able_to_add_some_beds() {
+		dr.addBeds("ER", 4);
+	}
+	
+	@Then("^I should be able to remove beds$")
+	public void i_should_be_able_to_remove_beds() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^The number of beds should be updated$")
+	public void the_number_of_beds_should_be_updated() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
 	
 }
