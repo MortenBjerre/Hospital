@@ -56,8 +56,8 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findEmail(String email) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			T user = users.get(key);
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
 			if (user.getEmail() == email) {
 				matches.add(user);
 			}
@@ -116,8 +116,8 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findBirthday(Date birthday) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			T user = users.get(key);
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
 			if (user.getBirthday() == birthday) {
 				matches.add(user);
 			}
@@ -146,8 +146,8 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findSurname(String surname) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			T user = users.get(key);
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
 			if (user.getSurname() == surname) {
 				matches.add(user);
 			}
@@ -176,8 +176,8 @@ public abstract class Register<T extends HospitalUser> {
 	 */
 	protected ArrayList<T> findGender(String Gender) {
 		ArrayList<T> matches = new ArrayList<T>();
-		for (Integer key : users.keySet()) {
-			T user = users.get(key);
+		for (Integer serialnum : users.keySet()) {
+			T user = users.get(serialnum);
 			if (user.getGender() == Gender) {
 				matches.add(user);
 			}
