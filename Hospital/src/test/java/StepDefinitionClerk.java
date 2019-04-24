@@ -223,6 +223,7 @@ public class StepDefinitionClerk {
 	    }
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Given("^I have multiple staff members$")
 	public void i_have_multiple_staff_members() {
 	    sr.addStaff("email", "Eric", "Jensen", new Date(1998-1900,1,1), "male");
@@ -256,7 +257,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_discharge_that_patient() {
 		dr.dischargePatient(1, pr);
 		try {
-			String s = dr.searchSerialNum(1, pr);
+			dr.searchSerialNum(1, pr);
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getMessage() == "No such patient admitted");
 		}
@@ -264,6 +265,7 @@ public class StepDefinitionClerk {
 	
 	@Then("^I should be able to add a clerk$")
 	public void i_should_be_able_to_add_a_clerk() {
+		@SuppressWarnings("deprecation")
 		int serialclerk = sr.addClerk("clerk", "Clark", "Clerkson", new Date(1998-1900,1,1), "Superman");
 		assertEquals(sr.searchSerialnum(serialclerk)[0], "Serialnum: 0 ; Name: Clark Clerkson ; "
 				+ "Gender: Superman ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: clerk ; Role: Clerk");
@@ -271,6 +273,7 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to add an ICT Officer$")
 	public void i_should_be_able_to_add_an_ICT_Officer() {
+		@SuppressWarnings("deprecation")
 		int serialict = sr.addICTOfficer("officer@sir.com", "Mr.", "Sir", new Date(1998-1900,1,1), "manly");
 		assertEquals(sr.searchSerialnum(serialict)[0], ("Serialnum: 1 ; Name: Mr. Sir ; "
 				+ "Gender: manly ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: officer@sir.com ; Role: ICT Officer"));
@@ -278,6 +281,7 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to add a nurse$")
 	public void i_should_be_able_to_add_a_nurse() {
+		@SuppressWarnings("deprecation")
 		int serialnurse = sr.addNurse("f@night.com", "Florence", "Nightingale", new Date(1998-1900,1,1), "female");
 		assertEquals(sr.searchSerialnum(serialnurse)[0],("Serialnum: 2 ; Name: Florence Nightingale ; "
 				+ "Gender: female ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: f@night.com ; Role: Nurse"));
@@ -285,11 +289,13 @@ public class StepDefinitionClerk {
 
 	@Then("^I should be able to add a doctor$")
 	public void i_should_be_able_to_add_a_doctor() {
+		@SuppressWarnings("deprecation")
 		int serialdoc = sr.addDoctor("~~~@~~~.com", "Neil", "Degrasse Thyson", new Date(1998-1900,1,1), "black science man");
 		assertEquals(sr.searchSerialnum(serialdoc)[0], ("Serialnum: 3 ; Name: Neil Degrasse Thyson ; "
 				+ "Gender: black science man ; Birthday: Sun Feb 01 00:00:00 CET 1998 ; Email: ~~~@~~~.com ; Role: Doctor"));
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Given("^That I am a staff member$")
 	public void that_I_am_a_staff_member() {
 		s = new Staff("staff@staff.staff", "Staff", "Stafferson", new Date(1998-1900,1,1), "female");
