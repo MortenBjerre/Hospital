@@ -63,7 +63,7 @@ public class DepartmentRegister {
 	 * Removes a department from the map of departments, by department name
 	 * @param deptName name of department you want to remove
 	 */
-	public void deleteDepartment(String deptName) {
+	protected void deleteDepartment(String deptName) {
 		departments.remove(deptName);
 	}
 	
