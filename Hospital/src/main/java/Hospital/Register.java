@@ -7,9 +7,7 @@ import java.util.Map;
 
 public abstract class Register<T extends HospitalUser> {
 	protected Map<Integer, T> users = new HashMap<Integer, T>();
-	
-	protected int serialnum = 0;
-	
+		
 	public String toString() {
 		String a = "";
 		for (Integer u : users.keySet()) {
