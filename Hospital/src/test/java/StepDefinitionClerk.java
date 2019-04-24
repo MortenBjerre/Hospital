@@ -57,9 +57,10 @@ public class StepDefinitionClerk {
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
 		if (s.hasWriteAccessTo(pr)) {
-			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true,"");
+			pr.add("g@gmail.com", "Phil", "Banks", new Date(2000,12,1), "male", "Bel Air", 44329082, true,"");
 			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true,"");
-			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true,"");
+			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(2000,12,2), "male", "California", 12355590, true,"");
+			pr.add("pp@hotmail.com", "Philtwo", "Taylor", new Date(2002,1,1), "male", "California", 12355591, false,"");
 		}
 	}
 
@@ -364,4 +365,82 @@ public class StepDefinitionClerk {
 		dr.addStaffTo(0, "surgery", sr);
 		assertTrue(dr.searchStaffDepartment("ER").length == 0);
 	}
+	
+	@Then("^I should be able to search for a patient by address$")
+	public void i_should_be_able_to_search_for_a_patient_by_address() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchAddress("USA")[0]));
+	}
+	
+	@Then("^I should be able to search for a patient by phone number$")
+	public void i_should_be_able_to_search_for_a_patient_by_phone_number() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,pr.searchNumber(12355590)[0]);
+	}
+	
+	@Then("^I should be able to search for a patient that is still alive$")
+	public void i_should_be_able_to_search_for_a_patient_that_is_still_alive() {
+		assertEquals(pr.searchAlive(true).length, 3);
+		
+	    assertEquals("Serialnum: 0; Patient name: Phil Banks ; Gender: male ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: g@gmail.com"
+	    		,pr.searchAlive(true)[0]);
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ; "
+	    		+ "Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,pr.searchAlive(true)[1]);
+	    assertEquals("Serialnum: 2; Patient name: Phil Taylor ; Gender: male ; "
+	    		+ "Birthday: Wed Jan 02 00:00:00 CET 3901 ; Email: p@hotmail.com"
+	    		,pr.searchAlive(true)[2]);
+
+	}
+	
+	@Then("^I should be able to search for a patient by email$")
+	public void i_should_be_able_to_search_for_a_patient_by_email() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchEmail("p@ofir.dk")[0]));		
+	}
+
+	@Then("^I should be able to search for a patient by name$")
+	public void i_should_be_able_to_search_for_a_patient_by_name() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchName("Emilia")[0]));	
+	}
+
+	@Then("^I should be able to search for a patient by surname$")
+	public void i_should_be_able_to_search_for_a_patient_by_surname() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchSurname("Clarke")[0]));
+	}
+
+	@Then("^I should be able to search for a patient by birthday$")
+	public void i_should_be_able_to_search_for_a_patient_by_birthday() {
+		Date a = new Date(2002,1,1);
+//		System.out.println(pr.searchBirthday(a)[0]);
+	    assertEquals("Serialnum: 3; Patient name: Philtwo Taylor ; Gender: male ; "
+	    		+ "Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com"
+				,(pr.searchBirthday(new Date(2002,1,1))[0]));
+	}
+	
+	@Then("^I want to see that two staff members has different hash code$")
+	public void i_want_to_see_that_two_staff_members_has_different_hash_code() {
+		Staff s1 = sr.findSerialnum(0);
+		Staff s2 = sr.findSerialnum(1);
+		assertTrue(s1.hashCode() != s2.hashCode());
+		
+	}
+
+	@Then("^That a staff member has the same hash code as them selves$")
+	public void that_a_staff_member_has_the_same_hash_code_as_them_selves() {
+		Staff s1 = sr.findSerialnum(0);
+		Staff s2 = sr.findSerialnum(0);
+		assertTrue(s1.hashCode() == s2.hashCode());
+		
+	}
+	
+	
 }

@@ -94,3 +94,26 @@ Feature: Testing departments
 	  And I have multiple staff members
 	  And Staff zero is in ER
 	  Then Adding staff zero to surgery should discharge them from the ER
+	  
+  @tag8
+  Scenario: As an ICT Officer, i should be able to able to see how many beds are free and add some more
+  	Given That I am an ICT Officer
+   	And I have a department register 
+	  And there are multiple departments
+	  Then I should be able to see how many beds are available in the ER
+	  And I should be able to add some beds 
+	  And The number of beds should be updated
+	  
+  @tag9
+  Scenario: As an ICT Officer, i should be able to able to see how many beds are free and add some more
+  	Given That I am an ICT Officer
+   	And I have a department register 
+	  And there are multiple departments
+	  Then I should be able to see how many beds are available in the ER
+	  And I should be able to add some beds 
+	  And The number of beds should be updated
+	  
+	  
+	  
+	  
+	  

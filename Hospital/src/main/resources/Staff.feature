@@ -28,3 +28,12 @@ Feature: Title of your feature
   	And I should not have view access to the health data
   	And I should have permission to move patients
   	And I should not have permission to move staff
+  	
+  Scenario: hash code check 
+  	Given That I am a clerk
+  	And I have a staff register
+  	And I have multiple staff members
+  	Then I want to see that two staff members has different hash code
+  	And That a staff member has the same hash code as them selves
+  	
+  	

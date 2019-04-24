@@ -18,12 +18,12 @@ public class Department {
 		staff = new ArrayList<Staff>();
 	}
 	
-	public Department(String deptName) {
-		this.deptName = deptName;
-		this.beds = 0;
-		patients = new ArrayList<Patient>();
-		staff = new ArrayList<Staff>();
-	}
+//	public Department(String deptName) {
+//		this.deptName = deptName;
+//		this.beds = 0;
+//		patients = new ArrayList<Patient>();
+//		staff = new ArrayList<Staff>();
+//	}
 
 	/**
 	 *  returns the number of beds in a department
