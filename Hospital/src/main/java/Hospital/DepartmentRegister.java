@@ -327,12 +327,32 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Adds a number of beds to a department, updating the existing number of beds
+	 * @param deptName
+	 * @param addedBeds Number of beds you want added to department
+	 */
 	public void addBeds(String deptName, int addedBeds) {
-		if (departments.containsKey(deptName)) {
+		if (departments.containsKey(deptName) && addedBeds > 0) {
 			Department department = departments.get(deptName);
 			department.addNewBeds(addedBeds);
 		} else {
 			throw new IllegalArgumentException("No such department");
 		}	
+	}
+
+	/**
+	 * Removes a number of beds from a department, updating the existing number of beds
+	 * @param deptName
+	 * @param removedBeds Number of beds you want removed from department
+	 */
+	public void removeBeds(String deptName, int removedBeds) {
+		if (departments.containsKey(deptName) && removedBeds > 0) {
+			Department department = departments.get(deptName);
+			department.removeBeds(removedBeds);
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+		
 	}
 }

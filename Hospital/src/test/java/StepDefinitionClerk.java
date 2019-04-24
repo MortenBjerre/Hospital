@@ -444,13 +444,14 @@ public class StepDefinitionClerk {
 	
 	@Then("^I should be able to add some beds$")
 	public void i_should_be_able_to_add_some_beds() {
-		dr.addBeds("ER", 4);
+		dr.addBeds("ER", 10);
+		// Originally there were 5 beds so now there are 15
 	}
 	
 	@Then("^I should be able to remove beds$")
-	public void i_should_be_able_to_remove_beds() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void i_should_be_able_to_remove_beds() {
+		dr.removeBeds("ER",3);
+		// Now there is 12 beds in ER
 	}
 
 	@Then("^The number of beds should be updated$")
