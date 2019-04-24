@@ -183,7 +183,11 @@ public class DepartmentRegister {
 		dischargeStaff(s);		
 	}
 	
-	
+	/**
+	 * Gives the patients in searched department
+	 * @param deptName
+	 * @return String array of patients in department
+	 */
 	public String[] searchPatientDepartment(String deptName) {
 		for (String dept : departments.keySet()) {
 			if (dept == deptName) {
@@ -193,6 +197,11 @@ public class DepartmentRegister {
 		return new String[0];
 	}
 	
+	/**
+	 * Gives the staff members in searched department
+	 * @param deptName
+	 * @return String array of staff members in department
+	 */
 	public String[] searchStaffDepartment(String deptName) {
 		for (String dept : departments.keySet()) {
 			if (dept == deptName) {
@@ -268,22 +277,27 @@ public class DepartmentRegister {
 			this.findDepartment(deptName).addStaff(staff);
 		}
 	}
-
+	
+	/**
+	 * Searches department register for patient by serialnumber.
+	 * Will throw error if the patient is not admitted.
+	 * @param serialnum
+	 * @param pr PatientRegister
+	 * @return string of patient
+	 */
 	public String searchSerialNum(int serialnum, PatientRegister pr) {
-		Patient p = null;
+		Patient patientInDept = null;
 		for (String deptName : departments.keySet()) {
 			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
 			if (deptContainsPatient) {
-				Patient patientInDept = departments.get(deptName).getPatient(serialnum);
-				p = patientInDept;
+				patientInDept = departments.get(deptName).getPatient(serialnum);
 			}
 		}
-		if (p == null) {
+		if (patientInDept == null) {
 			throw new IllegalArgumentException("No such patient admitted");
 		} else {
-			return p.toString();
-		}
-		
+			return patientInDept.toString();
+		}	
 	}
 	
 	/**
