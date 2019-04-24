@@ -139,7 +139,7 @@ public class DepartmentRegister {
 				return true;
 			}
 		}
-		throw new IllegalArgumentException("No such department");
+		throw new IllegalArgumentException("No such patient admitted");
 	}
 	
 	/**
@@ -159,7 +159,7 @@ public class DepartmentRegister {
 				return true;
 			}
 		}
-		throw new IllegalArgumentException("No such department");
+		throw new IllegalArgumentException("No such staff member in a department");
 	}
 	
 	/**

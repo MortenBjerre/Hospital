@@ -110,7 +110,7 @@ public class Department {
 	 * remove a patient from the arraylist of patientes in a department
 	 * @param patient patient to be removed
 	 */
-	public void deletePatient(Patient patient) {
+	protected void deletePatient(Patient patient) {
 		patients.remove(patient);
 	}
 	
@@ -118,7 +118,7 @@ public class Department {
 	 * remove a staff member from the arraylist of staff in a department
 	 * @param staff staff to be removed
 	 */
-	public void deleteStaff(Staff staff) {
+	protected void deleteStaff(Staff staff) {
 		this.staff.remove(staff);
 	}
 	
@@ -147,7 +147,7 @@ public class Department {
 	 * @param p A patient of type Patient
 	 * @return true if department has patient
 	 */
-	public boolean containsPatient(Patient p) {
+	protected boolean containsPatient(Patient p) {
 		return patients.contains(p);
 	}
 	
