@@ -76,7 +76,7 @@ Feature: Testing departments
    And I should be able to see how many beds there are total in the ER
    
   @tag6
-  Scenario:As a nurse/doctor, I want to be able to send a patient to a different department so that he can be treated properly.
+  Scenario: As a nurse/doctor, I want to be able to send a patient to a different department so that he can be treated properly.
    Given That I am a doctor
    And I have a department register
    And I have a patient register
@@ -85,3 +85,12 @@ Feature: Testing departments
    And patient zero is in the ER
    Then I should be able to move patient zero from the ER to surgery
    
+  @tag7
+  Scenario: As an ICT Officer, Adding a staff member to a department should remove them from their current department
+  	Given That I am an ICT Officer
+   	And I have a department register
+   	And I have a staff register
+	  And there are multiple departments
+	  And I have multiple staff members
+	  And Staff zero is in ER
+	  Then Adding staff zero to surgery should discharge them from the ER

@@ -152,6 +152,12 @@ public class DepartmentRegister {
 		dischargePatient(p);		
 	}
 	
+	/**
+	 * Removes staff member s from their department. Otherwise, throws IllegalArgumentException
+	 * "No such staff member in a department"
+	 * @param s
+	 * @return true if successful
+	 */
 	private boolean dischargeStaff(Staff s) {
 		for (String dep : departments.keySet()) {
 			if (departments.get(dep).containsStaff(s)) {
@@ -247,6 +253,11 @@ public class DepartmentRegister {
 		if (this.findDepartment(deptName) == null) {
 			throw new IllegalArgumentException("No such department");
 		} else {
+			try {
+				this.dischargeStaff(s);
+			} catch (IllegalArgumentException e) {
+				; //pass
+			}
 			this.findDepartment(deptName).addStaff(s);
 		}
 	}

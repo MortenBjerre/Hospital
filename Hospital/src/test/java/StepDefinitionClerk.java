@@ -358,4 +358,10 @@ public class StepDefinitionClerk {
 	public void i_should_not_have_permission_to_move_staff() {
 		assertFalse(s.canMoveStaff());
 	}
+	
+	@Then("^Adding staff zero to surgery should discharge them from the ER$")
+	public void adding_staff_zero_to_surgery_should_discharge_them_from_the_ER() {
+		dr.addStaffTo(0, "surgery", sr);
+		assertTrue(dr.searchStaffDepartment("ER").length == 0);
+	}
 }
