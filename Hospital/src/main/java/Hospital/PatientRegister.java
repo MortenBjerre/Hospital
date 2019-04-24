@@ -26,11 +26,11 @@ public class PatientRegister extends Register<Patient> {
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
 			String healthData) {
-		Patient p = new Patient(email, name, surname, birthday, gender, address, 
+		Patient patient = new Patient(email, name, surname, birthday, gender, address, 
 								phoneNumber, alive, healthData);
-		users.put(p.getSerialnum(), p);
+		users.put(patient.getSerialnum(), patient);
 		
-		return p.getSerialnum();
+		return patient.getSerialnum();
 	}
 	
 	
@@ -129,8 +129,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param birthday
 	 */
 	public void editBirthday(int serialnum, Date birthday) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setBirthday(birthday);		
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setBirthday(birthday);		
 	}
 	
 	/**
@@ -139,8 +139,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param phoneNumber
 	 */
 	public void editPhoneNumber(int serialnum, int phoneNumber) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setPhoneNumber(phoneNumber);	
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setPhoneNumber(phoneNumber);	
 	}
 	
 	/**
@@ -149,8 +149,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param address
 	 */
 	public void editAddress(int serialnum, String address) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setAddress(address);		
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setAddress(address);		
 	}
 	
 	/**
@@ -159,8 +159,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param alive
 	 */
 	public void editAlive(int serialnum, boolean alive) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setAlive(alive);
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setAlive(alive);
 	}
 	
 	/**
@@ -169,8 +169,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param healthData
 	 */
 	public void editHealthData(int serialnum, String healthData) {
-		Patient p = findSerialnum(serialnum);
-		p.setHealthData(healthData);
+		Patient patient = findSerialnum(serialnum);
+		patient.setHealthData(healthData);
 	}
 	
 	/**
