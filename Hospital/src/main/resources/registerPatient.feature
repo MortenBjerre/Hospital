@@ -81,3 +81,10 @@ Feature: Clerk using software
   	And I have a patient register
   	And the patient register contains several patients
   	Then I should be able to search for a patient by birthday
+  	
+  Scenario: As a clerk, I want to be able to search a patient by alive.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by alive
+  	And I should be able to search for a patient that is still alive

@@ -21,13 +21,25 @@ Feature: Testing the patient
 
   @tag1
   Scenario: Patient permissions
-  	Given That I am a patient
-  	And I have a staff register
+    #Acting as a nurse to create the hospital
+  	Given That I am a nurse
   	And I have a patient register
+  	And I have a staff register
   	And I have a department register
-  	Then I should not have write access to the staff register
-  	And I should not have view access to the staff register
-  	And I should not have write access to the patient register
-  	And I should not have view access to the patient register
-  	And I should not have view access to health data
+  	And the patient register contains several patients
+  	
+  	#Now acting as a patient
+  	And A patient is using the system
+  	Then The patient should not have write access to the staff register
+  	And The patient should not have view access to the staff register
+  	And The patient should not have write access to the patient register
+  	And The patient should not have view access to the patient register
+  	And The patient should not have view access to health data
+  	
+  Scenario: Checking hashcodes
+  	Given That I am a nurse
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then patient zero and one should have different hash codes
+  	And patient zero should have the same hash code as themselves
   	
