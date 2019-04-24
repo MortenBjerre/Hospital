@@ -115,7 +115,7 @@ public abstract class Register<T extends HospitalUser> {
 	protected ArrayList<T> findBirthday(Date birthday) {
 		ArrayList<T> matches = new ArrayList<T>();
 		for (Integer key : users.keySet()) {
-			if (users.get(key).getBirthday() == birthday) {
+			if (users.get(key).getBirthday().equals(birthday)) {
 				matches.add(users.get(key));
 			}
 		}

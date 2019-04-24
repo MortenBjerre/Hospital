@@ -42,13 +42,13 @@ public class DepartmentRegister {
 	public void createDepartment(String deptName, int beds) {
 		departments.put(deptName, new Department(deptName, beds));
 	}
-	/**
-	 * creates a new department and adds it to a map of departments (map: department name -> object of department with that name)
-	 * @param deptName name you want to give to department - beds is set to 0
-	 */
-	public void createDepartment(String deptName) {
-		departments.put(deptName, new Department(deptName));
-	}
+//	/**
+//	 * creates a new department and adds it to a map of departments (map: department name -> object of department with that name)
+//	 * @param deptName name you want to give to department - beds is set to 0
+//	 */
+//	public void createDepartment(String deptName) {
+//		departments.put(deptName, new Department(deptName));
+//	}
 	
 	/**
 	 * returns an object of type Department whose name matches the input
