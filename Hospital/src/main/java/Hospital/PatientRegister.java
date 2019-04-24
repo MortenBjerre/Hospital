@@ -20,15 +20,14 @@ public class PatientRegister extends Register<Patient> {
 	 * @param address
 	 * @param phoneNumber
 	 * @param alive
-	 * @param inpatient
 	 * @param healthData
 	 * @return Returns the serial number of the patient added
 	 */
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
-			boolean inpatient, String healthData) {
+			String healthData) {
 		Patient p = new Patient(email, name, surname, birthday, gender, address, 
-								phoneNumber, alive, inpatient, healthData);
+								phoneNumber, alive, healthData);
 		users.put(p.getSerialnum(), p);
 		
 		return p.getSerialnum();
@@ -159,16 +158,6 @@ public class PatientRegister extends Register<Patient> {
 	public void editAlive(int serialnum, boolean alive) {
 		Patient p = this.findSerialnum(serialnum);
 		p.setAlive(alive);
-	}
-	
-	/**
-	 * Changes the inpatient status of a given patient, identified by their serialnum
-	 * @param serialnum
-	 * @param inpatient
-	 */
-	public void editInpatient(int serialnum, boolean inpatient) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setAlive(inpatient);	
 	}
 	
 	/**
