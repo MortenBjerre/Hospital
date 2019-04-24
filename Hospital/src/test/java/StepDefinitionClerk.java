@@ -451,13 +451,12 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to remove beds$")
 	public void i_should_be_able_to_remove_beds() {
 		dr.removeBeds("ER",3);
-		// Now there is 12 beds in ER
+		// Now there are 12 beds in ER
 	}
 
 	@Then("^The number of beds should be updated$")
-	public void the_number_of_beds_should_be_updated() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void the_number_of_beds_should_be_updated() {
+		assertTrue(dr.getTotalBeds("ER") ==  12);
 	}
 	
 }
