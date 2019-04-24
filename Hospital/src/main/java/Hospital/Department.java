@@ -121,33 +121,41 @@ public class Department {
 		this.staff.remove(staff);
 	}
 	
+	/**
+	 * Gives the patients in department 
+	 * @return string array of patients in department
+	 */
 	public String[] getPatients() {
 		ArrayList<String> patientslist = new ArrayList<String>();
-		for (Patient p : patients) {
-			patientslist.add(p.toString());
+		for (Patient patient : patients) {
+			patientslist.add(patient.toString());
 		}
-		String[] m = new String[patientslist.size()];
-		m = patientslist.toArray(m);
-		return m;
+		String[] patientListString = new String[patientslist.size()];
+		patientListString = patientslist.toArray(patientListString);
+		return patientListString;
 	}
 	
+	/**
+	 * Gives the staff members working in department
+	 * @return string array of staff members in department
+	 */
 	public String[] getStaff() {
 		ArrayList<String> stafflist = new ArrayList<String>();
 		for (Staff s : staff) {
 			stafflist.add(s.toString());
 		}
-		String[] m = new String[stafflist.size()];
-		m = stafflist.toArray(m);
-		return m;
+		String[] staffListString = new String[stafflist.size()];
+		staffListString = stafflist.toArray(staffListString);
+		return staffListString;
 	}
 	
 	/**
 	 * Checks whether this department has a specified patient
-	 * @param p A patient of type Patient
+	 * @param patient A patient of type Patient
 	 * @return true if department has patient
 	 */
-	protected boolean containsPatient(Patient p) {
-		return patients.contains(p);
+	protected boolean containsPatient(Patient patient) {
+		return patients.contains(patient);
 	}
 	
 	/**
@@ -156,8 +164,8 @@ public class Department {
 	 * @return true if department has patient
 	 */
 	public boolean containsPatient(int serialnum) {
-		for (Patient p : patients) {
-			if (p.getSerialnum() == serialnum) {
+		for (Patient patient : patients) {
+			if (patient.getSerialnum() == serialnum) {
 				return true;
 			}
 		}
@@ -194,9 +202,9 @@ public class Department {
 	 * @return matching Patient p
 	 */
 	protected Patient getPatient(int serialnum) {
-		for (Patient p : patients) {
-			if (p.getSerialnum() == serialnum) {
-				return p;
+		for (Patient patient : patients) {
+			if (patient.getSerialnum() == serialnum) {
+				return patient;
 			}
 		}
 		return null;
