@@ -353,6 +353,5 @@ public class DepartmentRegister {
 		} else {
 			throw new IllegalArgumentException("No such department");
 		}
-		
 	}
 }

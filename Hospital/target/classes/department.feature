@@ -104,11 +104,7 @@ Feature: Testing departments
 	  And I should be able to add some beds 
 	  And I should be able to remove beds
 	  And The number of beds should be updated
-	  
-	@tag10
-	Scenario: 
-	  
-	  
+
 	  
 	  
 	  
