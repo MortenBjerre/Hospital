@@ -95,14 +95,14 @@ public class Department {
 	 * Adds a staff member to the hashmap of staffmembers in a department
 	 * @param s The staff member to be added
 	 */
-	public void addStaff(Staff s) {
+	protected void addStaff(Staff s) {
 		staff.add(s);
 	}
 	/**
 	 * Adds a patient to the hashmap of patients in a department
 	 * @param patient the patient to be added
 	 */
-	public void addPatient(Patient patient) {
+	protected void addPatient(Patient patient) {
 		patients.add(patient);
 	}
 	/**
