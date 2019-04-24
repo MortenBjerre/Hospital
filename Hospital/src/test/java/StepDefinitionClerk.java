@@ -53,6 +53,7 @@ public class StepDefinitionClerk {
 		assertFalse(serialnum1 == serialnum2);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
 		if (s.hasWriteAccessTo(pr)) {
@@ -90,6 +91,7 @@ public class StepDefinitionClerk {
 		String gender = "male";
 		pr.editGender(serialnum, gender);
 		
+		@SuppressWarnings("deprecation")
 		Date birthday = new Date(1996-1900,10,10);
 		// Using Date the year is the year minus 1900.
 		pr.editBirthday(serialnum, birthday);
