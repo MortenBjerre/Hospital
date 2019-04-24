@@ -67,7 +67,7 @@ public class Department {
 	 */
 	public void removeBeds(int beds) {
 		if (this.beds - beds < 0) {
-			System.out.println("There aren't that enough beds to subtract that many");
+			throw new IllegalArgumentException("There aren't that enough beds to subtract that many");
 		} 
 		else {
 			this.beds -= beds;

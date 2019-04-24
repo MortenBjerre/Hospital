@@ -21,6 +21,7 @@ public class StepDefinitionClerk {
 	int serialnum2;
 	StaffRegister sr;
 	DepartmentRegister dr;
+	Patient p;
 	
 	@Given("^That I am a clerk$")
 	public void that_I_am_a_clerk() {
@@ -442,5 +443,68 @@ public class StepDefinitionClerk {
 		
 	}
 	
+	@Then("^I should be able to add some beds$")
+	public void i_should_be_able_to_add_some_beds() {
+		dr.addBeds("ER", 10);
+		// Originally there were 5 beds so now there are 15
+	}
 	
+	@Then("^I should be able to remove beds$")
+	public void i_should_be_able_to_remove_beds() {
+		dr.removeBeds("ER",3);
+		// Now there are 12 beds in ER
+	}
+
+	@Then("^The number of beds should be updated$")
+	public void the_number_of_beds_should_be_updated() {
+		assertTrue(dr.getTotalBeds("ER") ==  12);
+	}
+	
+	@Given("^A patient is using the system$")
+	public void a_patient_is_using_the_system() {
+		p = pr.findSerialnum(0);
+	}
+
+	@Then("^The patient should not have write access to the staff register$")
+	public void the_patient_should_not_have_write_access_to_the_staff_register() {
+		assertFalse(p.hasWriteAccessTo(sr));
+	}
+
+	@Then("^The patient should not have view access to the staff register$")
+	public void the_patient_should_not_have_view_access_to_the_staff_register() {
+		assertFalse(p.hasViewAccessTo(sr));
+	}
+
+	@Then("^The patient should not have write access to the patient register$")
+	public void the_patient_should_not_have_write_access_to_the_patient_register() {
+		assertFalse(p.hasWriteAccessTo(pr));
+	}
+
+	@Then("^The patient should not have view access to the patient register$")
+	public void the_patient_should_not_have_view_access_to_the_patient_register() {
+		assertFalse(p.hasViewAccessTo(pr));
+	}
+
+	@Then("^The patient should not have view access to health data$")
+	public void the_patient_should_not_have_view_access_to_health_data() {
+		assertFalse(p.hasHealthDataAccess());
+	}
+	
+	@Then("^patient zero and one should have different hash codes$")
+	public void patient_zero_and_one_should_have_different_hash_codes() {
+		assertFalse(pr.findSerialnum(0).hashCode() == pr.findSerialnum(1).hashCode());
+	}
+
+	@Then("^patient zero should have the same hash code as themselves$")
+	public void patient_zero_should_have_the_same_hash_code_as_themselves() {
+		Patient p2 = pr.findSerialnum(0);
+		p = pr.findSerialnum(0);
+		assertEquals(p.hashCode(), p2.hashCode());
+	}
+	
+	@Then("^I should be able to search for a patient by alive$")
+	public void i_should_be_able_to_search_for_a_patient_by_alive() {
+		assertEquals(pr.searchAlive(false)[0], "Serialnum: 3; Patient name: Philtwo Taylor ; "
+				+ "Gender: male ; Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com");
+	}
 }
