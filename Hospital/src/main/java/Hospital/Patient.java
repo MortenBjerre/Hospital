@@ -96,13 +96,6 @@ public class Patient extends HospitalUser {
 		return ("Serialnum: " + serialnum + "; Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
 				+ " ; Birthday: " + getBirthday() + " ; Email: " + getEmail()); 
 	}
-	
-	/**
-	 * Checks if patient has write access to a register
-	 */
-	public boolean hasWriteAccessTo(Register r) {
-		return false;
-	}
 
 	public int getSerialnum() {
 		return serialnum;
@@ -138,7 +131,14 @@ public class Patient extends HospitalUser {
 		this.healthData += healthData;
 		// healthData is added but never deleted
 	}
-
+	
+	/**
+	 * Checks if patient has write access to a register
+	 */
+	public boolean hasWriteAccessTo(Register r) {
+		return false;
+	}
+	
 	@Override
 	public boolean hasViewAccessTo(Register r) {
 		// TODO Auto-generated method stub
