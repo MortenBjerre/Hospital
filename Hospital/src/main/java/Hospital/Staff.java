@@ -52,14 +52,6 @@ public class Staff extends HospitalUser {
 		return serialnum;
 	}
 	
-	/**
-	 * Sets the serial number of the staff member
-	 * @param serialnum
-	 */
-	protected void setSerialnum(int serialnum) {
-		this.serialnum = serialnum;
-	}
-	
 	public boolean equals(Object obj) {
 		if (obj instanceof Staff) {
 			Staff obj2 = (Staff) obj;
@@ -90,8 +82,22 @@ public class Staff extends HospitalUser {
 		return false;
 	}
 	
+	/**
+	 * Determines whether or not a staff member can move patients
+	 * from one department to another
+	 * @return true if they have permission
+	 */
 	public boolean canMovePatients() {
 		return true;
+	}
+	
+	/**
+	 * Determines whether or not a staff member can move staff members
+	 * from one department to another
+	 * @return true if they have permission
+	 */
+	public boolean canMoveStaff() {
+		return false;
 	}
 	
 	/**

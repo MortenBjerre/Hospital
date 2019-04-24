@@ -98,25 +98,6 @@ public abstract class HospitalUser {
 	 * Checks if this hospital user has permission to view health data
 	 * @return true if hospital user has health data access
 	 */
-	public abstract boolean hasHealthDataAccess();
-	
-	/**
-	 * Determines whether or not a staff member can move staff members
-	 * from one department to another
-	 * @return true if they have permission
-	 */
-	public boolean canMoveStaff() {
-		return false;
-	}
-	
-	/**
-	 * Determines whether or not a staff member can move patients
-	 * from one department to another
-	 * @return true if they have permission
-	 */
-	public boolean canMovePatients() {
-		return false;
-	}
-	
+	public abstract boolean hasHealthDataAccess();	
 }
 

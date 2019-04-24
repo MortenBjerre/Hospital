@@ -318,4 +318,24 @@ public class StepDefinitionClerk {
 	public void i_should_have_permission_to_move_patients() {
 	    assertTrue(s.canMovePatients());
 	}
+	
+	@Then("^I should not have write access to the patient register$")
+	public void i_should_not_have_write_access_to_the_patient_register() {
+		assertFalse(s.hasWriteAccessTo(pr));
+	}
+
+	@Then("^I should not have write access to the staff register$")
+	public void i_should_not_have_write_access_to_the_staff_register() {
+		assertFalse(s.hasWriteAccessTo(sr));
+	}
+
+	@Then("^I should not have view access to the health data$")
+	public void i_should_not_have_view_access_to_the_health_data() {
+		assertFalse(s.hasHealthDataAccess());
+	}
+
+	@Then("^I should not have permission to move staff$")
+	public void i_should_not_have_permission_to_move_staff() {
+		assertFalse(s.canMoveStaff());
+	}
 }
