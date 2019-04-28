@@ -381,4 +381,31 @@ public class DepartmentRegister {
 			throw new IllegalArgumentException("No such department");
 		}
 	}
+
+	public int getBedOf(int serialnum, String deptName) {
+		if (departments.containsKey(deptName)) {
+			if (departments.get(deptName) instanceof InpatientDepartment) {
+				InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
+				return inpatientDepartment.getBedOf(serialnum);
+			} else {
+				throw new IllegalArgumentException("No beds in this department");
+			}
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+	}
+
+	public Patient getPatientInBed(int bedNumber, String deptName) {
+		if (departments.containsKey(deptName)) {
+			if (departments.get(deptName) instanceof InpatientDepartment) {
+				InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
+				Patient patient = inpatientDepartment.getPatientIn(bedNumber);
+				return patient;
+			} else {
+				throw new IllegalArgumentException("No patient in this department");
+			}
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+	}
 }

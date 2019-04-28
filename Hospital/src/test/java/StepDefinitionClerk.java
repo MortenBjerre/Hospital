@@ -510,13 +510,15 @@ public class StepDefinitionClerk {
 	
 	@When("^I admit a patient to the ER$")
 	public void i_admit_a_patient_to_the_ER() {
-		//System.out.println(pr);
 		dr.admit(0, "ER", pr);
 	}
 
 	@Then("^that patient should be assigned to the first available bed in ER$")
 	public void that_patient_should_be_assigned_to_the_first_available_bed_in_ER() {
-		
+		assertTrue(dr.getAvailableBeds("ER") == 4);		
+		// ER was created with 5 beds
+		assertTrue(dr.getBedOf(0, "ER") == 0);
+		assertTrue(dr.getPatientInBed(0,"ER").equals(pr.findSerialnum(0)));
 	}
 
 	

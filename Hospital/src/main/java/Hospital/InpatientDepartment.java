@@ -165,4 +165,28 @@ public class InpatientDepartment extends Department {
 			this.beds -= beds;
 		}
 	}
+
+	/**
+	 * Returns bed number of patient with corresponding serialnumber. 
+	 * Throws IllegalArgumentException "No such patient" if the patient is not in department.
+	 * @param serialnum
+	 * @return bed number
+	 */
+	protected int getBedOf(int serialnum) {
+		for (Integer bedNumber : patients.keySet()) {
+			if (patients.get(bedNumber).getSerialnum() == serialnum) {
+				return bedNumber;
+			}
+		}
+		throw new IllegalArgumentException("No such patient");
+	}
+	
+	/**
+	 * Returns patient in specified bed
+	 * @param bedNumber
+	 * @return Patient
+	 */
+	protected Patient getPatientIn(int bedNumber) {
+		return patients.get(bedNumber);
+	}
 }

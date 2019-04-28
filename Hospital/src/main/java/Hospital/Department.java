@@ -135,7 +135,7 @@ public class Department {
 	}
 	
 	/**
-	 * Gets the patient with a matching serialnum. Throws an IllegalArgumentException
+	 * Gets the patient with a matching serialnum. 
 	 * returns null if there is no matching patient
 	 * @param serialnum
 	 * @return matching Patient p
