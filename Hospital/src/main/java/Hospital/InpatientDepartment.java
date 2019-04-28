@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Department {
+public class InpatientDepartment {
 
 	private int beds;
 	private ArrayList<Patient> patients;
 	private ArrayList<Staff> staff;
 	private String deptName;
 	
-	public Department(String deptName, int beds) {
+	public InpatientDepartment(String deptName, int beds) {
 		this.deptName = deptName;
 		this.beds = beds;
 		patients = new ArrayList<Patient>();
