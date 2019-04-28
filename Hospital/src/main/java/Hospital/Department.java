@@ -78,7 +78,7 @@ public class Department {
 	 * Gives the staff members working in department
 	 * @return string array of staff members in department
 	 */
-	public String[] getStaff() {
+	public String[] getAllStaff() {
 		ArrayList<String> stafflist = new ArrayList<String>();
 		for (Staff s : staff) {
 			stafflist.add(s.toString());
@@ -147,6 +147,15 @@ public class Department {
 			}
 		}
 		return null;
+	}
+
+	public Staff getStaff(int serialnum) {
+		for (Staff staff : staff) {
+			if (staff.getSerialnum() == serialnum) {
+				return staff;
+			}
+		}
+		throw new IllegalArgumentException("No such staff");
 	}
 	
 }

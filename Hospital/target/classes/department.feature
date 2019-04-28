@@ -115,6 +115,14 @@ Feature: Testing departments
 		When I admit a patient to the ER
 		Then that patient should be assigned to the first available bed in ER
 		
+	Scenario: As an ICT Officer, I should be able to fire a staff member
+		Given That I am an ICT Officer
+		And I have a department register 
+	  And there are multiple departments
+	  And I have a staff register
+		And I have multiple staff members
+		And Staff one is in the ER
+		Then I should be able to fire staff member one
 	  
 	  
 	  

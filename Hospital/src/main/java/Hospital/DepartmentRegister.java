@@ -22,7 +22,7 @@ public class DepartmentRegister {
 		}
 		a += "\nStaff members in department \n";
 		for (String dep : departments.keySet()) {
-			for(String staffInDept: departments.get(dep).getStaff()) {
+			for(String staffInDept: departments.get(dep).getAllStaff()) {
 				a += staffInDept;
 			}
 		}
@@ -206,7 +206,7 @@ public class DepartmentRegister {
 	public String[] searchStaffDepartment(String deptName) {
 		for (String dept : departments.keySet()) {
 			if (dept == deptName) {
-				return departments.get(dept).getStaff();
+				return departments.get(dept).getAllStaff();
 			}
 		}
 		return new String[0];
@@ -407,5 +407,15 @@ public class DepartmentRegister {
 		} else {
 			throw new IllegalArgumentException("No such department");
 		}
+	}
+
+	public Staff getStaff(int serialnum) {
+		for (String deptName : departments.keySet()) {
+			Department department = departments.get(deptName);
+			if (department.containsStaff(serialnum)) {
+				return department.getStaff(serialnum);
+			}
+		}
+		throw new IllegalArgumentException("No such staff");
 	}
 }

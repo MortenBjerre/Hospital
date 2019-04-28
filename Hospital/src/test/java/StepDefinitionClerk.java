@@ -520,4 +520,21 @@ public class StepDefinitionClerk {
 		assertTrue(dr.getBedOf(0, "ER") == 0);
 		assertTrue(dr.getPatientInBed(0,"ER").equals(pr.findSerialnum(0)));
 	}
+	
+	@Given("^Staff one is in the ER$")
+	public void staff_one_is_in_the_ER() {
+		dr.addStaffTo(1, "ER", sr);
+	}
+	
+	@Then("^I should be able to fire staff member one$")
+	public void i_should_be_able_to_fire_staff_member_one() {
+		dr.dischargeStaff(1, sr); // This will not remove from the Staff register
+		try {
+			Staff staff = dr.getStaff(1);
+			assertTrue(false);
+		} catch (IllegalArgumentException e) {
+			System.out.println("===============\n" + e.getMessage());
+			assertTrue(e.getMessage().equals("No such staff"));
+		}
+	}
 }
