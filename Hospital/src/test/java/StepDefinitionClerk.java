@@ -507,4 +507,18 @@ public class StepDefinitionClerk {
 		assertEquals(pr.searchAlive(false)[0], "Serialnum: 3; Patient name: Philtwo Taylor ; "
 				+ "Gender: male ; Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com");
 	}
+	
+	@When("^I admit a patient to the ER$")
+	public void i_admit_a_patient_to_the_ER() {
+		//System.out.println(pr);
+		dr.admit(0, "ER", pr);
+	}
+
+	@Then("^that patient should be assigned to the first available bed in ER$")
+	public void that_patient_should_be_assigned_to_the_first_available_bed_in_ER() {
+		
+	}
+
+	
+	
 }
