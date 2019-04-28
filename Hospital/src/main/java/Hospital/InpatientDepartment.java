@@ -21,10 +21,108 @@ public class InpatientDepartment extends Department {
 	}
 
 	/**
+	 * Assigns a patient to the first available bed in the department.
+	 * Throws IllegalArgumentException "No available beds" if there are no available beds.
+	 * @param patient the patient to be added
+	 */
+	protected void addPatient(Patient patient) {
+		boolean availableBeds = false;
+		for (int bedNumber = 0; bedNumber < beds; bedNumber++) {
+			if (!patients.containsKey(bedNumber)) {
+				patients.put(bedNumber, patient);
+				availableBeds = true;
+				break;
+			}
+		}
+		if (!availableBeds) {
+			throw new IllegalArgumentException("No available beds");
+		}
+	}
+	/**
+	 * Remove the patient from the department.
+	 * Throws IllegalArgumentException "No such patient" if the patient is not in the department
+	 * @param patient patient to be removed
+	 */
+	protected void deletePatient(Patient patient) {
+		boolean patientFound = false;
+		for (Integer bedNumber : patients.keySet()) {
+			if (patients.get(bedNumber).equals(patient)) {
+				patients.remove(bedNumber);
+				patientFound = true;
+				break;
+			}
+		}
+		if (!patientFound) {
+			throw new IllegalArgumentException("No such patient");
+		}
+	}
+	
+	
+	/**
+	 * Gives the patients in department 
+	 * @return string array of patients in department
+	 */
+	public String[] getPatients() {
+		ArrayList<String> patientslist = new ArrayList<String>();
+		for (Integer bedNumber : patients.keySet()) {
+			String patientString = patients.get(bedNumber).toString();
+			patientslist.add(patientString);
+		}
+		String[] patientListString = new String[patientslist.size()];
+		patientListString = patientslist.toArray(patientListString);
+		return patientListString;
+	}
+	
+	
+	/**
+	 * Checks whether this department has a specified patient
+	 * @param patient A patient of type Patient
+	 * @return true if department has patient
+	 */
+	protected boolean containsPatient(Patient patient) {
+		for (Integer bedNumber : patients.keySet()) {
+			if (patients.get(bedNumber).equals(patient)) {
+				return true;
+			}
+		} 
+		return false;
+	}
+	
+	/**
+	 * Checks whether this department has a patient with a matching serialnum
+	 * @param serialnum The patient's serialnum of type int
+	 * @return true if department has patient
+	 */
+	public boolean containsPatient(int serialnum) {
+		for (Integer bedNumber : patients.keySet()) {
+			if (patients.get(bedNumber).getSerialnum() == serialnum) {
+				return true;
+			}
+		} 
+		return false;
+	}
+	
+	
+	/**
+	 * Gets the patient with a matching serialnum. Throws an IllegalArgumentException
+	 * returns null if there is no matching patient
+	 * @param serialnum
+	 * @return matching Patient p
+	 */
+	protected Patient getPatient(int serialnum) {
+		for (Integer bedNumber : patients.keySet()) {
+			Patient patient = patients.get(bedNumber);
+			if (patient.getSerialnum() == serialnum) {
+				return patient;
+			}
+		}
+		return null;
+	}
+	/**
 	 *  returns the number of beds in a department
 	 * @return an int representing the number of beds in a department
 	 */
-	public int getBedsTotal() {
+	public int getTotalBeds() {
 		return beds;
 	}
 	
@@ -33,9 +131,8 @@ public class InpatientDepartment extends Department {
 	 * It's calculated by subtracting the amount of patients from the number of beds
 	 * @return returns an int representing the number of free beds in a department
 	 */
-	//needs to be updated with the ingoing, outgoing patients
 	public int getFreeBeds(){
-		return (beds-patients.size());
+		return (beds - patients.size());
 	}
 	
 	/**
@@ -57,7 +154,7 @@ public class InpatientDepartment extends Department {
 	/**
 	 * Removes beds from a department
 	 * if the amount of beds in a department is less than the amount of beds to be subtracted, the amount of beds will be unchanged
-	 * and an error message will be displayed
+	 * and an IllegalArgumentException message "There aren't that enough beds to subtract that many" will be displayed
 	 * @param beds the amount of beds to be removed
 	 */
 	public void removeBeds(int beds) {

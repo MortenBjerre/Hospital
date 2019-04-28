@@ -31,14 +31,14 @@ public class Department {
 	}
 	
 	/**
-	 * Adds a staff member to the hashmap of staffmembers in a department
+	 * Adds a staff member to the arraylist of staffmembers in a department
 	 * @param s The staff member to be added
 	 */
 	protected void addStaff(Staff s) {
 		staff.add(s);
 	}
 	/**
-	 * Adds a patient to the hashmap of patients in a department
+	 * Adds a patient to the arraylist of patients in a department
 	 * @param patient the patient to be added
 	 */
 	protected void addPatient(Patient patient) {
