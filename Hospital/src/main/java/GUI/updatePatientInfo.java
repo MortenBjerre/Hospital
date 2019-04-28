@@ -50,9 +50,13 @@ public class updatePatientInfo extends JFrame {
 		contentPane.add(SerialNumber);
 		SerialNumber.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(26, 225, 115, 33);
-		contentPane.add(lblNewLabel);
+		JLabel lblEnterPatientsName = new JLabel("Enter Patients Name :");
+		lblEnterPatientsName.setBounds(26, 225, 260, 33);
+		contentPane.add(lblEnterPatientsName);
+		
+		JLabel lblFieldsLeftEmpty = new JLabel("Fields left empty will not be altered");
+		lblFieldsLeftEmpty.setBounds(26, 176, 415, 33);
+		contentPane.add(lblFieldsLeftEmpty);
 		
 		
 	}

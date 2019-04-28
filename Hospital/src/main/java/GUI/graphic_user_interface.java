@@ -25,6 +25,20 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ButtonGroup;
 
 @SuppressWarnings("unused")
 public class graphic_user_interface {
@@ -34,6 +48,7 @@ public class graphic_user_interface {
 	private JButton btnLogin;
 	private JPasswordField passwordField;
 	private StaffRegister StaffReg;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -76,45 +91,68 @@ public class graphic_user_interface {
 		
 		
 		frame = new JFrame();
+		frame.setTitle("Main Menu");
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setSize(1000,670);
-//		frame.isResizable(true);
-//		
-		JButton btnStaff = new JButton("Staff");
-		btnStaff.setBounds(188, 214, 171, 41);
-		btnStaff.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		btnStaff.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				StaffLogin loginPage = new StaffLogin(StaffReg, PatientReg);
-				loginPage.setVisible(true);
-			}
-		});
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnStaff);
-		
-		JButton btnPatient = new JButton("Patient");
-		btnPatient.setBounds(605, 214, 171, 41);
-		btnPatient.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		btnPatient.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				PatientLogin loginPage2 = new PatientLogin(PatientReg, DepartReg);
-				loginPage2.setVisible(true);
-			}
-		});
-		frame.getContentPane().add(btnPatient);
 		
 		JButton btnQuit = new JButton("Quit");
-		btnQuit.setBounds(0, 539, 171, 41);
+		buttonGroup.add(btnQuit);
+		btnQuit.setAlignmentY(0.0f);
 		btnQuit.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		frame.getContentPane().add(btnQuit);
 		
+			JButton btnPatient = new JButton("Patient");
+			buttonGroup.add(btnPatient);
+			btnPatient.setAlignmentY(0.0f);
+			btnPatient.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+			btnPatient.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					PatientLogin loginPage2 = new PatientLogin(PatientReg, DepartReg);
+					loginPage2.setVisible(true);
+				}
+			});
+		//		frame.isResizable(true);
+		//		
+				JButton btnStaff = new JButton("Staff");
+				buttonGroup.add(btnStaff);
+				btnStaff.setAlignmentY(0.0f);
+				btnStaff.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+				btnStaff.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						StaffLogin loginPage = new StaffLogin(StaffReg, PatientReg);
+						loginPage.setVisible(true);
+					}
+				});
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setAutoCreateGaps(true);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnStaff, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnPatient, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+						.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
+					.addGap(0))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnStaff, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+						.addComponent(btnPatient, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+
 		
 		}
 	}

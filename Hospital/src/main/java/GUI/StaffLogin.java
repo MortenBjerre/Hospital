@@ -65,6 +65,7 @@ public class StaffLogin extends JFrame {
 		StaffLogin.PatientReg = PatientReg;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Staff Login Page");
 		setBounds(100, 100, 981, 627);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -100,6 +101,7 @@ public class StaffLogin extends JFrame {
 					if (StaffReg.users.containsKey(serialNumber)) {
 						Staff_Menu menu = new Staff_Menu(StaffReg, serialNumber, PatientReg);
 						menu.setVisible(true);
+						dispose();
 					} else {
 						invalidLogin.setVisible(true);
 						attempts--;

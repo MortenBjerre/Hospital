@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
 
 @SuppressWarnings({ "unused", "serial" })
@@ -54,79 +55,46 @@ public class Staff_Menu extends JFrame {
 
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Staff Menu");
 		setBounds(100, 100, 1006, 655);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JButton btnAddPatient = new JButton("Register Patient");
-		btnAddPatient.setBounds(400, 196, 219, 41);
-		contentPane.add(btnAddPatient);
-		btnAddPatient.setVisible(false);
-		if (Staff.hasWriteAccessTo(PatientReg)) {
-			btnAddPatient.setVisible(true);
-		}
-
-		
-		JButton btnAddStaff = new JButton("Add Staff");
-		btnAddStaff.setBounds(425, 265, 171, 41);
-		contentPane.add(btnAddStaff);
-		btnAddStaff.setVisible(false);
-		if (Staff.hasWriteAccessTo(StaffReg)) {
-			btnAddStaff.setVisible(true);
-		}
-		
-		JButton btnMovePatient = new JButton("Move Patient");
-		btnMovePatient.setBounds(763, 127, 185, 41);
-		contentPane.add(btnMovePatient);
-		btnMovePatient.setVisible(false);
-		if (Staff.canMovePatients()) {
-			btnMovePatient.setVisible(true);
-		}
-		
-		JButton btnRemovePatient = new JButton("Discharge patient");
-		btnRemovePatient.setBounds(390, 127, 239, 41);
-		contentPane.add(btnRemovePatient);
-		btnRemovePatient.setVisible(false);
-		if (Staff.hasWriteAccessTo(PatientReg)) {
-			btnRemovePatient.setVisible(true);
-		}
-		
-		JButton btnMoveStaff = new JButton("Move Staff");
-		btnMoveStaff.setBounds(763, 265, 171, 41);
-		contentPane.add(btnMoveStaff);
-		btnMoveStaff.setVisible(false);
-		if (Staff.canMoveStaff()) {
-			btnMoveStaff.setVisible(true);
-		}
-		
-		JButton btnSearch = new JButton("Search Staff");
-		btnSearch.setBounds(58, 265, 177, 41);
-		contentPane.add(btnSearch);
-		btnSearch.setVisible(false);
-		if (Staff.hasViewAccessTo(StaffReg)) {
-			btnSearch.setVisible(true);
-		}
+		contentPane.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JButton btnChangeInfo = new JButton("Update patient Info");
-		btnChangeInfo.setBounds(26, 127, 265, 41);
+		btnChangeInfo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnChangeInfo);
 		btnChangeInfo.setVisible(false);
 		if (Staff.hasWriteAccessTo(PatientReg)) {
 			btnChangeInfo.setVisible(true);
 		}
 		
+		JButton btnRemovePatient = new JButton("Discharge patient");
+		btnRemovePatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnRemovePatient);
+		btnRemovePatient.setVisible(false);
+		
+		JButton btnMovePatient = new JButton("Move Patient");
+		btnMovePatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnMovePatient);
+		btnMovePatient.setVisible(false);
+		
 		JButton btnSearchPatients = new JButton("Search Patients");
-		btnSearchPatients.setBounds(36, 196, 215, 41);
+		btnSearchPatients.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearchPatients);
 		btnSearchPatients.setVisible(false);
 		if (Staff.hasWriteAccessTo(PatientReg)) {
 			btnSearchPatients.setVisible(true);
 		}
 		
+		JButton btnAddPatient = new JButton("Register Patient");
+		btnAddPatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnAddPatient);
+		btnAddPatient.setVisible(false);
+		
 		JButton btnHealthData = new JButton("Health data");
-		btnHealthData.setBounds(763, 196, 171, 41);
+		btnHealthData.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnHealthData);
 		btnHealthData.setVisible(false);
 		if (Staff.hasHealthDataAccess()) {
@@ -135,19 +103,47 @@ public class Staff_Menu extends JFrame {
 		
 		
 		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnGoBack.setBounds(0, 528, 171, 41);
+				
+		JButton btnSearch = new JButton("Search Staff");
+		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnSearch);
+		btnSearch.setVisible(false);
+
+		
+		JButton btnAddStaff = new JButton("Add Staff");
+		btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnAddStaff);
+		btnAddStaff.setVisible(false);
+
+		JButton btnMoveStaff = new JButton("Move Staff");
+		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnMoveStaff);
+		btnMoveStaff.setVisible(false);
 		contentPane.add(btnGoBack);
 		
-		JLabel lblWelcomeToThe = new JLabel("Welcome to the Staff Menu");
-		lblWelcomeToThe.setBounds(37, 28, 467, 33);
-		contentPane.add(lblWelcomeToThe);
-		
-		
+		if (Staff.hasWriteAccessTo(PatientReg)) {
+			btnAddPatient.setVisible(true);
+		}
+		if (Staff.hasWriteAccessTo(StaffReg)) {
+			btnAddStaff.setVisible(true);
+		}
+		if (Staff.canMovePatients()) {
+			btnMovePatient.setVisible(true);
+		}
+		if (Staff.hasWriteAccessTo(PatientReg)) {
+			btnRemovePatient.setVisible(true);
+		}
+		if (Staff.canMoveStaff()) {
+			btnMoveStaff.setVisible(true);
+		}
+		if (Staff.hasViewAccessTo(StaffReg)) {
+			btnSearch.setVisible(true);
+		}
 	}
 }

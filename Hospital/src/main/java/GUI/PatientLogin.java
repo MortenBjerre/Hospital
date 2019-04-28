@@ -27,7 +27,7 @@ public class PatientLogin extends JFrame {
 	private int attempts = 2;
 	private int serialNumber;
 	private JPasswordField SerialNumber;
-	
+
 
 	/**
 	 * Launch the application.
@@ -51,7 +51,9 @@ public class PatientLogin extends JFrame {
 	public PatientLogin(final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
 		PatientLogin.PatientReg = PatientReg;
 		PatientLogin.DepartReg = DepartReg;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Patient Login Page");
 		setBounds(100, 100, 975, 701);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,6 +100,7 @@ public class PatientLogin extends JFrame {
 					if (PatientReg.users.containsKey(serialNumber)) {
 						Patient_Menu menu = new Patient_Menu(PatientReg, DepartReg, serialNumber);
 						menu.setVisible(true);
+						dispose();
 					} else {
 						invalidLogin.setVisible(true);
 						attempts--;
