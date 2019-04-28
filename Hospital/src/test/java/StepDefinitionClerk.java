@@ -505,7 +505,8 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to search for a patient by alive$")
 	public void i_should_be_able_to_search_for_a_patient_by_alive() {
 		assertEquals(pr.searchAlive(false)[0], "Serialnum: 3; Patient name: Philtwo Taylor ; "
-				+ "Gender: male ; Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com");
+				+ "Gender: male ; Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com")
+		;
 	}
 	
 	@When("^I admit a patient to the ER$")
@@ -520,7 +521,4 @@ public class StepDefinitionClerk {
 		assertTrue(dr.getBedOf(0, "ER") == 0);
 		assertTrue(dr.getPatientInBed(0,"ER").equals(pr.findSerialnum(0)));
 	}
-
-	
-	
 }
