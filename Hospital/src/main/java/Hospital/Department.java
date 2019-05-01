@@ -1,78 +1,17 @@
 package Hospital;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Department {
-
-	private int beds;
-	private ArrayList<Patient> patients;
-	private ArrayList<Staff> staff;
-	private String deptName;
 	
-	public Department(String deptName, int beds) {
+	protected ArrayList<Patient> patients;
+	protected ArrayList<Staff> staff;
+	protected String deptName;
+	
+	public Department(String deptName) {
 		this.deptName = deptName;
-		this.beds = beds;
 		patients = new ArrayList<Patient>();
 		staff = new ArrayList<Staff>();
-	}
-	
-//	public Department(String deptName) {
-//		this.deptName = deptName;
-//		this.beds = 0;
-//		patients = new ArrayList<Patient>();
-//		staff = new ArrayList<Staff>();
-//	}
-
-	/**
-	 *  returns the number of beds in a department
-	 * @return an int representing the number of beds in a department
-	 */
-	public int getBedsTotal() {
-		return beds;
-	}
-	
-	/**
-	 * returns the number of free beds in a department
-	 * It's calculated by subtracting the amount of patients from the number of beds
-	 * @return returns an int representing the number of free beds in a department
-	 */
-	//needs to be updated with the ingoing, outgoing patients
-	public int getFreeBeds(){
-		return (beds-patients.size());
-	}
-	
-	/**
-	 * returns the number of occupied beds in a department
-	 * @return returns an int representing the number of occupied beds in a department
-	 */
-	public int getOccupiedBeds() {
-		return patients.size();
-	}
-	
-	/**
-	 * Adds beds to a department
-	 * @param beds the amount of beds to be added
-	 */
-	public void addNewBeds(int beds) {
-		this.beds += beds;
-	}
-	
-	/**
-	 * Removes beds from a department
-	 * if the amount of beds in a department is less than the amount of beds to be subtracted, the amount of beds will be unchanged
-	 * and an error message will be displayed
-	 * @param beds the amount of beds to be removed
-	 */
-	public void removeBeds(int beds) {
-		if (this.beds - beds < 0) {
-			throw new IllegalArgumentException("There aren't that enough beds to subtract that many");
-		} 
-		else {
-			this.beds -= beds;
-		}
-	
 	}
 	
 	/**
@@ -92,14 +31,14 @@ public class Department {
 	}
 	
 	/**
-	 * Adds a staff member to the hashmap of staffmembers in a department
+	 * Adds a staff member to the arraylist of staffmembers in a department
 	 * @param s The staff member to be added
 	 */
 	protected void addStaff(Staff s) {
 		staff.add(s);
 	}
 	/**
-	 * Adds a patient to the hashmap of patients in a department
+	 * Adds a patient to the arraylist of patients in a department
 	 * @param patient the patient to be added
 	 */
 	protected void addPatient(Patient patient) {
@@ -139,7 +78,7 @@ public class Department {
 	 * Gives the staff members working in department
 	 * @return string array of staff members in department
 	 */
-	public String[] getStaff() {
+	public String[] getAllStaff() {
 		ArrayList<String> stafflist = new ArrayList<String>();
 		for (Staff s : staff) {
 			stafflist.add(s.toString());
@@ -196,7 +135,7 @@ public class Department {
 	}
 	
 	/**
-	 * Gets the patient with a matching serialnum. Throws an IllegalArgumentException
+	 * Gets the patient with a matching serialnum. 
 	 * returns null if there is no matching patient
 	 * @param serialnum
 	 * @return matching Patient p
@@ -209,4 +148,14 @@ public class Department {
 		}
 		return null;
 	}
+
+	public Staff getStaff(int serialnum) {
+		for (Staff staff : staff) {
+			if (staff.getSerialnum() == serialnum) {
+				return staff;
+			}
+		}
+		throw new IllegalArgumentException("No such staff");
+	}
+	
 }

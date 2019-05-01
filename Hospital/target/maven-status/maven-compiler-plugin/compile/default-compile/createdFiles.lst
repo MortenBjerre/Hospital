@@ -1,6 +1,7 @@
 Hospital\Department.class
 Hospital\PatientRegister.class
 Hospital\Doctor.class
+Hospital\InpatientDepartment.class
 Hospital\DepartmentRegister.class
 Hospital\Patient.class
 Hospital\Staff.class

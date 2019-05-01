@@ -105,6 +105,27 @@ Feature: Testing departments
 	  And I should be able to remove beds
 	  And The number of beds should be updated
 
+	@tag10
+	Scenario: when a patient is added to a department, I should as a nurse/clerk/doctor have the system automatically assign the patient to a bed
+		Given That I am a clerk
+		And I have a department register 
+		And I have a patient register
+		And the patient register contains several patients
+		And there are multiple departments
+		When I admit a patient to the ER
+		Then that patient should be assigned to the first available bed in ER
+		
+	@tag11
+	Scenario: As an ICT Officer, I should be able to fire a staff member
+		Given That I am an ICT Officer
+		And I have a department register 
+	  And there are multiple departments
+	  And I have a staff register
+		And I have multiple staff members
+		And Staff one is in the ER
+		Then I should be able to fire staff member one
+		
+
 	  
 	  
 	  

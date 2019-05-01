@@ -507,4 +507,34 @@ public class StepDefinitionClerk {
 		assertEquals(pr.searchAlive(false)[0], "Serialnum: 3; Patient name: Philtwo Taylor ; "
 				+ "Gender: male ; Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com");
 	}
+	
+	@When("^I admit a patient to the ER$")
+	public void i_admit_a_patient_to_the_ER() {
+		dr.admit(0, "ER", pr);
+	}
+
+	@Then("^that patient should be assigned to the first available bed in ER$")
+	public void that_patient_should_be_assigned_to_the_first_available_bed_in_ER() {
+		assertTrue(dr.getAvailableBeds("ER") == 4);		
+		// ER was created with 5 beds
+		assertTrue(dr.getBedOf(0, "ER") == 0);
+		assertTrue(dr.getPatientInBed(0,"ER").equals(pr.findSerialnum(0)));
+	}
+	
+	@Given("^Staff one is in the ER$")
+	public void staff_one_is_in_the_ER() {
+		dr.addStaffTo(1, "ER", sr);
+	}
+	
+	@Then("^I should be able to fire staff member one$")
+	public void i_should_be_able_to_fire_staff_member_one() {
+		dr.dischargeStaff(1, sr); // This will not remove from the Staff register
+		try {
+			Staff staff = dr.getStaff(1);
+			assertTrue(false);
+		} catch (IllegalArgumentException e) {
+//			System.out.println("===============\n" + e.getMessage());
+			assertTrue(e.getMessage().equals("No such staff"));
+		}
+	}
 }
