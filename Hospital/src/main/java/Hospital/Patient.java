@@ -107,13 +107,11 @@ public class Patient extends HospitalUser {
 	
 	@Override
 	public boolean hasViewAccessTo(Register r) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean hasHealthDataAccess() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }
