@@ -89,10 +89,18 @@ public class Patient extends HospitalUser {
 		return hash;
 	}
 
+	/**
+	 * Returns the health data of a patient
+	 * @return string of health data
+	 */
 	public String getHealthData() {
 		return healthData;
 	}
 
+	/**
+	 * Adds health data to the patients existing health data.
+	 * @param healthData String of health data
+	 */
 	public void setHealthData(String healthData) {
 		this.healthData += healthData;
 		// healthData is added but never deleted
