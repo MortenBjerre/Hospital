@@ -36,22 +36,6 @@ public class StaffLogin extends JFrame {
 
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StaffLogin frame = new StaffLogin(StaffReg, PatientReg, DepartReg);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public StaffLogin(final StaffRegister StaffReg, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
