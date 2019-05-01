@@ -3,10 +3,18 @@ package Hospital;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
 
-public class DepartmentRegister {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "departmentRegister")
+
+public class DepartmentRegister implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	//departments is a map mapping string department names to objects of department
+	@XmlElementWrapper(name="departments")
 	private Map<String, Department> departments;
 	
 	/**
@@ -29,6 +37,7 @@ public class DepartmentRegister {
 		return a;
 	}
 	
+
 	public DepartmentRegister() {
 		this.departments = new HashMap<String, Department>();
 	}

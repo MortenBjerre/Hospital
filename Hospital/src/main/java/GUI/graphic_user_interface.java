@@ -40,8 +40,160 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ButtonGroup;
 
+import java.io.File;
+import java.io.Serializable;
+import java.io.StringWriter;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 @SuppressWarnings("unused")
-public class graphic_user_interface {
+public class graphic_user_interface implements Serializable{
+	
+	private static void StaffRegistertoXML(StaffRegister staffRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+ 
+            // To format JSON
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+             
+            //Set JSON type
+//            jaxbMarshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
+//          jaxbMarshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
+ 
+            //Print JSON String to Console
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(staffRegister, sw);
+            File file = new File("StaffRegister.xml");
+            jaxbMarshaller.marshal(staffRegister, file);
+            System.out.println(sw.toString());
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void PatientRegistertoXML(PatientRegister patientRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(PatientRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+ 
+            // To format JSON
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+             
+            //Set JSON type
+//            jaxbMarshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
+//          jaxbMarshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
+ 
+            //Print JSON String to Console
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(patientRegister, sw);
+            File file = new File("patientRegister.xml");
+            jaxbMarshaller.marshal(patientRegister, file);
+            System.out.println(sw.toString());
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void DepartmentRegistertoXML(DepartmentRegister departmentRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+ 
+            // To format JSON
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+             
+            //Set JSON type
+//            jaxbMarshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
+//          jaxbMarshaller.setProperty(MarshallerProperties.JSON_INCLUDE_ROOT, true);
+ 
+            //Print JSON String to Console
+            StringWriter sw = new StringWriter();
+            jaxbMarshaller.marshal(departmentRegister, sw);
+            File file = new File("departmentRegister.xml");
+            jaxbMarshaller.marshal(departmentRegister, file);
+            System.out.println(sw.toString());
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	public static DepartmentRegister depRegXmlFileToObject(String fileName) {
+        File xmlFile = new File(fileName);
+        DepartmentRegister depRegSaving = new DepartmentRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            DepartmentRegister depRegSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            return depRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+        }
+        return depRegSaving;
+    }
+	
+	public static StaffRegister staffRegXmlFileToObject(String fileName) {
+        File xmlFile = new File(fileName);
+        StaffRegister staffRegSaving = new StaffRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            StaffRegister staffRegSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            return staffRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+        }
+        return staffRegSaving;
+    }
+	
+	public static PatientRegister patientRegXmlFileToObject(String fileName) {
+        File xmlFile = new File(fileName);
+        PatientRegister patientRegSaving = new PatientRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            PatientRegister patientRegSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            return patientRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+        }
+        return patientRegSaving;
+    }
 
 	private JFrame frame;
 	private JTextField email;
@@ -83,12 +235,16 @@ public class graphic_user_interface {
 		final StaffRegister StaffReg = new StaffRegister();
 		final DepartmentRegister DepartReg = new DepartmentRegister();
 		
-		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
-		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
-		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");
+		StaffReg.addICTOfficer("email", "ICT"," surname", new Date(), "gender");
+		StaffReg.addClerk("email", "CLERK", "surname", new Date(), "gender");
+		StaffReg.addDoctor("email", "DOCTOR", "surname", new Date(),"gender");
 		PatientReg.add("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Dead");
 		PatientReg.add("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "alive");
 		
+		StaffRegistertoXML(StaffReg);
+		
+		StaffRegister StaffReg2 = staffRegXmlFileToObject("StaffRegister.xml");
+		System.out.println(StaffReg2);
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");

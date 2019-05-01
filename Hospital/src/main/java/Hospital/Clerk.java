@@ -1,8 +1,11 @@
 package Hospital;
 
 import java.util.Date;
+import java.io.Serializable;
 
-public class Clerk extends Staff {
+public class Clerk extends Staff implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Constructor for clerk. Sets staff information
@@ -13,6 +16,9 @@ public class Clerk extends Staff {
 	 * @param gender
 	 * @param department
 	 */
+	
+	public Clerk() {}
+	
 	public Clerk(String email, String name, String surname, Date birthday, String gender) {
 		super(email, name, surname, birthday, gender);	
 	}

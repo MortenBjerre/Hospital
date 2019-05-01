@@ -1,8 +1,15 @@
 package Hospital;
 
 import java.util.Date;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
 
-public class ICTOfficer extends Staff {
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "ICTofficer")
+
+public class ICTOfficer extends Staff implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Constructor of ICTOfficer. Calls Staff constructor.
@@ -13,6 +20,8 @@ public class ICTOfficer extends Staff {
 	 * @param gender
 	 * @param department
 	 */
+	
+	public ICTOfficer() {}
 	public ICTOfficer(String email, String name, String surname, Date birthday, String gender) {
 		super(email, name, surname, birthday, gender);
 		

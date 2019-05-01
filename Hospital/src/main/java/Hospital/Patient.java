@@ -1,7 +1,10 @@
 package Hospital;
 
 import java.util.Date;
-
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "patient")
 
 
 
@@ -10,12 +13,21 @@ import java.util.Date;
 //- an edit method to each value (that are not a part of HospitalUser)
 
 
-public class Patient extends HospitalUser {
+public class Patient extends HospitalUser implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@XmlElement(name ="address")
 	private String address;
+	@XmlElement(name ="phoneNumber")
 	private int phoneNumber;
+	@XmlElement(name ="alive")
 	private boolean alive;
+	@XmlElement(name ="serialnumCounter")
 	private static int serialnumCounter = 0;
+	@XmlElement(name ="serialnum")
 	private int serialnum;
+	@XmlElement(name ="healthData")
 	private String healthData = "";
 
 	//This is protected so that there can't be free floating patients. Can only make one in a register
@@ -31,6 +43,8 @@ public class Patient extends HospitalUser {
 	 * @param alive
 	 * @param healthData
 	 */
+	
+	public Patient() {}
 	protected Patient(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, String healthData) {
 		set(email, name, surname, birthday, gender);
