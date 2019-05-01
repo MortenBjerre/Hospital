@@ -122,6 +122,3 @@ public class Patient extends HospitalUser {
 		return false;
 	}
 }
-
-
-

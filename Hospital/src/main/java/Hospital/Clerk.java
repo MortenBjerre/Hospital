@@ -28,4 +28,3 @@ public class Clerk extends Staff {
 		return "Clerk";
 	}
 }
-

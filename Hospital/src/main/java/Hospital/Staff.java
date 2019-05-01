@@ -124,5 +124,4 @@ public class Staff extends HospitalUser {
 	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
 		return false;
 	}
-
 }
