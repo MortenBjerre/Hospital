@@ -356,6 +356,14 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Gives the bed of the patient with the specified bed and department. 
+	 * If the department has no beds IllegalArgumentException "No beds in this department" is thrown.
+	 * If the department does not exist IllegalArgumentException "No such department" is thrown.
+	 * @param serialnum
+	 * @param deptName
+	 * @return bed number of the specified patient
+	 */
 	public int getBedOf(int serialnum, String deptName) {
 		if (departments.containsKey(deptName)) {
 			if (departments.get(deptName) instanceof InpatientDepartment) {
@@ -369,6 +377,12 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Returns the patient in the specified bed number and department.
+	 * @param bedNumber
+	 * @param deptName
+	 * @return Patient
+	 */
 	public Patient getPatientInBed(int bedNumber, String deptName) {
 		if (departments.containsKey(deptName)) {
 			if (departments.get(deptName) instanceof InpatientDepartment) {
