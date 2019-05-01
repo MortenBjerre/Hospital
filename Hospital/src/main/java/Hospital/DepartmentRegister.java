@@ -266,10 +266,9 @@ public class DepartmentRegister {
 	 * Searches department register for patient by serialnumber.
 	 * Will throw error if the patient is not admitted.
 	 * @param serialnum
-	 * @param pr PatientRegister
 	 * @return string of patient
 	 */
-	public String searchSerialNum(int serialnum, PatientRegister pr) {
+	public String searchSerialNum(int serialnum) {
 		Patient patientInDept = null;
 		for (String deptName : departments.keySet()) {
 			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);

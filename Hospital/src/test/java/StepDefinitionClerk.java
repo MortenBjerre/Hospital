@@ -204,11 +204,14 @@ public class StepDefinitionClerk {
 	@Given("^I have a patient admitted to the ER$")
 	public void i_have_a_patient_admitted_to_the_ER() {
 		dr.admit(1, "ER", pr);
+		pr.editName(1, "Lloyd");
+		System.out.println(dr.searchSerialNum(1));
 	}
 
 	@Then("^I should be able to find that patient's department$")
 	public void i_should_be_able_to_find_that_patient_s_department() {
-		assertTrue(dr.getDeptOfPatient(1).equals("ER")); 
+		assertTrue(dr.getDeptOfPatient(1).equals("ER"));
+		
 	}
 	
 	@Then("^I should know patient two is not admitted$")
@@ -261,7 +264,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_discharge_that_patient() {
 		dr.dischargePatient(1, pr);
 		try {
-			dr.searchSerialNum(1, pr);
+			dr.searchSerialNum(1);
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getMessage().equals("No such patient admitted"));
 		}
@@ -323,7 +326,7 @@ public class StepDefinitionClerk {
 	public void patient_zero_is_in_the_ER() {
 		dr.admit(0, "ER", pr);
 		assertEquals(dr.getDeptOfPatient(0), "ER");
-		assertTrue(dr.searchSerialNum(0, pr).equals(pr.findSerialnum(0).toString()));
+		assertTrue(dr.searchSerialNum(0).equals(pr.findSerialnum(0).toString()));
 	}
 
 	@Then("^I should be able to move patient zero from the ER to surgery$")
@@ -579,7 +582,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_discharge_the_patient() {
 		dr.dischargePatient(0, pr);
 		try {
-			dr.searchSerialNum(0, pr);
+			dr.searchSerialNum(0);
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getMessage().equals("No such patient admitted"));
 		}
