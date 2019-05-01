@@ -9,26 +9,6 @@ public class DepartmentRegister {
 	//departments is a map mapping string department names to objects of department
 	private Map<String, Department> departments;
 	
-	/**
-	 * Prints departmentRegister by first listing the admitted patients in the department
-	 * and then the staff members working in the department
-	 */
-	public String toString() {
-		String a = "Patients in department: \n";
-		for (String dep : departments.keySet()) {
-			for (String patientInDept: departments.get(dep).getPatients()) {
-				a += patientInDept;
-			};
-		}
-		a += "\nStaff members in department \n";
-		for (String dep : departments.keySet()) {
-			for(String staffInDept: departments.get(dep).getAllStaff()) {
-				a += staffInDept;
-			}
-		}
-		return a;
-	}
-	
 	public DepartmentRegister() {
 		this.departments = new HashMap<String, Department>();
 	}
@@ -66,7 +46,9 @@ public class DepartmentRegister {
 	 * @param deptName name of department you want to remove
 	 */
 	public void deleteDepartment(String deptName) {
-		if (departments.get(deptName).getPatients().length == 0 && departments.get(deptName).getStaffMembers().length == 0) {
+		String[] listOfPatients = departments.get(deptName).getPatients();
+		String[] listOfStaffMembers = departments.get(deptName).getStaffMembers();
+		if (listOfPatients.length == 0 && listOfStaffMembers.length == 0) {
 				departments.remove(deptName);
 		} else {
 			throw new IllegalArgumentException("There are still staff and/or patients in the department");
@@ -188,20 +170,6 @@ public class DepartmentRegister {
 	public void dischargeStaff(int serialnum, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
 		dischargeStaff(s);		
-	}
-	
-	/**
-	 * Gives the patients in searched department
-	 * @param deptName
-	 * @return String array of patients in department
-	 */
-	public String[] searchPatientDepartment(String deptName) {
-		for (String dept : departments.keySet()) {
-			if (dept == deptName) {
-				return departments.get(dept).getPatients();
-			}
-		}
-		return new String[0];
 	}
 	
 	/**

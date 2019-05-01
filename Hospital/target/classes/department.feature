@@ -131,6 +131,5 @@ Feature: Testing departments
 		And I have a department register 
 		Then I can create an outpatient department called Waiting Room
 		And I can delete the whole department again
-	  
-	  
+
 	  
