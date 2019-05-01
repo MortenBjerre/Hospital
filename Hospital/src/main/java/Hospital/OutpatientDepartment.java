@@ -2,13 +2,13 @@ package Hospital;
 
 import java.util.ArrayList;
 
-public class Department {
+public class OutpatientDepartment {
 	
 	protected ArrayList<Patient> patients;
 	protected ArrayList<Staff> staff;
 	protected String deptName;
 	
-	public Department(String deptName) {
+	public OutpatientDepartment(String deptName) {
 		this.deptName = deptName;
 		patients = new ArrayList<Patient>();
 		staff = new ArrayList<Staff>();

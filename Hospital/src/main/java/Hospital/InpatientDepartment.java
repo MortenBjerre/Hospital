@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InpatientDepartment extends Department {
+public class InpatientDepartment extends OutpatientDepartment {
 
 	private int beds;
 	protected HashMap<Integer, Patient> patients = new HashMap<Integer, Patient>();
