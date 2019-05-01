@@ -8,7 +8,7 @@ public class OutpatientDepartment {
 	protected ArrayList<Staff> staff;
 	protected String deptName;
 	
-	public OutpatientDepartment(String deptName) {
+	protected OutpatientDepartment(String deptName) {
 		this.deptName = deptName;
 		patients = new ArrayList<Patient>();
 		staff = new ArrayList<Staff>();
@@ -18,7 +18,7 @@ public class OutpatientDepartment {
 	 * gets the name of a department
 	 * @return the name of the department
 	 */
-	public String getDeptName() {
+	protected String getDeptName() {
 		return deptName;
 	}
 	
@@ -26,7 +26,7 @@ public class OutpatientDepartment {
 	 * sets the name of a department
 	 * @param deptName the name of the department to be set
 	 */
-	public void setDeptName(String deptName) {
+	protected void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
 	
@@ -64,7 +64,7 @@ public class OutpatientDepartment {
 	 * Gives the patients in department 
 	 * @return string array of patients in department
 	 */
-	public String[] getPatients() {
+	protected String[] getPatients() {
 		ArrayList<String> patientslist = new ArrayList<String>();
 		for (Patient patient : patients) {
 			patientslist.add(patient.toString());
@@ -78,7 +78,7 @@ public class OutpatientDepartment {
 	 * Gives the staff members in department 
 	 * @return string array of staff members in department
 	 */
-	public String[] getStaffMembers() {
+	protected String[] getStaffMembers() {
 		ArrayList<String> stafflist = new ArrayList<String>();
 		for (Staff s : staff) {
 			stafflist.add(s.toString());
@@ -92,7 +92,7 @@ public class OutpatientDepartment {
 	 * Gives the staff members working in department
 	 * @return string array of staff members in department
 	 */
-	public String[] getAllStaff() {
+	protected String[] getAllStaff() {
 		ArrayList<String> stafflist = new ArrayList<String>();
 		for (Staff s : staff) {
 			stafflist.add(s.toString());
@@ -116,7 +116,7 @@ public class OutpatientDepartment {
 	 * @param serialnum The patient's serialnum of type int
 	 * @return true if department has patient
 	 */
-	public boolean containsPatient(int serialnum) {
+	protected boolean containsPatient(int serialnum) {
 		for (Patient patient : patients) {
 			if (patient.getSerialnum() == serialnum) {
 				return true;
@@ -130,7 +130,7 @@ public class OutpatientDepartment {
 	 * @param s A staff of type Staff
 	 * @return true if department has staff
 	 */
-	public boolean containsStaff(Staff s) {
+	protected boolean containsStaff(Staff s) {
 		return staff.contains(s);
 	}
 	
@@ -139,7 +139,7 @@ public class OutpatientDepartment {
 	 * @param serialnum The staff's serialnum of type int
 	 * @return true if department has staff
 	 */
-	public boolean containsStaff(int serialnum) {
+	protected boolean containsStaff(int serialnum) {
 		for (Staff s : staff) {
 			if (s.getSerialnum() == serialnum) {
 				return true;
@@ -163,7 +163,7 @@ public class OutpatientDepartment {
 		return null;
 	}
 
-	public Staff getStaff(int serialnum) {
+	protected Staff getStaff(int serialnum) {
 		for (Staff staff : staff) {
 			if (staff.getSerialnum() == serialnum) {
 				return staff;

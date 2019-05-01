@@ -561,4 +561,9 @@ public class StepDefinitionClerk {
 		}
 	}
 	
+	@Then("^I should be able to see all patients in a department$")
+	public void i_should_be_able_to_see_all_patients_in_a_department() {
+		
+	}
+	
 }
