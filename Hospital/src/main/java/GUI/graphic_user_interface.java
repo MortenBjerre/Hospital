@@ -130,27 +130,29 @@ public class graphic_user_interface {
 					}
 				});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setAutoCreateGaps(true);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnStaff, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnPatient, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
-						.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
-					.addGap(0))
+							.addGap(64)
+							.addComponent(btnStaff, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+							.addGap(76)
+							.addComponent(btnPatient, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
+						.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 281, GroupLayout.PREFERRED_SIZE))
+					.addGap(81))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnStaff, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-						.addComponent(btnPatient, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(186)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnPatient, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+						.addComponent(btnStaff, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+					.addGap(64)
+					.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
 		);
+		groupLayout.setAutoCreateGaps(true);
 		frame.getContentPane().setLayout(groupLayout);
 
 		

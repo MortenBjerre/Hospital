@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JPasswordField;
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings({ "serial", "unused" })
 public class PatientLogin extends JFrame {
@@ -58,37 +60,44 @@ public class PatientLogin extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JLabel lblWelcomeToPatient = new JLabel("Welcome to patient login page");
+		lblWelcomeToPatient.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcomeToPatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(lblWelcomeToPatient);
+		
+		JLabel label = new JLabel("");
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		contentPane.add(label_1);
+		
+		JLabel label_3 = new JLabel("");
+		contentPane.add(label_3);
+		
+		JLabel lblSurname = new JLabel("Serial Number :");
+		lblSurname.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSurname.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(lblSurname);
+		
+		SerialNumber = new JPasswordField();
+		contentPane.add(SerialNumber);
+		
+		JLabel label_4 = new JLabel("");
+		contentPane.add(label_4);
 		
 		final JLabel invalidLogin = new JLabel("Incorrect Login");
-		invalidLogin.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		invalidLogin.setBounds(294, 313, 193, 33);
+		invalidLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(invalidLogin);
 		invalidLogin.setForeground(Color.red);
 		invalidLogin.setVisible(false);
 		
-		JLabel lblWelcomeToPatient = new JLabel("Welcome to patient login page");
-		lblWelcomeToPatient.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		lblWelcomeToPatient.setBounds(202, 72, 361, 33);
-		contentPane.add(lblWelcomeToPatient);
-		
-		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		btnGoBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnGoBack.setBounds(0, 572, 171, 41);
-		contentPane.add(btnGoBack);
-		
-		JLabel lblSurname = new JLabel("Serial Number :");
-		lblSurname.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		lblSurname.setBounds(63, 265, 171, 32);
-		contentPane.add(lblSurname);
+		JLabel label_5 = new JLabel("");
+		contentPane.add(label_5);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -110,11 +119,24 @@ public class PatientLogin extends JFrame {
 					}
 			}
 		});
-		btnLogin.setBounds(294, 414, 171, 41);
 		contentPane.add(btnLogin);
 		
-		SerialNumber = new JPasswordField();
-		SerialNumber.setBounds(294, 263, 171, 33);
-		contentPane.add(SerialNumber);
+		JLabel label_6 = new JLabel("");
+		contentPane.add(label_6);
+		
+		JLabel label_7 = new JLabel("");
+		contentPane.add(label_7);
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		contentPane.add(btnGoBack);
+		
+		JLabel label_8 = new JLabel("");
+		contentPane.add(label_8);
 	}
 }
