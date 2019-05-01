@@ -34,7 +34,7 @@ public class updatePatientInfo extends JFrame {
 	private JTextField Alive;
 	int serialnum;
 	static PatientRegister PatientReg;
-	
+
 	/**
 	 * Create the frame.
 	 */
@@ -241,7 +241,7 @@ public class updatePatientInfo extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				String newNumber = Number.getText();
 				if (("1234567890".contains(String.valueOf(e.getKeyChar())) || (!Character.isLetter(e.getKeyChar())) 
-						&& !"!\"#ค%&/()=?`@ฃ${[]}+|+ด><\\;:_,.-'*จ^~".contains(String.valueOf(e.getKeyChar())))) {
+						&& !"!\"#ยค%&/()=?`@ยฃ${[]}+|+ยด><\\;:_,.-'*ยจ^~".contains(String.valueOf(e.getKeyChar())))) {
 					if (newNumber.length() <= 9) {
 						PatientReg.editPhoneNumber(serialnum, Integer.parseInt(newNumber));
 					} else {

@@ -34,7 +34,6 @@ public class StaffLogin extends JFrame {
 	private JPasswordField SerialNumber;
 	private JPasswordField passwordField;
 
-
 	/**
 	 * Create the frame.
 	 */
