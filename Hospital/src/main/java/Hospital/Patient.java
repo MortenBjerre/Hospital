@@ -18,7 +18,6 @@ public class Patient extends HospitalUser {
 	private int serialnum;
 	private String healthData = "";
 
-	
 	//This is protected so that there can't be free floating patients. Can only make one in a register
 	/**
 	 * Creates a patient
@@ -43,27 +42,27 @@ public class Patient extends HospitalUser {
 		serialnumCounter++;
 	}
 	
-	/**
-	 * Edit all the patient fields at once
-	 * @param email
-	 * @param name
-	 * @param surname
-	 * @param birthday
-	 * @param gender
-	 * @param address
-	 * @param phoneNumber
-	 * @param alive
-	 * @param healthData
-	 */
-	public void setPatient(String email, String name, String surname, Date birthday,
-			String gender, String address, int phoneNumber, boolean alive, String healthData) {
-		set(email, name, surname, birthday, gender);
-		setAddress(address);
-		setPhoneNumber(phoneNumber);
-		setAlive(alive);
-		setHealthData(healthData);
-		//need to add department
-	}
+//	/**
+//	 * Edit all the patient fields at once
+//	 * @param email
+//	 * @param name
+//	 * @param surname
+//	 * @param birthday
+//	 * @param gender
+//	 * @param address
+//	 * @param phoneNumber
+//	 * @param alive
+//	 * @param healthData
+//	 */
+//	public void setPatient(String email, String name, String surname, Date birthday,
+//			String gender, String address, int phoneNumber, boolean alive, String healthData) {
+//		set(email, name, surname, birthday, gender);
+//		setAddress(address);
+//		setPhoneNumber(phoneNumber);
+//		setAlive(alive);
+//		setHealthData(healthData);
+//		//need to add department
+//	}
 	
 	/**
 	 * Set alive status
@@ -97,20 +96,9 @@ public class Patient extends HospitalUser {
 		return ("Serialnum: " + serialnum + "; Patient name: " + getName() + " " + getSurname() + " ; Gender: " + getGender() 
 				+ " ; Birthday: " + getBirthday() + " ; Email: " + getEmail()); 
 	}
-	
-	/**
-	 * Checks if patient has write access to a register
-	 */
-	public boolean hasWriteAccessTo(Register r) {
-		return false;
-	}
 
 	public int getSerialnum() {
 		return serialnum;
-	}
-
-	public void setSerialnum(int serialnum) {
-		this.serialnum = serialnum;
 	}
 	
 	public static void resetSerialnumCounter() {
@@ -139,7 +127,14 @@ public class Patient extends HospitalUser {
 		this.healthData += healthData;
 		// healthData is added but never deleted
 	}
-
+	
+	/**
+	 * Checks if patient has write access to a register
+	 */
+	public boolean hasWriteAccessTo(Register r) {
+		return false;
+	}
+	
 	@Override
 	public boolean hasViewAccessTo(Register r) {
 		// TODO Auto-generated method stub

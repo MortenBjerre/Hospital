@@ -26,11 +26,11 @@ public class PatientRegister extends Register<Patient> {
 	public int add(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
 			String healthData) {
-		Patient p = new Patient(email, name, surname, birthday, gender, address, 
+		Patient patient = new Patient(email, name, surname, birthday, gender, address, 
 								phoneNumber, alive, healthData);
-		users.put(p.getSerialnum(), p);
+		users.put(patient.getSerialnum(), patient);
 		
-		return p.getSerialnum();
+		return patient.getSerialnum();
 	}
 	
 	
@@ -41,11 +41,11 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public String[] searchAddress(String address) {
 		ArrayList<Patient> matches = findAddress(address);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	/**
 	 * Searches for patients with matching address
@@ -54,9 +54,10 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	protected ArrayList<Patient> findAddress(String address) {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getAddress() == address) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			Patient patient = users.get(serialnum);
+			if (patient.getAddress() == address) {
+				matches.add(patient);
 			}
 		}
 		return matches;
@@ -69,11 +70,11 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public String[] searchNumber(int phoneNumber) {
 		ArrayList<Patient> matches = findNumber(phoneNumber);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -83,9 +84,10 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	protected ArrayList<Patient> findNumber(int phoneNumber) {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getPhoneNumber() == phoneNumber) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			Patient patient = users.get(serialnum);
+			if (patient.getPhoneNumber() == phoneNumber) {
+				matches.add(patient);
 			}
 		}
 		return matches;
@@ -98,11 +100,11 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	public String[] searchAlive(boolean alive) {
 		ArrayList<Patient> matches = findAlive(alive);
-		String[] m = new String[matches.size()];
+		String[] matchesToStringArray = new String[matches.size()];
 		for (int i = 0; i < matches.size(); i++) {
-			m[i] = matches.get(i).toString();
+			matchesToStringArray[i] = matches.get(i).toString();
 		}
-		return m;
+		return matchesToStringArray;
 	}
 	
 	/**
@@ -112,9 +114,10 @@ public class PatientRegister extends Register<Patient> {
 	 */
 	private ArrayList<Patient> findAlive(boolean alive) {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
-		for (Integer key : users.keySet()) {
-			if (users.get(key).getAlive() == alive) {
-				matches.add(users.get(key));
+		for (Integer serialnum : users.keySet()) {
+			Patient patient = users.get(serialnum);
+			if (patient.getAlive() == alive) {
+				matches.add(patient);
 			}
 		}
 		return matches;
@@ -126,8 +129,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param birthday
 	 */
 	public void editBirthday(int serialnum, Date birthday) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setBirthday(birthday);		
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setBirthday(birthday);		
 	}
 	
 	/**
@@ -136,8 +139,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param phoneNumber
 	 */
 	public void editPhoneNumber(int serialnum, int phoneNumber) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setPhoneNumber(phoneNumber);	
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setPhoneNumber(phoneNumber);	
 	}
 	
 	/**
@@ -146,8 +149,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param address
 	 */
 	public void editAddress(int serialnum, String address) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setAddress(address);		
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setAddress(address);		
 	}
 	
 	/**
@@ -156,8 +159,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param alive
 	 */
 	public void editAlive(int serialnum, boolean alive) {
-		Patient p = this.findSerialnum(serialnum);
-		p.setAlive(alive);
+		Patient patient = this.findSerialnum(serialnum);
+		patient.setAlive(alive);
 	}
 	
 	/**
@@ -166,8 +169,8 @@ public class PatientRegister extends Register<Patient> {
 	 * @param healthData
 	 */
 	public void editHealthData(int serialnum, String healthData) {
-		Patient p = findSerialnum(serialnum);
-		p.setHealthData(healthData);
+		Patient patient = findSerialnum(serialnum);
+		patient.setHealthData(healthData);
 	}
 	
 	/**

@@ -21,6 +21,7 @@ public class StepDefinitionClerk {
 	int serialnum2;
 	StaffRegister sr;
 	DepartmentRegister dr;
+	Patient p;
 	
 	@Given("^That I am a clerk$")
 	public void that_I_am_a_clerk() {
@@ -57,9 +58,10 @@ public class StepDefinitionClerk {
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
 		if (s.hasWriteAccessTo(pr)) {
-			pr.add("g@gmail.com", "Phil", "Banks", new Date(), "male", "Bel Air", 44329082, true,"");
+			pr.add("g@gmail.com", "Phil", "Banks", new Date(2000,12,1), "male", "Bel Air", 44329082, true,"");
 			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true,"");
-			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(), "male", "California", 12355590, true,"");
+			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(2000,12,2), "male", "California", 12355590, true,"");
+			pr.add("pp@hotmail.com", "Philtwo", "Taylor", new Date(2002,1,1), "male", "California", 12355591, false,"");
 		}
 	}
 
@@ -357,5 +359,182 @@ public class StepDefinitionClerk {
 	@Then("^I should not have permission to move staff$")
 	public void i_should_not_have_permission_to_move_staff() {
 		assertFalse(s.canMoveStaff());
+	}
+	
+	@Then("^Adding staff zero to surgery should discharge them from the ER$")
+	public void adding_staff_zero_to_surgery_should_discharge_them_from_the_ER() {
+		dr.addStaffTo(0, "surgery", sr);
+		assertTrue(dr.searchStaffDepartment("ER").length == 0);
+	}
+	
+	@Then("^I should be able to search for a patient by address$")
+	public void i_should_be_able_to_search_for_a_patient_by_address() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchAddress("USA")[0]));
+	}
+	
+	@Then("^I should be able to search for a patient by phone number$")
+	public void i_should_be_able_to_search_for_a_patient_by_phone_number() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,pr.searchNumber(12355590)[0]);
+	}
+	
+	@Then("^I should be able to search for a patient that is still alive$")
+	public void i_should_be_able_to_search_for_a_patient_that_is_still_alive() {
+		assertEquals(pr.searchAlive(true).length, 3);
+		
+	    assertEquals("Serialnum: 0; Patient name: Phil Banks ; Gender: male ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: g@gmail.com"
+	    		,pr.searchAlive(true)[0]);
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ; "
+	    		+ "Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,pr.searchAlive(true)[1]);
+	    assertEquals("Serialnum: 2; Patient name: Phil Taylor ; Gender: male ; "
+	    		+ "Birthday: Wed Jan 02 00:00:00 CET 3901 ; Email: p@hotmail.com"
+	    		,pr.searchAlive(true)[2]);
+
+	}
+	
+	@Then("^I should be able to search for a patient by email$")
+	public void i_should_be_able_to_search_for_a_patient_by_email() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchEmail("p@ofir.dk")[0]));		
+	}
+
+	@Then("^I should be able to search for a patient by name$")
+	public void i_should_be_able_to_search_for_a_patient_by_name() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchName("Emilia")[0]));	
+	}
+
+	@Then("^I should be able to search for a patient by surname$")
+	public void i_should_be_able_to_search_for_a_patient_by_surname() {
+	    assertEquals("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ;"
+	    		+ " Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk"
+	    		,(pr.searchSurname("Clarke")[0]));
+	}
+
+	@Then("^I should be able to search for a patient by birthday$")
+	public void i_should_be_able_to_search_for_a_patient_by_birthday() {
+		Date a = new Date(2002,1,1);
+//		System.out.println(pr.searchBirthday(a)[0]);
+	    assertEquals("Serialnum: 3; Patient name: Philtwo Taylor ; Gender: male ; "
+	    		+ "Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com"
+				,(pr.searchBirthday(new Date(2002,1,1))[0]));
+	}
+	
+	@Then("^I want to see that two staff members has different hash code$")
+	public void i_want_to_see_that_two_staff_members_has_different_hash_code() {
+		Staff s1 = sr.findSerialnum(0);
+		Staff s2 = sr.findSerialnum(1);
+		assertTrue(s1.hashCode() != s2.hashCode());
+		
+	}
+
+	@Then("^That a staff member has the same hash code as them selves$")
+	public void that_a_staff_member_has_the_same_hash_code_as_them_selves() {
+		Staff s1 = sr.findSerialnum(0);
+		Staff s2 = sr.findSerialnum(0);
+		assertTrue(s1.hashCode() == s2.hashCode());
+		
+	}
+	
+	@Then("^I should be able to add some beds$")
+	public void i_should_be_able_to_add_some_beds() {
+		dr.addBeds("ER", 10);
+		// Originally there were 5 beds so now there are 15
+	}
+	
+	@Then("^I should be able to remove beds$")
+	public void i_should_be_able_to_remove_beds() {
+		dr.removeBeds("ER",3);
+		// Now there are 12 beds in ER
+	}
+
+	@Then("^The number of beds should be updated$")
+	public void the_number_of_beds_should_be_updated() {
+		assertTrue(dr.getTotalBeds("ER") ==  12);
+	}
+	
+	@Given("^A patient is using the system$")
+	public void a_patient_is_using_the_system() {
+		p = pr.findSerialnum(0);
+	}
+
+	@Then("^The patient should not have write access to the staff register$")
+	public void the_patient_should_not_have_write_access_to_the_staff_register() {
+		assertFalse(p.hasWriteAccessTo(sr));
+	}
+
+	@Then("^The patient should not have view access to the staff register$")
+	public void the_patient_should_not_have_view_access_to_the_staff_register() {
+		assertFalse(p.hasViewAccessTo(sr));
+	}
+
+	@Then("^The patient should not have write access to the patient register$")
+	public void the_patient_should_not_have_write_access_to_the_patient_register() {
+		assertFalse(p.hasWriteAccessTo(pr));
+	}
+
+	@Then("^The patient should not have view access to the patient register$")
+	public void the_patient_should_not_have_view_access_to_the_patient_register() {
+		assertFalse(p.hasViewAccessTo(pr));
+	}
+
+	@Then("^The patient should not have view access to health data$")
+	public void the_patient_should_not_have_view_access_to_health_data() {
+		assertFalse(p.hasHealthDataAccess());
+	}
+	
+	@Then("^patient zero and one should have different hash codes$")
+	public void patient_zero_and_one_should_have_different_hash_codes() {
+		assertFalse(pr.findSerialnum(0).hashCode() == pr.findSerialnum(1).hashCode());
+	}
+
+	@Then("^patient zero should have the same hash code as themselves$")
+	public void patient_zero_should_have_the_same_hash_code_as_themselves() {
+		Patient p2 = pr.findSerialnum(0);
+		p = pr.findSerialnum(0);
+		assertEquals(p.hashCode(), p2.hashCode());
+	}
+	
+	@Then("^I should be able to search for a patient by alive$")
+	public void i_should_be_able_to_search_for_a_patient_by_alive() {
+		assertEquals(pr.searchAlive(false)[0], "Serialnum: 3; Patient name: Philtwo Taylor ; "
+				+ "Gender: male ; Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com");
+	}
+	
+	@When("^I admit a patient to the ER$")
+	public void i_admit_a_patient_to_the_ER() {
+		dr.admit(0, "ER", pr);
+	}
+
+	@Then("^that patient should be assigned to the first available bed in ER$")
+	public void that_patient_should_be_assigned_to_the_first_available_bed_in_ER() {
+		assertTrue(dr.getAvailableBeds("ER") == 4);		
+		// ER was created with 5 beds
+		assertTrue(dr.getBedOf(0, "ER") == 0);
+		assertTrue(dr.getPatientInBed(0,"ER").equals(pr.findSerialnum(0)));
+	}
+	
+	@Given("^Staff one is in the ER$")
+	public void staff_one_is_in_the_ER() {
+		dr.addStaffTo(1, "ER", sr);
+	}
+	
+	@Then("^I should be able to fire staff member one$")
+	public void i_should_be_able_to_fire_staff_member_one() {
+		dr.dischargeStaff(1, sr); // This will not remove from the Staff register
+		try {
+			Staff staff = dr.getStaff(1);
+			assertTrue(false);
+		} catch (IllegalArgumentException e) {
+//			System.out.println("===============\n" + e.getMessage());
+			assertTrue(e.getMessage().equals("No such staff"));
+		}
 	}
 }

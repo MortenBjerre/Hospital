@@ -76,7 +76,7 @@ Feature: Testing departments
    And I should be able to see how many beds there are total in the ER
    
   @tag6
-  Scenario:As a nurse/doctor, I want to be able to send a patient to a different department so that he can be treated properly.
+  Scenario: As a nurse/doctor, I want to be able to send a patient to a different department so that he can be treated properly.
    Given That I am a doctor
    And I have a department register
    And I have a patient register
@@ -85,3 +85,47 @@ Feature: Testing departments
    And patient zero is in the ER
    Then I should be able to move patient zero from the ER to surgery
    
+  @tag7
+  Scenario: As an ICT Officer, Adding a staff member to a department should remove them from their current department
+  	Given That I am an ICT Officer
+   	And I have a department register
+   	And I have a staff register
+	  And there are multiple departments
+	  And I have multiple staff members
+	  And Staff zero is in ER
+	  Then Adding staff zero to surgery should discharge them from the ER
+	  
+  @tag9
+  Scenario: As an ICT Officer, i should be able to able to see how many beds are free and add some more
+  	Given That I am an ICT Officer
+   	And I have a department register 
+	  And there are multiple departments
+	  Then I should be able to see how many beds are available in the ER
+	  And I should be able to add some beds 
+	  And I should be able to remove beds
+	  And The number of beds should be updated
+
+	@tag10
+	Scenario: when a patient is added to a department, I should as a nurse/clerk/doctor have the system automatically assign the patient to a bed
+		Given That I am a clerk
+		And I have a department register 
+		And I have a patient register
+		And the patient register contains several patients
+		And there are multiple departments
+		When I admit a patient to the ER
+		Then that patient should be assigned to the first available bed in ER
+		
+	@tag11
+	Scenario: As an ICT Officer, I should be able to fire a staff member
+		Given That I am an ICT Officer
+		And I have a department register 
+	  And there are multiple departments
+	  And I have a staff register
+		And I have multiple staff members
+		And Staff one is in the ER
+		Then I should be able to fire staff member one
+		
+
+	  
+	  
+	  
