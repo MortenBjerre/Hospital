@@ -552,6 +552,13 @@ public class StepDefinitionClerk {
 		assertFalse(dr.containsDept("Waiting Room"));
 	}
 	
-	
+	@Then("^I can rename the department to Patient Waiting Rooms$")
+	public void i_can_rename_the_department_to_Patient_Waiting_Rooms() {
+		if (s.canEditDepartmentRegister(dr)) {
+			dr.changeNameOf("Waiting Room", "Patient Waiting Room");
+			assertTrue(dr.containsDept("Patient Waiting Room"));
+			assertFalse(dr.containsDept("Waiting Room"));
+		}
+	}
 	
 }

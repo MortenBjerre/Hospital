@@ -392,4 +392,21 @@ public class DepartmentRegister {
 		}
 		throw new IllegalArgumentException("No such staff");
 	}
+
+	/**
+	 * Allows you to change the name of a department.
+	 * Throws IllegalArgumentException "No such department" if the department
+	 * is not in department register
+	 * @param deptName old department name
+	 * @param newDeptName new department name
+	 */
+	public void changeNameOf(String deptName, String newDeptName) {
+		if (departments.containsKey(deptName)) {
+			departments.get(deptName).setDeptName(newDeptName);
+			OutpatientDepartment d = departments.remove(deptName);
+			departments.put(newDeptName, d);
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+	}
 }
