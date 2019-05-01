@@ -323,6 +323,7 @@ public class StepDefinitionClerk {
 	public void patient_zero_is_in_the_ER() {
 		dr.admit(0, "ER", pr);
 		assertEquals(dr.getDeptOfPatient(0), "ER");
+		assertTrue(dr.searchSerialNum(0, pr) == pr.findSerialnum(0).toString());
 	}
 
 	@Then("^I should be able to move patient zero from the ER to surgery$")
@@ -524,6 +525,7 @@ public class StepDefinitionClerk {
 	@Given("^Staff one is in the ER$")
 	public void staff_one_is_in_the_ER() {
 		dr.addStaffTo(1, "ER", sr);
+		assertTrue(dr.getStaff(1).equals(sr.findSerialnum(1)));
 	}
 	
 	@Then("^I should be able to fire staff member one$")

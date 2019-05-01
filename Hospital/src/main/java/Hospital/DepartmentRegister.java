@@ -383,6 +383,11 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Gives the staff member with specified serial number
+	 * @param serialnum
+	 * @return Staff member
+	 */
 	public Staff getStaff(int serialnum) {
 		for (String deptName : departments.keySet()) {
 			OutpatientDepartment department = departments.get(deptName);

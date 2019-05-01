@@ -15,10 +15,6 @@ public class InpatientDepartment extends OutpatientDepartment {
 		this.beds = beds;
 	}
 	
-	protected InpatientDepartment(String deptName) {
-		super(deptName);
-		this.beds = 0;
-	}
 
 	/**
 	 * Assigns a patient to the first available bed in the department.
