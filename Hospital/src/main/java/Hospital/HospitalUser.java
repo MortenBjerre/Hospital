@@ -8,7 +8,6 @@ public abstract class HospitalUser {
 	private String surname;
 	private Date birthday;
 	private String gender;
-	private String department;
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof HospitalUser) {
@@ -17,8 +16,7 @@ public abstract class HospitalUser {
 					obj2.name == this.name 			&&
 					obj2.surname == this.surname 	&&
 					obj2.birthday == this.birthday 	&&
-					obj2.gender == this.gender 		&&
-					obj2.department == this.department); 
+					obj2.gender == this.gender); 
 		}
 		return false;
 	}
@@ -30,18 +28,16 @@ public abstract class HospitalUser {
 		hash = 31 * hash + surname.hashCode();
 		hash = 31 * hash + birthday.hashCode();
 		hash = 31 * hash + gender.hashCode();
-		hash = 31 * hash + department.hashCode();
 		return hash;
 	}
 	
-	public void set(String email, String name, String surname, Date birthday, String gender, String department) {
+	public void set(String email, String name, String surname, Date birthday, String gender) {
 
 		setEmail(email);
 		setName(name);
 		setSurname(surname);
 		setBirthday(birthday);
 		setGender(gender);
-		setDepartment(department);
 	}
 	
 	public String getEmail() { 
@@ -84,14 +80,24 @@ public abstract class HospitalUser {
 		this.surname = surname; 
 	}
 
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+	/**
+	 * Checks if this hospital user has editing permission to Register r
+	 * @param r A Register
+	 * @return true if hospital user has editing permission
+	 */
 	public abstract boolean hasWriteAccessTo(Register r);
 	
+	/**
+	 * Checks if this hospital user has viewing permission to Register r
+	 * @param r A Register
+	 * @return true if hospital user has viewing permission
+	 */
+	public abstract boolean hasViewAccessTo(Register r);
+	
+	/**
+	 * Checks if this hospital user has permission to view health data
+	 * @return true if hospital user has health data access
+	 */
+	public abstract boolean hasHealthDataAccess();	
 }
 

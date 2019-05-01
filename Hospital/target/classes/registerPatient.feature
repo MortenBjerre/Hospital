@@ -20,11 +20,71 @@
 Feature: Clerk using software
 
   @tag1
-  Scenario: Registering a patient
+  Scenario: As a clerk, I want to register a patient so that we can have a record of all the patients in the hospital.
     Given That I am a clerk
     And I have a patient register
     When a patient needs to be admitted
     Then I should be able to add the patient to the patient register
     And assign him a unique serialnumber
+  
+  Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient
+ 
+  
+  Scenario: Searching for a staff member
+  	Given That I am a clerk
+  	And I have a a staff register
+  	Then I should not be able to add staff to the staff register
+    
+  Scenario: As a clerk, I want to be able to edit a patient's personal information so that it is accurate.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient
+  	And edit their information
 
+  Scenario: As a clerk, I want to be able to search a patient by address.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by address
+  	
+  Scenario: As a clerk, I want to be able to search a patient by phone number.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by phone number  	
+  	
+  Scenario: As a clerk, I want to be able to search a patient by email.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by email
+  
+  Scenario: As a clerk, I want to be able to search a patient by name.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by name
 
+  Scenario: As a clerk, I want to be able to search a patient by surname.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by surname  	
+  	
+  Scenario: As a clerk, I want to be able to search a patient by birthday.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by birthday
+  	
+  Scenario: As a clerk, I want to be able to search a patient by alive.
+  	Given That I am a clerk
+  	And I have a patient register
+  	And the patient register contains several patients
+  	Then I should be able to search for a patient by alive
+  	And I should be able to search for a patient that is still alive

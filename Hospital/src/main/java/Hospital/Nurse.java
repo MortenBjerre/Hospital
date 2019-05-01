@@ -2,10 +2,10 @@ package Hospital;
 
 import java.util.Date;
 
-public class Clerk extends Staff {
+public class Nurse extends Staff {
 	
 	/**
-	 * Constructor for clerk. Sets staff information
+	 * Constructor for nurse object. Calls Staff constructor.
 	 * @param email
 	 * @param name
 	 * @param surname
@@ -13,19 +13,21 @@ public class Clerk extends Staff {
 	 * @param gender
 	 * @param department
 	 */
-	public Clerk(String email, String name, String surname, Date birthday, String gender) {
-		super(email, name, surname, birthday, gender);	
+	public Nurse(String email, String name, String surname, Date birthday, String gender) {
+		super(email, name, surname, birthday, gender);
 	}
 	
 	public boolean hasWriteAccessTo(Register r) {
 		if (r instanceof PatientRegister) {
 			return true;
 		}
-		return false; 
+		return false;
+	}
+	public boolean hasHealthDataAccess() {
+		return true;
 	}
 	
 	public String getRole() {
-		return "Clerk";
+		return "Nurse";
 	}
 }
-
