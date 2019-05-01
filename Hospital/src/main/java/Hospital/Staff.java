@@ -25,6 +25,8 @@ public class Staff extends HospitalUser implements Serializable{
 	 * @param gender
 	 * @param department
 	 */
+	
+	public Staff() {}
 	public Staff(String email, String name, String surname, Date birthday, String gender) {
 		set(email, name, surname, birthday, gender);
 		serialnum = serialnumCounter;

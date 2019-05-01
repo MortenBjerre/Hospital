@@ -18,6 +18,8 @@ public class Doctor extends Staff implements Serializable{
 	 * @param gender
 	 * @param department
 	 */
+	
+	public Doctor() {}
 	public Doctor(String email, String name, String surname, Date birthday, String gender) {
 		super(email, name, surname, birthday, gender);		
 	}

@@ -44,6 +44,8 @@ public class Patient extends HospitalUser implements Serializable{
 	 * @param alive
 	 * @param healthData
 	 */
+	
+	public Patient() {}
 	protected Patient(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, String healthData) {
 		set(email, name, surname, birthday, gender);

@@ -21,7 +21,7 @@ public class Department implements Serializable{
 	private String deptName;
 	
 	private static final long serialVersionUID = 1L;
-	
+	public Department() {}
 	public Department(String deptName, int beds) {
 		this.deptName = deptName;
 		this.beds = beds;

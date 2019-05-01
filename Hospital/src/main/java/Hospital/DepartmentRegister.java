@@ -38,6 +38,7 @@ public class DepartmentRegister implements Serializable {
 		
 	}
 	
+
 	public DepartmentRegister() {
 		this.departments = new HashMap<String, Department>();
 	}
