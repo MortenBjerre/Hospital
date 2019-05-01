@@ -205,7 +205,6 @@ public class StepDefinitionClerk {
 	public void i_have_a_patient_admitted_to_the_ER() {
 		dr.admit(1, "ER", pr);
 		pr.editName(1, "Lloyd");
-		System.out.println(dr.searchSerialNum(1));
 	}
 
 	@Then("^I should be able to find that patient's department$")

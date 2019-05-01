@@ -17,7 +17,7 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Testing the patient
+Feature: Testing the patient class
 
   @tag1
   Scenario: Patient permissions

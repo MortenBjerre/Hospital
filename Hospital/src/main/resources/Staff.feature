@@ -17,7 +17,7 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Staff permissions
+Feature: Checking permission of a staff member
 
   @tag1
   Scenario: Staff permissions
@@ -28,7 +28,7 @@ Feature: Staff permissions
   	And I should have permission to move patients
   	And I should not have permission to move staff
   	
-  Scenario: hash code check 
+  Scenario: Hash code check 
   	Given That I am a clerk
   	And I have a staff register
   	And I have multiple staff members
