@@ -50,7 +50,7 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.version" value="1.8.0_201"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_201\jre\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="C:\Users\morte\git\Hospital\Hospital\EMBEDDED"/>
@@ -67,10 +67,10 @@
   <testcase classname="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" name="Scenario: As an ICT Officer, I want to register staff members so that we know where the staff members are working" time="0.001"/>
   <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="Given That I am an ICT Officer" time="0"/>
   <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And I have a staff register" time="0"/>
-  <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And I have a patient register" time="0"/>
+  <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And I have a patient register" time="0.001"/>
   <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And the patient register contains several patients" time="0"/>
   <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="Then I want to be able to view the patient register" time="0"/>
-  <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And I want to be able to view the staff register" time="0"/>
+  <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And I want to be able to view the staff register" time="0.001"/>
   <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="And I want to be able to view the patients&apos; health data" time="0"/>
   <testcase classname="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" name="Scenario: As an ICT Officer, I want to be able to see all hospital users&apos; data to have tabs on the system" time="0"/>
   <testcase classname="Scenario: As an ICT Officer, I should have permission to move staff and patients in the department register" name="Given That I am an ICT Officer" time="0"/>
@@ -94,7 +94,7 @@
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And I have a department register" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And the patient register contains several patients" time="0"/>
-  <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And there exists an ER department" time="0"/>
+  <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And there exists an ER department" time="0.001"/>
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And I have a patient admitted to the ER" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="Then I should be able to find that patient&apos;s department" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to know where a patient is, so I can find and treat him" name="And I should know patient two is not admitted" time="0"/>
@@ -117,11 +117,11 @@
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Given That I am a nurse" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a patient register" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And the patient register contains several patients" time="0"/>
-  <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a department register" time="0"/>
+  <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a department register" time="0.001"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And there exists an ER department" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="And I have a patient admitted to the ER" time="0"/>
   <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Then I should be able to discharge that patient" time="0"/>
-  <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" time="0"/>
+  <testcase classname="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" name="Scenario: As a nurse, I want to be able to discharge a patient so that the bed can be freed up for other patients" time="0.001"/>
   <testcase classname="Scenario: Adding various staff types to the staff register" name="Given That I am an ICT Officer" time="0"/>
   <testcase classname="Scenario: Adding various staff types to the staff register" name="And I have a staff register" time="0"/>
   <testcase classname="Scenario: Adding various staff types to the staff register" name="Then I should be able to add a clerk" time="0.001"/>
@@ -130,7 +130,7 @@
   <testcase classname="Scenario: Adding various staff types to the staff register" name="And I should be able to add a doctor" time="0"/>
   <testcase classname="Scenario: Adding various staff types to the staff register" name="Scenario: Adding various staff types to the staff register" time="0"/>
   <testcase classname="Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient." name="Given That I am a staff member" time="0"/>
-  <testcase classname="Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient." name="And I have a department register" time="0"/>
+  <testcase classname="Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient." name="And I have a department register" time="0.001"/>
   <testcase classname="Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient." name="And there are multiple departments" time="0"/>
   <testcase classname="Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient." name="Then I should be able to see how many beds are available in the ER" time="0"/>
   <testcase classname="Scenario: As a staff member, I want to be able to see how many beds are available in a department so I can see where to assign my patient." name="And I should be able to see how many beds there are total in the ER" time="0"/>
@@ -244,7 +244,7 @@
   <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Then I should be able to search for a patient" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." name="Scenario: As a clerk, I want to be able to search for patients so that I can access their registration/admission data." time="0"/>
   <testcase classname="Scenario: Searching for a staff member" name="Given That I am a clerk" time="0"/>
-  <testcase classname="Scenario: Searching for a staff member" name="And I have a a staff register" time="0"/>
+  <testcase classname="Scenario: Searching for a staff member" name="And I have a a staff register" time="0.001"/>
   <testcase classname="Scenario: Searching for a staff member" name="Then I should not be able to add staff to the staff register" time="0"/>
   <testcase classname="Scenario: Searching for a staff member" name="Scenario: Searching for a staff member" time="0"/>
   <testcase classname="Scenario: As a clerk, I want to be able to edit a patient&apos;s personal information so that it is accurate." name="Given That I am a clerk" time="0"/>
