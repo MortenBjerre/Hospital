@@ -8,6 +8,7 @@ public abstract class HospitalUser {
 	private String surname;
 	private Date birthday;
 	private String gender;
+	protected int serialnum;
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof HospitalUser) {

@@ -7,7 +7,6 @@ public class Patient extends HospitalUser {
 	private int phoneNumber;
 	private boolean alive;
 	private static int serialnumCounter = 0;
-	private int serialnum;
 	private String healthData = "";
 
 	//This is protected so that there can't be free floating patients. Can only make one in a register
