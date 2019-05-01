@@ -33,23 +33,6 @@ public class PatientLogin extends JFrame {
 	private int serialNumber;
 	private JPasswordField SerialNumber;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PatientLogin frame = new PatientLogin(PatientReg, DepartReg);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */

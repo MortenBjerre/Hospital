@@ -29,21 +29,6 @@ public class Staff_Menu extends JFrame {
 	static PatientRegister PatientReg;
 	static DepartmentRegister DepartReg;
 	static int serialNumber;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Staff_Menu frame = new Staff_Menu(StaffReg,serialNumber, PatientReg, DepartReg);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

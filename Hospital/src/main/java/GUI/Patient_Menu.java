@@ -30,22 +30,6 @@ public class Patient_Menu extends JFrame {
 	static PatientRegister PatientReg;
 	static DepartmentRegister DepartReg;
 	private static int serialnumber;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Patient_Menu frame = new Patient_Menu(PatientReg, DepartReg, serialnumber);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	/**
 	 * Create the frame.
