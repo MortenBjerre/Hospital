@@ -10,12 +10,12 @@ public class InpatientDepartment extends OutpatientDepartment {
 	protected HashMap<Integer, Patient> patients = new HashMap<Integer, Patient>();
 	
 
-	public InpatientDepartment(String deptName, int beds) {
+	protected InpatientDepartment(String deptName, int beds) {
 		super(deptName);
 		this.beds = beds;
 	}
 	
-	public InpatientDepartment(String deptName) {
+	protected InpatientDepartment(String deptName) {
 		super(deptName);
 		this.beds = 0;
 	}
@@ -62,7 +62,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * Gives the patients in department 
 	 * @return string array of patients in department
 	 */
-	public String[] getPatients() {
+	protected String[] getPatients() {
 		ArrayList<String> patientslist = new ArrayList<String>();
 		for (Integer bedNumber : patients.keySet()) {
 			String patientString = patients.get(bedNumber).toString();
@@ -93,7 +93,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @param serialnum The patient's serialnum of type int
 	 * @return true if department has patient
 	 */
-	public boolean containsPatient(int serialnum) {
+	protected boolean containsPatient(int serialnum) {
 		for (Integer bedNumber : patients.keySet()) {
 			if (patients.get(bedNumber).getSerialnum() == serialnum) {
 				return true;
@@ -122,7 +122,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 *  returns the number of beds in a department
 	 * @return an int representing the number of beds in a department
 	 */
-	public int getTotalBeds() {
+	protected int getTotalBeds() {
 		return beds;
 	}
 	
@@ -131,7 +131,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * It's calculated by subtracting the amount of patients from the number of beds
 	 * @return returns an int representing the number of free beds in a department
 	 */
-	public int getFreeBeds(){
+	protected int getFreeBeds(){
 		return (beds - patients.size());
 	}
 	
@@ -139,7 +139,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * returns the number of occupied beds in a department
 	 * @return returns an int representing the number of occupied beds in a department
 	 */
-	public int getOccupiedBeds() {
+	protected int getOccupiedBeds() {
 		return patients.size();
 	}
 	
@@ -147,7 +147,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * Adds beds to a department
 	 * @param beds the amount of beds to be added
 	 */
-	public void addNewBeds(int beds) {
+	protected void addNewBeds(int beds) {
 		this.beds += beds;
 	}
 	
@@ -157,7 +157,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * and an IllegalArgumentException message "There aren't that enough beds to subtract that many" will be displayed
 	 * @param beds the amount of beds to be removed
 	 */
-	public void removeBeds(int beds) {
+	protected void removeBeds(int beds) {
 		if (this.beds - beds < 0) {
 			throw new IllegalArgumentException("There aren't that enough beds to subtract that many");
 		} 
