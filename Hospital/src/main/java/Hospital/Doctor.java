@@ -24,7 +24,6 @@ public class Doctor extends Staff {
 		return false;
 	}
 	
-	
 	public boolean hasHealthDataAccess() {
 		return true;
 	}

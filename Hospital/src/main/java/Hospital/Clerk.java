@@ -24,12 +24,7 @@ public class Clerk extends Staff {
 		return false; 
 	}
 	
-	public boolean hasHealthDataAccess() {
-		return false;
-	}
-	
 	public String getRole() {
 		return "Clerk";
 	}
 }
-

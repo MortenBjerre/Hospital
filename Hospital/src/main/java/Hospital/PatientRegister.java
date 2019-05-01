@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class PatientRegister extends Register<Patient> {
-		
+	
+	/**
+	 * When creating a patient register the serialnum counter is reset
+	 */
 	public PatientRegister() {
 		Patient.resetSerialnumCounter();
 	}

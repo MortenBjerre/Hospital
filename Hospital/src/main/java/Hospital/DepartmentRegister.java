@@ -7,30 +7,10 @@ import java.util.Map;
 public class DepartmentRegister {
 	
 	//departments is a map mapping string department names to objects of department
-	private Map<String, Department> departments;
-	
-	/**
-	 * Prints departmentRegister by first listing the admitted patients in the department
-	 * and then the staff members working in the department
-	 */
-	public String toString() {
-		String a = "Patients in department: \n";
-		for (String dep : departments.keySet()) {
-			for (String patientInDept: departments.get(dep).getPatients()) {
-				a += patientInDept;
-			};
-		}
-		a += "\nStaff members in department \n";
-		for (String dep : departments.keySet()) {
-			for(String staffInDept: departments.get(dep).getAllStaff()) {
-				a += staffInDept;
-			}
-		}
-		return a;
-	}
+	private Map<String, OutpatientDepartment> departments;
 	
 	public DepartmentRegister() {
-		this.departments = new HashMap<String, Department>();
+		this.departments = new HashMap<String, OutpatientDepartment>();
 	}
 	
 	/**
@@ -47,7 +27,7 @@ public class DepartmentRegister {
 	 * @param deptName name you want to give to department - beds is set to 0
 	 */
 	public void createDepartment(String deptName) {
-		departments.put(deptName, new Department(deptName));
+		departments.put(deptName, new OutpatientDepartment(deptName));
 	}
 	
 	/**
@@ -55,16 +35,24 @@ public class DepartmentRegister {
 	 * @param deptName name of department you want to find
 	 * @return
 	 */
-	protected Department findDepartment(String deptName) {
+	protected OutpatientDepartment findDepartment(String deptName) {
 		return departments.get(deptName);
 	}
 	
 	/**
-	 * Removes a department from the map of departments, by department name
+	 * Removes a department from the department register by name if there are 
+	 * no staff members or patients still in the department. If there is it throws 
+	 * a new IllegalArgumentException "There are still staff and/or patients in the department"
 	 * @param deptName name of department you want to remove
 	 */
-	protected void deleteDepartment(String deptName) {
-		departments.remove(deptName);
+	public void deleteDepartment(String deptName) {
+		String[] listOfPatients = departments.get(deptName).getPatients();
+		String[] listOfStaffMembers = departments.get(deptName).getStaffMembers();
+		if (listOfPatients.length == 0 && listOfStaffMembers.length == 0) {
+				departments.remove(deptName);
+		} else {
+			throw new IllegalArgumentException("There are still staff and/or patients in the department");
+		}
 	}
 	
 	/**
@@ -88,10 +76,10 @@ public class DepartmentRegister {
 	 */
 	private boolean movePatient(Patient p, String deptName) {
 		for (String dep : departments.keySet()) {
-			Department department = departments.get(dep);
+			OutpatientDepartment department = departments.get(dep);
 			if (department.containsPatient(p)) {
 				department.deletePatient(p);
-				Department newDepartment = departments.get(deptName);
+				OutpatientDepartment newDepartment = departments.get(deptName);
 				newDepartment.addPatient(p);
 				return true;
 			}
@@ -120,10 +108,10 @@ public class DepartmentRegister {
 	 */
 	private boolean moveStaff(Staff s, String deptName) {
 		for (String dep : departments.keySet()) {
-			Department department = departments.get(dep);
+			OutpatientDepartment department = departments.get(dep);
 			if (department.containsStaff(s)) {
 				department.deleteStaff(s);
-				Department newDepartment = departments.get(deptName);
+				OutpatientDepartment newDepartment = departments.get(deptName);
 				newDepartment.addStaff(s);
 				return true;
 			}
@@ -138,7 +126,7 @@ public class DepartmentRegister {
 	 */
 	private boolean dischargePatient(Patient p) {
 		for (String dep : departments.keySet()) {
-			Department department = departments.get(dep);
+			OutpatientDepartment department = departments.get(dep);
 			if (department.containsPatient(p)) {
 				department.deletePatient(p);
 				return true;
@@ -165,7 +153,7 @@ public class DepartmentRegister {
 	 */
 	private boolean dischargeStaff(Staff s) {
 		for (String dep : departments.keySet()) {
-			Department department = departments.get(dep);
+			OutpatientDepartment department = departments.get(dep);
 			if (department.containsStaff(s)) {
 				department.deleteStaff(s);
 				return true;
@@ -182,20 +170,6 @@ public class DepartmentRegister {
 	public void dischargeStaff(int serialnum, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
 		dischargeStaff(s);		
-	}
-	
-	/**
-	 * Gives the patients in searched department
-	 * @param deptName
-	 * @return String array of patients in department
-	 */
-	public String[] searchPatientDepartment(String deptName) {
-		for (String dept : departments.keySet()) {
-			if (dept == deptName) {
-				return departments.get(dept).getPatients();
-			}
-		}
-		return new String[0];
 	}
 	
 	/**
@@ -234,7 +208,7 @@ public class DepartmentRegister {
 				}
 			}
 		} else {
-			Department department = departments.get(deptName);
+			OutpatientDepartment department = departments.get(deptName);
 			if (department == null) {
 				throw new IllegalArgumentException("No such department");
 			} else {
@@ -292,10 +266,9 @@ public class DepartmentRegister {
 	 * Searches department register for patient by serialnumber.
 	 * Will throw error if the patient is not admitted.
 	 * @param serialnum
-	 * @param pr PatientRegister
 	 * @return string of patient
 	 */
-	public String searchSerialNum(int serialnum, PatientRegister pr) {
+	public String searchSerialNum(int serialnum) {
 		Patient patientInDept = null;
 		for (String deptName : departments.keySet()) {
 			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
@@ -382,6 +355,14 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Gives the bed of the patient with the specified bed and department. 
+	 * If the department has no beds IllegalArgumentException "No beds in this department" is thrown.
+	 * If the department does not exist IllegalArgumentException "No such department" is thrown.
+	 * @param serialnum
+	 * @param deptName
+	 * @return bed number of the specified patient
+	 */
 	public int getBedOf(int serialnum, String deptName) {
 		if (departments.containsKey(deptName)) {
 			if (departments.get(deptName) instanceof InpatientDepartment) {
@@ -395,6 +376,12 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Returns the patient in the specified bed number and department.
+	 * @param bedNumber
+	 * @param deptName
+	 * @return Patient
+	 */
 	public Patient getPatientInBed(int bedNumber, String deptName) {
 		if (departments.containsKey(deptName)) {
 			if (departments.get(deptName) instanceof InpatientDepartment) {
@@ -409,13 +396,35 @@ public class DepartmentRegister {
 		}
 	}
 
+	/**
+	 * Gives the staff member with specified serial number
+	 * @param serialnum
+	 * @return Staff member
+	 */
 	public Staff getStaff(int serialnum) {
 		for (String deptName : departments.keySet()) {
-			Department department = departments.get(deptName);
+			OutpatientDepartment department = departments.get(deptName);
 			if (department.containsStaff(serialnum)) {
 				return department.getStaff(serialnum);
 			}
 		}
 		throw new IllegalArgumentException("No such staff");
+	}
+
+	/**
+	 * Allows you to change the name of a department.
+	 * Throws IllegalArgumentException "No such department" if the department
+	 * is not in department register
+	 * @param deptName old department name
+	 * @param newDeptName new department name
+	 */
+	public void changeNameOf(String deptName, String newDeptName) {
+		if (departments.containsKey(deptName)) {
+			departments.get(deptName).setDeptName(newDeptName);
+			OutpatientDepartment d = departments.remove(deptName);
+			departments.put(newDeptName, d);
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
 	}
 }
