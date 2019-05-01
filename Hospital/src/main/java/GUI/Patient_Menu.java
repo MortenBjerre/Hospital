@@ -22,6 +22,8 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
 
 @SuppressWarnings({ "unused", "serial" })
 public class Patient_Menu extends JFrame {
@@ -30,7 +32,7 @@ public class Patient_Menu extends JFrame {
 	static PatientRegister PatientReg;
 	static DepartmentRegister DepartReg;
 	private static int serialnumber;
-	
+  
 	/**
 	 * Create the frame.
 	 */
@@ -50,10 +52,6 @@ public class Patient_Menu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblWelcomeToThe = new JLabel("Welcome to the Patient Menu, ");
-		lblWelcomeToThe.setBounds(51, 44, 341, 32);
-		lblWelcomeToThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		btnGoBack.addActionListener(new ActionListener() {
@@ -61,55 +59,56 @@ public class Patient_Menu extends JFrame {
 				dispose();
 			}
 		});
-		btnGoBack.setBounds(0, 528, 171, 41);
-		contentPane.add(btnGoBack);
+		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel lblYourEmailIs = new JLabel("E-mail is : ");
-		lblYourEmailIs.setBounds(51, 181, 190, 33);
-		lblYourEmailIs.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		
-		JLabel lblYourAddressIs = new JLabel("Address is :");
-		lblYourAddressIs.setBounds(51, 242, 202, 33);
-		lblYourAddressIs.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		
-		JLabel lblYourPhoneNumber = new JLabel("Phone Number is :");
-		lblYourPhoneNumber.setBounds(51, 303, 293, 33);
-		lblYourPhoneNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		JLabel lblWelcomeToThe = new JLabel("Welcome to the Patient Menu, ");
+		lblWelcomeToThe.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblWelcomeToThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblWelcomeToThe);
 		
 		JLabel lblNameOfThe = new JLabel(patient.getName() + " " + patient.getSurname());
-		lblNameOfThe.setBounds(405, 42, 251, 32);
 		lblNameOfThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblNameOfThe);
+		
+		JLabel lblYourEmailIs = new JLabel("E-mail is :");
+		lblYourEmailIs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYourEmailIs.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblYourEmailIs);
 		
 		JLabel lblPatientsEmail = new JLabel(patient.getEmail());
-		lblPatientsEmail.setBounds(358, 181, 266, 32);
 		lblPatientsEmail.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblPatientsEmail);
+		
+		JLabel lblYourAddressIs = new JLabel("Address is :");
+		lblYourAddressIs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYourAddressIs.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblYourAddressIs);
 		
 		JLabel lblPatientsAddress = new JLabel(patient.getAddress());
-		lblPatientsAddress.setBounds(358, 242, 266, 32);
 		lblPatientsAddress.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblPatientsAddress);
+		
+		JLabel lblYourPhoneNumber = new JLabel("Phone Number is : ");
+		lblYourPhoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYourPhoneNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		contentPane.add(lblYourPhoneNumber);
 		
 		JLabel lblPatientsPhonenumber = new JLabel(Integer.toString(patient.getPhoneNumber()));
-		lblPatientsPhonenumber.setBounds(358, 303, 266, 32);
 		lblPatientsPhonenumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		contentPane.setLayout(null);
-		contentPane.add(lblWelcomeToThe);
-		contentPane.add(lblNameOfThe);
-		contentPane.add(lblYourEmailIs);
-		contentPane.add(lblPatientsEmail);
-		contentPane.add(lblYourAddressIs);
-		contentPane.add(lblPatientsAddress);
-		contentPane.add(lblYourPhoneNumber);
 		contentPane.add(lblPatientsPhonenumber);
-		contentPane.add(btnGoBack);
 		
-		JLabel lblYourBedNumber = new JLabel("Bed Number is :");
+		JLabel lblYourBedNumber = new JLabel("Bed Number is : ");
+		lblYourBedNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourBedNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		lblYourBedNumber.setBounds(51, 364, 293, 33);
 		contentPane.add(lblYourBedNumber);
 		
-		JLabel lblPatientsBednumber = new JLabel("Patients BedNumber");
+		JLabel lblPatientsBednumber = new JLabel("BedNumber");
 		lblPatientsBednumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		lblPatientsBednumber.setBounds(358, 362, 266, 32);
 		contentPane.add(lblPatientsBednumber);
+		contentPane.add(btnGoBack);
+		contentPane.add(btnGoBack);
+		
+		JLabel label = new JLabel("");
+		contentPane.add(label);
 	}
 }
