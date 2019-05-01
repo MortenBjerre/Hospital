@@ -28,6 +28,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Rectangle;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -39,6 +41,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ButtonGroup;
+import com.jgoodies.forms.layout.FormSpecs;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("unused")
 public class graphic_user_interface {
@@ -49,6 +53,7 @@ public class graphic_user_interface {
 	private JPasswordField passwordField;
 	private StaffRegister StaffReg;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -93,22 +98,18 @@ public class graphic_user_interface {
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(1000,670);
-		
-		JButton btnQuit = new JButton("Quit");
-		buttonGroup.add(btnQuit);
-		btnQuit.setAlignmentY(0.0f);
-		btnQuit.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		btnQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{180, 149, 315, 213, 180, 0};
+		gridBagLayout.rowHeights = new int[]{258, 55, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		frame.getContentPane().setLayout(gridBagLayout);
 		
 			JButton btnPatient = new JButton("Patient");
-			buttonGroup.add(btnPatient);
-			btnPatient.setAlignmentY(0.0f);
-			btnPatient.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+			btnPatient.setMaximumSize(new Dimension(10, 10));
+			btnPatient.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 			btnPatient.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -116,44 +117,31 @@ public class graphic_user_interface {
 					loginPage2.setVisible(true);
 				}
 			});
-		//		frame.isResizable(true);
-		//		
-				JButton btnStaff = new JButton("Staff");
-				buttonGroup.add(btnStaff);
-				btnStaff.setAlignmentY(0.0f);
-				btnStaff.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-				btnStaff.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						StaffLogin loginPage = new StaffLogin(StaffReg, PatientReg);
-						loginPage.setVisible(true);
-					}
-				});
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(64)
-							.addComponent(btnStaff, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-							.addGap(76)
-							.addComponent(btnPatient, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
-						.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 281, GroupLayout.PREFERRED_SIZE))
-					.addGap(81))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGap(186)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnPatient, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-						.addComponent(btnStaff, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
-					.addGap(64)
-					.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
-		);
-		groupLayout.setAutoCreateGaps(true);
-		frame.getContentPane().setLayout(groupLayout);
+			
+			JButton btnStaff = new JButton("Staff");
+			btnStaff.setMaximumSize(new Dimension(10, 10));
+			btnStaff.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+			btnStaff.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					StaffLogin loginPage = new StaffLogin(StaffReg, PatientReg, DepartReg);
+					loginPage.setVisible(true);
+				}
+			});
+			GridBagConstraints gbc_btnStaff = new GridBagConstraints();
+			gbc_btnStaff.anchor = GridBagConstraints.NORTH;
+			gbc_btnStaff.fill = GridBagConstraints.HORIZONTAL;
+			gbc_btnStaff.insets = new Insets(0, 0, 0, 5);
+			gbc_btnStaff.gridx = 1;
+			gbc_btnStaff.gridy = 1;
+			frame.getContentPane().add(btnStaff, gbc_btnStaff);
+			GridBagConstraints gbc_btnPatient = new GridBagConstraints();
+			gbc_btnPatient.insets = new Insets(0, 0, 0, 5);
+			gbc_btnPatient.fill = GridBagConstraints.HORIZONTAL;
+			gbc_btnPatient.anchor = GridBagConstraints.NORTH;
+			gbc_btnPatient.gridx = 3;
+			gbc_btnPatient.gridy = 1;
+			frame.getContentPane().add(btnPatient, gbc_btnPatient);
 
 		
 		}

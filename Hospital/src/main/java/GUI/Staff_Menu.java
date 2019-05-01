@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import Hospital.Staff;
 import Hospital.StaffRegister;
 import Hospital.Clerk;
+import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
 
 import javax.swing.JButton;
@@ -26,6 +27,7 @@ public class Staff_Menu extends JFrame {
 	private JPanel contentPane;
 	static StaffRegister StaffReg;
 	static PatientRegister PatientReg;
+	static DepartmentRegister DepartReg;
 	static int serialNumber;
 	/**
 	 * Launch the application.
@@ -34,7 +36,7 @@ public class Staff_Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Staff_Menu frame = new Staff_Menu(StaffReg,serialNumber, PatientReg);
+					Staff_Menu frame = new Staff_Menu(StaffReg,serialNumber, PatientReg, DepartReg);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +49,7 @@ public class Staff_Menu extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
-	public Staff_Menu(StaffRegister StaffReg, int serialNumber, PatientRegister PatientReg) {
+	public Staff_Menu(StaffRegister StaffReg, int serialNumber, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
 		Staff_Menu.StaffReg = StaffReg;
 		Staff_Menu.PatientReg = PatientReg;
 		this.serialNumber = serialNumber;
@@ -69,11 +71,25 @@ public class Staff_Menu extends JFrame {
 		if (Staff.hasWriteAccessTo(PatientReg)) {
 			btnChangeInfo.setVisible(true);
 		}
+		btnChangeInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				updatePatientInfo loginPage2 = new updatePatientInfo(PatientReg);
+				loginPage2.setVisible(true);
+			}
+		});
 		
 		JButton btnRemovePatient = new JButton("Discharge patient");
 		btnRemovePatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnRemovePatient);
 		btnRemovePatient.setVisible(false);
+		btnRemovePatient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Dischargepatient loginPage = new Dischargepatient(PatientReg,DepartReg);
+				loginPage.setVisible(true);
+			}
+		});
 		
 		JButton btnMovePatient = new JButton("Move Patient");
 		btnMovePatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));

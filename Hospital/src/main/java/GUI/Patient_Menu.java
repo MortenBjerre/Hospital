@@ -80,15 +80,15 @@ public class Patient_Menu extends JFrame {
 		btnGoBack.setBounds(0, 528, 171, 41);
 		contentPane.add(btnGoBack);
 		
-		JLabel lblYourEmailIs = new JLabel("Your E-mail is : ");
+		JLabel lblYourEmailIs = new JLabel("E-mail is : ");
 		lblYourEmailIs.setBounds(51, 181, 190, 33);
 		lblYourEmailIs.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		
-		JLabel lblYourAddressIs = new JLabel("Your Address is :");
+		JLabel lblYourAddressIs = new JLabel("Address is :");
 		lblYourAddressIs.setBounds(51, 242, 202, 33);
 		lblYourAddressIs.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		
-		JLabel lblYourPhoneNumber = new JLabel("Your Phone Number is :");
+		JLabel lblYourPhoneNumber = new JLabel("Phone Number is :");
 		lblYourPhoneNumber.setBounds(51, 303, 293, 33);
 		lblYourPhoneNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		
@@ -118,7 +118,7 @@ public class Patient_Menu extends JFrame {
 		contentPane.add(lblPatientsPhonenumber);
 		contentPane.add(btnGoBack);
 		
-		JLabel lblYourBedNumber = new JLabel("Your Bed Number is :");
+		JLabel lblYourBedNumber = new JLabel("Bed Number is :");
 		lblYourBedNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		lblYourBedNumber.setBounds(51, 364, 293, 33);
 		contentPane.add(lblYourBedNumber);
