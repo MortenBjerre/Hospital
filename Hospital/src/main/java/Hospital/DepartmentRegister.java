@@ -60,11 +60,17 @@ public class DepartmentRegister {
 	}
 	
 	/**
-	 * Removes a department from the map of departments, by department name
+	 * Removes a department from the department register by name if there are 
+	 * no staff members or patients still in the department. If there is it throws 
+	 * a new IllegalArgumentException "There are still staff and/or patients in the department"
 	 * @param deptName name of department you want to remove
 	 */
-	protected void deleteDepartment(String deptName) {
-		departments.remove(deptName);
+	public void deleteDepartment(String deptName) {
+		if (departments.get(deptName).getPatients().length == 0 && departments.get(deptName).getStaffMembers().length == 0) {
+				departments.remove(deptName);
+		} else {
+			throw new IllegalArgumentException("There are still staff and/or patients in the department");
+		}
 	}
 	
 	/**

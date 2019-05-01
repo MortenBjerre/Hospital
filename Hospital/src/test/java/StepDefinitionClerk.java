@@ -537,4 +537,21 @@ public class StepDefinitionClerk {
 			assertTrue(e.getMessage().equals("No such staff"));
 		}
 	}
+	
+	@Then("^I can create an outpatient department called Waiting Room$")
+	public void i_can_create_an_outpatient_department_called_Waiting_Room() {
+		dr.createDepartment("Waiting Room");
+		assertTrue(dr.containsDept("Waiting Room"));
+	}
+
+	@Then("^I can delete the whole department again$")
+	public void i_can_delete_the_whole_department_again() {
+		if (s.canEditDepartmentRegister(dr)) {
+			dr.deleteDepartment("Waiting Room");
+		}
+		assertFalse(dr.containsDept("Waiting Room"));
+	}
+	
+	
+	
 }

@@ -117,4 +117,13 @@ public class Staff extends HospitalUser {
 		return "Staff";
 	}
 
+	/**
+	 * Tells you if the staff member is able to edit the department register
+	 * @param dr Department register
+	 * @return true only for ICT officers
+	 */
+	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
+		return false;
+	}
+
 }

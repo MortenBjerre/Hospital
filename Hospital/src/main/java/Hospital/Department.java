@@ -75,6 +75,20 @@ public class Department {
 	}
 	
 	/**
+	 * Gives the staff members in department 
+	 * @return string array of staff members in department
+	 */
+	public String[] getStaffMembers() {
+		ArrayList<String> stafflist = new ArrayList<String>();
+		for (Staff s : staff) {
+			stafflist.add(s.toString());
+		}
+		String[] patientListString = new String[stafflist.size()];
+		patientListString = stafflist.toArray(patientListString);
+		return patientListString;
+	}
+	
+	/**
 	 * Gives the staff members working in department
 	 * @return string array of staff members in department
 	 */
@@ -157,5 +171,6 @@ public class Department {
 		}
 		throw new IllegalArgumentException("No such staff");
 	}
-	
+
+
 }

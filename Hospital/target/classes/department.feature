@@ -125,7 +125,12 @@ Feature: Testing departments
 		And Staff one is in the ER
 		Then I should be able to fire staff member one
 		
-
+	@tag12 
+	Scenario: ICT Officer creating and deleting outpatient department
+		Given That I am an ICT Officer
+		And I have a department register 
+		Then I can create an outpatient department called Waiting Room
+		And I can delete the whole department again
 	  
 	  
 	  

@@ -41,5 +41,9 @@ public class ICTOfficer extends Staff {
 	public String getRole() {
 		return "ICT Officer";
 	}
+	
+	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
+		return true;
+	}
 
 }
