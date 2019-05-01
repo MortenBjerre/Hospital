@@ -17,7 +17,7 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Testing departments
+Feature: Testing department class
 
   @tag1
   Scenario: As a nurse, I want to know where a patient is, so I can find and treat him
