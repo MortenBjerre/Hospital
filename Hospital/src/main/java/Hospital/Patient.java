@@ -2,14 +2,6 @@ package Hospital;
 
 import java.util.Date;
 
-
-
-
-//methods: 
-//- make a new Patient
-//- an edit method to each value (that are not a part of HospitalUser)
-
-
 public class Patient extends HospitalUser {
 	private String address;
 	private int phoneNumber;
