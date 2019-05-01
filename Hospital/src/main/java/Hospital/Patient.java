@@ -34,28 +34,6 @@ public class Patient extends HospitalUser {
 		serialnumCounter++;
 	}
 	
-//	/**
-//	 * Edit all the patient fields at once
-//	 * @param email
-//	 * @param name
-//	 * @param surname
-//	 * @param birthday
-//	 * @param gender
-//	 * @param address
-//	 * @param phoneNumber
-//	 * @param alive
-//	 * @param healthData
-//	 */
-//	public void setPatient(String email, String name, String surname, Date birthday,
-//			String gender, String address, int phoneNumber, boolean alive, String healthData) {
-//		set(email, name, surname, birthday, gender);
-//		setAddress(address);
-//		setPhoneNumber(phoneNumber);
-//		setAlive(alive);
-//		setHealthData(healthData);
-//		//need to add department
-//	}
-	
 	/**
 	 * Set alive status
 	 * @param alive
