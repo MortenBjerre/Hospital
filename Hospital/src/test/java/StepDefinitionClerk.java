@@ -533,7 +533,7 @@ public class StepDefinitionClerk {
 			Staff staff = dr.getStaff(1);
 			assertTrue(false);
 		} catch (IllegalArgumentException e) {
-			System.out.println("===============\n" + e.getMessage());
+//			System.out.println("===============\n" + e.getMessage());
 			assertTrue(e.getMessage().equals("No such staff"));
 		}
 	}
