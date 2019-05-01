@@ -32,7 +32,7 @@ public class updatePatientInfo extends JFrame {
 	private JTextField Gender;
 	private JTextField Number;
 	private JTextField Alive;
-	int serialnum;
+	protected int serialnum;
 	static PatientRegister PatientReg;
 
 	/**
@@ -305,7 +305,6 @@ public class updatePatientInfo extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					int serialnum;
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
 						Patient p = PatientReg.findSerialnum(serialnum);
