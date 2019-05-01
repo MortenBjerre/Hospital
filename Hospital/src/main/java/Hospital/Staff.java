@@ -1,10 +1,18 @@
 package Hospital;
 
 import java.util.Date;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Staff")
 
-public class Staff extends HospitalUser {
-
+public class Staff extends HospitalUser implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@XmlElement(name ="serialnumCounter")
 	private static int serialnumCounter = 0;
+	@XmlElement(name ="serialnum")
 	private int serialnum;
 	
 	/**

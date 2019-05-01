@@ -2,8 +2,15 @@ package Hospital;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "staffRegister")
 
-public class StaffRegister extends Register<Staff> {
+public class StaffRegister extends Register<Staff> implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L;
 	
 	public StaffRegister() {
 		Staff.resetSerialnumCounter();

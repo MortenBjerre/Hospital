@@ -4,10 +4,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Register")
 
-public abstract class Register<T extends HospitalUser> {
+
+public abstract class Register<T extends HospitalUser> implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@XmlElement(name ="users")
 	public Map<Integer, T> users = new HashMap<Integer, T>();
 	
+	@XmlElement(name ="serialnum")
 	protected int serialnum = 0;
 	
 	public String toString() {

@@ -3,14 +3,24 @@ package Hospital;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "department")
 
-public class Department {
-
+public class Department implements Serializable{
+	
+	@XmlElement(name ="beds")
 	private int beds;
+	@XmlElement(name ="patients")
 	private ArrayList<Patient> patients;
+	@XmlElement(name ="staff")
 	private ArrayList<Staff> staff;
-
+	
+	@XmlElement(name ="deptName")
 	private String deptName;
+	
+	private static final long serialVersionUID = 1L;
 	
 	public Department(String deptName, int beds) {
 		this.deptName = deptName;

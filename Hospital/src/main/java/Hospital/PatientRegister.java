@@ -3,9 +3,15 @@ package Hospital;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "patientRegister")
 
-public class PatientRegister extends Register<Patient> {
-		
+public class PatientRegister extends Register<Patient> implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	public PatientRegister() {
 		Patient.resetSerialnumCounter();
 	}

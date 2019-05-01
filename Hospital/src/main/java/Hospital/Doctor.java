@@ -1,8 +1,13 @@
 package Hospital;
 
 import java.util.Date;
+import java.io.Serializable;
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "doctor")
 
-public class Doctor extends Staff {
+public class Doctor extends Staff implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * Constructor for Doctor. Calls Staff constructor.
