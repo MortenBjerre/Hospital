@@ -263,7 +263,7 @@ public class StepDefinitionClerk {
 		try {
 			dr.searchSerialNum(1, pr);
 		} catch (IllegalArgumentException e) {
-			assertTrue(e.getMessage() == "No such patient admitted");
+			assertTrue(e.getMessage().equals("No such patient admitted"));
 		}
 	}
 	
@@ -323,7 +323,7 @@ public class StepDefinitionClerk {
 	public void patient_zero_is_in_the_ER() {
 		dr.admit(0, "ER", pr);
 		assertEquals(dr.getDeptOfPatient(0), "ER");
-		assertTrue(dr.searchSerialNum(0, pr) == pr.findSerialnum(0).toString());
+		assertTrue(dr.searchSerialNum(0, pr).equals(pr.findSerialnum(0).toString()));
 	}
 
 	@Then("^I should be able to move patient zero from the ER to surgery$")
@@ -545,13 +545,19 @@ public class StepDefinitionClerk {
 		dr.createDepartment("Waiting Room");
 		assertTrue(dr.containsDept("Waiting Room"));
 	}
+	@Then("^I can create an inpatient department called Cardiology$")
+	public void i_can_create_an_inpatient_department_called_Cardiology() {
+		dr.createDepartment("Cardiology", 25);
+	}
 
-	@Then("^I can delete the whole department again$")
+	@Then("^I can delete both departments again$")
 	public void i_can_delete_the_whole_department_again() {
 		if (s.canEditDepartmentRegister(dr)) {
 			dr.deleteDepartment("Waiting Room");
+			dr.deleteDepartment("Cardiology");
 		}
 		assertFalse(dr.containsDept("Waiting Room"));
+		assertFalse(dr.containsDept("Cardiology"));
 	}
 	
 	@Then("^I can rename the department to Patient Waiting Rooms$")
@@ -563,9 +569,22 @@ public class StepDefinitionClerk {
 		}
 	}
 	
-	@Then("^I should be able to see all patients in a department$")
-	public void i_should_be_able_to_see_all_patients_in_a_department() {
+	@Then("^I should be able to add a patient to Waiting Room$")
+	public void i_should_be_able_to_add_a_patient_to_Waiting_Room() {
+		dr.admit(0, "Waiting Room", pr);
+		assertTrue(dr.getDeptOfPatient(0).equals("Waiting Room"));
+	}
+
+	@Then("^I should be able to discharge the patient$")
+	public void i_should_be_able_to_discharge_the_patient() {
+		dr.dischargePatient(0, pr);
+		try {
+			dr.searchSerialNum(0, pr);
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getMessage().equals("No such patient admitted"));
+		}
 		
 	}
+	
 	
 }

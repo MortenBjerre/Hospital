@@ -130,7 +130,8 @@ Feature: Testing departments
 		Given That I am an ICT Officer
 		And I have a department register 
 		Then I can create an outpatient department called Waiting Room
-		And I can delete the whole department again
+		And I can create an inpatient department called Cardiology
+		And I can delete both departments again
 
 	@tag13
 	Scenario: As an ICT Officer, I should be able to change the name of a department
@@ -138,10 +139,13 @@ Feature: Testing departments
 		And I have a department register 
 		Then I can create an outpatient department called Waiting Room
 		And I can rename the department to Patient Waiting Rooms
-		
-  Scenario: As an ICT Officer, i should be able to get all patients in a department 
+ 
+ Scenario: As an ICT Officer, i should be able to add and then delete a patient from a outpatient department 
   	Given That I am an ICT Officer
    	And I have a department register 
-	  And there are multiple departments
-	  Then I should be able to see all patients in a department
+   	And I have a patient register
+   	And the patient register contains several patients
+		Then I can create an outpatient department called Waiting Room
+		And I should be able to add a patient to Waiting Room 
+		And I should be able to discharge the patient
 	  
