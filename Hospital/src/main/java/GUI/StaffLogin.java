@@ -22,6 +22,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({ "serial", "unused" })
 public class StaffLogin extends JFrame {
@@ -108,14 +110,6 @@ public class StaffLogin extends JFrame {
 		gbc_lblSurname.gridy = 2;
 		contentPane.add(lblSurname, gbc_lblSurname);
 		
-		SerialNumber = new JPasswordField();
-		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
-		gbc_SerialNumber.fill = GridBagConstraints.BOTH;
-		gbc_SerialNumber.insets = new Insets(0, 0, 5, 5);
-		gbc_SerialNumber.gridx = 1;
-		gbc_SerialNumber.gridy = 2;
-		contentPane.add(SerialNumber, gbc_SerialNumber);
-		
 		JLabel label_4 = new JLabel("");
 		GridBagConstraints gbc_label_4 = new GridBagConstraints();
 		gbc_label_4.fill = GridBagConstraints.BOTH;
@@ -134,6 +128,39 @@ public class StaffLogin extends JFrame {
 		contentPane.add(invalidLogin, gbc_invalidLogin);
 		invalidLogin.setForeground(Color.red);
 		invalidLogin.setVisible(false);
+		
+		SerialNumber = new JPasswordField();
+		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
+		gbc_SerialNumber.fill = GridBagConstraints.BOTH;
+		gbc_SerialNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_SerialNumber.gridx = 1;
+		gbc_SerialNumber.gridy = 2;
+		contentPane.add(SerialNumber, gbc_SerialNumber);
+		SerialNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+				@SuppressWarnings("deprecation")
+				int serialNumber = Integer.parseInt(SerialNumber.getText());
+				
+				if (attempts != 0) {
+				
+					if (StaffReg.findSerialnum(serialNumber) != null) {
+						Staff_Menu menu = new Staff_Menu(StaffReg, serialNumber, PatientReg, DepartReg);
+						menu.setVisible(true);
+						dispose();
+					} else {
+						invalidLogin.setVisible(true);
+						attempts--;
+					}
+				} else {
+						dispose();
+					}
+			} catch (Exception e1) {
+				;
+				}
+			}
+		});
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));

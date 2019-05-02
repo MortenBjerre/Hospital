@@ -285,12 +285,6 @@ public class updatePatientInfo extends JFrame {
 		Alive.setColumns(10);
 		Alive.setVisible(false);
 		
-		
-		
-		
-		
-		
-		
 		SerialNumber = new JTextField();
 		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
