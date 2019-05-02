@@ -149,6 +149,14 @@ public class Staff_Menu extends JFrame {
 			}
 		});
 		
+		JPanel panel = new JPanel();
+		contentPane.add(panel);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnSave);
+		
+		
 		if (Staff.hasWriteAccessTo(PatientReg)) {
 			btnAddPatient.setVisible(true);
 		}

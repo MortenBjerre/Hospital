@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -105,22 +107,6 @@ public class PatientLogin extends JFrame {
 		gbc_lblSurname.gridy = 2;
 		contentPane.add(lblSurname, gbc_lblSurname);
 		
-		SerialNumber = new JPasswordField();
-		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
-		gbc_SerialNumber.fill = GridBagConstraints.BOTH;
-		gbc_SerialNumber.insets = new Insets(0, 0, 5, 5);
-		gbc_SerialNumber.gridx = 1;
-		gbc_SerialNumber.gridy = 2;
-		contentPane.add(SerialNumber, gbc_SerialNumber);
-		
-		JLabel label_4 = new JLabel("");
-		GridBagConstraints gbc_label_4 = new GridBagConstraints();
-		gbc_label_4.fill = GridBagConstraints.BOTH;
-		gbc_label_4.insets = new Insets(0, 0, 5, 5);
-		gbc_label_4.gridx = 0;
-		gbc_label_4.gridy = 3;
-		contentPane.add(label_4, gbc_label_4);
-		
 		final JLabel invalidLogin = new JLabel("Incorrect Login");
 		invalidLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_invalidLogin = new GridBagConstraints();
@@ -131,6 +117,48 @@ public class PatientLogin extends JFrame {
 		contentPane.add(invalidLogin, gbc_invalidLogin);
 		invalidLogin.setForeground(Color.red);
 		invalidLogin.setVisible(false);
+		
+		
+		SerialNumber = new JPasswordField();
+		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
+		gbc_SerialNumber.fill = GridBagConstraints.BOTH;
+		gbc_SerialNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_SerialNumber.gridx = 1;
+		gbc_SerialNumber.gridy = 2;
+		contentPane.add(SerialNumber, gbc_SerialNumber);
+		SerialNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+				@SuppressWarnings("deprecation")
+				int serialNumber = Integer.parseInt(SerialNumber.getText());
+				
+				if (attempts != 0) {
+				
+					if (PatientReg.findSerialnum(serialNumber) != null) {
+						Patient_Menu menu = new Patient_Menu(PatientReg, DepartReg, serialNumber);
+						menu.setVisible(true);
+						dispose();
+					} else {
+						invalidLogin.setVisible(true);
+						attempts--;
+					}
+				} else {
+						dispose();
+					}
+			} catch (Exception e1) {
+				;
+				}
+			}
+		});
+		
+		JLabel label_4 = new JLabel("");
+		GridBagConstraints gbc_label_4 = new GridBagConstraints();
+		gbc_label_4.fill = GridBagConstraints.BOTH;
+		gbc_label_4.insets = new Insets(0, 0, 5, 5);
+		gbc_label_4.gridx = 0;
+		gbc_label_4.gridy = 3;
+		contentPane.add(label_4, gbc_label_4);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));
