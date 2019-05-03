@@ -32,11 +32,7 @@ public class Patient_Menu extends JFrame {
 	static PatientRegister PatientReg;
 	static DepartmentRegister DepartReg;
 	private static int serialnumber;
-
-	/**
-	 * Launch the application.
-	 */
-
+  
 	/**
 	 * Create the frame.
 	 */

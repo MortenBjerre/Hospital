@@ -340,3 +340,5 @@ public class updatePatientInfo extends JFrame {
 
 	}
 }
+
+
