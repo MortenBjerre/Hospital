@@ -57,13 +57,14 @@ public class graphic_user_interface {
 		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
 		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
 		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");
-		PatientReg.add("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Dead");
-		PatientReg.add("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "alive");
-		PatientReg.add("Niks Asshole", "Nikolaj", "Thanos body double", new Date(), "undefined", "MotherRussia AKA greenland", 42042069, true, "He sucks");
+		PatientReg.add("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Patient needs to be admitted.");
+		PatientReg.add("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "Still alive");
+		PatientReg.add("Niks Asshole", "Nikolaj", "Thanos body double", new Date(), "undefined", "MotherRussia AKA greenland", 42042069, true, "");
 		
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(1000,670);

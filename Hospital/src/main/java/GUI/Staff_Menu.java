@@ -109,6 +109,14 @@ public class Staff_Menu extends JFrame {
 		});
 		
 		JButton btnHealthData = new JButton("Health data");
+		btnHealthData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				HealthData healthDataMenu = new HealthData(PatientReg, DepartReg);
+				healthDataMenu.setVisible(true);
+				
+			}
+		});
 		btnHealthData.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnHealthData);
 		btnHealthData.setVisible(false);

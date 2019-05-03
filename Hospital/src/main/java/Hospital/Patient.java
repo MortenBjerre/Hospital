@@ -101,7 +101,8 @@ public class Patient extends HospitalUser {
 	 * @param healthData String of health data
 	 */
 	public void setHealthData(String healthData) {
-		this.healthData += healthData;
+		Date d = new Date();
+		this.healthData += "Health data updated on the " + d.toString() + ".\n" + healthData +"\n\n";
 		// healthData is added but never deleted
 	}
 	
