@@ -36,63 +36,6 @@ import Hospital.*;
 public class graphic_user_interface {
 
 	private JFrame frame;
-
-	private static void StaffRegistertoXML(StaffRegister staffRegister)
-    {
-        try
-        {
-            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
-            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            jaxbMarshaller.marshal(staffRegister, System.out);
-            File file = new File("staffRegister.xml");
-            jaxbMarshaller.marshal(staffRegister, file);
-        }
-        catch (JAXBException e)
-        {
-            e.printStackTrace();
-        }
-    }
-	
-	private static void PatientRegistertoXML(PatientRegister patientRegister)
-    {
-        try
-        {
-            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
-            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            jaxbMarshaller.marshal(patientRegister, System.out);
-            File file = new File("patientRegister.xml");
-            jaxbMarshaller.marshal(patientRegister, file);
-        }
-        catch (JAXBException e)
-        {
-            e.printStackTrace();
-        }
-    }
-	
-	private static void DepartmentRegistertoXML(DepartmentRegister departmentRegister)
-    {
-        try
-        {
-            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
-            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-  
-            jaxbMarshaller.marshal(departmentRegister, System.out);
-            File file = new File("departmentRegister.xml");
-            jaxbMarshaller.marshal(departmentRegister, file);
-        }
-        catch (JAXBException e)
-        {
-            e.printStackTrace();
-        }
-    }
 	
 	public static DepartmentRegister DepartmentRegisterXMLtoObject(String fileName) {
         File xmlFile = new File(fileName);
@@ -173,6 +116,7 @@ public class graphic_user_interface {
 		return DepartmentRegisterXMLtoObject("departmentRegister.xml");
 	}
 	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -208,13 +152,6 @@ public class graphic_user_interface {
 		final StaffRegister StaffReg = loadStaffRegister();
 		final DepartmentRegister DepartReg = loadDepartmentRegister();
 
-		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
-		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
-		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");
-		PatientReg.add("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Dead");
-		PatientReg.add("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "alive");
-		PatientReg.add("Niks Asshole", "Nikolaj", "Thanos body double", new Date(), "undefined", "MotherRussia AKA greenland", 42042069, true, "He sucks");
-		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
