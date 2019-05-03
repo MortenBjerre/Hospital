@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import Hospital.DepartmentRegister;
@@ -19,6 +21,8 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class HealthData extends JFrame {
 
@@ -31,7 +35,16 @@ public class HealthData extends JFrame {
 	private JLabel lblName;
 	private JLabel lblSurname;
 	private JLabel lblDateOfBirth;
-	private JLabel lblHealthdata;
+	private Patient p;
+	private JButton btnFindHealthData;
+	private JLabel lblHealthData;
+	protected PatientRegister pr;
+	private JTextArea lblgetHealthdata;
+	private JLabel lblPatientSerialNumber;
+	private JTextArea updatedHealthDataField;
+	private String healthData;
+	private JButton btnAddNewHealth;
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Create the frame.
@@ -40,35 +53,31 @@ public class HealthData extends JFrame {
 	 */
 	public HealthData(PatientRegister pr, DepartmentRegister dr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 733, 506);
+		setBounds(100, 100, 756, 723);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 268, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{44, 31, 38, 0, 0, 204, 0, 244, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblPatientSerialNumber = new JLabel("Patient serial number");
-		GridBagConstraints gbc_lblPatientSerialNumber = new GridBagConstraints();
-		gbc_lblPatientSerialNumber.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPatientSerialNumber.anchor = GridBagConstraints.EAST;
-		gbc_lblPatientSerialNumber.gridx = 0;
-		gbc_lblPatientSerialNumber.gridy = 0;
-		contentPane.add(lblPatientSerialNumber, gbc_lblPatientSerialNumber);
-		
-		JButton btnFindHealthData = new JButton("Find health data for patient");
+		btnFindHealthData = new JButton("Find health data for patient");
 		btnFindHealthData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					serialnum = Integer.parseInt(textField.getText());
-					Patient p = pr.findSerialnum(serialnum);
+					p = pr.findSerialnum(serialnum);
 					lblgetName.setText(p.getName());
 					lblgetSurname.setText(p.getSurname());
 					lblgetBirthday.setText(p.getBirthday().toString());
-					
+					lblgetHealthdata.setText(pr.findSerialnum(serialnum).getHealthData());
+					btnAddNewHealth.setVisible(true);
+					updatedHealthDataField.setVisible(true);
+					scrollPane.setVisible(true);
+					lblgetHealthdata.setVisible(true);
 					
 				} catch (Exception e1) {
 					InvalidInput errorWindow = new InvalidInput("Please enter a valid number");
@@ -76,6 +85,14 @@ public class HealthData extends JFrame {
 				}
 			}
 		});
+		
+		lblPatientSerialNumber = new JLabel("Patient Serial Number");
+		GridBagConstraints gbc_lblPatientSerialNumber = new GridBagConstraints();
+		gbc_lblPatientSerialNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPatientSerialNumber.anchor = GridBagConstraints.EAST;
+		gbc_lblPatientSerialNumber.gridx = 0;
+		gbc_lblPatientSerialNumber.gridy = 0;
+		contentPane.add(lblPatientSerialNumber, gbc_lblPatientSerialNumber);
 		
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
@@ -133,18 +150,58 @@ public class HealthData extends JFrame {
 		gbc_lblNewLabel_2.gridy = 4;
 		contentPane.add(lblgetBirthday, gbc_lblNewLabel_2);
 		
-		lblHealthdata = new JLabel("healthData");
-		GridBagConstraints gbc_lblHealthdata = new GridBagConstraints();
-		gbc_lblHealthdata.insets = new Insets(0, 0, 5, 0);
-		gbc_lblHealthdata.gridx = 1;
-		gbc_lblHealthdata.gridy = 5;
-		contentPane.add(lblHealthdata, gbc_lblHealthdata);
+		lblHealthData = new JLabel("Health Data: ");
+		GridBagConstraints gbc_lblHealthData = new GridBagConstraints();
+		gbc_lblHealthData.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHealthData.gridx = 0;
+		gbc_lblHealthData.gridy = 5;
+		contentPane.add(lblHealthData, gbc_lblHealthData);
 		
-		JButton btnAddNewHealth = new JButton("Add new health data");
+		
+				
+		btnAddNewHealth = new JButton("Add new health data");
+		btnAddNewHealth.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				healthData = updatedHealthDataField.getText();
+				pr.editHealthData(serialnum, healthData);
+				lblgetHealthdata.setText(pr.findSerialnum(serialnum).getHealthData());		// + healthData
+				updatedHealthDataField.setText("");
+								
+			}
+		});
+		
+		btnAddNewHealth.setVisible(false);
+		lblgetHealthdata = new JTextArea("");
+		lblgetHealthdata.setLineWrap(true);
+		lblgetHealthdata.setWrapStyleWord(true);
+		scrollPane = new JScrollPane(lblgetHealthdata);
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		scrollPane.setVisible(false);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 5;
+		contentPane.add(scrollPane, gbc_scrollPane);
+		
+	
 		GridBagConstraints gbc_btnAddNewHealth = new GridBagConstraints();
+		gbc_btnAddNewHealth.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAddNewHealth.gridx = 1;
 		gbc_btnAddNewHealth.gridy = 6;
 		contentPane.add(btnAddNewHealth, gbc_btnAddNewHealth);
+		
+		updatedHealthDataField = new JTextArea();
+		updatedHealthDataField.setVisible(false);
+		updatedHealthDataField.setLineWrap(true);
+		updatedHealthDataField.setWrapStyleWord(true);
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.fill = GridBagConstraints.BOTH;
+		gbc_textField_1.gridx = 1;
+		gbc_textField_1.gridy = 7;
+		contentPane.add(updatedHealthDataField, gbc_textField_1);
+		updatedHealthDataField.setColumns(10);
 	}
 
 }
