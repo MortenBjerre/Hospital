@@ -17,7 +17,7 @@ import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
 import Hospital.StaffRegister;
 
-public class graphic_user_interface {
+public class GraphicUserInterface {
 
 	private JFrame frame;
 
@@ -29,7 +29,7 @@ public class graphic_user_interface {
 			public void run() {
 				try {
 					
-					graphic_user_interface window = new graphic_user_interface();
+					GraphicUserInterface window = new GraphicUserInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class graphic_user_interface {
 	/**
 	 * Create the application.
 	 */
-	public graphic_user_interface() {
+	public GraphicUserInterface() {
 		initialize();
 	}
 

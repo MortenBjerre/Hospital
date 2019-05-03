@@ -20,7 +20,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
-public class updatePatientInfo extends JFrame {
+public class UpdatePatientInfo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField SerialNumber;
@@ -38,7 +38,7 @@ public class updatePatientInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public updatePatientInfo(final PatientRegister PatientReg) {
+	public UpdatePatientInfo(final PatientRegister PatientReg) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 796, 690);
 		contentPane = new JPanel();

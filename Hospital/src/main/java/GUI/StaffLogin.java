@@ -146,7 +146,7 @@ public class StaffLogin extends JFrame {
 				if (attempts != 0) {
 				
 					if (StaffReg.findSerialnum(serialNumber) != null) {
-						Staff_Menu menu = new Staff_Menu(StaffReg, serialNumber, PatientReg, DepartReg);
+						StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
 						menu.setVisible(true);
 						dispose();
 					} else {
@@ -173,7 +173,7 @@ public class StaffLogin extends JFrame {
 				if (attempts != 0) {
 				
 					if (StaffReg.findSerialnum(serialNumber) != null) {
-						Staff_Menu menu = new Staff_Menu(StaffReg, serialNumber, PatientReg, DepartReg);
+						StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
 						menu.setVisible(true);
 						dispose();
 					} else {

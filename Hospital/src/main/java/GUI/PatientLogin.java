@@ -136,7 +136,7 @@ public class PatientLogin extends JFrame {
 				if (attempts != 0) {
 				
 					if (PatientReg.findSerialnum(serialNumber) != null) {
-						Patient_Menu menu = new Patient_Menu(PatientReg, DepartReg, serialNumber);
+						PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
 						menu.setVisible(true);
 						dispose();
 					} else {
@@ -171,7 +171,7 @@ public class PatientLogin extends JFrame {
 				if (attempts != 0) {
 				
 					if (PatientReg.findSerialnum(serialNumber) != null) {
-						Patient_Menu menu = new Patient_Menu(PatientReg, DepartReg, serialNumber);
+						PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
 						menu.setVisible(true);
 						dispose();
 					} else {

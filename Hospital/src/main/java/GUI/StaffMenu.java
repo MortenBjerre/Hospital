@@ -22,7 +22,7 @@ import java.awt.GridLayout;
 
 
 @SuppressWarnings({ "unused", "serial" })
-public class Staff_Menu extends JFrame {
+public class StaffMenu extends JFrame {
 
 	private JPanel contentPane;
 	static StaffRegister StaffReg;
@@ -34,11 +34,11 @@ public class Staff_Menu extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
-	public Staff_Menu(final StaffRegister StaffReg, int serialNumber, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
-		Staff_Menu.StaffReg = StaffReg;
-		Staff_Menu.PatientReg = PatientReg;
+	public StaffMenu(final StaffRegister StaffReg, int serialNumber, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
+		StaffMenu.StaffReg = StaffReg;
+		StaffMenu.PatientReg = PatientReg;
 		this.serialNumber = serialNumber;
-		Staff Staff = StaffReg.findSerialnum(serialNumber);
+		Staff staff = StaffReg.findSerialnum(serialNumber);
 
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -53,13 +53,13 @@ public class Staff_Menu extends JFrame {
 		btnChangeInfo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnChangeInfo);
 		btnChangeInfo.setVisible(false);
-		if (Staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(PatientReg)) {
 			btnChangeInfo.setVisible(true);
 		}
 		btnChangeInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				updatePatientInfo loginPage2 = new updatePatientInfo(PatientReg);
+				UpdatePatientInfo loginPage2 = new UpdatePatientInfo(PatientReg);
 				loginPage2.setVisible(true);
 			}
 		});
@@ -92,7 +92,7 @@ public class Staff_Menu extends JFrame {
 		btnSearchPatients.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearchPatients);
 		btnSearchPatients.setVisible(false);
-		if (Staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(PatientReg)) {
 			btnSearchPatients.setVisible(true);
 		}
 		
@@ -120,7 +120,7 @@ public class Staff_Menu extends JFrame {
 		btnHealthData.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnHealthData);
 		btnHealthData.setVisible(false);
-		if (Staff.hasHealthDataAccess()) {
+		if (staff.hasHealthDataAccess()) {
 			btnHealthData.setVisible(true);
 		}
 		
@@ -172,22 +172,22 @@ public class Staff_Menu extends JFrame {
 		contentPane.add(btnSave);
 		
 		
-		if (Staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(PatientReg)) {
 			btnAddPatient.setVisible(true);
 		}
-		if (Staff.hasWriteAccessTo(StaffReg)) {
+		if (staff.hasWriteAccessTo(StaffReg)) {
 			btnAddStaff.setVisible(true);
 		}
-		if (Staff.canMovePatients()) {
+		if (staff.canMovePatients()) {
 			btnMovePatient.setVisible(true);
 		}
-		if (Staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(PatientReg)) {
 			btnRemovePatient.setVisible(true);
 		}
-		if (Staff.canMoveStaff()) {
+		if (staff.canMoveStaff()) {
 			btnMoveStaff.setVisible(true);
 		}
-		if (Staff.hasViewAccessTo(StaffReg)) {
+		if (staff.hasViewAccessTo(StaffReg)) {
 			btnSearch.setVisible(true);
 		}
 	}

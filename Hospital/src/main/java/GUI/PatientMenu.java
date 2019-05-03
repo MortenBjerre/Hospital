@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 
 @SuppressWarnings({ "unused", "serial" })
-public class Patient_Menu extends JFrame {
+public class PatientMenu extends JFrame {
 
 	private JPanel contentPane;
 	static PatientRegister PatientReg;
@@ -37,9 +37,9 @@ public class Patient_Menu extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
-	public Patient_Menu(PatientRegister PatientReg, DepartmentRegister DepartReg, int serialnumber) {
-		Patient_Menu.PatientReg = PatientReg;
-		Patient_Menu.DepartReg = DepartReg;
+	public PatientMenu(PatientRegister PatientReg, DepartmentRegister DepartReg, int serialnumber) {
+		PatientMenu.PatientReg = PatientReg;
+		PatientMenu.DepartReg = DepartReg;
 		this.serialnumber = serialnumber;
 		Patient patient = PatientReg.findSerialnum(serialnumber);
 
