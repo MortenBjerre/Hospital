@@ -42,7 +42,6 @@ public class RegisterPatient extends JFrame {
 	PatientRegister PatientReg;
 	DepartmentRegister DepartReg;
 	private Date DayOfBirth;
-	private int birthMonth, birthday, birthYear;
 	private JTextField txtHealthDataInput;
 	
 	
@@ -145,13 +144,13 @@ public class RegisterPatient extends JFrame {
 		contentPane.add(lblBirthday, gbc_lblBirthday);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				DayOfBirth = dateChooser.getDate();
-
-			}
-		});
+//		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent arg0) {
+//				DayOfBirth = dateChooser.getDate();
+//
+//			}
+//		});
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
 		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
 		gbc_dateChooser.fill = GridBagConstraints.BOTH;
@@ -221,7 +220,10 @@ public class RegisterPatient extends JFrame {
 				String healthData = txtHealthDataInput.getText();
 				String gender = Gender.getText();
 				int phoneNumber = Integer.parseInt(Number.getText());
-				PatientReg.add(email, name, surname, new Date(), gender, address, phoneNumber, true, healthData);
+				int birthMonth = dateChooser.getDate().getMonth();
+				int birthday =  dateChooser.getDate().getDay();
+				int birthYear = dateChooser.getDate().getYear();
+				PatientReg.add(email, name, surname, new Date(birthYear, birthMonth, birthday), gender, address, phoneNumber, true, healthData);
 				dispose();
 				
 			}
@@ -270,5 +272,4 @@ public class RegisterPatient extends JFrame {
 		
 		
 	}
-
 }
