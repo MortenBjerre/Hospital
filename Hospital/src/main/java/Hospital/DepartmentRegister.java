@@ -1,12 +1,17 @@
 package Hospital;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.*;
 
-public class DepartmentRegister {
+@XmlRootElement(name="DepartmentRegister")
+public class DepartmentRegister implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	//departments is a map mapping string department names to objects of department
+	@XmlElementWrapper(name="departments")
 	private Map<String, OutpatientDepartment> departments;
 	
 	public DepartmentRegister() {

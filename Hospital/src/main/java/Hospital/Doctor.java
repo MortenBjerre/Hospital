@@ -1,7 +1,9 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name ="Doctor")
 public class Doctor extends Staff {
 	
 	/**

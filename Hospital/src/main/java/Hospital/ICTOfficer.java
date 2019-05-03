@@ -2,6 +2,9 @@ package Hospital;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "ICTOfficer")
 public class ICTOfficer extends Staff {
 	
 	/**
@@ -12,7 +15,7 @@ public class ICTOfficer extends Staff {
 	 * @param birthday
 	 * @param gender
 	 * @param department
-	 */
+	 */	
 	public ICTOfficer(String email, String name, String surname, Date birthday, String gender) {
 		super(email, name, surname, birthday, gender);
 		

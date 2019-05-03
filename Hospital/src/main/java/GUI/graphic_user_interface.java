@@ -1,20 +1,15 @@
 package GUI; 
 
-import Hospital.DepartmentRegister;
-import Hospital.PatientRegister;
-import Hospital.StaffRegister;
-
-
+import Hospital.*;
 import java.awt.EventQueue;
-
 import java.awt.Window;
-
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -23,6 +18,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -55,10 +54,132 @@ public class graphic_user_interface {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 
+	private static void StaffRegistertoXML(StaffRegister staffRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            jaxbMarshaller.marshal(staffRegister, System.out);
+            File file = new File("StaffRegister.xml");
+            jaxbMarshaller.marshal(staffRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void PatientRegistertoXML(PatientRegister patientRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            jaxbMarshaller.marshal(patientRegister, System.out);
+            File file = new File("patientRegister.xml");
+            jaxbMarshaller.marshal(patientRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void DepartmentRegistertoXML(DepartmentRegister departmentRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+  
+            jaxbMarshaller.marshal(departmentRegister, System.out);
+            File file = new File("departmentRegister.xml");
+            jaxbMarshaller.marshal(departmentRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	public static DepartmentRegister DepartmentRegisterXMLtoObject(String fileName) {
+        File xmlFile = new File(fileName);
+        DepartmentRegister depRegSaving = new DepartmentRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            DepartmentRegister depRegSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            return depRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+        }
+        return depRegSaving;
+    }
+	
+	public static StaffRegister StaffRegisterXMLtoObject(String fileName) {
+        File xmlFile = new File(fileName);
+        StaffRegister staffRegSaving = new StaffRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            StaffRegister staffRegSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            return staffRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+        }
+        return staffRegSaving;
+    }
+	
+	public static PatientRegister PatientRegisterXMLtoObject(String fileName) {
+        File xmlFile = new File(fileName);
+        PatientRegister patientRegSaving = new PatientRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            PatientRegister patientRegSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            return patientRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+        }
+        return patientRegSaving;
+    }
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,6 +204,7 @@ public class graphic_user_interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
 		final PatientRegister  PatientReg = new PatientRegister();
 		final StaffRegister StaffReg = new StaffRegister();
 		final DepartmentRegister DepartReg = new DepartmentRegister();
@@ -92,7 +214,6 @@ public class graphic_user_interface {
 		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");
 		PatientReg.add("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Dead");
 		PatientReg.add("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "alive");
-		
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");

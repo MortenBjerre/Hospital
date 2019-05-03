@@ -1,9 +1,12 @@
 package Hospital;
 
 import java.util.Date;
-
+import javax.xml.bind.annotation.*;
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="Staff")
 public class Staff extends HospitalUser {
-
+	
+	@XmlElement(name="serialnumCounter")
 	private static int serialnumCounter = 0;
 	
 	/**
@@ -16,6 +19,7 @@ public class Staff extends HospitalUser {
 	 * @param gender
 	 * @param department
 	 */
+	public Staff() {}
 	public Staff(String email, String name, String surname, Date birthday, String gender) {
 		set(email, name, surname, birthday, gender);
 		serialnum = serialnumCounter;
