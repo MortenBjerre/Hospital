@@ -64,6 +64,7 @@ public class graphic_user_interface {
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(1000,670);
