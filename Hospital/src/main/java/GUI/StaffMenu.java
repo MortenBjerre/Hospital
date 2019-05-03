@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import javax.swing.SwingConstants;
 
 
 @SuppressWarnings({ "unused", "serial" })
@@ -171,6 +172,7 @@ public class StaffMenu extends JFrame {
 				MoveStaffPage.setVisible(true);
 			}
 		});
+		
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
