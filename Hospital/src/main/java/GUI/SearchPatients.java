@@ -34,7 +34,7 @@ public class SearchPatients extends JFrame {
 	private PatientRegister pr;
 	private Button button;
 	private JScrollPane scrollPane;
-	private Object[][] data;
+	private Object[][] tableData;
 	private Object[] columnNames;
 
 	/**
@@ -105,7 +105,7 @@ public class SearchPatients extends JFrame {
 		});
 		
 		// Table
-		data = makeFullTable(pr);
+		tableData = makeFullTable(pr);
 		
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.insets = new Insets(0, 0, 5, 0);
@@ -119,7 +119,7 @@ public class SearchPatients extends JFrame {
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
-		table = new JTable(data,columnNames);
+		table = new JTable(tableData,columnNames);
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 	}
