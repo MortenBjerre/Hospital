@@ -248,6 +248,7 @@ public class AddStaff extends JFrame {
 			//Date birthday = new Date((comboYear.getSelectedItem()+1900),comboMonth.getSelectedItem(),comboDay.getSelectedItem());
 			String Gender = gender.getText();
 			
+			
 			if (x == "Clerk") {
 				//StaffReg.addClerk(email, name, surname, birthday, gender);
 			} else if (x == "Doctor"){
