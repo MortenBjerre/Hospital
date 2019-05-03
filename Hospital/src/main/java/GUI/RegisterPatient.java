@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +26,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextArea;
 
 public class RegisterPatient extends JFrame {
 
@@ -35,15 +38,22 @@ public class RegisterPatient extends JFrame {
 	private JTextField Email;
 	private JTextField Number;
 	private JTextField Gender;
+	private JTextArea txtrHealthdatafield;
 	PatientRegister PatientReg;
 	DepartmentRegister DepartReg;
-
+	private Date DayOfBirth;
+	private int birthMonth, birthday, birthYear;
+	private JTextField txtHealthDataInput;
+	
+	
 
 
 	/**
 	 * Create the frame.
 	 */
 	public RegisterPatient(final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
+		
+		
 		this.PatientReg = PatientReg;
 		this.DepartReg = DepartReg;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -55,7 +65,7 @@ public class RegisterPatient extends JFrame {
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 89, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblName = new JLabel("Name: ");
@@ -67,12 +77,12 @@ public class RegisterPatient extends JFrame {
 		contentPane.add(lblName, gbc_lblName);
 		
 		Name = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 3;
-		contentPane.add(Name, gbc_textField);
+		GridBagConstraints gbc_txtHealthDataInput = new GridBagConstraints();
+		gbc_txtHealthDataInput.insets = new Insets(0, 0, 5, 5);
+		gbc_txtHealthDataInput.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtHealthDataInput.gridx = 3;
+		gbc_txtHealthDataInput.gridy = 3;
+		contentPane.add(Name, gbc_txtHealthDataInput);
 		Name.setColumns(10);
 		
 		JLabel lblSurname = new JLabel("Surname: ");
@@ -134,6 +144,21 @@ public class RegisterPatient extends JFrame {
 		gbc_lblBirthday.gridy = 7;
 		contentPane.add(lblBirthday, gbc_lblBirthday);
 		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				DayOfBirth = dateChooser.getDate();
+
+			}
+		});
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
+		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.gridx = 3;
+		gbc_dateChooser.gridy = 7;
+		contentPane.add(dateChooser, gbc_dateChooser);
+		
 //		textField_4 = new JTextField();
 //		textField_4.setColumns(10);
 //		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
@@ -193,10 +218,12 @@ public class RegisterPatient extends JFrame {
 				String surname = Surname.getText();
 				String address = Address.getText();
 				String email = Email.getText();
-				
+				String healthData = txtHealthDataInput.getText();
 				String gender = Gender.getText();
-				String number = Number.getText();
-				//Boolean alive = list.getText();
+				int phoneNumber = Integer.parseInt(Number.getText());
+				PatientReg.add(email, name, surname, new Date(), gender, address, phoneNumber, true, healthData);
+				dispose();
+				
 			}
 		});
 		
@@ -216,6 +243,24 @@ public class RegisterPatient extends JFrame {
 		gbc_list.gridx = 3;
 		gbc_list.gridy = 10;
 		contentPane.add(list, gbc_list);
+		
+		JLabel lblHealthData = new JLabel("Health Data:");
+		GridBagConstraints gbc_lblHealthData = new GridBagConstraints();
+		gbc_lblHealthData.anchor = GridBagConstraints.EAST;
+		gbc_lblHealthData.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHealthData.gridx = 2;
+		gbc_lblHealthData.gridy = 11;
+		contentPane.add(lblHealthData, gbc_lblHealthData);
+		
+		txtHealthDataInput = new JTextField();
+		txtHealthDataInput.setText("");
+		GridBagConstraints gbc_txtHealthDataInput1 = new GridBagConstraints();
+		gbc_txtHealthDataInput1.insets = new Insets(0, 0, 5, 5);
+		gbc_txtHealthDataInput1.fill = GridBagConstraints.BOTH;
+		gbc_txtHealthDataInput1.gridx = 3;
+		gbc_txtHealthDataInput1.gridy = 11;
+		contentPane.add(txtHealthDataInput, gbc_txtHealthDataInput1);
+		txtHealthDataInput.setColumns(10);
 		GridBagConstraints gbc_btnRegister = new GridBagConstraints();
 		gbc_btnRegister.insets = new Insets(0, 0, 0, 5);
 		gbc_btnRegister.gridx = 3;
