@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.*;
 public class InpatientDepartment extends OutpatientDepartment {
 	@XmlElement(name = "beds")
 	private int beds;
-	@XmlElementWrapper(name="patients")
-	protected HashMap<Integer, Patient> patients = new HashMap<Integer, Patient>();
+	@XmlElementWrapper(name="patientss")
+	protected HashMap<Integer, Patient> patientss = new HashMap<Integer, Patient>();
 	
 	protected InpatientDepartment() {}
 	protected InpatientDepartment(String deptName, int beds) {
@@ -27,8 +27,8 @@ public class InpatientDepartment extends OutpatientDepartment {
 	protected void addPatient(Patient patient) {
 		boolean availableBeds = false;
 		for (int bedNumber = 0; bedNumber < beds; bedNumber++) {
-			if (!patients.containsKey(bedNumber)) {
-				patients.put(bedNumber, patient);
+			if (!patientss.containsKey(bedNumber)) {
+				patientss.put(bedNumber, patient);
 				availableBeds = true;
 				break;
 			}
@@ -44,9 +44,9 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 */
 	protected void deletePatient(Patient patient) {
 		boolean patientFound = false;
-		for (Integer bedNumber : patients.keySet()) {
-			if (patients.get(bedNumber).equals(patient)) {
-				patients.remove(bedNumber);
+		for (Integer bedNumber : patientss.keySet()) {
+			if (patientss.get(bedNumber).equals(patient)) {
+				patientss.remove(bedNumber);
 				patientFound = true;
 				break;
 			}
@@ -63,8 +63,8 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 */
 	protected String[] getPatients() {
 		ArrayList<String> patientslist = new ArrayList<String>();
-		for (Integer bedNumber : patients.keySet()) {
-			String patientString = patients.get(bedNumber).toString();
+		for (Integer bedNumber : patientss.keySet()) {
+			String patientString = patientss.get(bedNumber).toString();
 			patientslist.add(patientString);
 		}
 		String[] patientListString = new String[patientslist.size()];
@@ -79,8 +79,8 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return true if department has patient
 	 */
 	protected boolean containsPatient(Patient patient) {
-		for (Integer bedNumber : patients.keySet()) {
-			if (patients.get(bedNumber).equals(patient)) {
+		for (Integer bedNumber : patientss.keySet()) {
+			if (patientss.get(bedNumber).equals(patient)) {
 				return true;
 			}
 		} 
@@ -93,8 +93,8 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return true if department has patient
 	 */
 	protected boolean containsPatient(int serialnum) {
-		for (Integer bedNumber : patients.keySet()) {
-			if (patients.get(bedNumber).getSerialnum() == serialnum) {
+		for (Integer bedNumber : patientss.keySet()) {
+			if (patientss.get(bedNumber).getSerialnum() == serialnum) {
 				return true;
 			}
 		} 
@@ -109,8 +109,8 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return matching Patient p
 	 */
 	protected Patient getPatient(int serialnum) {
-		for (Integer bedNumber : patients.keySet()) {
-			Patient patient = patients.get(bedNumber);
+		for (Integer bedNumber : patientss.keySet()) {
+			Patient patient = patientss.get(bedNumber);
 			if (patient.getSerialnum() == serialnum) {
 				return patient;
 			}
@@ -131,7 +131,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return returns an int representing the number of free beds in a department
 	 */
 	protected int getFreeBeds(){
-		return (beds - patients.size());
+		return (beds - patientss.size());
 	}
 	
 	/**
@@ -139,7 +139,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return returns an int representing the number of occupied beds in a department
 	 */
 	protected int getOccupiedBeds() {
-		return patients.size();
+		return patientss.size();
 	}
 	
 	/**
@@ -172,8 +172,8 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return bed number
 	 */
 	protected int getBedOf(int serialnum) {
-		for (Integer bedNumber : patients.keySet()) {
-			if (patients.get(bedNumber).getSerialnum() == serialnum) {
+		for (Integer bedNumber : patientss.keySet()) {
+			if (patientss.get(bedNumber).getSerialnum() == serialnum) {
 				return bedNumber;
 			}
 		}
@@ -186,6 +186,6 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 * @return Patient
 	 */
 	protected Patient getPatientIn(int bedNumber) {
-		return patients.get(bedNumber);
+		return patientss.get(bedNumber);
 	}
 }
