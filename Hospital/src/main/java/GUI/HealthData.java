@@ -174,6 +174,7 @@ public class HealthData extends JFrame {
 		lblgetHealthdata = new JTextArea("");
 		lblgetHealthdata.setLineWrap(true);
 		lblgetHealthdata.setWrapStyleWord(true);
+		lblgetHealthdata.setEditable(false);
 		scrollPane = new JScrollPane(lblgetHealthdata);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		scrollPane.setVisible(false);
