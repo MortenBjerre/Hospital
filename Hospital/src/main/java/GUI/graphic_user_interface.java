@@ -1,5 +1,10 @@
 package GUI; 
 
+
+
+import java.awt.EventQueue;
+import java.awt.Window;
+import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -7,24 +12,173 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import Hospital.DepartmentRegister;
-import Hospital.PatientRegister;
-import Hospital.StaffRegister;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import Hospital.*;
 
 public class graphic_user_interface {
 
 	private JFrame frame;
 
+	private static void StaffRegistertoXML(StaffRegister staffRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            jaxbMarshaller.marshal(staffRegister, System.out);
+            File file = new File("staffRegister.xml");
+            jaxbMarshaller.marshal(staffRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void PatientRegistertoXML(PatientRegister patientRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            jaxbMarshaller.marshal(patientRegister, System.out);
+            File file = new File("patientRegister.xml");
+            jaxbMarshaller.marshal(patientRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void DepartmentRegistertoXML(DepartmentRegister departmentRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+  
+            jaxbMarshaller.marshal(departmentRegister, System.out);
+            File file = new File("departmentRegister.xml");
+            jaxbMarshaller.marshal(departmentRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	public static DepartmentRegister DepartmentRegisterXMLtoObject(String fileName) {
+        File xmlFile = new File(fileName);
+        DepartmentRegister depRegSaving = new DepartmentRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            DepartmentRegister depRegSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            System.out.println("Loaded File");
+            return depRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            System.out.println("No Department Register file found - creating new file");
+        }
+        finally {
+        }
+        return depRegSaving;
+    }
+	
+	public static StaffRegister StaffRegisterXMLtoObject(String fileName) {
+        File xmlFile = new File(fileName);
+        StaffRegister staffRegSaving = new StaffRegister();
+        staffRegSaving.addICTOfficer("admin", "admin", "admin", new Date(), "Apache Attack Helicopter");
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            StaffRegister staffRegSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            System.out.println("Loaded File");
+            return staffRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            System.out.println("No Staff Register file found - creating new file");
+        }
+        finally {
+        }
+        return staffRegSaving;
+    }
+	
+	public static PatientRegister PatientRegisterXMLtoObject(String fileName) {
+        File xmlFile = new File(fileName);
+        PatientRegister patientRegSaving = new PatientRegister();
+        JAXBContext jaxbContext;
+        try
+        {
+            jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            PatientRegister patientRegSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            System.out.println("Loaded File");
+            return patientRegSaving2;
+        }
+        catch (JAXBException e)
+        {
+            System.out.println("No Patient Register file found - creating new file");
+        }
+        finally {
+        }
+        return patientRegSaving;
+    }
+	
+	public static PatientRegister loadPatientRegister() {
+		return PatientRegisterXMLtoObject("patientRegister.xml");
+	}
+	
+	public static StaffRegister loadStaffRegister() {
+		return StaffRegisterXMLtoObject("staffRegister.xml");
+	}
+	
+	public static DepartmentRegister loadDepartmentRegister() {
+		return DepartmentRegisterXMLtoObject("departmentRegister.xml");
+	}
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -50,17 +204,16 @@ public class graphic_user_interface {
 	 */
 	private void initialize() {
 		
-		final PatientRegister  PatientReg = new PatientRegister();
-		final StaffRegister StaffReg = new StaffRegister();
-		final DepartmentRegister DepartReg = new DepartmentRegister();
-		
+		final PatientRegister PatientReg = loadPatientRegister();
+		final StaffRegister StaffReg = loadStaffRegister();
+		final DepartmentRegister DepartReg = loadDepartmentRegister();
+
 		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
 		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
 		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");
 		PatientReg.add("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Dead");
 		PatientReg.add("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "alive");
 		PatientReg.add("Niks Asshole", "Nikolaj", "Thanos body double", new Date(), "undefined", "MotherRussia AKA greenland", 42042069, true, "He sucks");
-		
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
