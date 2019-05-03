@@ -108,6 +108,7 @@ public class SearchPatients extends JFrame {
 		tableData = makeFullTable(pr);
 		
 		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.fill = GridBagConstraints.HORIZONTAL;
 		gbc_button.insets = new Insets(0, 0, 5, 0);
 		gbc_button.gridx = 1;
 		gbc_button.gridy = 2;
