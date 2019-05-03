@@ -20,18 +20,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class MovePatient extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField serialNumber;
-	private JTextField Department_1;
-	private JTextField Department_2;
+	private JLabel lblShowDepartmentPatient;
+	static PatientRegister PatientReg;
+	static DepartmentRegister DepartReg;
 
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public MovePatient(final PatientRegister PatientReg, DepartmentRegister DepartReg) {
+		MovePatient.PatientReg = PatientReg;
+		MovePatient.DepartReg = DepartReg;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 842, 658);
 		contentPane = new JPanel();
@@ -74,16 +80,13 @@ public class MovePatient extends JFrame {
 		contentPane.add(lblPatientIsIn, gbc_lblPatientIsIn);
 		lblPatientIsIn.setVisible(false);
 		
-		Department_1 = new JTextField();
-		Department_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		GridBagConstraints gbc_Department_1 = new GridBagConstraints();
-		gbc_Department_1.insets = new Insets(0, 0, 5, 0);
-		gbc_Department_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Department_1.gridx = 1;
-		gbc_Department_1.gridy = 5;
-		contentPane.add(Department_1, gbc_Department_1);
-		Department_1.setColumns(10);
-		Department_1.setVisible(false);
+		lblShowDepartmentPatient = new JLabel("Show department patient is in");
+		GridBagConstraints gbc_lblShowDepartmentPatient = new GridBagConstraints();
+		gbc_lblShowDepartmentPatient.insets = new Insets(0, 0, 5, 0);
+		gbc_lblShowDepartmentPatient.gridx = 1;
+		gbc_lblShowDepartmentPatient.gridy = 5;
+		contentPane.add(lblShowDepartmentPatient, gbc_lblShowDepartmentPatient);
+		lblShowDepartmentPatient.setVisible(false);
 		
 		final JLabel lblWhatDepartmentShould = new JLabel("Department patient should be moved to: ");
 		lblWhatDepartmentShould.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -95,23 +98,24 @@ public class MovePatient extends JFrame {
 		contentPane.add(lblWhatDepartmentShould, gbc_lblWhatDepartmentShould);
 		lblWhatDepartmentShould.setVisible(false);
 		
-		Department_2 = new JTextField();
-		Department_2.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		GridBagConstraints gbc_Department_2 = new GridBagConstraints();
-		gbc_Department_2.insets = new Insets(0, 0, 5, 0);
-		gbc_Department_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Department_2.gridx = 1;
-		gbc_Department_2.gridy = 8;
-		contentPane.add(Department_2, gbc_Department_2);
-		Department_2.setColumns(10);
-		Department_2.setVisible(false);
-		
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
+		
+		final JComboBox comboBox = new JComboBox();
+		for (String dept : DepartReg.getAllDepartments()) {
+			comboBox.addItem(dept);
+		}
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 8;
+		contentPane.add(comboBox, gbc_comboBox);
+		comboBox.setVisible(false);
 		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
 		gbc_btnGoBack.anchor = GridBagConstraints.EAST;
 		gbc_btnGoBack.gridx = 1;
@@ -128,9 +132,9 @@ public class MovePatient extends JFrame {
 						Patient p = PatientReg.findSerialnum(serialnum);
 						if (p != null) {
 							lblPatientIsIn.setVisible(true);
-							Department_1.setVisible(true);
+							lblShowDepartmentPatient.setVisible(true);
 							lblWhatDepartmentShould.setVisible(true);
-							Department_2.setVisible(true);
+							comboBox.setVisible(true);
 						}
 					} catch (Exception e1) {
 						;

@@ -135,6 +135,13 @@ public class Staff_Menu extends JFrame {
 		btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnAddStaff);
 		btnAddStaff.setVisible(false);
+		btnAddStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddStaff AddStaffPage = new AddStaff(StaffReg);
+				AddStaffPage.setVisible(true);
+			}
+		});
 
 		JButton btnMoveStaff = new JButton("Move Staff");
 		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));

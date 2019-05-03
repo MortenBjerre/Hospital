@@ -26,13 +26,17 @@ public class MoveStaff extends JFrame {
 	private JPanel contentPane;
 	private JTextField serialNumber;
 	private JLabel lblShouldShowDepartment;
-	private JComboBox comboBox;
+	static DepartmentRegister DepartReg;
+	static StaffRegister StaffReg;
+	
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings("unchecked")
 	public MoveStaff(final StaffRegister StaffReg, DepartmentRegister DepartReg) {
+		MoveStaff.StaffReg = StaffReg;
+		MoveStaff.DepartReg = DepartReg;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 842, 658);
 		contentPane = new JPanel();
@@ -76,6 +80,7 @@ public class MoveStaff extends JFrame {
 		lblPatientIsIn.setVisible(false);
 		
 		lblShouldShowDepartment = new JLabel("should show department");
+		lblShouldShowDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblShouldShowDepartment = new GridBagConstraints();
 		gbc_lblShouldShowDepartment.insets = new Insets(0, 0, 5, 0);
 		gbc_lblShouldShowDepartment.gridx = 1;
@@ -99,19 +104,6 @@ public class MoveStaff extends JFrame {
 				dispose();
 			}
 		});
-		
-		@SuppressWarnings("rawtypes")
-		final JComboBox comboBox_1 = new JComboBox();
-		for (String dept : DepartReg.getAllDepartments()) {
-			comboBox_1.addItem(dept);
-		}
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 1;
-		gbc_comboBox_1.gridy = 8;
-		contentPane.add(comboBox_1, gbc_comboBox_1);
-		comboBox_1.setVisible(false);
 		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
 		gbc_btnGoBack.anchor = GridBagConstraints.EAST;
 		gbc_btnGoBack.gridx = 1;
@@ -119,7 +111,18 @@ public class MoveStaff extends JFrame {
 		contentPane.add(btnGoBack, gbc_btnGoBack);
 		
 		
-		
+		@SuppressWarnings("rawtypes")
+		final JComboBox comboBox = new JComboBox();
+		for (String dept : DepartReg.getAllDepartments()) {
+			comboBox.addItem(dept);
+		}
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 8;
+		contentPane.add(comboBox, gbc_comboBox);
+		comboBox.setVisible(false);
 		
 		serialNumber.addKeyListener(new KeyAdapter() {
 			@Override
@@ -133,7 +136,7 @@ public class MoveStaff extends JFrame {
 							lblPatientIsIn.setVisible(true);
 							lblShouldShowDepartment.setVisible(true);
 							lblWhatDepartmentShould.setVisible(true);
-							comboBox_1.setVisible(true);
+							comboBox.setVisible(true);
 						}
 					} catch (Exception e1) {
 						;
@@ -141,6 +144,6 @@ public class MoveStaff extends JFrame {
 				}
 			}
 		});
+		
 	}
-
 }
