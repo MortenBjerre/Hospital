@@ -299,7 +299,6 @@ public class updatePatientInfo extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					int serialnum;
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
 						Patient p = PatientReg.findSerialnum(serialnum);
