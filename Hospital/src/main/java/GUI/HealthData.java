@@ -187,6 +187,7 @@ public class HealthData extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 	
+		
 		GridBagConstraints gbc_btnAddNewHealth = new GridBagConstraints();
 		gbc_btnAddNewHealth.insets = new Insets(0, 0, 5, 0);
 		gbc_btnAddNewHealth.gridx = 1;
