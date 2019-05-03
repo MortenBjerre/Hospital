@@ -32,9 +32,9 @@ public class updatePatientInfo extends JFrame {
 	private JTextField Gender;
 	private JTextField Number;
 	private JTextField Alive;
-	protected int serialnum;
+	int serialnum;
 	static PatientRegister PatientReg;
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -241,7 +241,7 @@ public class updatePatientInfo extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				String newNumber = Number.getText();
 				if (("1234567890".contains(String.valueOf(e.getKeyChar())) || (!Character.isLetter(e.getKeyChar())) 
-						&& !"!\"#ยค%&/()=?`@ยฃ${[]}+|+ยด><\\;:_,.-'*ยจ^~".contains(String.valueOf(e.getKeyChar())))) {
+						&& !"!\"#ค%&/()=?`@ฃ${[]}+|+ด><\\;:_,.-'*จ^~".contains(String.valueOf(e.getKeyChar())))) {
 					if (newNumber.length() <= 9) {
 						PatientReg.editPhoneNumber(serialnum, Integer.parseInt(newNumber));
 					} else {
@@ -285,12 +285,6 @@ public class updatePatientInfo extends JFrame {
 		Alive.setColumns(10);
 		Alive.setVisible(false);
 		
-		
-		
-		
-		
-		
-		
 		SerialNumber = new JTextField();
 		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
@@ -305,6 +299,7 @@ public class updatePatientInfo extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					int serialnum;
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
 						Patient p = PatientReg.findSerialnum(serialnum);
