@@ -15,7 +15,8 @@ public class ICTOfficer extends Staff {
 	 * @param birthday
 	 * @param gender
 	 * @param department
-	 */	
+	 */
+	public ICTOfficer() {}
 	public ICTOfficer(String email, String name, String surname, Date birthday, String gender) {
 		super(email, name, surname, birthday, gender);
 		

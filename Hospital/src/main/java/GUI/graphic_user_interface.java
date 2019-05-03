@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -64,7 +65,7 @@ public class graphic_user_interface {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
             jaxbMarshaller.marshal(staffRegister, System.out);
-            File file = new File("StaffRegister.xml");
+            File file = new File("staffRegister.xml");
             jaxbMarshaller.marshal(staffRegister, file);
         }
         catch (JAXBException e)
@@ -121,11 +122,12 @@ public class graphic_user_interface {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             DepartmentRegister depRegSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            System.out.println("Loaded File");
             return depRegSaving2;
         }
         catch (JAXBException e)
         {
-            e.printStackTrace();
+            System.out.println("No Department Register file found - creating new file");
         }
         finally {
         }
@@ -135,6 +137,7 @@ public class graphic_user_interface {
 	public static StaffRegister StaffRegisterXMLtoObject(String fileName) {
         File xmlFile = new File(fileName);
         StaffRegister staffRegSaving = new StaffRegister();
+        staffRegSaving.addICTOfficer("admin", "admin", "admin", new Date(), "Apache Attack Helicopter");
         JAXBContext jaxbContext;
         try
         {
@@ -142,11 +145,12 @@ public class graphic_user_interface {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             StaffRegister staffRegSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            System.out.println("Loaded File");
             return staffRegSaving2;
         }
         catch (JAXBException e)
         {
-            e.printStackTrace();
+            System.out.println("No Staff Register file found - creating new file");
         }
         finally {
         }
@@ -163,16 +167,29 @@ public class graphic_user_interface {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             PatientRegister patientRegSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            System.out.println("Loaded File");
             return patientRegSaving2;
         }
         catch (JAXBException e)
         {
-            e.printStackTrace();
+            System.out.println("No Patient Register file found - creating new file");
         }
         finally {
         }
         return patientRegSaving;
     }
+	
+	public static PatientRegister loadPatientRegister() {
+		return PatientRegisterXMLtoObject("patientRegister.xml");
+	}
+	
+	public static StaffRegister loadStaffRegister() {
+		return StaffRegisterXMLtoObject("staffRegister.xml");
+	}
+	
+	public static DepartmentRegister loadDepartmentRegister() {
+		return DepartmentRegisterXMLtoObject("departmentRegister.xml");
+	}
 	
 	/**
 	 * Launch the application.
@@ -204,11 +221,11 @@ public class graphic_user_interface {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
-		final PatientRegister  PatientReg = new PatientRegister();
-		final StaffRegister StaffReg = new StaffRegister();
-		final DepartmentRegister DepartReg = new DepartmentRegister();
 		
+		final PatientRegister PatientReg = loadPatientRegister();
+		final StaffRegister StaffReg = loadStaffRegister();
+		final DepartmentRegister DepartReg = loadDepartmentRegister();
+
 		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
 		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
 		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");

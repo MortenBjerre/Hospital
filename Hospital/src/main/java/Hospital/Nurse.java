@@ -15,6 +15,8 @@ public class Nurse extends Staff {
 	 * @param gender
 	 * @param department
 	 */
+	
+	public Nurse() {}
 	public Nurse(String email, String name, String surname, Date birthday, String gender) {
 		super(email, name, surname, birthday, gender);
 	}

@@ -12,6 +12,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	@XmlElementWrapper(name="patients")
 	protected HashMap<Integer, Patient> patients = new HashMap<Integer, Patient>();
 	
+	protected InpatientDepartment() {}
 	protected InpatientDepartment(String deptName, int beds) {
 		super(deptName);
 		this.beds = beds;
