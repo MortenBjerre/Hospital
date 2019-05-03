@@ -121,6 +121,7 @@ public class SearchPatients extends JFrame {
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		table = new JTable(tableData,columnNames);
+		table.setEnabled(false); // un-editable
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 	}
