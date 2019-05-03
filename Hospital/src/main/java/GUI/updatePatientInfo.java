@@ -32,9 +32,9 @@ public class updatePatientInfo extends JFrame {
 	private JTextField Gender;
 	private JTextField Number;
 	private JTextField Alive;
-	protected int serialnum;
+	int serialnum;
 	static PatientRegister PatientReg;
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -241,7 +241,7 @@ public class updatePatientInfo extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				String newNumber = Number.getText();
 				if (("1234567890".contains(String.valueOf(e.getKeyChar())) || (!Character.isLetter(e.getKeyChar())) 
-						&& !"!\"#ยค%&/()=?`@ยฃ${[]}+|+ยด><\\;:_,.-'*ยจ^~".contains(String.valueOf(e.getKeyChar())))) {
+						&& !"!\"#ค%&/()=?`@ฃ${[]}+|+ด><\\;:_,.-'*จ^~".contains(String.valueOf(e.getKeyChar())))) {
 					if (newNumber.length() <= 9) {
 						PatientReg.editPhoneNumber(serialnum, Integer.parseInt(newNumber));
 					} else {
@@ -285,12 +285,6 @@ public class updatePatientInfo extends JFrame {
 		Alive.setColumns(10);
 		Alive.setVisible(false);
 		
-		
-		
-		
-		
-		
-		
 		SerialNumber = new JTextField();
 		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
@@ -301,47 +295,5 @@ public class updatePatientInfo extends JFrame {
 		gbc_SerialNumber.gridy = 1;
 		contentPane.add(SerialNumber, gbc_SerialNumber);
 		SerialNumber.setColumns(10);
-		SerialNumber.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					try {
-						serialnum = Integer.parseInt(SerialNumber.getText());
-						Patient p = PatientReg.findSerialnum(serialnum);
-						if (p != null) {
-							lblEnterPatientsName.setVisible(true);
-							Name.setVisible(true);
-							Name.setText(p.getName());
-							lblSurname.setVisible(true);
-							Surname.setVisible(true);
-							Surname.setText(p.getSurname());
-							lblAddress.setVisible(true);
-							Address.setVisible(true);
-							Address.setText(p.getAddress());
-							lblEmail.setVisible(true);
-							Email.setVisible(true);
-							Email.setText(p.getEmail());
-							lblBirthday.setVisible(true);
-							Birthday.setVisible(true);
-							String bday = "" + p.getBirthday();
-							Birthday.setText(bday);
-							lblGender.setVisible(true);
-							Gender.setVisible(true);
-							Gender.setText(p.getGender());
-							lblPhoneNumber.setVisible(true);
-							Number.setVisible(true);
-							Number.setText( Integer.toString(p.getPhoneNumber()));
-							lblAlive.setVisible(true);
-							Alive.setVisible(true);
-							Alive.setText(Boolean.toString(p.getAlive()));
-						}
-					} catch (Exception e1) {
-						;
-					}
-				}
-			}
-		});
-		
-
 	}
 }

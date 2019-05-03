@@ -1,6 +1,8 @@
 package Hospital;
 
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -415,7 +417,7 @@ public class DepartmentRegister implements Serializable{
 		}
 		throw new IllegalArgumentException("No such staff");
 	}
-
+	
 	/**
 	 * Allows you to change the name of a department.
 	 * Throws IllegalArgumentException "No such department" if the department
@@ -431,5 +433,13 @@ public class DepartmentRegister implements Serializable{
 		} else {
 			throw new IllegalArgumentException("No such department");
 		}
+	}
+	
+	public ArrayList<String> getAllDepartments() {
+		ArrayList<String> allDepts = new ArrayList<String>();
+		for (String deptName : departments.keySet()) {
+			allDepts.add(deptName);
+		}
+		return allDepts;
 	}
 }
