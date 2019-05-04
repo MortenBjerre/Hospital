@@ -53,7 +53,7 @@ public class GraphicUserInterface {
 		final PatientRegister  PatientReg = new PatientRegister();
 		final StaffRegister StaffReg = new StaffRegister();
 		final DepartmentRegister DepartReg = new DepartmentRegister();
-		
+		DepartReg.createDepartment("ER");
 		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
 		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
 		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");

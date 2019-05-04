@@ -11,6 +11,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -25,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
+import javax.swing.JButton;
 
 
 public class SearchPatients extends JFrame {
@@ -40,23 +42,26 @@ public class SearchPatients extends JFrame {
 	private Object[][] tableData;
 	private Object[] columnNames;
 	private String searchParameter;
+	private JButton btnAdmitPatient;
+	private DepartmentRegister dr;
 
 	/**
 	 * Create the frame.
+	 * @param departReg 
 	 */
 	@SuppressWarnings("unchecked")
-	public SearchPatients(PatientRegister pr) {
-				
+	public SearchPatients(PatientRegister pr, DepartmentRegister departReg) {
+		dr = departReg;		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setBounds(100, 100, 1000, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblSearchBy = new JLabel("Search By");
@@ -134,7 +139,10 @@ public class SearchPatients extends JFrame {
 						}
 					case ("First Name"):
 						System.out.println(searchParameter);
+						System.out.println(pr);
+						System.out.println(Arrays.toString(pr.searchName(searchParameter)));
 						String[] result2 = pr.searchName(searchParameter);
+						System.out.println(Arrays.toString(result2));
 						tableData = makePartialTable(pr, result2);	
 						updateTable();
 						break;
@@ -200,10 +208,23 @@ public class SearchPatients extends JFrame {
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
+		
+		btnAdmitPatient = new JButton("Admit Patient");
+		btnAdmitPatient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AdmitPatient admitPatient = new AdmitPatient(pr, dr);
+				admitPatient.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_btnAdmitPatient = new GridBagConstraints();
+		gbc_btnAdmitPatient.gridx = 1;
+		gbc_btnAdmitPatient.gridy = 4;
+		contentPane.add(btnAdmitPatient, gbc_btnAdmitPatient);
 		
 		updateTable();
 	}
@@ -216,9 +237,6 @@ public class SearchPatients extends JFrame {
 	private Object[][] makePartialTable(PatientRegister pr, String[] result) {
 		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Alive"};
 		this.columnNames = columnNames;
-		System.out.println(pr);
-		System.out.println(Arrays.toString(pr.searchAlive(true)));
-		System.out.println(pr.searchAlive(true)[0]);
 		Object[][] data = new Object[result.length][columnNames.length];
 		System.out.println("Method:");
 		System.out.println(Arrays.toString(result));

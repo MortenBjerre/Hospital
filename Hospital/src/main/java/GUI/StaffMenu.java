@@ -93,7 +93,7 @@ public class StaffMenu extends JFrame {
 		btnSearchPatients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				SearchPatients searchPatients = new SearchPatients(PatientReg);
+				SearchPatients searchPatients = new SearchPatients(PatientReg, DepartReg);
 				searchPatients.setVisible(true);
 				
 			}
