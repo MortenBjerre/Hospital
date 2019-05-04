@@ -218,6 +218,7 @@ public class SearchPatients extends JFrame {
 		this.columnNames = columnNames;
 		System.out.println(pr);
 		System.out.println(Arrays.toString(pr.searchAlive(true)));
+		System.out.println(pr.searchAlive(true)[0]);
 		Object[][] data = new Object[result.length][columnNames.length];
 		System.out.println("Method:");
 		System.out.println(Arrays.toString(result));
