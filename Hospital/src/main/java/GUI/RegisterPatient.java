@@ -213,19 +213,30 @@ public class RegisterPatient extends JFrame {
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = Name.getText();
-				String surname = Surname.getText();
-				String address = Address.getText();
-				String email = Email.getText();
-				String healthData = txtHealthDataInput.getText();
-				String gender = Gender.getText();
-				int phoneNumber = Integer.parseInt(Number.getText());
-				int birthMonth = dateChooser.getDate().getMonth();
-				int birthday =  dateChooser.getDate().getDay();
-				int birthYear = dateChooser.getDate().getYear();
-				PatientReg.add(email, name, surname, new Date(birthYear, birthMonth, birthday), gender, address, phoneNumber, true, healthData);
-				dispose();
-				
+				try {
+					String name = Name.getText();
+					String surname = Surname.getText();
+					String address = Address.getText();
+					String email = Email.getText();
+					String healthData = txtHealthDataInput.getText();
+					String gender = Gender.getText();
+					int phoneNumber = Integer.parseInt(Number.getText());
+					int birthMonth = dateChooser.getDate().getMonth();
+					int birthday =  dateChooser.getDate().getDay();
+					int birthYear = dateChooser.getDate().getYear();
+					PatientReg.add(email, name, surname, new Date(birthYear, birthMonth, birthday), gender, address, phoneNumber, true, healthData);
+					dispose();
+				} catch (Exception er) {
+					InvalidInput invalidInput = new InvalidInput("Please enter valid input."); 
+					invalidInput.setVisible(true);
+					Name.setText("");
+					Surname.setText("");
+					Address.setText("");
+					Email.setText("");
+					Gender.setText("");
+					Number.setText("");
+					txtHealthDataInput.setText("");
+				}
 			}
 		});
 		
