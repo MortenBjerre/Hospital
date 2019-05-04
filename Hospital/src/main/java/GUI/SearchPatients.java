@@ -184,7 +184,7 @@ public class SearchPatients extends JFrame {
 			
 		});
 		
-		// Table
+		// Table - table initially shows all patients
 		tableData = makeFullTable(pr);
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.fill = GridBagConstraints.HORIZONTAL;
