@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import java.awt.ScrollPane;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
 
@@ -135,7 +136,8 @@ public class SearchPatients extends JFrame {
 				data[i][1] = pr.findSerialnum(i).getName();
 				data[i][2] = pr.findSerialnum(i).getSurname();
 				data[i][3] = pr.findSerialnum(i).getEmail();
-				data[i][4] = pr.findSerialnum(i).getBirthday();
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				data[i][4] = format.format(pr.findSerialnum(i).getBirthday());
 				data[i][5] = pr.findSerialnum(i).getGender();
 				data[i][6] = pr.findSerialnum(i).getAddress();
 				data[i][7] = pr.findSerialnum(i).getPhoneNumber();
