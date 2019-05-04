@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import Hospital.PatientRegister;
@@ -30,7 +31,7 @@ public class SearchPatients extends JFrame {
 	private JPanel contentPane;
 	private JComboBox dropDownMenu;
 	private JLabel lblInput;
-	private JTextField textField;
+	private JTextField userInput;
 	private JTable table;
 	private PatientRegister pr;
 	private Button button;
@@ -70,19 +71,19 @@ public class SearchPatients extends JFrame {
 		dropDownMenu = new JComboBox();
 		dropDownMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+								
 			}
 		});
 		dropDownMenu.addItem("Serial Number");
 		dropDownMenu.addItem("First Name");
-		dropDownMenu.addItem("Last Name");
+		dropDownMenu.addItem("Surname");
 		dropDownMenu.addItem("Email");
+		dropDownMenu.addItem("Birthday");
 		dropDownMenu.addItem("Address");
-		dropDownMenu.addItem("Email");
 		dropDownMenu.addItem("Phone Number");
-		dropDownMenu.addItem("Email");
 		dropDownMenu.addItem("Gender");
-		dropDownMenu.addItem("Email");
+		dropDownMenu.addItem("Alive status");
+
 		
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
@@ -99,24 +100,92 @@ public class SearchPatients extends JFrame {
 		gbc_lblInput.gridy = 1;
 		contentPane.add(lblInput, gbc_lblInput);
 		
-		textField = new JTextField();
+		userInput = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 1;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
+		contentPane.add(userInput, gbc_textField);
+		userInput.setColumns(10);
 		
 		button = new Button("Search");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String choice = dropDownMenu.getSelectedItem().toString();
+				
+				String searchParameter = userInput.getText();
+				switch(choice) {
+					case ("Serial Number"):
+						try {
+							int serialnum = Integer.parseInt(searchParameter);
+							String[] result1 = pr.searchSerialnum(serialnum);
+							tableData = makePartialTable(pr, result1);
+							// table needs to be updated
+							updateTable();
+
+							break;
+						} catch (Exception e) {
+							dispose();
+						}
+					case ("First Name"):
+						String[] result2 = pr.searchName(searchParameter);
+						tableData = makePartialTable(pr, result2);		
+						updateTable();
+						break;
+					case("Surname"):
+						String[] result3 = pr.searchSurname(searchParameter);
+						tableData = makePartialTable(pr, result3);
+						updateTable();
+						break;
+					case("Email"):
+						String[] result4 = pr.searchEmail(searchParameter);
+						tableData = makePartialTable(pr, result4);
+						updateTable();
+						break;
+					case("Phone Number"):
+						try {
+							int phoneNumber= Integer.parseInt(searchParameter);
+							String[] result5 = pr.searchSerialnum(phoneNumber);
+							tableData = makePartialTable(pr, result5);
+							updateTable();
+							break;
+						} catch(Exception e) {
+							dispose();
+						}
+						
+					case("Address"):
+						String[] result6 = pr.searchAddress(searchParameter);
+						tableData = makePartialTable(pr, result6);
+						updateTable();
+						break;
+					case("Gender"):
+						String[] result7 = pr.searchGender(searchParameter);
+						tableData = makePartialTable(pr, result7);
+						updateTable();
+						break;
+					case("Alive status"):
+						if (searchParameter == "alive") {
+							String[] result8 = pr.searchAlive(true);
+							tableData = makePartialTable(pr, result8);
+							updateTable();
+							break;
+						} else if (searchParameter == "dead"){
+							String[] result9 = pr.searchAlive(false);
+							tableData = makePartialTable(pr, result9);
+							updateTable();
+						} else {
+							dispose();
+						}
+										
+				}
 			}
+
+			
 		});
 		
 		// Table
 		tableData = makeFullTable(pr);
-		
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.fill = GridBagConstraints.HORIZONTAL;
 		gbc_button.insets = new Insets(0, 0, 5, 0);
@@ -130,10 +199,34 @@ public class SearchPatients extends JFrame {
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
+		
+		updateTable();
+	}
+	private void updateTable() {
 		table = new JTable(tableData,columnNames);
 		table.setEnabled(false); // un-editable
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
+	}
+	private Object[][] makePartialTable(PatientRegister pr, String[] result) {
+		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Alive"};
+		this.columnNames = columnNames;
+		Object[][] data = new Object[result.length][columnNames.length];
+		for (int i = 0; i < result.length; i++) {
+			int serialnum = result[i].split(" ")[1].charAt(0);
+			data[i][0] = pr.findSerialnum(i).getSerialnum();
+			data[i][1] = pr.findSerialnum(i).getName();
+			data[i][2] = pr.findSerialnum(i).getSurname();
+			data[i][3] = pr.findSerialnum(i).getEmail();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			data[i][4] = format.format(pr.findSerialnum(i).getBirthday());
+			data[i][5] = pr.findSerialnum(i).getGender();
+			data[i][6] = pr.findSerialnum(i).getAddress();
+			data[i][7] = pr.findSerialnum(i).getPhoneNumber();
+			data[i][8] = pr.findSerialnum(i).getAlive();	
+		}
+		
+		return data;
 	}
 	
 	private Object[][] makeFullTable(PatientRegister pr) {
