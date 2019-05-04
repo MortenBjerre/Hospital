@@ -89,11 +89,11 @@ public class StaffMenu extends JFrame {
 			}
 		});
 		
-		JButton btnSearchPatients = new JButton("Search Patients");
+		JButton btnSearchPatients = new JButton("Admit Patient");
 		btnSearchPatients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				SearchPatients searchPatients = new SearchPatients(PatientReg, DepartReg);
+				AdmitPatient searchPatients = new AdmitPatient(PatientReg, DepartReg);
 				searchPatients.setVisible(true);
 				
 			}
