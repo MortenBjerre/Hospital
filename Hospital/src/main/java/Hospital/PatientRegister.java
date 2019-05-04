@@ -184,4 +184,17 @@ public class PatientRegister extends Register<Patient> {
 	public String viewHealthData(int serialnum) {
 		return findSerialnum(serialnum).getHealthData();	
 	}
+	
+	public String toString() {
+		String a = "";
+		for(int i = 0; i < NumberOfUsersInRegister();i++) {
+			a += this.findSerialnum(i) + "\n";
+		}
+		return a;
+		
+	}
+	
+	
+	
+	
 }

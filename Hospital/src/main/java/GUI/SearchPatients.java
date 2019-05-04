@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import java.awt.ScrollPane;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
 
@@ -38,6 +39,7 @@ public class SearchPatients extends JFrame {
 	private JScrollPane scrollPane;
 	private Object[][] tableData;
 	private Object[] columnNames;
+	private String searchParameter;
 
 	/**
 	 * Create the frame.
@@ -111,26 +113,29 @@ public class SearchPatients extends JFrame {
 		
 		button = new Button("Search");
 		button.addActionListener(new ActionListener() {
+			
+
 			public void actionPerformed(ActionEvent arg0) {
 				String choice = dropDownMenu.getSelectedItem().toString();
 				
-				String searchParameter = userInput.getText();
+				searchParameter = userInput.getText();
 				switch(choice) {
 					case ("Serial Number"):
 						try {
 							int serialnum = Integer.parseInt(searchParameter);
 							String[] result1 = pr.searchSerialnum(serialnum);
 							tableData = makePartialTable(pr, result1);
+							System.out.println(Arrays.toString(result1));
 							// table needs to be updated
 							updateTable();
-
 							break;
 						} catch (Exception e) {
-							dispose();
+							System.out.println("Error");
 						}
 					case ("First Name"):
+						System.out.println(searchParameter);
 						String[] result2 = pr.searchName(searchParameter);
-						tableData = makePartialTable(pr, result2);		
+						tableData = makePartialTable(pr, result2);	
 						updateTable();
 						break;
 					case("Surname"):
@@ -146,12 +151,12 @@ public class SearchPatients extends JFrame {
 					case("Phone Number"):
 						try {
 							int phoneNumber= Integer.parseInt(searchParameter);
-							String[] result5 = pr.searchSerialnum(phoneNumber);
+							String[] result5 = pr.searchNumber(phoneNumber);
 							tableData = makePartialTable(pr, result5);
 							updateTable();
 							break;
 						} catch(Exception e) {
-							dispose();
+							System.out.println("Error");
 						}
 						
 					case("Address"):
@@ -175,7 +180,7 @@ public class SearchPatients extends JFrame {
 							tableData = makePartialTable(pr, result9);
 							updateTable();
 						} else {
-							dispose();
+							System.out.println("Error");
 						}
 										
 				}
@@ -211,21 +216,24 @@ public class SearchPatients extends JFrame {
 	private Object[][] makePartialTable(PatientRegister pr, String[] result) {
 		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Alive"};
 		this.columnNames = columnNames;
+		System.out.println(pr);
 		Object[][] data = new Object[result.length][columnNames.length];
+		System.out.println("Method:");
+		System.out.println(Arrays.toString(result));
 		for (int i = 0; i < result.length; i++) {
-			int serialnum = result[i].split(" ")[1].charAt(0);
-			data[i][0] = pr.findSerialnum(i).getSerialnum();
-			data[i][1] = pr.findSerialnum(i).getName();
-			data[i][2] = pr.findSerialnum(i).getSurname();
-			data[i][3] = pr.findSerialnum(i).getEmail();
+			int serialnum = result[i].split(" ")[1].charAt(0) - 48;
+			System.out.println(serialnum);
+			data[i][0] = pr.findSerialnum(serialnum).getSerialnum();
+			data[i][1] = pr.findSerialnum(serialnum).getName();
+			data[i][2] = pr.findSerialnum(serialnum).getSurname();
+			data[i][3] = pr.findSerialnum(serialnum).getEmail();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			data[i][4] = format.format(pr.findSerialnum(i).getBirthday());
-			data[i][5] = pr.findSerialnum(i).getGender();
-			data[i][6] = pr.findSerialnum(i).getAddress();
-			data[i][7] = pr.findSerialnum(i).getPhoneNumber();
-			data[i][8] = pr.findSerialnum(i).getAlive();	
+			data[i][4] = format.format(pr.findSerialnum(serialnum).getBirthday());
+			data[i][5] = pr.findSerialnum(serialnum).getGender();
+			data[i][6] = pr.findSerialnum(serialnum).getAddress();
+			data[i][7] = pr.findSerialnum(serialnum).getPhoneNumber();
+			data[i][8] = pr.findSerialnum(serialnum).getAlive();	
 		}
-		
 		return data;
 	}
 	
