@@ -42,8 +42,7 @@ public class SearchPatients extends JFrame {
 	 * Create the frame.
 	 */
 	public SearchPatients(PatientRegister pr) {
-		
-		
+				
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
