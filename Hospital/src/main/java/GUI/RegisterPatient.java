@@ -56,15 +56,15 @@ public class RegisterPatient extends JFrame {
 		this.PatientReg = PatientReg;
 		this.DepartReg = DepartReg;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 796, 690);
+		setBounds(100, 100, 500, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 89, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 245, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblName = new JLabel("Name: ");
@@ -153,7 +153,7 @@ public class RegisterPatient extends JFrame {
 //		});
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
 		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
-		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooser.gridx = 3;
 		gbc_dateChooser.gridy = 5;
 		contentPane.add(dateChooser, gbc_dateChooser);
@@ -252,7 +252,7 @@ public class RegisterPatient extends JFrame {
 		});
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.fill = GridBagConstraints.BOTH;
+		gbc_list.fill = GridBagConstraints.HORIZONTAL;
 		gbc_list.gridx = 3;
 		gbc_list.gridy = 8;
 		contentPane.add(list, gbc_list);
