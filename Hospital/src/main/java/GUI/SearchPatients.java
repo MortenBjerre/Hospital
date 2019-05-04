@@ -41,6 +41,7 @@ public class SearchPatients extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public SearchPatients(PatientRegister pr) {
 				
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -72,7 +73,16 @@ public class SearchPatients extends JFrame {
 				
 			}
 		});
-		
+		dropDownMenu.addItem("Serial Number");
+		dropDownMenu.addItem("First Name");
+		dropDownMenu.addItem("Last Name");
+		dropDownMenu.addItem("Email");
+		dropDownMenu.addItem("Address");
+		dropDownMenu.addItem("Email");
+		dropDownMenu.addItem("Phone Number");
+		dropDownMenu.addItem("Email");
+		dropDownMenu.addItem("Gender");
+		dropDownMenu.addItem("Email");
 		
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
