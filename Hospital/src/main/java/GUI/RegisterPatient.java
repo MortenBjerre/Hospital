@@ -224,7 +224,7 @@ public class RegisterPatient extends JFrame {
 					int birthMonth = dateChooser.getDate().getMonth();
 					int birthday =  dateChooser.getDate().getDay();
 					int birthYear = dateChooser.getDate().getYear();
-					PatientReg.add(email, name, surname, new Date(birthYear, birthMonth, birthday), gender, address, phoneNumber, true, healthData);
+					PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), gender, address, phoneNumber, true, healthData);
 					dispose();
 				} catch (Exception er) {
 					InvalidInput invalidInput = new InvalidInput("Please enter valid input."); 

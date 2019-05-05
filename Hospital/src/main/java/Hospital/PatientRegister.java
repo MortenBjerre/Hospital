@@ -26,7 +26,7 @@ public class PatientRegister extends Register<Patient> {
 	 * @param healthData
 	 * @return Returns the serial number of the patient added
 	 */
-	public int add(String email, String name, String surname, Date birthday,
+	public int register(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
 			String healthData) {
 		Patient patient = new Patient(email, name, surname, birthday, gender, address, 

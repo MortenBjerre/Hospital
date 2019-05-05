@@ -31,7 +31,7 @@ public class AdmitPatientWindow extends JFrame {
 
 	public AdmitPatientWindow(PatientRegister pr, DepartmentRegister dr) {
 		this.dr = dr;
-		setTitle("Admit patient");
+		setTitle("Admit a patient");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 200);
 		contentPane = new JPanel();
@@ -74,12 +74,10 @@ public class AdmitPatientWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int serialnum = Integer.parseInt(serialnumberTextField.getText());
-//					String deptName = drTextField.getText();
-//					dr.admit(serialnum, deptName, pr);
+					String deptName = (String) departmentNames.getSelectedItem();
+					dr.admit(serialnum, deptName, pr);
 					dispose();
-//					InvalidInput invalidInput = new InvalidInput("Patient was admitted to " + deptName);
-//					invalidInput.setVisible(true);
-					
+					new SuccesfullOperation("Patient was admitted to " + deptName).setVisible(true);			
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
 					invalidInput.setVisible(true);

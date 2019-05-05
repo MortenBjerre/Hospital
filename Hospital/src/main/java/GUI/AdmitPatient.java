@@ -118,11 +118,8 @@ public class AdmitPatient extends JFrame {
 		
 		button = new Button("Search");
 		button.addActionListener(new ActionListener() {
-			
-
 			public void actionPerformed(ActionEvent arg0) {
 				String choice = dropDownMenu.getSelectedItem().toString();
-				
 				searchParameter = userInput.getText();
 				switch(choice) {
 					case ("Serial Number"):
@@ -136,13 +133,17 @@ public class AdmitPatient extends JFrame {
 							break;
 						} catch (Exception e) {
 							System.out.println("Error");
+							break;
 						}
 					case ("First Name"):
-						System.out.println(searchParameter);
+						System.out.print(searchParameter);
+						String name = searchParameter;
+						System.out.println(searchParameter.equals("Alexander"));
 						System.out.println(pr);
-						System.out.println(Arrays.toString(pr.searchName(searchParameter)));
+						System.out.println(Arrays.toString(pr.searchName(name)));
 						String[] result2 = pr.searchName(searchParameter);
 						System.out.println(Arrays.toString(result2));
+						System.out.println(Arrays.toString(pr.searchName(searchParameter)));
 						tableData = makePartialTable(pr, result2);	
 						updateTable();
 						break;
@@ -165,6 +166,7 @@ public class AdmitPatient extends JFrame {
 							break;
 						} catch(Exception e) {
 							System.out.println("Error");
+							break;
 						}
 						
 					case("Address"):
@@ -178,17 +180,19 @@ public class AdmitPatient extends JFrame {
 						updateTable();
 						break;
 					case("Alive status"):
-						if (searchParameter == "alive") {
+						if (searchParameter.equals("alive")) {
 							String[] result8 = pr.searchAlive(true);
 							tableData = makePartialTable(pr, result8);
 							updateTable();
 							break;
-						} else if (searchParameter == "dead"){
+						} else if (searchParameter.equals("dead")){
 							String[] result9 = pr.searchAlive(false);
 							tableData = makePartialTable(pr, result9);
 							updateTable();
+							break;
 						} else {
 							System.out.println("Error");
+							break;
 						}
 										
 				}
