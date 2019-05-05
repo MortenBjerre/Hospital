@@ -370,7 +370,11 @@ public class DepartmentRegister {
 			if (departments.containsKey(deptName)) {
 				if (departments.get(deptName) instanceof InpatientDepartment) {
 					InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
-					inpatientDepartment.removeBeds(removedBeds);;
+					if(inpatientDepartment.getFreeBeds() >= removedBeds) {
+						inpatientDepartment.removeBeds(removedBeds);;
+					} else {
+						throw new IllegalArgumentException("Can't remove more beds than there are");
+					}
 				} else {
 					throw new IllegalArgumentException("Can't remove beds from outpatient department");
 				}
