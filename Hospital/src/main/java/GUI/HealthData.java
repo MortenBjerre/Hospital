@@ -23,6 +23,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class HealthData extends JFrame {
 
@@ -85,8 +87,40 @@ public class HealthData extends JFrame {
 				}
 			}
 		});
+
+		lblPatientSerialNumber = new JLabel("Patient Serial Number");
+		GridBagConstraints gbc_lblPatientSerialNumber = new GridBagConstraints();
+		gbc_lblPatientSerialNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPatientSerialNumber.anchor = GridBagConstraints.EAST;
+		gbc_lblPatientSerialNumber.gridx = 0;
+		gbc_lblPatientSerialNumber.gridy = 0;
+		contentPane.add(lblPatientSerialNumber, gbc_lblPatientSerialNumber);
 		
-		serialnumTextField = new JTextField();
+		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_ENTER)
+					try {
+						serialnum = Integer.parseInt(textField.getText());
+						p = pr.findSerialnum(serialnum);
+						lblgetName.setText(p.getName());
+						lblgetSurname.setText(p.getSurname());
+						lblgetBirthday.setText(p.getBirthday().toString());
+						lblgetHealthdata.setText(pr.findSerialnum(serialnum).getHealthData());
+						btnAddNewHealth.setVisible(true);
+						updatedHealthDataField.setVisible(true);
+						scrollPane.setVisible(true);
+						lblgetHealthdata.setVisible(true);
+						
+					} catch (Exception NullPointerException) {
+						InvalidInput errorWindow = new InvalidInput("Please enter a valid number");
+						errorWindow.setVisible(true);
+					}
+			}
+		});
+
+
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;

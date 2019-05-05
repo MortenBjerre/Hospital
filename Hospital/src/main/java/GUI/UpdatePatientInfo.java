@@ -295,5 +295,46 @@ public class UpdatePatientInfo extends JFrame {
 		gbc_SerialNumber.gridy = 1;
 		contentPane.add(SerialNumber, gbc_SerialNumber);
 		SerialNumber.setColumns(10);
+		
+		SerialNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					try {
+						serialnum = Integer.parseInt(SerialNumber.getText());
+						Patient p = PatientReg.findSerialnum(serialnum);
+						if (p != null) {
+							lblEnterPatientsName.setVisible(true);
+							Name.setVisible(true);
+							Name.setText(p.getName());
+							lblSurname.setVisible(true);
+							Surname.setVisible(true);
+							Surname.setText(p.getSurname());
+							lblAddress.setVisible(true);
+							Address.setVisible(true);
+							Address.setText(p.getAddress());
+							lblEmail.setVisible(true);
+							Email.setVisible(true);
+							Email.setText(p.getEmail());
+							lblBirthday.setVisible(true);
+							Birthday.setVisible(true);
+							String bday = "" + p.getBirthday();
+							Birthday.setText(bday);
+							lblGender.setVisible(true);
+							Gender.setVisible(true);
+							Gender.setText(p.getGender());
+							lblPhoneNumber.setVisible(true);
+							Number.setVisible(true);
+							Number.setText( Integer.toString(p.getPhoneNumber()));
+							lblAlive.setVisible(true);
+							Alive.setVisible(true);
+							Alive.setText(Boolean.toString(p.getAlive()));
+						}
+					} catch (Exception e1) {
+						;
+					}
+				}
+			}
+		});
 	}
 }
