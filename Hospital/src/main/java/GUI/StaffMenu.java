@@ -140,32 +140,30 @@ public class StaffMenu extends JFrame {
 				searchStaff.setVisible(true);
 			}
 		});
+		
+				
+				JButton btnAddStaff = new JButton("Register Staff");
+				btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+				contentPane.add(btnAddStaff);
+				btnAddStaff.setVisible(false);
+				btnAddStaff.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						AddStaff AddStaffPage = new AddStaff(StaffReg);
+						AddStaffPage.setVisible(true);
+					}
+				});
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
 		
-		JButton btnDischargeStaff = new JButton("Discharge Staff");
-		btnDischargeStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		btnDischargeStaff.addActionListener(new ActionListener() {
+		JButton btnAddStaff_1 = new JButton("Add Staff to Department");
+		btnAddStaff_1.setFont(new Font("Times New Roman", Font.PLAIN, 28));
+		btnAddStaff_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new DischargeStaff(StaffReg, DepartReg).setVisible(true);
 			}
 		});
-		contentPane.add(btnDischargeStaff);
-		btnDischargeStaff.setVisible(false);
-
-		
-		JButton btnAddStaff = new JButton("Add Staff");
-		btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		contentPane.add(btnAddStaff);
-		btnAddStaff.setVisible(false);
-		btnAddStaff.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				AddStaff AddStaffPage = new AddStaff(StaffReg);
-				AddStaffPage.setVisible(true);
-			}
-		});
+		contentPane.add(btnAddStaff_1);
 
 		JButton btnMoveStaff = new JButton("Move Staff");
 		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -187,6 +185,16 @@ public class StaffMenu extends JFrame {
 				departmentManger.setVisible(true);
 			}
 		});
+		
+		JButton btnDischargeStaff = new JButton("Discharge Staff");
+		btnDischargeStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnDischargeStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DischargeStaff(StaffReg, DepartReg).setVisible(true);
+			}
+		});
+		contentPane.add(btnDischargeStaff);
+		btnDischargeStaff.setVisible(false);
 		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnIctOfficerMenu);
 		btnIctOfficerMenu.setVisible(false);
