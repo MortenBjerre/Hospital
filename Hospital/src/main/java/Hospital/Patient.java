@@ -42,6 +42,9 @@ public class Patient extends HospitalUser {
 	}
 	
 	public void setPhoneNumber(int phoneNumber) {
+		if (phoneNumber < 100000) {
+			throw new IllegalArgumentException("Phone number too short");
+		}
 		this.phoneNumber = phoneNumber;
 	}
 
