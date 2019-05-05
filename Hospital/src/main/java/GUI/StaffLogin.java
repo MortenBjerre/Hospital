@@ -139,25 +139,27 @@ public class StaffLogin extends JFrame {
 		SerialNumber.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				try {
-				@SuppressWarnings("deprecation")
-				int serialNumber = Integer.parseInt(SerialNumber.getText());
-				
-				if (attempts != 0) {
-				
-					if (StaffReg.findSerialnum(serialNumber) != null) {
-						StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
-						menu.setVisible(true);
-						dispose();
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					try {
+					@SuppressWarnings("deprecation")
+					int serialNumber = Integer.parseInt(SerialNumber.getText());
+					
+					if (attempts != 0) {
+					
+						if (StaffReg.findSerialnum(serialNumber) != null) {
+							StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
+							menu.setVisible(true);
+							dispose();
+						} else {
+							invalidLogin.setVisible(true);
+							attempts--;
+						}
 					} else {
-						invalidLogin.setVisible(true);
-						attempts--;
+							dispose();
+						}
+				} catch (Exception e1) {
+					;
 					}
-				} else {
-						dispose();
-					}
-			} catch (Exception e1) {
-				;
 				}
 			}
 		});
