@@ -174,12 +174,16 @@ public class StaffMenu extends JFrame {
 		});
 		
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel);
+		JButton btnIctOfficerMenu = new JButton("ICT Officer Menu");
+		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnIctOfficerMenu);
+		btnIctOfficerMenu.setVisible(false);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSave);
+		
+	
 		
 		
 		if (staff.hasWriteAccessTo(PatientReg)) {
@@ -199,6 +203,9 @@ public class StaffMenu extends JFrame {
 		}
 		if (staff.hasViewAccessTo(StaffReg)) {
 			btnSearch.setVisible(true);
+		}
+		if (staff.canEditDepartmentRegister(DepartReg)) {
+			btnIctOfficerMenu.setVisible(true);
 		}
 	}
 }
