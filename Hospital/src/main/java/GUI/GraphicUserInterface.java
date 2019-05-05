@@ -22,6 +22,7 @@ public class GraphicUserInterface {
 	private JFrame frame;
 
 	/**
+	 * 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
