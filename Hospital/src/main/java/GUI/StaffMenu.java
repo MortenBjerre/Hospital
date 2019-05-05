@@ -158,7 +158,7 @@ public class StaffMenu extends JFrame {
 				btnAddStaff.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						AddStaff AddStaffPage = new AddStaff(StaffReg);
+						RegisterStaff AddStaffPage = new RegisterStaff(StaffReg);
 						AddStaffPage.setVisible(true);
 					}
 				});
