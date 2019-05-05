@@ -231,7 +231,8 @@ public class DepartmentManager extends JFrame {
 		for (int i = 0; i < allDepartments.size(); i++) {
 			String deptName = allDepartments.get(i);
 			data[i][0] = deptName;
-			data[i][1] = dr.numberOfPatient(deptName)
+			data[i][1] = dr.numberOfPatient(deptName);
+			data[i][2] = dr.numberOfStaff(deptName);
 		}
 		return data;
 	}

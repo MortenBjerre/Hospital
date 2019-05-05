@@ -472,4 +472,13 @@ public class DepartmentRegister {
 		return departments.get(deptName).patients.size();
 		
 	}
+
+	/**
+	 * Returns the number of staff working in department
+	 * @param deptName
+	 * @return number of staff
+	 */
+	public int numberOfStaff(String deptName) {
+		return departments.get(deptName).staff.size();
+	}
 }
