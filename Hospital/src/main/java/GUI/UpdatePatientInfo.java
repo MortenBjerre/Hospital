@@ -26,6 +26,8 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class UpdatePatientInfo extends JFrame {
@@ -339,6 +341,16 @@ public class UpdatePatientInfo extends JFrame {
 		SerialNumber.setColumns(10);
 		
 		aliveStatus = new JComboBox();
+		aliveStatus.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (aliveStatus.getSelectedItem().equals("Alive")) {
+					pr.editAlive(serialnum, true);
+				} else {
+					pr.editAlive(serialnum, false);
+				}
+			}
+		});
 		aliveStatus.setVisible(false);
 		aliveStatus.addItem("Alive");
 		aliveStatus.addItem("Dead");
