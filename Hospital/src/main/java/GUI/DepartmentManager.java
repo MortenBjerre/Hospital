@@ -46,9 +46,11 @@ public class DepartmentManager extends JFrame {
 					int beds = Integer.parseInt(numberOfBeds);
 					dr.createDepartment(deptName, beds);
 					new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created").setVisible(true);
+					clearText();
 				} catch (Exception error) {
 					dr.createDepartment(deptName);
 					new SuccesfullOperation("Department " + deptName + " beds was created").setVisible(true);
+					clearText();
 				}
 			}
 		});
@@ -100,10 +102,11 @@ public class DepartmentManager extends JFrame {
 				try {
 					dr.deleteDepartment(deptName);
 					new SuccesfullOperation("Department " + deptName + " was deleted").setVisible(true);
+					clearText();
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
 					invalidInput.setVisible(true);
-					departmentNameTextField.setText("");
+					clearText();
 				}
 			}
 		});
@@ -125,16 +128,16 @@ public class DepartmentManager extends JFrame {
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput("Please enter valid number of beds");
 					invalidInput.setVisible(true);
-					numberOfBedsTextField.setText("");
+					clearText();
 				}
 				try {
 					dr.addBeds(deptName, addedBeds);
-					new SuccesfullOperation(addedBeds + " was added to " + deptName).setVisible(true);
+					new SuccesfullOperation(addedBeds + " was added to " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName).setVisible(true);
+					clearText();
 				} catch (Exception error2) {
 					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
 					invalidInput.setVisible(true);
-					departmentNameTextField.setText("");
-					numberOfBedsTextField.setText("");
+					clearText();
 				}
 			}
 		});
@@ -147,7 +150,26 @@ public class DepartmentManager extends JFrame {
 		
 		JButton btnRemoveBedsFrom = new JButton("Remove beds from department");
 		btnRemoveBedsFrom.addActionListener(new ActionListener() {
+			private int removedBeds;
 			public void actionPerformed(ActionEvent e) {
+				String deptName = departmentNameTextField.getText();
+				String numberOfBeds = numberOfBedsTextField.getText();
+				try {
+					removedBeds = Integer.parseInt(numberOfBeds);
+				} catch (Exception error) {
+					InvalidInput invalidInput = new InvalidInput("Please enter valid number of beds");
+					invalidInput.setVisible(true);
+					clearText();
+				}
+				try {
+					dr.removeBeds(deptName, removedBeds);
+					new SuccesfullOperation(removedBeds + " was removed from " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName).setVisible(true);
+					clearText();
+				} catch (Exception error2) {
+					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
+					invalidInput.setVisible(true);
+					clearText();
+				}
 			}
 		});
 		GridBagConstraints gbc_btnRemoveBedsFrom = new GridBagConstraints();
@@ -155,6 +177,11 @@ public class DepartmentManager extends JFrame {
 		gbc_btnRemoveBedsFrom.gridx = 3;
 		gbc_btnRemoveBedsFrom.gridy = 1;
 		contentPane.add(btnRemoveBedsFrom, gbc_btnRemoveBedsFrom);
+	}
+	
+	private void clearText() {
+		departmentNameTextField.setText("");
+		numberOfBedsTextField.setText("");
 	}
 
 }

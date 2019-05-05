@@ -26,7 +26,7 @@ public class SuccesfullOperation extends JFrame {
 	public SuccesfullOperation(String message) {
 		this.message = message;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 220, 135);
+		setBounds(100, 100, 320, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
