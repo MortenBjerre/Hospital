@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SuccesfullOperation extends JFrame {
+public class SuccesfulOperation extends JFrame {
 
 	private JPanel contentPane;
 	private static String message;
@@ -25,7 +25,7 @@ public class SuccesfullOperation extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SuccesfullOperation(String message) {
+	public SuccesfulOperation(String message) {
 		this.message = message;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 290, 160);

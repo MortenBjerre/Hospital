@@ -56,13 +56,13 @@ public class DepartmentManager extends JFrame {
 					try {
 						int beds = Integer.parseInt(numberOfBeds);
 						dr.createDepartment(deptName, beds);
-						SuccesfullOperation success = new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created");
+						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " with " + numberOfBeds + " beds was created");
 						clearText();
 						success.setVisible(true);
 						success.setSize(new Dimension(650,250));
 					} catch (Exception error) {
 						dr.createDepartment(deptName);
-						SuccesfullOperation success = new SuccesfullOperation("Department " + deptName + " was created");
+						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " was created");
 						clearText();
 						success.setVisible(true);
 						success.setSize(new Dimension(500,250));
@@ -123,7 +123,7 @@ public class DepartmentManager extends JFrame {
 				String deptName = departmentNameTextField.getText();
 				try {
 					dr.deleteDepartment(deptName);
-					new SuccesfullOperation("Department " + deptName + " was deleted").setVisible(true);
+					new SuccesfulOperation("Department " + deptName + " was deleted").setVisible(true);
 					clearText();
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
@@ -155,7 +155,7 @@ public class DepartmentManager extends JFrame {
 				}
 				try {
 					dr.addBeds(deptName, addedBeds);
-					new SuccesfullOperation(addedBeds + " was added to " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName).setVisible(true);
+					new SuccesfulOperation(addedBeds + " was added to " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName).setVisible(true);
 					clearText();
 				} catch (Exception error2) {
 					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
@@ -187,7 +187,7 @@ public class DepartmentManager extends JFrame {
 				}
 				try {
 					dr.removeBeds(deptName, removedBeds);
-					SuccesfullOperation success = new SuccesfullOperation(removedBeds + " was removed from " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName);
+					SuccesfulOperation success = new SuccesfulOperation(removedBeds + " was removed from " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName);
 					clearText();
 					success.setVisible(true);
 					success.setSize(new Dimension(600,200));

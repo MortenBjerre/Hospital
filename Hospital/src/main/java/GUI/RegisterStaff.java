@@ -61,7 +61,7 @@ public class RegisterStaff extends JFrame {
 		gbc_panel.gridy = 1;
 		getContentPane().add(panel, gbc_panel);
 		
-		JLabel lblWhatRoleDoes = new JLabel("Staff Role?");
+		JLabel lblWhatRoleDoes = new JLabel("Choose staff role");
 		lblWhatRoleDoes.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblWhatRoleDoes = new GridBagConstraints();
 		gbc_lblWhatRoleDoes.anchor = GridBagConstraints.EAST;
@@ -177,6 +177,8 @@ public class RegisterStaff extends JFrame {
 		
 		JButton btnAdd = new JButton("Register");
 		btnAdd.addActionListener(new ActionListener() {
+			private String Name;
+
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String staffType = null;
@@ -187,7 +189,7 @@ public class RegisterStaff extends JFrame {
 				}
 				if (staffType != null) {	
 					String Email = email.getText();
-					String Name = name.getText();
+					Name = name.getText();
 					String Surname = surname.getText();
 					@SuppressWarnings("deprecation")
 					Date birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
@@ -205,6 +207,7 @@ public class RegisterStaff extends JFrame {
 						StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
 					}
 				}
+				new SuccesfulOperation(Name + " was registered as a(n) " + staffType).setVisible(true);
 				dispose();
 			}
 			
