@@ -326,15 +326,19 @@ public class DepartmentRegister {
 	 * @param addedBeds Number of beds you want added to department
 	 */
 	public void addBeds(String deptName, int addedBeds) {
-		if (departments.containsKey(deptName)) {
-			if (departments.get(deptName) instanceof InpatientDepartment) {
-				InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
-				inpatientDepartment.addNewBeds(addedBeds);
+		if (addedBeds > 0) {
+			if (departments.containsKey(deptName)) {
+				if (departments.get(deptName) instanceof InpatientDepartment) {
+					InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
+					inpatientDepartment.addNewBeds(addedBeds);
+				} else {
+					throw new IllegalArgumentException("Can't add beds to outpatient department");
+				}
 			} else {
-				throw new IllegalArgumentException("Can't add beds to outpatient department");
+				throw new IllegalArgumentException("No such department");
 			}
 		} else {
-			throw new IllegalArgumentException("No such department");
+			throw new IllegalArgumentException("Number of added beds must be positive");
 		}
 	}
 
@@ -344,15 +348,19 @@ public class DepartmentRegister {
 	 * @param removedBeds Number of beds you want removed from department
 	 */
 	public void removeBeds(String deptName, int removedBeds) {
-		if (departments.containsKey(deptName)) {
-			if (departments.get(deptName) instanceof InpatientDepartment) {
-				InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
-				inpatientDepartment.removeBeds(removedBeds);;
+		if (removedBeds > 0) {
+			if (departments.containsKey(deptName)) {
+				if (departments.get(deptName) instanceof InpatientDepartment) {
+					InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
+					inpatientDepartment.removeBeds(removedBeds);;
+				} else {
+					throw new IllegalArgumentException("Can't remove beds from outpatient department");
+				}
 			} else {
-				throw new IllegalArgumentException("Can't remove beds from outpatient department");
+				throw new IllegalArgumentException("No such department");
 			}
 		} else {
-			throw new IllegalArgumentException("No such department");
+			throw new IllegalArgumentException("Number of removed beds must be positive");
 		}
 	}
 

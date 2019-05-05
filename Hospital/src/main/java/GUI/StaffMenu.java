@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import javax.swing.SwingConstants;
 
 
 @SuppressWarnings({ "unused", "serial" })
@@ -88,7 +89,15 @@ public class StaffMenu extends JFrame {
 			}
 		});
 		
-		JButton btnSearchPatients = new JButton("Search Patients");
+		JButton btnSearchPatients = new JButton("Admit Patient");
+		btnSearchPatients.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				AdmitPatient searchPatients = new AdmitPatient(PatientReg, DepartReg);
+				searchPatients.setVisible(true);
+				
+			}
+		});
 		btnSearchPatients.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearchPatients);
 		btnSearchPatients.setVisible(false);
@@ -164,12 +173,23 @@ public class StaffMenu extends JFrame {
 			}
 		});
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel);
+		
+		JButton btnIctOfficerMenu = new JButton("Deparment Manager");
+		btnIctOfficerMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DepartmentManager departmentManger = new DepartmentManager(DepartReg);
+				departmentManger.setVisible(true);
+			}
+		});
+		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnIctOfficerMenu);
+		btnIctOfficerMenu.setVisible(false);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSave);
+		
+	
 		
 		
 		if (staff.hasWriteAccessTo(PatientReg)) {
@@ -189,6 +209,9 @@ public class StaffMenu extends JFrame {
 		}
 		if (staff.hasViewAccessTo(StaffReg)) {
 			btnSearch.setVisible(true);
+		}
+		if (staff.canEditDepartmentRegister(DepartReg)) {
+			btnIctOfficerMenu.setVisible(true);
 		}
 	}
 }

@@ -17,6 +17,14 @@ public abstract class Register<T extends HospitalUser> {
 	}
 	
 	/**
+	 * Number of users in the register
+	 * @return number of users
+	 */
+	public int NumberOfUsersInRegister() {
+		return users.size();
+	}
+	
+	/**
 	 * Searches for HospitalUsers with a matching serial number
 	 * @param serialnum
 	 * @return matching HospitalUser, or null if none exists
