@@ -18,6 +18,18 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.JComboBox;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class UpdatePatientInfo extends JFrame {
@@ -31,14 +43,18 @@ public class UpdatePatientInfo extends JFrame {
 	private JTextField Birthday;
 	private JTextField Gender;
 	private JTextField Number;
-	private JTextField Alive;
 	int serialnum;
 	static PatientRegister PatientReg;
+	private JComboBox aliveStatus;
+	private JDateChooser dateChooser;
+	private JLabel lblEditBirthday;
+	private JButton btnUpdate;
+	private SimpleDateFormat format;
 	
 	/**
 	 * Create the frame.
 	 */
-	public UpdatePatientInfo(final PatientRegister PatientReg) {
+	public UpdatePatientInfo(final PatientRegister pr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 796, 690);
 		contentPane = new JPanel();
@@ -46,9 +62,9 @@ public class UpdatePatientInfo extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{403, 348, 91, 0};
-		gbl_contentPane.rowHeights = new int[]{56, 33, 39, 41, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{56, 33, 39, 41, 0, 0, 0, 0, 43, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 		
@@ -78,7 +94,7 @@ public class UpdatePatientInfo extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String newName = Name.getText();
-				PatientReg.editName(serialnum, newName);
+				pr.editName(serialnum, newName);
 			}
 		});
 		Name.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -107,7 +123,7 @@ public class UpdatePatientInfo extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String newSurname = Surname.getText();
-				PatientReg.editSurname(serialnum, newSurname);
+				pr.editSurname(serialnum, newSurname);
 			}
 		});
 		Surname.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -136,7 +152,7 @@ public class UpdatePatientInfo extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String newAdd = Address.getText();
-				PatientReg.editAddress(serialnum, newAdd);
+				pr.editAddress(serialnum, newAdd);
 			}
 		});
 		Address.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -164,7 +180,7 @@ public class UpdatePatientInfo extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String newEmail = Email.getText();
-				PatientReg.editEmail(serialnum, newEmail);
+				pr.editEmail(serialnum, newEmail);
 			}
 		});
 		Email.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -198,13 +214,53 @@ public class UpdatePatientInfo extends JFrame {
 		Birthday.setColumns(10);
 		Birthday.setVisible(false);
 		
+		lblEditBirthday = new JLabel("Edit Birthday");
+		lblEditBirthday.setVisible(false);
+		lblEditBirthday.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		GridBagConstraints gbc_lblEditBirthday = new GridBagConstraints();
+		gbc_lblEditBirthday.anchor = GridBagConstraints.EAST;
+		gbc_lblEditBirthday.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEditBirthday.gridx = 0;
+		gbc_lblEditBirthday.gridy = 8;
+		contentPane.add(lblEditBirthday, gbc_lblEditBirthday);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setVisible(false);
+		
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
+		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.gridx = 1;
+		gbc_dateChooser.gridy = 8;
+		contentPane.add(dateChooser, gbc_dateChooser);
+		
+		btnUpdate = new JButton("Update");
+		btnUpdate.setVisible(false);
+		btnUpdate.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent e) {
+				
+				format = new SimpleDateFormat("yyyy-MM-dd");
+				Date birthday = dateChooser.getDate();
+				Birthday.setText(format.format(birthday));
+				pr.editBirthday(serialnum, birthday);
+				
+			}
+		});
+		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
+		gbc_btnUpdate.insets = new Insets(0, 0, 5, 0);
+		gbc_btnUpdate.gridx = 2;
+		gbc_btnUpdate.gridy = 8;
+		contentPane.add(btnUpdate, gbc_btnUpdate);
+		
 		final JLabel lblGender = new JLabel("Gender: ");
 		lblGender.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_lblGender = new GridBagConstraints();
 		gbc_lblGender.anchor = GridBagConstraints.EAST;
 		gbc_lblGender.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGender.gridx = 0;
-		gbc_lblGender.gridy = 8;
+		gbc_lblGender.gridy = 9;
 		contentPane.add(lblGender, gbc_lblGender);
 		lblGender.setVisible(false);
 		
@@ -213,7 +269,7 @@ public class UpdatePatientInfo extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String newGender = Gender.getText();
-				PatientReg.editGender(serialnum, newGender);
+				pr.editGender(serialnum, newGender);
 			}
 		});
 		Gender.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -221,7 +277,7 @@ public class UpdatePatientInfo extends JFrame {
 		gbc_Gender.insets = new Insets(0, 0, 5, 5);
 		gbc_Gender.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Gender.gridx = 1;
-		gbc_Gender.gridy = 8;
+		gbc_Gender.gridy = 9;
 		contentPane.add(Gender, gbc_Gender);
 		Gender.setColumns(10);
 		Gender.setVisible(false);
@@ -232,7 +288,7 @@ public class UpdatePatientInfo extends JFrame {
 		gbc_lblPhoneNumber.anchor = GridBagConstraints.EAST;
 		gbc_lblPhoneNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPhoneNumber.gridx = 0;
-		gbc_lblPhoneNumber.gridy = 9;
+		gbc_lblPhoneNumber.gridy = 10;
 		contentPane.add(lblPhoneNumber, gbc_lblPhoneNumber);
 		lblPhoneNumber.setVisible(false);
 		
@@ -244,7 +300,7 @@ public class UpdatePatientInfo extends JFrame {
 				if (("1234567890".contains(String.valueOf(e.getKeyChar())) || (!Character.isLetter(e.getKeyChar())) 
 						&& !"!\"#¤%&/()=?`@£${[]}+|+´><\\;:_,.-'*¨^~".contains(String.valueOf(e.getKeyChar())))) {
 					if (newNumber.length() <= 9) {
-						PatientReg.editPhoneNumber(serialnum, Integer.parseInt(newNumber));
+						pr.editPhoneNumber(serialnum, Integer.parseInt(newNumber));
 					} else {
 						InvalidInput invalidinp = new InvalidInput("Too Long");
 						invalidinp.setVisible(true);
@@ -260,7 +316,7 @@ public class UpdatePatientInfo extends JFrame {
 		gbc_Number.insets = new Insets(0, 0, 5, 5);
 		gbc_Number.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Number.gridx = 1;
-		gbc_Number.gridy = 9;
+		gbc_Number.gridy = 10;
 		contentPane.add(Number, gbc_Number);
 		Number.setColumns(10);
 		Number.setVisible(false);
@@ -271,20 +327,9 @@ public class UpdatePatientInfo extends JFrame {
 		gbc_lblAlive.anchor = GridBagConstraints.EAST;
 		gbc_lblAlive.insets = new Insets(0, 0, 0, 5);
 		gbc_lblAlive.gridx = 0;
-		gbc_lblAlive.gridy = 10;
+		gbc_lblAlive.gridy = 11;
 		contentPane.add(lblAlive, gbc_lblAlive);
 		lblAlive.setVisible(false);
-		
-		Alive = new JTextField();
-		Alive.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-		GridBagConstraints gbc_Alive = new GridBagConstraints();
-		gbc_Alive.insets = new Insets(0, 0, 0, 5);
-		gbc_Alive.fill = GridBagConstraints.HORIZONTAL;
-		gbc_Alive.gridx = 1;
-		gbc_Alive.gridy = 10;
-		contentPane.add(Alive, gbc_Alive);
-		Alive.setColumns(10);
-		Alive.setVisible(false);
 		
 		SerialNumber = new JTextField();
 		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -297,14 +342,40 @@ public class UpdatePatientInfo extends JFrame {
 		contentPane.add(SerialNumber, gbc_SerialNumber);
 		SerialNumber.setColumns(10);
 		
+		aliveStatus = new JComboBox();
+		aliveStatus.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				if (aliveStatus.getSelectedItem().equals("Alive")) {
+					pr.editAlive(serialnum, true);
+				} else {
+					pr.editAlive(serialnum, false);
+				}
+			}
+		});
+		
+		aliveStatus.setVisible(false);
+		aliveStatus.addItem("Alive");
+		aliveStatus.addItem("Dead");
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 11;
+		contentPane.add(aliveStatus, gbc_comboBox);
+		
 		SerialNumber.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
-						Patient p = PatientReg.findSerialnum(serialnum);
+						Patient p = pr.findSerialnum(serialnum);
 						if (p != null) {
+							if (p.getAlive()) {
+								aliveStatus.setSelectedIndex(0);
+							} else {
+								aliveStatus.setSelectedIndex(1);
+							}
 							lblEnterPatientsName.setVisible(true);
 							Name.setVisible(true);
 							Name.setText(p.getName());
@@ -319,17 +390,20 @@ public class UpdatePatientInfo extends JFrame {
 							Email.setText(p.getEmail());
 							lblBirthday.setVisible(true);
 							Birthday.setVisible(true);
-							String bday = "" + p.getBirthday();
+							format = new SimpleDateFormat("yyyy-MM-dd");
+							String bday = format.format(p.getBirthday());
 							Birthday.setText(bday);
 							lblGender.setVisible(true);
 							Gender.setVisible(true);
 							Gender.setText(p.getGender());
 							lblPhoneNumber.setVisible(true);
 							Number.setVisible(true);
-							Number.setText( Integer.toString(p.getPhoneNumber()));
+							Number.setText(Integer.toString(p.getPhoneNumber()));
 							lblAlive.setVisible(true);
-							Alive.setVisible(true);
-							Alive.setText(Boolean.toString(p.getAlive()));
+							aliveStatus.setVisible(true);
+							lblEditBirthday.setVisible(true);
+							dateChooser.setVisible(true);
+							btnUpdate.setVisible(true);
 						}
 					} catch (Exception e1) {
 						;

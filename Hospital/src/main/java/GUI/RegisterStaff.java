@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Hospital.StaffRegister;
+import com.toedter.calendar.JDateChooser;
 
 public class RegisterStaff extends JFrame {
 
@@ -25,6 +26,7 @@ public class RegisterStaff extends JFrame {
 	private JTextField name;
 	private JTextField surname;
 	private JTextField gender;
+	private JDateChooser dateChooser;
 
 	/**
 	 * Create the frame.
@@ -38,9 +40,9 @@ public class RegisterStaff extends JFrame {
 		gridBagLayout.columnWidths = new int[]{0, 37, 0, 111, 297, 0, 427, 0};
 		gridBagLayout.rowHeights = new int[]{46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
-		this.setSize(new Dimension(2000,700));
+		this.setSize(new Dimension(1000,700));
 		this.setLocationRelativeTo(null);
 		
 		JPanel panel_1 = new JPanel();
@@ -172,79 +174,8 @@ public class RegisterStaff extends JFrame {
 		getContentPane().add(lblBirthday, gbc_lblBirthday);
 		surname.setColumns(10);
 		
-		JLabel lblDay = new JLabel("Day : ");
-		lblDay.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		GridBagConstraints gbc_lblDay = new GridBagConstraints();
-		gbc_lblDay.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDay.anchor = GridBagConstraints.EAST;
-		gbc_lblDay.gridx = 3;
-		gbc_lblDay.gridy = 9;
-		getContentPane().add(lblDay, gbc_lblDay);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboDay = new JComboBox();
-		for (int loopVal = 1; loopVal <= 31; loopVal++) {
-			comboDay.addItem(loopVal);
-		}
-		comboDay.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		comboDay.setPreferredSize(new Dimension(200,50));
-		GridBagConstraints gbc_comboDay = new GridBagConstraints();
-		gbc_comboDay.insets = new Insets(0, 0, 5, 5);
-		gbc_comboDay.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboDay.gridx = 4;
-		gbc_comboDay.gridy = 9;
-		getContentPane().add(comboDay, gbc_comboDay);
-		comboDay.setSelectedIndex(-1);
-		
-		JLabel lblMonth = new JLabel("Month : ");
-		lblMonth.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		GridBagConstraints gbc_lblMonth = new GridBagConstraints();
-		gbc_lblMonth.anchor = GridBagConstraints.EAST;
-		gbc_lblMonth.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMonth.gridx = 3;
-		gbc_lblMonth.gridy = 10;
-		getContentPane().add(lblMonth, gbc_lblMonth);
-		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboMonth = new JComboBox();
-		comboMonth.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		for (int loopVal = 1; loopVal <= 12; loopVal++) {
-			comboMonth.addItem(loopVal);
-		}
-		comboMonth.setPreferredSize(new Dimension(200,50));
-		GridBagConstraints gbc_comboMonth = new GridBagConstraints();
-		gbc_comboMonth.insets = new Insets(0, 0, 5, 5);
-		gbc_comboMonth.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboMonth.gridx = 4;
-		gbc_comboMonth.gridy = 10;
-		getContentPane().add(comboMonth, gbc_comboMonth);
-		comboMonth.setSelectedIndex(-1);
-		
-		JLabel lblYear = new JLabel("Year : ");
-		lblYear.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		GridBagConstraints gbc_lblYear = new GridBagConstraints();
-		gbc_lblYear.anchor = GridBagConstraints.EAST;
-		gbc_lblYear.insets = new Insets(0, 0, 5, 5);
-		gbc_lblYear.gridx = 3;
-		gbc_lblYear.gridy = 11;
-		getContentPane().add(lblYear, gbc_lblYear);
-		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboYear = new JComboBox();
-		comboYear.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		for (int loopVal = 1900; loopVal <= 2019; loopVal++) {
-			comboYear.addItem(loopVal);
-		}
-		comboYear.setPreferredSize(new Dimension(200,50));
-		GridBagConstraints gbc_comboYear = new GridBagConstraints();
-		gbc_comboYear.insets = new Insets(0, 0, 5, 5);
-		gbc_comboYear.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboYear.gridx = 4;
-		gbc_comboYear.gridy = 11;
-		getContentPane().add(comboYear, gbc_comboYear);
-		comboYear.setSelectedIndex(-1);
-		
-		JButton btnAdd = new JButton("Add");
+		JButton btnAdd = new JButton("Register");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -259,11 +190,8 @@ public class RegisterStaff extends JFrame {
 					String Name = name.getText();
 					String Surname = surname.getText();
 					@SuppressWarnings("deprecation")
-					Date birthday = new Date((Integer.parseInt(comboYear.getSelectedItem().toString())+1900),
-							Integer.parseInt(comboMonth.getSelectedItem().toString()),
-							Integer.parseInt(comboDay.getSelectedItem().toString()));
+					Date birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
 					String Gender = gender.getText();
-					
 					
 					if (staffType == "Clerk") {
 						StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
@@ -281,6 +209,14 @@ public class RegisterStaff extends JFrame {
 			}
 			
 		});
+		
+		dateChooser = new JDateChooser();
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
+		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.gridx = 4;
+		gbc_dateChooser.gridy = 8;
+		getContentPane().add(dateChooser, gbc_dateChooser);
 		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.insets = new Insets(0, 0, 5, 5);
