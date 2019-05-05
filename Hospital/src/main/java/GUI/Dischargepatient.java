@@ -174,9 +174,14 @@ public class Dischargepatient extends JFrame {
 		btnDischarge = new JButton("Discharge");
 		btnDischarge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DepartReg.dischargePatient(serialnum, PatientReg);
-				SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
-				discharged.setVisible(true);
+				try {
+					DepartReg.dischargePatient(serialnum, PatientReg);
+					SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
+					discharged.setVisible(true);
+				} catch (Exception e1) {
+					InvalidInput invalid = new InvalidInput("Patient has not been admitted");
+					invalid.setVisible(true);
+				}
 			}
 		});
 		GridBagConstraints gbc_btnDischarge = new GridBagConstraints();
