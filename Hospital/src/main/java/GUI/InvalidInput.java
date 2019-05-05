@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -39,6 +40,7 @@ public class InvalidInput extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		JLabel lblInvalidInput = new JLabel("Invalid Input");
+		lblInvalidInput.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		lblInvalidInput.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblInvalidInput = new GridBagConstraints();
 		gbc_lblInvalidInput.insets = new Insets(0, 0, 5, 0);
@@ -49,6 +51,7 @@ public class InvalidInput extends JFrame {
 		contentPane.add(lblInvalidInput, gbc_lblInvalidInput);
 		
 		JLabel lblInvalidPhoneNumber = new JLabel(message);
+		lblInvalidPhoneNumber.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblInvalidPhoneNumber = new GridBagConstraints();
 		gbc_lblInvalidPhoneNumber.insets = new Insets(0, 0, 5, 0);
 		gbc_lblInvalidPhoneNumber.gridx = 0;
@@ -56,6 +59,7 @@ public class InvalidInput extends JFrame {
 		contentPane.add(lblInvalidPhoneNumber, gbc_lblInvalidPhoneNumber);
 		
 		JButton btnOkay = new JButton("Okay");
+		btnOkay.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnOkay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

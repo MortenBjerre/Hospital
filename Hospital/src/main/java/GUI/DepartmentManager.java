@@ -1,7 +1,9 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,25 +39,33 @@ public class DepartmentManager extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
+
 		
 		JButton btnCreateDepartment = new JButton("Create Department");
+		btnCreateDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnCreateDepartment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String deptName = departmentNameTextField.getText();
 				String numberOfBeds = numberOfBedsTextField.getText();
 				if (dr.containsDept(deptName)) {
-					new InvalidInput(deptName + " is already an existing department").setVisible(true);
+					InvalidInput invalid = new InvalidInput(deptName + " is already an existing department");
+					invalid.setVisible(true);
 					clearText();					
+					invalid.setSize(new Dimension(550,250));
 				} else {
 					try {
 						int beds = Integer.parseInt(numberOfBeds);
 						dr.createDepartment(deptName, beds);
-						new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created").setVisible(true);
+						SuccesfullOperation success = new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created");
 						clearText();
+						success.setVisible(true);
+						success.setSize(new Dimension(650,250));
 					} catch (Exception error) {
 						dr.createDepartment(deptName);
-						new SuccesfullOperation("Department " + deptName + " beds was created").setVisible(true);
+						SuccesfullOperation success = new SuccesfullOperation("Department " + deptName + " was created");
 						clearText();
+						success.setVisible(true);
+						success.setSize(new Dimension(500,250));
 					}
 				}
 				
@@ -63,6 +73,7 @@ public class DepartmentManager extends JFrame {
 		});
 		
 		JLabel lblDepartmentName = new JLabel("Department Name:");
+		lblDepartmentName.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblDepartmentName = new GridBagConstraints();
 		gbc_lblDepartmentName.anchor = GridBagConstraints.EAST;
 		gbc_lblDepartmentName.insets = new Insets(0, 0, 5, 5);
@@ -71,6 +82,7 @@ public class DepartmentManager extends JFrame {
 		contentPane.add(lblDepartmentName, gbc_lblDepartmentName);
 		
 		departmentNameTextField = new JTextField();
+		departmentNameTextField.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -80,6 +92,7 @@ public class DepartmentManager extends JFrame {
 		departmentNameTextField.setColumns(10);
 		
 		JLabel lblOptionalNumberOf = new JLabel("Optional number of beds");
+		lblOptionalNumberOf.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblOptionalNumberOf = new GridBagConstraints();
 		gbc_lblOptionalNumberOf.anchor = GridBagConstraints.EAST;
 		gbc_lblOptionalNumberOf.insets = new Insets(0, 0, 5, 5);
@@ -88,6 +101,7 @@ public class DepartmentManager extends JFrame {
 		contentPane.add(lblOptionalNumberOf, gbc_lblOptionalNumberOf);
 		
 		numberOfBedsTextField = new JTextField();
+		numberOfBedsTextField.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
@@ -103,6 +117,7 @@ public class DepartmentManager extends JFrame {
 		contentPane.add(btnCreateDepartment, gbc_btnCreateDepartment);
 		
 		JButton btnDeleteDepartment = new JButton("Delete Department");
+		btnDeleteDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnDeleteDepartment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String deptName = departmentNameTextField.getText();
@@ -125,6 +140,7 @@ public class DepartmentManager extends JFrame {
 		contentPane.add(btnDeleteDepartment, gbc_btnDeleteDepartment);
 		
 		JButton btnAddBedsTo = new JButton("Add beds to department");
+		btnAddBedsTo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnAddBedsTo.addActionListener(new ActionListener() {
 			private int addedBeds;
 			public void actionPerformed(ActionEvent e) {
@@ -156,6 +172,7 @@ public class DepartmentManager extends JFrame {
 		contentPane.add(btnAddBedsTo, gbc_btnAddBedsTo);
 		
 		JButton btnRemoveBedsFrom = new JButton("Remove beds from department");
+		btnRemoveBedsFrom.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnRemoveBedsFrom.addActionListener(new ActionListener() {
 			private int removedBeds;
 			public void actionPerformed(ActionEvent e) {
@@ -170,8 +187,10 @@ public class DepartmentManager extends JFrame {
 				}
 				try {
 					dr.removeBeds(deptName, removedBeds);
-					new SuccesfullOperation(removedBeds + " was removed from " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName).setVisible(true);
+					SuccesfullOperation success = new SuccesfullOperation(removedBeds + " was removed from " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName);
 					clearText();
+					success.setVisible(true);
+					success.setSize(new Dimension(600,200));
 				} catch (Exception error2) {
 					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
 					invalidInput.setVisible(true);
