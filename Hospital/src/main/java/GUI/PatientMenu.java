@@ -51,6 +51,7 @@ public class PatientMenu extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		this.setLocationRelativeTo(null);
 		
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));

@@ -49,6 +49,7 @@ public class StaffMenu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 3, 0, 0));
+		this.setLocationRelativeTo(null);
 		
 		JButton btnChangeInfo = new JButton("Update patient Info");
 		btnChangeInfo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
