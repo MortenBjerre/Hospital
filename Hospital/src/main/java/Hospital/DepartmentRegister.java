@@ -462,4 +462,14 @@ public class DepartmentRegister {
 		}
 		return allDepts;
 	}
+
+	/**
+	 * Returns the number of patients in a department
+	 * @param deptName
+	 * @return number of patients
+	 */
+	public int numberOfPatient(String deptName) {
+		return departments.get(deptName).patients.size();
+		
+	}
 }
