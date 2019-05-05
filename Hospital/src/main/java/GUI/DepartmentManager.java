@@ -233,6 +233,11 @@ public class DepartmentManager extends JFrame {
 			data[i][0] = deptName;
 			data[i][1] = dr.numberOfPatient(deptName);
 			data[i][2] = dr.numberOfStaff(deptName);
+			int totalBeds = dr.getTotalBeds(deptName);
+			int freeBeds = dr.getAvailableBeds(deptName);
+			data[i][3] = totalBeds;
+			data[i][4] = totalBeds - freeBeds;
+			data[i][5] = freeBeds;
 		}
 		return data;
 	}
