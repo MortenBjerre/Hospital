@@ -42,7 +42,6 @@ public class SearchPatient extends JFrame {
 	private Object[][] tableData;
 	private Object[] columnNames;
 	private String searchParameter;
-	private JButton btnAdmitPatient;
 	private DepartmentRegister dr;
 
 	/**
@@ -217,18 +216,6 @@ public class SearchPatient extends JFrame {
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
-		
-		btnAdmitPatient = new JButton("Admit Patient");
-		btnAdmitPatient.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AdmitPatientWindow admitPatient = new AdmitPatientWindow(pr, dr);
-				admitPatient.setVisible(true);
-			}
-		});
-		GridBagConstraints gbc_btnAdmitPatient = new GridBagConstraints();
-		gbc_btnAdmitPatient.gridx = 1;
-		gbc_btnAdmitPatient.gridy = 4;
-		contentPane.add(btnAdmitPatient, gbc_btnAdmitPatient);
 		
 		updateTable();
 	}
