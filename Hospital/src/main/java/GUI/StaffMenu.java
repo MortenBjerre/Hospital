@@ -143,6 +143,12 @@ public class StaffMenu extends JFrame {
 		});
 				
 		JButton btnSearch = new JButton("Search Staff");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SearchStaff searchStaff = new SearchStaff(StaffReg, staff);
+				searchStaff.setVisible(true);
+			}
+		});
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
