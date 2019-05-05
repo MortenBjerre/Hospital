@@ -237,6 +237,21 @@ public class DepartmentRegister {
 	}
 	
 	/**
+	 * Returns the department of the staff specified by specific serialnum
+	 * @param serialnum
+	 * @return department name or empty string if staff member is not in a department
+	 */
+	public String getDeptOfStaff(int serialnum) {
+		for (String deptName : departments.keySet()) {
+			boolean deptContainsStaff = departments.get(deptName).containsStaff(serialnum);
+			if (deptContainsStaff) {
+				return deptName;
+			}
+		}
+		return "";
+	}
+	
+	/**
 	 * Returns true if the department register contains the department
 	 * @param deptName
 	 * @return true if department exists
