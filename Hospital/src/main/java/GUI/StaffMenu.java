@@ -174,7 +174,13 @@ public class StaffMenu extends JFrame {
 		});
 		
 		
-		JButton btnIctOfficerMenu = new JButton("ICT Officer Menu");
+		JButton btnIctOfficerMenu = new JButton("Deparment Manager");
+		btnIctOfficerMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DepartmentManager departmentManger = new DepartmentManager(DepartReg);
+				departmentManger.setVisible(true);
+			}
+		});
 		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnIctOfficerMenu);
 		btnIctOfficerMenu.setVisible(false);
