@@ -29,7 +29,6 @@ import java.awt.event.KeyEvent;
 public class HealthData extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField serialnumTextField;
 	private int serialnum;
 	private JLabel lblgetName;
 	private JLabel lblgetSurname;
@@ -47,6 +46,7 @@ public class HealthData extends JFrame {
 	private String healthData;
 	private JButton btnAddNewHealth;
 	private JScrollPane scrollPane;
+	private JTextField serialnumTextField;
 	
 	/**
 	 * Create the frame.
@@ -96,13 +96,14 @@ public class HealthData extends JFrame {
 		gbc_lblPatientSerialNumber.gridy = 0;
 		contentPane.add(lblPatientSerialNumber, gbc_lblPatientSerialNumber);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		serialnumTextField = new JTextField();
+		serialnumTextField.setVisible(true);
+		serialnumTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER)
 					try {
-						serialnum = Integer.parseInt(textField.getText());
+						serialnum = Integer.parseInt(serialnumTextField.getText());
 						p = pr.findSerialnum(serialnum);
 						lblgetName.setText(p.getName());
 						lblgetSurname.setText(p.getSurname());
@@ -133,15 +134,6 @@ public class HealthData extends JFrame {
 		gbc_btnFindHealthData.gridx = 1;
 		gbc_btnFindHealthData.gridy = 1;
 		contentPane.add(btnFindHealthData, gbc_btnFindHealthData);
-		
-		lblPatientSerialNumber = new JLabel("Patient Serial Number");
-		GridBagConstraints gbc_lblPatientSerialNumber = new GridBagConstraints();
-		gbc_lblPatientSerialNumber.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPatientSerialNumber.anchor = GridBagConstraints.EAST;
-		gbc_lblPatientSerialNumber.gridx = 0;
-		gbc_lblPatientSerialNumber.gridy = 0;
-		contentPane.add(lblPatientSerialNumber, gbc_lblPatientSerialNumber);
-		
 		
 		lblName = new JLabel("Name: ");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
