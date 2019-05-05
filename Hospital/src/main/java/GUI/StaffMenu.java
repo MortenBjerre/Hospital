@@ -145,7 +145,7 @@ public class StaffMenu extends JFrame {
 		JButton btnSearch = new JButton("Search Staff");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SearchStaff searchStaff = new SearchStaff(StaffReg, staff);
+				SearchStaff searchStaff = new SearchStaff(StaffReg, staff, DepartReg);
 				searchStaff.setVisible(true);
 			}
 		});

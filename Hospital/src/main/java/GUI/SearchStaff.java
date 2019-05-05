@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
 import Hospital.Staff;
 import Hospital.StaffRegister;
@@ -33,8 +34,11 @@ public class SearchStaff extends JFrame {
 	private Object[][] tableData;
 	private Object[] columnNames;
 	private JScrollPane scrollPane;
+	private DepartmentRegister dr;
 	
-	public SearchStaff(StaffRegister staffReg, Staff staff) {
+	public SearchStaff(StaffRegister staffReg, Staff staff, DepartmentRegister dr) {
+		
+		this.dr = dr;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 756, 338);
 		contentPane = new JPanel();
@@ -149,8 +153,8 @@ public class SearchStaff extends JFrame {
 		JButton btnDischargeStaff = new JButton("Discharge Staff");
 		btnDischargeStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// Discharge a staff member
-				
+				DischargeStaff dischargeStaff = new DischargeStaff(staffReg, dr);
+				dischargeStaff.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnDischargeStaff = new GridBagConstraints();
