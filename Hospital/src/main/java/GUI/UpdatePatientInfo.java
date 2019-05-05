@@ -50,6 +50,7 @@ public class UpdatePatientInfo extends JFrame {
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+		this.setLocationRelativeTo(null);
 		
 		JLabel lblPleaseEnterThe = new JLabel("Enter Patient Serial Number: ");
 		lblPleaseEnterThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
