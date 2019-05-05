@@ -44,9 +44,9 @@ public class MovePatient extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{0, 542, 137, 50, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
@@ -108,6 +108,7 @@ public class MovePatient extends JFrame {
 		lblWhatDepartmentShould.setVisible(false);
 		
 		final JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		for (String dept : DepartReg.getAllDepartments()) {
 			comboBox.addItem(dept);
 		}
@@ -119,7 +120,30 @@ public class MovePatient extends JFrame {
 		contentPane.add(comboBox, gbc_comboBox);
 		comboBox.setVisible(false);
 		
+		JButton btnMovePatient = new JButton("Move Patient");
+		btnMovePatient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DepartReg.movePatient(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), PatientReg);
+					SuccesfullOperation window = new SuccesfullOperation("Patient has succesfully been moved");
+					window.setVisible(true);
+					dispose();
+				} catch (Exception IllegalArgumentException) {
+					InvalidInput invalid = new InvalidInput("Patient has not been admitted to a department");
+					invalid.setVisible(true);
+				}
+			
+			}
+		});
+		btnMovePatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		GridBagConstraints gbc_btnMovePatient = new GridBagConstraints();
+		gbc_btnMovePatient.insets = new Insets(0, 0, 5, 5);
+		gbc_btnMovePatient.gridx = 2;
+		gbc_btnMovePatient.gridy = 7;
+		contentPane.add(btnMovePatient, gbc_btnMovePatient);
+		
 		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -128,19 +152,17 @@ public class MovePatient extends JFrame {
 		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
 		gbc_btnGoBack.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGoBack.anchor = GridBagConstraints.EAST;
-		gbc_btnGoBack.gridx = 2;
-		gbc_btnGoBack.gridy = 8;
+		gbc_btnGoBack.gridx = 3;
+		gbc_btnGoBack.gridy = 7;
 		contentPane.add(btnGoBack, gbc_btnGoBack);
 		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 3;
+		gbc_panel_1.gridx = 4;
 		gbc_panel_1.gridy = 10;
 		contentPane.add(panel_1, gbc_panel_1);
-		
-		
 		
 		serialNumber.addKeyListener(new KeyAdapter() {
 			@Override
@@ -150,8 +172,6 @@ public class MovePatient extends JFrame {
 					try {
 						serialnum = Integer.parseInt(serialNumber.getText());
 						Patient p = PatientReg.findSerialnum(serialnum);
-						DepartReg.createDepartment("IC UNIT");
-						DepartReg.admit(serialnum, "IC UNIT", PatientReg);
 						if (p != null) {
 							lblPatientIsIn.setVisible(true);
 							lblShowDepartmentPatient.setVisible(true);
