@@ -26,18 +26,18 @@ import javax.swing.SwingConstants;
 public class StaffMenu extends JFrame {
 
 	private JPanel contentPane;
-	static StaffRegister sr;
-	static PatientRegister pr;
-	static DepartmentRegister dr;
-	static int serialnum;
+	private StaffRegister sr;
+	private PatientRegister pr;
+	private DepartmentRegister dr;
+	private int serialnum;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
 	public StaffMenu(final StaffRegister StaffReg, int serialNumber, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
-		StaffMenu.sr = StaffReg;
-		StaffMenu.pr = PatientReg;
+		this.sr = StaffReg;
+		this.pr = PatientReg;
 		this.serialnum = serialNumber;
 		Staff staff = StaffReg.findSerialnum(serialNumber);
 
