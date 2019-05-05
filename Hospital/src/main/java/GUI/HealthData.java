@@ -137,6 +137,7 @@ public class HealthData extends JFrame {
 		
 		lblName = new JLabel("Name: ");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
+		gbc_lblName.anchor = GridBagConstraints.EAST;
 		gbc_lblName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblName.gridx = 0;
 		gbc_lblName.gridy = 2;
@@ -144,6 +145,7 @@ public class HealthData extends JFrame {
 		
 		lblgetName = new JLabel("");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_1.gridx = 1;
 		gbc_lblNewLabel_1.gridy = 2;
@@ -151,6 +153,7 @@ public class HealthData extends JFrame {
 		
 		lblSurname = new JLabel("Surname: ");
 		GridBagConstraints gbc_lblSurname = new GridBagConstraints();
+		gbc_lblSurname.anchor = GridBagConstraints.EAST;
 		gbc_lblSurname.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSurname.gridx = 0;
 		gbc_lblSurname.gridy = 3;
@@ -158,6 +161,7 @@ public class HealthData extends JFrame {
 		
 		lblgetSurname = new JLabel("");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 1;
 		gbc_lblNewLabel.gridy = 3;
@@ -165,6 +169,7 @@ public class HealthData extends JFrame {
 		
 		lblDateOfBirth = new JLabel("Date of birth: ");
 		GridBagConstraints gbc_lblDateOfBirth = new GridBagConstraints();
+		gbc_lblDateOfBirth.anchor = GridBagConstraints.EAST;
 		gbc_lblDateOfBirth.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDateOfBirth.gridx = 0;
 		gbc_lblDateOfBirth.gridy = 4;
@@ -172,6 +177,7 @@ public class HealthData extends JFrame {
 		
 		lblgetBirthday = new JLabel("");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_2.gridx = 1;
 		gbc_lblNewLabel_2.gridy = 4;
@@ -179,6 +185,7 @@ public class HealthData extends JFrame {
 		
 		lblHealthData = new JLabel("Health Data: ");
 		GridBagConstraints gbc_lblHealthData = new GridBagConstraints();
+		gbc_lblHealthData.anchor = GridBagConstraints.EAST;
 		gbc_lblHealthData.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHealthData.gridx = 0;
 		gbc_lblHealthData.gridy = 5;
