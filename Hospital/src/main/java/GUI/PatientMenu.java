@@ -35,6 +35,7 @@ public class PatientMenu extends JFrame {
 	private int serialnum;
 	private Patient patient;
 	private String deptName;
+	private JPanel contentPane;
   
 	/**
 	 * Create the frame.
@@ -107,7 +108,7 @@ public class PatientMenu extends JFrame {
 		contentPane.add(lblBedNumber);
 		
 		try {
-			JLabel lblBednumber = new JLabel(Integer.toString(DepartReg.getBedOf(serialnumber, DepartReg.getDeptOfPatient(serialnumber))));
+			JLabel lblBednumber = new JLabel(Integer.toString(DepartReg.getBedOf(serialnum, DepartReg.getDeptOfPatient(serialnum))));
 			lblBednumber.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 			contentPane.add(lblBednumber);
 		} catch (Exception IllegalArgumentException) {
