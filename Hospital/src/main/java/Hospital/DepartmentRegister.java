@@ -197,6 +197,9 @@ public class DepartmentRegister {
 	 */
 	public void admit(int serialnum, String deptName, PatientRegister pr) {
 		Patient patient = pr.findSerialnum(serialnum);
+		if(!getDeptOfPatient(serialnum).equals("")) {
+			throw new IllegalArgumentException("Patient already admitted. Use move patient instead.");
+		}
 		if (this.findDepartment(deptName) instanceof InpatientDepartment) {
 			InpatientDepartment department = (InpatientDepartment) this.findDepartment(deptName);
 			if (department == null) {
