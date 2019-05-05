@@ -32,7 +32,7 @@ public class AddStaffToDept extends JFrame {
 	private JLabel lblGetName;
 	private JLabel lblGetSurname;
 	private JLabel lblAddToDepartment;
-	private JComboBox departmentChoice;
+	private JComboBox<String> departmentChoice;
 	private int serialnum;
 	private JButton btnAddStaffMember;
 
@@ -134,12 +134,12 @@ public class AddStaffToDept extends JFrame {
 		contentPane.add(lblAddToDepartment, gbc_lblAddToDepartment);
 		
 		departmentChoice = new JComboBox();
-		departmentChoice.setVisible(false);
+		
 		
 		for(int i = 0; i < dr.getAllDepartments().size(); i++) {
 			departmentChoice.addItem(dr.getAllDepartments().get(i));
 		}
-		
+		departmentChoice.setVisible(false);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;

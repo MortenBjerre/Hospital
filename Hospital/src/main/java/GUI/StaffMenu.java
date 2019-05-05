@@ -30,6 +30,7 @@ public class StaffMenu extends JFrame {
 	private PatientRegister pr;
 	private DepartmentRegister dr;
 	private int serialnum;
+	private JButton btnAddStaffToDept;
 
 	/**
 	 * Create the frame.
@@ -167,14 +168,15 @@ public class StaffMenu extends JFrame {
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
 		
-		JButton btnAddStaff_1 = new JButton("Add Staff to Department");
-		btnAddStaff_1.setFont(new Font("Times New Roman", Font.PLAIN, 28));
-		btnAddStaff_1.addActionListener(new ActionListener() {
+		btnAddStaffToDept = new JButton("Add Staff to Department");
+		btnAddStaffToDept.setVisible(false);
+		btnAddStaffToDept.setFont(new Font("Times New Roman", Font.PLAIN, 28));
+		btnAddStaffToDept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new AddStaffToDept(dr, sr).setVisible(true);
 			}
 		});
-		contentPane.add(btnAddStaff_1);
+		contentPane.add(btnAddStaffToDept);
 
 		JButton btnMoveStaff = new JButton("Move Staff");
 		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -242,6 +244,7 @@ public class StaffMenu extends JFrame {
 		}
 		if (staff.canMoveStaff()) {
 			btnMoveStaff.setVisible(true);
+			btnAddStaffToDept.setVisible(true);
 		}
 		if (staff.hasViewAccessTo(StaffReg)) {
 			btnSearch.setVisible(true);
