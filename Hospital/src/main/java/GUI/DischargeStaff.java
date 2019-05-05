@@ -173,7 +173,7 @@ public class DischargeStaff extends JFrame {
 				try {
 					dr.dischargeStaff(serialnum, sr);
 					System.out.println(serialnum);
-					new SuccesfullOperation("Staff member has been fired.").setVisible(true);
+					new SuccesfulOperation("Staff member has been fired.").setVisible(true);
 				} catch (Exception error) {
 //					new InvalidInput("No such staff member").setVisible(true);;
 					new InvalidInput(error.getMessage()).setVisible(true);;

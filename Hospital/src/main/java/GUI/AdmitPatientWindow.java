@@ -91,7 +91,7 @@ public class AdmitPatientWindow extends JFrame {
 					String deptName = (String) departmentNames.getSelectedItem();
 					dr.admit(serialnum, deptName, pr);
 					dispose();
-					new SuccesfullOperation("Patient was admitted to " + deptName).setVisible(true);			
+					new SuccesfulOperation("Patient was admitted to " + deptName).setVisible(true);			
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
 					invalidInput.setVisible(true);

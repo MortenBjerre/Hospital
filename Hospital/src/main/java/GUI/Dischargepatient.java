@@ -42,9 +42,7 @@ public class Dischargepatient extends JFrame {
 	private JLabel lblDepartment;
 	private JLabel departmentShow;
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Dischargepatient(final PatientRegister pr, final DepartmentRegister dr) {		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
@@ -176,7 +174,7 @@ public class Dischargepatient extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					dr.dischargePatient(serialnum, pr);
-					SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
+					SuccesfulOperation discharged = new SuccesfulOperation("Patient has been discharged");
 					discharged.setVisible(true);
 				} catch (Exception e1) {
 					InvalidInput invalid = new InvalidInput("Patient has not been admitted");

@@ -128,7 +128,7 @@ public class MovePatient extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					DepartReg.movePatient(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), PatientReg);
-					SuccesfullOperation window = new SuccesfullOperation("Patient has succesfully been moved");
+					SuccesfulOperation window = new SuccesfulOperation("Patient has succesfully been moved");
 					window.setVisible(true);
 					dispose();
 				} catch (Exception IllegalArgumentException) {
