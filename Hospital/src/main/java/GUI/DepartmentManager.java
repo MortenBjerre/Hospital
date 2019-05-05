@@ -45,8 +45,10 @@ public class DepartmentManager extends JFrame {
 				try {
 					int beds = Integer.parseInt(numberOfBeds);
 					dr.createDepartment(deptName, beds);
+					new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created").setVisible(true);
 				} catch (Exception error) {
 					dr.createDepartment(deptName);
+					new SuccesfullOperation("Department " + deptName + " beds was created").setVisible(true);
 				}
 			}
 		});
@@ -97,6 +99,7 @@ public class DepartmentManager extends JFrame {
 				String deptName = departmentNameTextField.getText();
 				try {
 					dr.deleteDepartment(deptName);
+					new SuccesfullOperation("Department " + deptName + " was deleted").setVisible(true);
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
 					invalidInput.setVisible(true);
@@ -124,7 +127,15 @@ public class DepartmentManager extends JFrame {
 					invalidInput.setVisible(true);
 					numberOfBedsTextField.setText("");
 				}
-				dr.addBeds(deptName, addedBeds);
+				try {
+					dr.addBeds(deptName, addedBeds);
+					new SuccesfullOperation(addedBeds + " was added to " + deptName).setVisible(true);
+				} catch (Exception error2) {
+					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
+					invalidInput.setVisible(true);
+					departmentNameTextField.setText("");
+					numberOfBedsTextField.setText("");
+				}
 			}
 		});
 		GridBagConstraints gbc_btnAddBedsTo = new GridBagConstraints();
