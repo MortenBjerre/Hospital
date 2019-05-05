@@ -41,11 +41,13 @@ public class Dischargepatient extends JFrame {
 	private JPanel panel_1;
 	private JButton btnDischarge;
 	private JButton btnGoBack;
+	private JLabel lblDepartment;
+	private JLabel departmentShow;
 
 	/**
 	 * Create the frame.
 	 */
-	public Dischargepatient(final PatientRegister PatientReg, final DepartmentRegister DepartReg) {		
+	public Dischargepatient(final PatientRegister pr, final DepartmentRegister dr) {		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 796, 690);
 		contentPane = new JPanel();
@@ -53,9 +55,9 @@ public class Dischargepatient extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 403, 209, 93, 0};
-		gbl_contentPane.rowHeights = new int[]{56, 33, 39, 41, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{56, 33, 39, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 		
@@ -177,7 +179,7 @@ public class Dischargepatient extends JFrame {
 		btnDischarge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					DepartReg.dischargePatient(serialnum, PatientReg);
+					dr.dischargePatient(serialnum, pr);
 					SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
 					discharged.setVisible(true);
 				} catch (Exception e1) {
@@ -186,10 +188,27 @@ public class Dischargepatient extends JFrame {
 				}
 			}
 		});
+		
+		lblDepartment = new JLabel("Department:");
+		lblDepartment.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 35));
+		GridBagConstraints gbc_lblDepartment = new GridBagConstraints();
+		gbc_lblDepartment.anchor = GridBagConstraints.EAST;
+		gbc_lblDepartment.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDepartment.gridx = 1;
+		gbc_lblDepartment.gridy = 8;
+		contentPane.add(lblDepartment, gbc_lblDepartment);
+		
+		departmentShow = new JLabel("New label");
+		departmentShow.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 35));
+		GridBagConstraints gbc_departmentShow = new GridBagConstraints();
+		gbc_departmentShow.insets = new Insets(0, 0, 5, 5);
+		gbc_departmentShow.gridx = 2;
+		gbc_departmentShow.gridy = 8;
+		contentPane.add(departmentShow, gbc_departmentShow);
 		GridBagConstraints gbc_btnDischarge = new GridBagConstraints();
 		gbc_btnDischarge.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDischarge.gridx = 2;
-		gbc_btnDischarge.gridy = 8;
+		gbc_btnDischarge.gridy = 9;
 		contentPane.add(btnDischarge, gbc_btnDischarge);
 		
 		btnGoBack = new JButton("Go Back");
@@ -201,7 +220,7 @@ public class Dischargepatient extends JFrame {
 		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
 		gbc_btnGoBack.insets = new Insets(0, 0, 5, 0);
 		gbc_btnGoBack.gridx = 3;
-		gbc_btnGoBack.gridy = 8;
+		gbc_btnGoBack.gridy = 9;
 		contentPane.add(btnGoBack, gbc_btnGoBack);
 		
 		panel = new JPanel();
@@ -209,7 +228,7 @@ public class Dischargepatient extends JFrame {
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 3;
-		gbc_panel.gridy = 9;
+		gbc_panel.gridy = 10;
 		contentPane.add(panel, gbc_panel);
 		SerialNumber.addKeyListener(new KeyAdapter() {
 			@Override
@@ -217,7 +236,7 @@ public class Dischargepatient extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
-						Patient patient = PatientReg.findSerialnum(serialnum);
+						Patient patient = pr.findSerialnum(serialnum);
 						if (patient != null) {
 							Name.setText(patient.getName());
 							Surname.setText(patient.getSurname());
