@@ -129,25 +129,27 @@ public class PatientLogin extends JFrame {
 		SerialNumber.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				try {
-				@SuppressWarnings("deprecation")
-				int serialNumber = Integer.parseInt(SerialNumber.getText());
-				
-				if (attempts != 0) {
-				
-					if (PatientReg.findSerialnum(serialNumber) != null) {
-						PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
-						menu.setVisible(true);
-						dispose();
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					try {
+					@SuppressWarnings("deprecation")
+					int serialNumber = Integer.parseInt(SerialNumber.getText());
+					
+					if (attempts != 0) {
+					
+						if (PatientReg.findSerialnum(serialNumber) != null) {
+							PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
+							menu.setVisible(true);
+							dispose();
+						} else {
+							invalidLogin.setVisible(true);
+							attempts--;
+						}
 					} else {
-						invalidLogin.setVisible(true);
-						attempts--;
+							dispose();
+						}
+				} catch (Exception e1) {
+					;
 					}
-				} else {
-						dispose();
-					}
-			} catch (Exception e1) {
-				;
 				}
 			}
 		});

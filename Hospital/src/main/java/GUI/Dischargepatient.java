@@ -40,6 +40,7 @@ public class Dischargepatient extends JFrame {
 	private JPanel panel;
 	private JPanel panel_1;
 	private JButton btnDischarge;
+	private JButton btnGoBack;
 
 	/**
 	 * Create the frame.
@@ -174,9 +175,14 @@ public class Dischargepatient extends JFrame {
 		btnDischarge = new JButton("Discharge");
 		btnDischarge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DepartReg.dischargePatient(serialnum, PatientReg);
-				SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
-				discharged.setVisible(true);
+				try {
+					DepartReg.dischargePatient(serialnum, PatientReg);
+					SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
+					discharged.setVisible(true);
+				} catch (Exception e1) {
+					InvalidInput invalid = new InvalidInput("Patient has not been admitted");
+					invalid.setVisible(true);
+				}
 			}
 		});
 		GridBagConstraints gbc_btnDischarge = new GridBagConstraints();
@@ -185,12 +191,24 @@ public class Dischargepatient extends JFrame {
 		gbc_btnDischarge.gridy = 8;
 		contentPane.add(btnDischarge, gbc_btnDischarge);
 		
+		btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
+		gbc_btnGoBack.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGoBack.gridx = 3;
+		gbc_btnGoBack.gridy = 8;
+		contentPane.add(btnGoBack, gbc_btnGoBack);
+		
 		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 3;
-		gbc_panel.gridy = 8;
+		gbc_panel.gridy = 9;
 		contentPane.add(panel, gbc_panel);
 		SerialNumber.addKeyListener(new KeyAdapter() {
 			@Override
