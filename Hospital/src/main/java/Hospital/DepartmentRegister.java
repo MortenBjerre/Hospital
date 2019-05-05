@@ -326,15 +326,19 @@ public class DepartmentRegister {
 	 * @param addedBeds Number of beds you want added to department
 	 */
 	public void addBeds(String deptName, int addedBeds) {
-		if (departments.containsKey(deptName)) {
-			if (departments.get(deptName) instanceof InpatientDepartment) {
-				InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
-				inpatientDepartment.addNewBeds(addedBeds);
+		if (addedBeds > 0) {
+			if (departments.containsKey(deptName)) {
+				if (departments.get(deptName) instanceof InpatientDepartment) {
+					InpatientDepartment inpatientDepartment = (InpatientDepartment) departments.get(deptName);
+					inpatientDepartment.addNewBeds(addedBeds);
+				} else {
+					throw new IllegalArgumentException("Can't add beds to outpatient department");
+				}
 			} else {
-				throw new IllegalArgumentException("Can't add beds to outpatient department");
+				throw new IllegalArgumentException("No such department");
 			}
 		} else {
-			throw new IllegalArgumentException("No such department");
+			throw new IllegalArgumentException("Number of added beds must be positive");
 		}
 	}
 
