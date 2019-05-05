@@ -30,9 +30,12 @@ public class DischargeStaff extends JFrame {
 	private JLabel lblShowEmail;
 	private JLabel lblShowGender;
 	private JLabel lblShowDepartment;
-
+	private int serialnum;
+	private StaffRegister sr;
+	
 	public DischargeStaff(StaffRegister sr, DepartmentRegister dr) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.sr = sr;
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,11 +64,13 @@ public class DischargeStaff extends JFrame {
 		
 		serialnumberInput = new JTextField();
 		serialnumberInput.addKeyListener(new KeyAdapter() {
+			
+
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
-						int serialnum = Integer.parseInt(serialnumberInput.getText());
+						serialnum = Integer.parseInt(serialnumberInput.getText());
 						lblShowName.setText(sr.findSerialnum(serialnum).getName());
 						lblShowDepartment.setText(""); // department of staff member
 						lblShowEmail.setText(sr.findSerialnum(serialnum).getEmail());
@@ -151,7 +156,16 @@ public class DischargeStaff extends JFrame {
 		JButton btnFireEmployee = new JButton("Fire Employee");
 		btnFireEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.out.println("Serialnum is :" + serialnum);
+				System.out.println(sr);
+				try {
+					dr.dischargeStaff(serialnum, sr);
+					System.out.println(serialnum);
+					new SuccesfullOperation("Staff member has been fired.").setVisible(true);
+				} catch (Exception error) {
+//					new InvalidInput("No such staff member").setVisible(true);;
+					new InvalidInput(error.getMessage()).setVisible(true);;
+				}
 			}
 		});
 		
