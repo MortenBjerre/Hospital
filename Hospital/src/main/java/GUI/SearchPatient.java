@@ -29,7 +29,7 @@ import java.awt.Button;
 import javax.swing.JButton;
 
 
-public class AdmitPatient extends JFrame {
+public class SearchPatient extends JFrame {
 
 	private JPanel contentPane;
 	private JComboBox dropDownMenu;
@@ -50,7 +50,7 @@ public class AdmitPatient extends JFrame {
 	 * @param departReg 
 	 */
 	@SuppressWarnings("unchecked")
-	public AdmitPatient(PatientRegister pr, DepartmentRegister departReg) {
+	public SearchPatient(PatientRegister pr, DepartmentRegister departReg) {
 		dr = departReg;		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 400);
