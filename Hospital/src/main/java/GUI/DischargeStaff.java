@@ -32,6 +32,7 @@ public class DischargeStaff extends JFrame {
 	private JLabel lblShowDepartment;
 	private int serialnum;
 	private StaffRegister sr;
+	private JLabel lblDepartment;
 	
 	public DischargeStaff(StaffRegister sr, DepartmentRegister dr) {
 		this.sr = sr;
@@ -48,6 +49,11 @@ public class DischargeStaff extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JButton btnSearchStaff = new JButton("Search Staff");
+		btnSearchStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SearchStaff(sr, dr).setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_btnSearchStaff = new GridBagConstraints();
 		gbc_btnSearchStaff.insets = new Insets(0, 0, 5, 0);
 		gbc_btnSearchStaff.gridx = 1;
@@ -72,12 +78,17 @@ public class DischargeStaff extends JFrame {
 					try {
 						serialnum = Integer.parseInt(serialnumberInput.getText());
 						lblShowName.setText(sr.findSerialnum(serialnum).getName());
-						lblShowDepartment.setText(""); // department of staff member
+						if (dr.getDeptOfStaff(serialnum).equals("")) {
+							lblDepartment.setVisible(false);
+							lblShowDepartment.setText(dr.getDeptOfStaff(serialnum));
+						} else {
+							lblDepartment.setVisible(true);
+						}
 						lblShowEmail.setText(sr.findSerialnum(serialnum).getEmail());
 						lblShowGender.setText(sr.findSerialnum(serialnum).getGender());
 						lblShowSurname.setText(sr.findSerialnum(serialnum).getSurname());
 					} catch (Exception e) {
-						;
+						new InvalidInput(e.getMessage()).setVisible(true);
 					}
 				}
 			}
@@ -146,12 +157,13 @@ public class DischargeStaff extends JFrame {
 		gbc_lblGender_1.gridy = 6;
 		contentPane.add(lblShowGender, gbc_lblGender_1);
 		
-		JLabel lblDepartment = new JLabel("Department:");
+		lblDepartment = new JLabel("Department:");
 		GridBagConstraints gbc_lblDepartment = new GridBagConstraints();
 		gbc_lblDepartment.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDepartment.gridx = 0;
 		gbc_lblDepartment.gridy = 7;
 		contentPane.add(lblDepartment, gbc_lblDepartment);
+		lblDepartment.setVisible(false);
 		
 		JButton btnFireEmployee = new JButton("Fire Employee");
 		btnFireEmployee.addActionListener(new ActionListener() {

@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
-import Hospital.Staff;
 import Hospital.StaffRegister;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -36,7 +35,7 @@ public class SearchStaff extends JFrame {
 	private JScrollPane scrollPane;
 	private DepartmentRegister dr;
 	
-	public SearchStaff(StaffRegister staffReg, Staff staff, DepartmentRegister dr) {
+	public SearchStaff(StaffRegister staffReg, DepartmentRegister dr) {
 		
 		this.dr = dr;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -149,18 +148,6 @@ public class SearchStaff extends JFrame {
 		table = new JTable(tableData, columnNames);
 		updateTable();
 		scrollPane.setViewportView(table);
-		
-		JButton btnDischargeStaff = new JButton("Discharge Staff");
-		btnDischargeStaff.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				DischargeStaff dischargeStaff = new DischargeStaff(staffReg, dr);
-				dischargeStaff.setVisible(true);
-			}
-		});
-		GridBagConstraints gbc_btnDischargeStaff = new GridBagConstraints();
-		gbc_btnDischargeStaff.gridx = 1;
-		gbc_btnDischargeStaff.gridy = 4;
-		contentPane.add(btnDischargeStaff, gbc_btnDischargeStaff);
 	}
 	
 	private void updateTable() {

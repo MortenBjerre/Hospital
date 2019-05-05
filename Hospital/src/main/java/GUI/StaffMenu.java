@@ -132,26 +132,27 @@ public class StaffMenu extends JFrame {
 		if (staff.hasHealthDataAccess()) {
 			btnHealthData.setVisible(true);
 		}
-		
-		
-		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		btnGoBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
 				
 		JButton btnSearch = new JButton("Search Staff");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SearchStaff searchStaff = new SearchStaff(StaffReg, staff, DepartReg);
+				SearchStaff searchStaff = new SearchStaff(StaffReg, DepartReg);
 				searchStaff.setVisible(true);
 			}
 		});
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
+		
+		JButton btnDischargeStaff = new JButton("Discharge Staff");
+		btnDischargeStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnDischargeStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DischargeStaff(StaffReg, DepartReg).setVisible(true);
+			}
+		});
+		contentPane.add(btnDischargeStaff);
+		btnDischargeStaff.setVisible(false);
 
 		
 		JButton btnAddStaff = new JButton("Add Staff");
@@ -170,7 +171,6 @@ public class StaffMenu extends JFrame {
 		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnMoveStaff);
 		btnMoveStaff.setVisible(false);
-		contentPane.add(btnGoBack);
 		btnMoveStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -180,7 +180,7 @@ public class StaffMenu extends JFrame {
 		});
 		
 		
-		JButton btnIctOfficerMenu = new JButton("Deparment Manager");
+		JButton btnIctOfficerMenu = new JButton("Department Manager");
 		btnIctOfficerMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DepartmentManager departmentManger = new DepartmentManager(DepartReg);
@@ -190,6 +190,16 @@ public class StaffMenu extends JFrame {
 		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnIctOfficerMenu);
 		btnIctOfficerMenu.setVisible(false);
+		
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		contentPane.add(btnGoBack);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -203,6 +213,7 @@ public class StaffMenu extends JFrame {
 		}
 		if (staff.hasWriteAccessTo(StaffReg)) {
 			btnAddStaff.setVisible(true);
+			btnDischargeStaff.setVisible(true);
 		}
 		if (staff.canMovePatients()) {
 			btnMovePatient.setVisible(true);
