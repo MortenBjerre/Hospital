@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,8 +29,14 @@ public class DepartmentManager extends JFrame {
 	private JTextField departmentNameTextField;
 	private JTextField numberOfBedsTextField;
 	private JTable table;
+	private Object[][] tableData;
+	private JScrollPane scrollPane;
+	private Object[] columnNames;
+	private DepartmentRegister dr;
 
 	public DepartmentManager(DepartmentRegister dr) {
+		this.dr = dr;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 662, 311);
 		contentPane = new JPanel();
@@ -61,14 +68,14 @@ public class DepartmentManager extends JFrame {
 						dr.createDepartment(deptName, beds);
 						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " with " + numberOfBeds + " beds was created");
 						clearText();
+						updateTable();
 						success.setVisible(true);
-						success.setSize(new Dimension(650,250));
 					} catch (Exception error) {
 						dr.createDepartment(deptName);
+						updateTable();
 						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " was created");
 						clearText();
 						success.setVisible(true);
-						success.setSize(new Dimension(500,250));
 					}
 				}
 				
@@ -127,6 +134,7 @@ public class DepartmentManager extends JFrame {
 				try {
 					dr.deleteDepartment(deptName);
 					new SuccesfulOperation("Department " + deptName + " was deleted").setVisible(true);
+					updateTable();
 					clearText();
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
@@ -160,6 +168,7 @@ public class DepartmentManager extends JFrame {
 					dr.addBeds(deptName, addedBeds);
 					new SuccesfulOperation(addedBeds + " was added to " + deptName + ". Now there are " + dr.getTotalBeds(deptName) + " beds in "+ deptName).setVisible(true);
 					clearText();
+					updateTable();
 				} catch (Exception error2) {
 					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
 					invalidInput.setVisible(true);
@@ -194,6 +203,7 @@ public class DepartmentManager extends JFrame {
 					clearText();
 					success.setVisible(true);
 					success.setSize(new Dimension(600,200));
+					updateTable();
 				} catch (Exception error2) {
 					InvalidInput invalidInput = new InvalidInput(error2.getMessage());
 					invalidInput.setVisible(true);
@@ -208,20 +218,51 @@ public class DepartmentManager extends JFrame {
 		gbc_btnRemoveBedsFrom.gridy = 1;
 		contentPane.add(btnRemoveBedsFrom, gbc_btnRemoveBedsFrom);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 4;
+		gbc_scrollPane.fill = GridBagConstraints.HORIZONTAL;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 2;
 		contentPane.add(scrollPane, gbc_scrollPane);
+		String[] columnNames = {"Department Name", "Number of patients","Number of staff","Number of beds", "Occupied beds" , "Free beds"};
+		this.columnNames = columnNames;
+		tableData = makeDepartmentTable(dr);
 		
-		table = new JTable();
+		table = new JTable(tableData, columnNames);
 		scrollPane.setViewportView(table);
+		table.setEnabled(false);
 	}
 	
+	private Object[][] makeDepartmentTable(DepartmentRegister dr) {
+		ArrayList<String> allDepartments = dr.getAllDepartments();
+		Object [][] data = new Object[allDepartments.size()][6];
+		for (int i = 0; i < allDepartments.size(); i++) {
+			String deptName = allDepartments.get(i);
+			data[i][0] = deptName;
+			data[i][1] = dr.numberOfPatient(deptName);
+			data[i][2] = dr.numberOfStaff(deptName);
+			int totalBeds = dr.getTotalBeds(deptName);
+			int freeBeds = dr.getAvailableBeds(deptName);
+			data[i][3] = totalBeds;
+			data[i][4] = totalBeds - freeBeds;
+			data[i][5] = freeBeds;
+		}
+		return data;
+	}
+
 	private void clearText() {
 		departmentNameTextField.setText("");
 		numberOfBedsTextField.setText("");
+	}
+	
+	private void updateTable() {
+		tableData = makeDepartmentTable(dr);
+		table = new JTable(tableData,columnNames);
+		table.setEnabled(false); // un-editable
+		scrollPane.setViewportView(table);
+		table.setFillsViewportHeight(true);
 	}
 }
