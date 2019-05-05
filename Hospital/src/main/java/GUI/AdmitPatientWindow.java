@@ -18,6 +18,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class AdmitPatientWindow extends JFrame {
 
@@ -25,9 +26,11 @@ public class AdmitPatientWindow extends JFrame {
 	private JTextField serialnumberTextField;
 	private JLabel lblAdmitToDepartment;
 	private JButton btnAdmit;
-	private JTextField drTextField;
+	private JComboBox departmentNames;
+	private DepartmentRegister dr;
 
 	public AdmitPatientWindow(PatientRegister pr, DepartmentRegister dr) {
+		this.dr = dr;
 		setTitle("Admit patient");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 200);
@@ -66,25 +69,16 @@ public class AdmitPatientWindow extends JFrame {
 		gbc_lblAdmitToDepartment.gridy = 2;
 		contentPane.add(lblAdmitToDepartment, gbc_lblAdmitToDepartment);
 		
-		drTextField = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 2;
-		contentPane.add(drTextField, gbc_textField_1);
-		drTextField.setColumns(10);
-		
 		btnAdmit = new JButton("Admit");
 		btnAdmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int serialnum = Integer.parseInt(serialnumberTextField.getText());
-					String deptName = drTextField.getText();
-					dr.admit(serialnum, deptName, pr);
+//					String deptName = drTextField.getText();
+//					dr.admit(serialnum, deptName, pr);
 					dispose();
-					InvalidInput invalidInput = new InvalidInput("Patient was admitted to " + deptName);
-					invalidInput.setVisible(true);
+//					InvalidInput invalidInput = new InvalidInput("Patient was admitted to " + deptName);
+//					invalidInput.setVisible(true);
 					
 				} catch (Exception error) {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
@@ -93,6 +87,19 @@ public class AdmitPatientWindow extends JFrame {
 				
 			}
 		});
+		
+		departmentNames = new JComboBox();
+		for (String deptName : dr.getAllDepartments()) {
+			departmentNames.addItem(deptName);
+		}
+		departmentNames.setVisible(true);
+		
+		GridBagConstraints gbc_departmentNames = new GridBagConstraints();
+		gbc_departmentNames.insets = new Insets(0, 0, 5, 0);
+		gbc_departmentNames.fill = GridBagConstraints.HORIZONTAL;
+		gbc_departmentNames.gridx = 1;
+		gbc_departmentNames.gridy = 2;
+		contentPane.add(departmentNames, gbc_departmentNames);
 		GridBagConstraints gbc_btnAdmit = new GridBagConstraints();
 		gbc_btnAdmit.fill = GridBagConstraints.BOTH;
 		gbc_btnAdmit.gridx = 1;
