@@ -39,6 +39,7 @@ public class AddStaffToDept extends JFrame {
 	public AddStaffToDept(DepartmentRegister dr, StaffRegister sr) {
 		this.dr = dr;
 		this.sr = sr;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
