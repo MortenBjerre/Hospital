@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.GroupLayout;
@@ -52,6 +53,7 @@ public class PatientMenu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		this.setLocationRelativeTo(null);
+
 		
 		JButton btnGoBack = new JButton("Go Back");
 		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 27));

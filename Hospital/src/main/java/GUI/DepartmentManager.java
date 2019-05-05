@@ -1,7 +1,9 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -125,6 +127,7 @@ public class DepartmentManager extends JFrame {
 		contentPane.add(btnDeleteDepartment, gbc_btnDeleteDepartment);
 		
 		JButton btnAddBedsTo = new JButton("Add beds to department");
+
 		btnAddBedsTo.addActionListener(new ActionListener() {
 			private int addedBeds;
 			public void actionPerformed(ActionEvent e) {
