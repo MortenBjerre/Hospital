@@ -137,10 +137,8 @@ public class AdmitPatient extends JFrame {
 						}
 					case ("First Name"):
 						System.out.print(searchParameter);
-						String name = searchParameter;
 						System.out.println(searchParameter.equals("Alexander"));
 						System.out.println(pr);
-						System.out.println(Arrays.toString(pr.searchName(name)));
 						String[] result2 = pr.searchName(searchParameter);
 						System.out.println(Arrays.toString(result2));
 						System.out.println(Arrays.toString(pr.searchName(searchParameter)));
@@ -149,6 +147,8 @@ public class AdmitPatient extends JFrame {
 						break;
 					case("Surname"):
 						String[] result3 = pr.searchSurname(searchParameter);
+						System.out.println(Arrays.toString(pr.searchSurname("Christensen")));
+						
 						tableData = makePartialTable(pr, result3);
 						updateTable();
 						break;
