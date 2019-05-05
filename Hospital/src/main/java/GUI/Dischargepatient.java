@@ -1,10 +1,17 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -12,13 +19,6 @@ import javax.swing.border.EmptyBorder;
 import Hospital.DepartmentRegister;
 import Hospital.Patient;
 import Hospital.PatientRegister;
-
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class Dischargepatient extends JFrame {
 
@@ -39,6 +39,7 @@ public class Dischargepatient extends JFrame {
 	private JLabel Number;
 	private JPanel panel;
 	private JPanel panel_1;
+	private JButton btnDischarge;
 
 	/**
 	 * Create the frame.
@@ -169,6 +170,20 @@ public class Dischargepatient extends JFrame {
 		gbc_Number.gridx = 2;
 		gbc_Number.gridy = 7;
 		contentPane.add(Number, gbc_Number);
+		
+		btnDischarge = new JButton("Discharge");
+		btnDischarge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DepartReg.dischargePatient(serialnum, PatientReg);
+				SuccesfullOperation discharged = new SuccesfullOperation("Patient has been discharged");
+				discharged.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_btnDischarge = new GridBagConstraints();
+		gbc_btnDischarge.insets = new Insets(0, 0, 5, 5);
+		gbc_btnDischarge.gridx = 2;
+		gbc_btnDischarge.gridy = 8;
+		contentPane.add(btnDischarge, gbc_btnDischarge);
 		
 		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
