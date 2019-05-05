@@ -28,6 +28,7 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 
 public class RegisterPatient extends JFrame {
 
@@ -43,6 +44,7 @@ public class RegisterPatient extends JFrame {
 	DepartmentRegister DepartReg;
 	private Date DayOfBirth;
 	private JTextField txtHealthDataInput;
+	private JComboBox aliveStatus;
 	
 	
 
@@ -225,7 +227,12 @@ public class RegisterPatient extends JFrame {
 					int birthMonth = dateChooser.getDate().getMonth();
 					int birthday =  dateChooser.getDate().getDay();
 					int birthYear = dateChooser.getDate().getYear();
-					PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), gender, address, phoneNumber, true, healthData);
+					boolean alive = true;
+					if (aliveStatus.getSelectedItem() != "Alive") {
+						alive = false;
+					}
+					PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
+							gender, address, phoneNumber, alive, healthData);
 					dispose();
 				} catch (Exception er) {
 					InvalidInput invalidInput = new InvalidInput("Please enter valid input."); 
@@ -241,22 +248,16 @@ public class RegisterPatient extends JFrame {
 			}
 		});
 		
-		@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
-		JList list = new JList(new AbstractListModel() {
-			String[] values = new String[] {"Alive", "Dead"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.fill = GridBagConstraints.HORIZONTAL;
-		gbc_list.gridx = 3;
-		gbc_list.gridy = 8;
-		contentPane.add(list, gbc_list);
+		aliveStatus = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridy = 8;
+		
+		aliveStatus.addItem("Alive");
+		aliveStatus.addItem("Dead");
+		contentPane.add(aliveStatus, gbc_comboBox);
 		
 		JLabel lblHealthData = new JLabel("Health Data:");
 		GridBagConstraints gbc_lblHealthData = new GridBagConstraints();

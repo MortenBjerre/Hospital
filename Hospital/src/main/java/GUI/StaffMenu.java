@@ -90,11 +90,11 @@ public class StaffMenu extends JFrame {
 			}
 		});
 		
-		JButton btnSearchPatients = new JButton("Admit Patient");
+		JButton btnSearchPatients = new JButton("Search Patients");
 		btnSearchPatients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				AdmitPatient searchPatients = new AdmitPatient(PatientReg, DepartReg);
+				SearchPatient searchPatients = new SearchPatient(PatientReg, DepartReg);
 				searchPatients.setVisible(true);
 				
 			}
@@ -105,6 +105,15 @@ public class StaffMenu extends JFrame {
 		if (staff.hasWriteAccessTo(PatientReg)) {
 			btnSearchPatients.setVisible(true);
 		}
+		
+		JButton btnSearchPatients_1 = new JButton("Admit Patient");
+		btnSearchPatients_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnSearchPatients_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AdmitPatientWindow(PatientReg, DepartReg).setVisible(true);
+			}
+		});
+		contentPane.add(btnSearchPatients_1);
 		
 		JButton btnAddPatient = new JButton("Register Patient");
 		btnAddPatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -133,39 +142,43 @@ public class StaffMenu extends JFrame {
 		if (staff.hasHealthDataAccess()) {
 			btnHealthData.setVisible(true);
 		}
-		
-		
-		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		btnGoBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
 				
 		JButton btnSearch = new JButton("Search Staff");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SearchStaff searchStaff = new SearchStaff(StaffReg, DepartReg);
+				searchStaff.setVisible(true);
+			}
+		});
+		
+				
+				JButton btnAddStaff = new JButton("Register Staff");
+				btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+				contentPane.add(btnAddStaff);
+				btnAddStaff.setVisible(false);
+				btnAddStaff.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						RegisterStaff AddStaffPage = new RegisterStaff(StaffReg);
+						AddStaffPage.setVisible(true);
+					}
+				});
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
-
 		
-		JButton btnAddStaff = new JButton("Add Staff");
-		btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		contentPane.add(btnAddStaff);
-		btnAddStaff.setVisible(false);
-		btnAddStaff.addActionListener(new ActionListener() {
+		JButton btnAddStaff_1 = new JButton("Add Staff to Department");
+		btnAddStaff_1.setFont(new Font("Times New Roman", Font.PLAIN, 28));
+		btnAddStaff_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				AddStaff AddStaffPage = new AddStaff(StaffReg);
-				AddStaffPage.setVisible(true);
 			}
 		});
+		contentPane.add(btnAddStaff_1);
 
 		JButton btnMoveStaff = new JButton("Move Staff");
 		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnMoveStaff);
 		btnMoveStaff.setVisible(false);
-		contentPane.add(btnGoBack);
 		btnMoveStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -175,14 +188,34 @@ public class StaffMenu extends JFrame {
 		});
 		
 		
-		JButton btnIctOfficerMenu = new JButton("Deparment Manager");
+		JButton btnIctOfficerMenu = new JButton("Department Manager");
 		btnIctOfficerMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DepartmentManager departmentManger = new DepartmentManager(DepartReg);
 				departmentManger.setVisible(true);
 			}
 		});
-		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		
+		JButton btnDischargeStaff = new JButton("Discharge Staff");
+		btnDischargeStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnDischargeStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new DischargeStaff(StaffReg, DepartReg).setVisible(true);
+			}
+		});
+		contentPane.add(btnDischargeStaff);
+		btnDischargeStaff.setVisible(false);
+		
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		contentPane.add(btnGoBack);
+		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		contentPane.add(btnIctOfficerMenu);
 		btnIctOfficerMenu.setVisible(false);
 		
@@ -198,6 +231,7 @@ public class StaffMenu extends JFrame {
 		}
 		if (staff.hasWriteAccessTo(StaffReg)) {
 			btnAddStaff.setVisible(true);
+			btnDischargeStaff.setVisible(true);
 		}
 		if (staff.canMovePatients()) {
 			btnMovePatient.setVisible(true);

@@ -209,5 +209,4 @@ public class DepartmentManager extends JFrame {
 		departmentNameTextField.setText("");
 		numberOfBedsTextField.setText("");
 	}
-
 }

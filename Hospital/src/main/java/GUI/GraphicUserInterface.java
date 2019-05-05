@@ -55,8 +55,8 @@ public class GraphicUserInterface {
 		final StaffRegister StaffReg = new StaffRegister();
 		final DepartmentRegister DepartReg = new DepartmentRegister();
 		DepartReg.createDepartment("ER");
-		StaffReg.addICTOfficer("email", "name"," surname", new Date(), "gender");
-		StaffReg.addClerk("email", "name", "surname", new Date(), "gender");
+		StaffReg.addICTOfficer("morten@bjerre.dk", "Morten", "Bjerre", new Date(), "male");
+		StaffReg.addClerk("eric@jensen.dk", "Eric", "Jensen", new Date(), "male");
 		StaffReg.addDoctor("email", "name", "surname", new Date(),"gender");
 		PatientReg.register("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Patient needs to be admitted.");
 		PatientReg.register("wef@ewfwef.com", "oeijf", "wef", new Date(), "gender", "Lungbyvej", 42042069, true, "Still alive");

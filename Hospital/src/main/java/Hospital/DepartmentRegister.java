@@ -197,6 +197,9 @@ public class DepartmentRegister {
 	 */
 	public void admit(int serialnum, String deptName, PatientRegister pr) {
 		Patient patient = pr.findSerialnum(serialnum);
+		if(!getDeptOfPatient(serialnum).equals("")) {
+			throw new IllegalArgumentException("Patient already admitted. Use move patient instead.");
+		}
 		if (this.findDepartment(deptName) instanceof InpatientDepartment) {
 			InpatientDepartment department = (InpatientDepartment) this.findDepartment(deptName);
 			if (department == null) {
@@ -227,6 +230,21 @@ public class DepartmentRegister {
 		for (String deptName : departments.keySet()) {
 			boolean deptContainsPatient = departments.get(deptName).containsPatient(serialnum);
 			if (deptContainsPatient) {
+				return deptName;
+			}
+		}
+		return "";
+	}
+	
+	/**
+	 * Returns the department of the staff specified by specific serialnum
+	 * @param serialnum
+	 * @return department name or empty string if staff member is not in a department
+	 */
+	public String getDeptOfStaff(int serialnum) {
+		for (String deptName : departments.keySet()) {
+			boolean deptContainsStaff = departments.get(deptName).containsStaff(serialnum);
+			if (deptContainsStaff) {
 				return deptName;
 			}
 		}

@@ -24,24 +24,27 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 @SuppressWarnings({ "unused", "serial" })
 public class PatientMenu extends JFrame {
-
-	private JPanel contentPane;
 	static PatientRegister PatientReg;
 	static DepartmentRegister DepartReg;
-	private static int serialnumber;
+	private int serialnum;
+	private Patient patient;
+	private String deptName;
   
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
-	public PatientMenu(PatientRegister PatientReg, DepartmentRegister DepartReg, int serialnumber) {
-		PatientMenu.PatientReg = PatientReg;
-		PatientMenu.DepartReg = DepartReg;
-		this.serialnumber = serialnumber;
-		Patient patient = PatientReg.findSerialnum(serialnumber);
+	public PatientMenu(PatientRegister pr, DepartmentRegister dr, int serialnum) {
+		PatientMenu.PatientReg = pr;
+		PatientMenu.DepartReg = dr;
+		this.serialnum = serialnum;
+		patient = pr.findSerialnum(serialnum);
 
 	
 		

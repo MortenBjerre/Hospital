@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 import Hospital.StaffRegister;
 
-public class AddStaff extends JFrame {
+public class RegisterStaff extends JFrame {
 
 	static StaffRegister StaffReg;
 	private JTextField email;
@@ -30,7 +30,7 @@ public class AddStaff extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("unchecked")
-	public AddStaff(StaffRegister StaffReg) {
+	public RegisterStaff(StaffRegister StaffReg) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Add Staff Menu");
 		
@@ -248,13 +248,13 @@ public class AddStaff extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String x = null;
+				String staffType = null;
 				try {
-					x = comboBox.getSelectedItem().toString();
+					staffType = comboBox.getSelectedItem().toString();
 				} catch (Exception e) {
 					;
 				}
-				if (x != null) {	
+				if (staffType != null) {	
 					String Email = email.getText();
 					String Name = name.getText();
 					String Surname = surname.getText();
@@ -265,19 +265,21 @@ public class AddStaff extends JFrame {
 					String Gender = gender.getText();
 					
 					
-					if (x == "Clerk") {
+					if (staffType == "Clerk") {
 						StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
-					} else if (x == "Doctor"){
+					} else if (staffType == "Doctor"){
 						StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
-					} else if (x == "Nurse") {
+					} else if (staffType == "Nurse") {
 						StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
-					} else if (x == "ICT Officer") {
+					} else if (staffType == "ICT Officer") {
 						StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
 					} else {
 						StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
 					}
 				}
+				dispose();
 			}
+			
 		});
 		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
