@@ -25,6 +25,7 @@ public class DepartmentManager extends JFrame {
 	private JTextField numberOfBedsTextField;
 
 	public DepartmentManager(DepartmentRegister dr) {
+		this.setTitle("Department Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 650, 186);
 		contentPane = new JPanel();
