@@ -72,6 +72,7 @@ public class DepartmentManager extends JFrame {
 						success.setVisible(true);
 					} catch (Exception error) {
 						dr.createDepartment(deptName);
+						updateTable();
 						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " was created");
 						clearText();
 						success.setVisible(true);
