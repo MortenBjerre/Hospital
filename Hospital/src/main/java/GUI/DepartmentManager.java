@@ -42,16 +42,22 @@ public class DepartmentManager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String deptName = departmentNameTextField.getText();
 				String numberOfBeds = numberOfBedsTextField.getText();
-				try {
-					int beds = Integer.parseInt(numberOfBeds);
-					dr.createDepartment(deptName, beds);
-					new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created").setVisible(true);
-					clearText();
-				} catch (Exception error) {
-					dr.createDepartment(deptName);
-					new SuccesfullOperation("Department " + deptName + " beds was created").setVisible(true);
-					clearText();
+				if (dr.containsDept(deptName)) {
+					new InvalidInput(deptName + " is already an existing department").setVisible(true);
+					clearText();					
+				} else {
+					try {
+						int beds = Integer.parseInt(numberOfBeds);
+						dr.createDepartment(deptName, beds);
+						new SuccesfullOperation("Department " + deptName + " with " + numberOfBeds + " beds was created").setVisible(true);
+						clearText();
+					} catch (Exception error) {
+						dr.createDepartment(deptName);
+						new SuccesfullOperation("Department " + deptName + " beds was created").setVisible(true);
+						clearText();
+					}
 				}
+				
 			}
 		});
 		
