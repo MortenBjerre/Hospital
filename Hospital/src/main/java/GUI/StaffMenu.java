@@ -26,19 +26,19 @@ import javax.swing.SwingConstants;
 public class StaffMenu extends JFrame {
 
 	private JPanel contentPane;
-	static StaffRegister StaffReg;
-	static PatientRegister PatientReg;
-	static DepartmentRegister DepartReg;
-	static int serialNumber;
+	static StaffRegister sr;
+	static PatientRegister pr;
+	static DepartmentRegister dr;
+	static int serialnum;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
 	public StaffMenu(final StaffRegister StaffReg, int serialNumber, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
-		StaffMenu.StaffReg = StaffReg;
-		StaffMenu.PatientReg = PatientReg;
-		this.serialNumber = serialNumber;
+		StaffMenu.sr = StaffReg;
+		StaffMenu.pr = PatientReg;
+		this.serialnum = serialNumber;
 		Staff staff = StaffReg.findSerialnum(serialNumber);
 
 		
@@ -171,6 +171,7 @@ public class StaffMenu extends JFrame {
 		btnAddStaff_1.setFont(new Font("Times New Roman", Font.PLAIN, 28));
 		btnAddStaff_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new AddStaffToDept(dr, sr).setVisible(true);
 			}
 		});
 		contentPane.add(btnAddStaff_1);
