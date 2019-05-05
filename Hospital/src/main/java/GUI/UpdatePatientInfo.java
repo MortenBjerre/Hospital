@@ -28,6 +28,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class UpdatePatientInfo extends JFrame {
@@ -341,9 +343,8 @@ public class UpdatePatientInfo extends JFrame {
 		SerialNumber.setColumns(10);
 		
 		aliveStatus = new JComboBox();
-		aliveStatus.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		aliveStatus.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
 				if (aliveStatus.getSelectedItem().equals("Alive")) {
 					pr.editAlive(serialnum, true);
 				} else {
@@ -351,6 +352,7 @@ public class UpdatePatientInfo extends JFrame {
 				}
 			}
 		});
+		
 		aliveStatus.setVisible(false);
 		aliveStatus.addItem("Alive");
 		aliveStatus.addItem("Dead");
@@ -369,6 +371,11 @@ public class UpdatePatientInfo extends JFrame {
 						serialnum = Integer.parseInt(SerialNumber.getText());
 						Patient p = pr.findSerialnum(serialnum);
 						if (p != null) {
+							if (p.getAlive()) {
+								aliveStatus.setSelectedIndex(0);
+							} else {
+								aliveStatus.setSelectedIndex(1);
+							}
 							lblEnterPatientsName.setVisible(true);
 							Name.setVisible(true);
 							Name.setText(p.getName());
@@ -391,7 +398,7 @@ public class UpdatePatientInfo extends JFrame {
 							Gender.setText(p.getGender());
 							lblPhoneNumber.setVisible(true);
 							Number.setVisible(true);
-							Number.setText( Integer.toString(p.getPhoneNumber()));
+							Number.setText(Integer.toString(p.getPhoneNumber()));
 							lblAlive.setVisible(true);
 							aliveStatus.setVisible(true);
 							lblEditBirthday.setVisible(true);
