@@ -99,12 +99,13 @@ public class SearchStaff extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				searchParameter = userInput.getText();
 				String choice = searchOptions.getSelectedItem().toString();
-				
+				System.out.println(staffReg.searchName("Morten"));
+				System.out.println(searchParameter);
 				if (choice.equals("Serial number")) {
 					try {
 						int serialnum = Integer.parseInt(searchParameter);
 						result = staffReg.searchSerialnum(serialnum);
-						tableData = makePartialTable(staffReg, result);
+						tableData = makePartialTable(staffReg, result,dr);
 						updateTable();
 					} catch (Exception error) {
 						new InvalidInput("Please enter valid serial number").setVisible(true);
@@ -112,9 +113,10 @@ public class SearchStaff extends JFrame {
 				}
 				else if (choice.equals("Name")) {
 					result = staffReg.searchName(searchParameter);
-					System.out.println(staffReg.searchName(searchParameter));
-					System.out.println(staffReg.searchName("Eric")[0]);
-					tableData = makePartialTable(staffReg, result);
+					System.out.println(Arrays.deepToString(result));
+					//System.out.println(staffReg.searchName(searchParameter));
+					//System.out.println(staffReg.searchName("Eric")[0]);
+					tableData = makePartialTable(staffReg, result,dr);
 					updateTable();
 				}
 				else if (choice.equals("Surname")) {
@@ -144,7 +146,7 @@ public class SearchStaff extends JFrame {
 		gbc_scrollPane.gridy = 3;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
-		tableData = makeFullTable(staffReg);
+		tableData = makeFullTable(staffReg, dr);
 		table = new JTable(tableData, columnNames);
 		updateTable();
 		scrollPane.setViewportView(table);
@@ -156,8 +158,8 @@ public class SearchStaff extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 	}
-	private Object[][] makePartialTable(StaffRegister staffReg, String[] result) {
-		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender"};
+	private Object[][] makePartialTable(StaffRegister staffReg, String[] result, DepartmentRegister DepartReg) {
+		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Department"};
 		this.columnNames = columnNames;
 		Object[][] data = new Object[result.length][columnNames.length];
 		System.out.println("Method:");
@@ -172,12 +174,13 @@ public class SearchStaff extends JFrame {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			data[i][4] = format.format(staffReg.findSerialnum(serialnum).getBirthday());
 			data[i][5] = staffReg.findSerialnum(serialnum).getGender();
+			data[i][6] = DepartReg.getDeptOfStaff(staffReg.findSerialnum(i).getSerialnum());
 		}
 		return data;
 	}
 	
-	private Object[][] makeFullTable(StaffRegister staffReg) {
-		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender"};
+	private Object[][] makeFullTable(StaffRegister staffReg, DepartmentRegister DepartReg) {
+		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Department"};
 		this.columnNames = columnNames;
 		Object[][] data = new Object[staffReg.NumberOfUsersInRegister()][columnNames.length];
 		for (int i = 0; i < staffReg.NumberOfUsersInRegister();i++) {
@@ -188,6 +191,7 @@ public class SearchStaff extends JFrame {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				data[i][4] = format.format(staffReg.findSerialnum(i).getBirthday());
 				data[i][5] = staffReg.findSerialnum(i).getGender();
+				data[i][6] = DepartReg.getDeptOfStaff(staffReg.findSerialnum(i).getSerialnum());
 		}
 		return data;
 		
