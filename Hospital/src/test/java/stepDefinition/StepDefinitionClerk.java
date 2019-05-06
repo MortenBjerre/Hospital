@@ -70,7 +70,8 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_search_for_a_patient() {
 		if (s.hasWriteAccessTo(pr)) {
 			String[] result = pr.searchGender("female");
-			assertTrue(result[0].equals(("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ; Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk")));
+			System.out.println(result[0]);
+			assertTrue(result[0].equals(pr.findSerialnum(1).toString()));
 			// The result of the search gave us the female in the register.
 		}
 		
