@@ -1,14 +1,24 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+
+@XmlRootElement(name="Patient")
 public class Patient extends HospitalUser {
+	@XmlElement(name="address")
 	private String address;
+	@XmlElement(name="phoneNumber")
 	private int phoneNumber;
+	@XmlElement(name="alive")
 	private boolean alive;
+	@XmlElement(name="serialnumCounter")
 	private static int serialnumCounter = 0;
+	@XmlElement(name="healthData")
 	private String healthData = "";
 
+	protected Patient() {}
 	//This is protected so that there can't be free floating patients. Can only make one in a register
 	/**
 	 * Creates a patient

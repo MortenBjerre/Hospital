@@ -1,12 +1,20 @@
 package Hospital;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
-public class OutpatientDepartment {
-	
+@XmlRootElement(name="OutpatientDepartment")
+public class OutpatientDepartment implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@XmlElementWrapper(name="patients")
 	protected ArrayList<Patient> patients;
+	@XmlElementWrapper(name="staff")
 	protected ArrayList<Staff> staff;
+	@XmlElement(name ="deptName")
 	protected String deptName;
+	
+	protected OutpatientDepartment() {}
 	
 	protected OutpatientDepartment(String deptName) {
 		this.deptName = deptName;

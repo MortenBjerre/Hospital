@@ -2,7 +2,9 @@ package Hospital;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name = "StaffRegister")
 public class StaffRegister extends Register<Staff> {
 	
 	public StaffRegister() {
