@@ -101,6 +101,7 @@ public class SearchStaff extends JFrame {
 				String choice = searchOptions.getSelectedItem().toString();
 				System.out.println(staffReg.searchName("Morten"));
 				System.out.println(searchParameter);
+				System.out.println(searchParameter.equals("Morten"));
 				if (choice.equals("Serial number")) {
 					try {
 						int serialnum = Integer.parseInt(searchParameter);
@@ -116,17 +117,23 @@ public class SearchStaff extends JFrame {
 					System.out.println(Arrays.deepToString(result));
 					//System.out.println(staffReg.searchName(searchParameter));
 					//System.out.println(staffReg.searchName("Eric")[0]);
-					tableData = makePartialTable(staffReg, result,dr);
+					tableData = makePartialTable(staffReg, result, dr);
 					updateTable();
 				}
 				else if (choice.equals("Surname")) {
-					
+					result = staffReg.searchSurname(searchParameter);
+					tableData = makePartialTable(staffReg, result, dr);
+					updateTable();
 				}
 				else if (choice.equals("Email")) {
-					
+					result = staffReg.searchSurname(searchParameter);
+					tableData = makePartialTable(staffReg, result, dr);
+					updateTable();
 				}
 				else if (choice.equals("Gender")) {
-					
+					result = staffReg.searchSurname(searchParameter);
+					tableData = makePartialTable(staffReg, result, dr);
+					updateTable();
 				}
 				
 				

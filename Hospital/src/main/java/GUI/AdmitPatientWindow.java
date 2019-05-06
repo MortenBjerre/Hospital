@@ -29,12 +29,13 @@ public class AdmitPatientWindow extends JFrame {
 	private JComboBox departmentNames;
 	private DepartmentRegister dr;
 	private JButton btnSearchPatients;
+	private JButton btnGoBack;
 
 	public AdmitPatientWindow(PatientRegister pr, DepartmentRegister dr) {
 		this.dr = dr;
 		setTitle("Admit a patient");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 489, 255);
+		setBounds(100, 100, 585, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -118,6 +119,18 @@ public class AdmitPatientWindow extends JFrame {
 		gbc_btnAdmit.gridx = 1;
 		gbc_btnAdmit.gridy = 5;
 		contentPane.add(btnAdmit, gbc_btnAdmit);
+		
+		btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
+		gbc_btnGoBack.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGoBack.gridx = 2;
+		gbc_btnGoBack.gridy = 5;
+		contentPane.add(btnGoBack, gbc_btnGoBack);
 	}
 
 }
