@@ -59,7 +59,7 @@ public class PatientRegister extends Register<Patient> {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
 		for (Integer serialnum : users.keySet()) {
 			Patient patient = users.get(serialnum);
-			if (patient.getAddress() == address) {
+			if (patient.getAddress().equals(address)) {
 				matches.add(patient);
 			}
 		}
@@ -119,7 +119,7 @@ public class PatientRegister extends Register<Patient> {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
 		for (Integer serialnum : users.keySet()) {
 			Patient patient = users.get(serialnum);
-			if (patient.getAlive() == alive) {
+			if (patient.getAlive() == (alive)) {
 				matches.add(patient);
 			}
 		}
