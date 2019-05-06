@@ -40,6 +40,7 @@ public class GraphicUserInterface {
         }
         catch (JAXBException e)
         {
+//        	Patient.resetSerialnumCounter;
             System.out.println("No Department Register file found - creating new file");
         }
         finally {

@@ -39,8 +39,13 @@ public class Patient extends HospitalUser {
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setHealthData(healthData);
+		System.out.println("counter: " + serialnumCounter);
 		serialnum = serialnumCounter;
+		System.out.println("serialnum: " + serialnum);
 		serialnumCounter++;
+		System.out.println("counter++: " + serialnumCounter);
+		System.out.println("========================");
+
 	}
 	
 	/**
@@ -85,6 +90,14 @@ public class Patient extends HospitalUser {
 	
 	public static void resetSerialnumCounter() {
 		serialnumCounter = 0;
+	}
+	
+	public static void setSerialnumCounter(int counter) {
+		serialnumCounter = counter;
+	}
+	
+	public static int getSerialnumCounter() {
+		return serialnumCounter;
 	}
 	
 	public boolean equals(Object obj) {

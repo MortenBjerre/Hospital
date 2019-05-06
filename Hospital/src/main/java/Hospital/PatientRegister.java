@@ -13,7 +13,7 @@ public class PatientRegister extends Register<Patient> {
 	 * When creating a patient register the serialnum counter is reset
 	 */
 	public PatientRegister() {
-		Patient.resetSerialnumCounter();
+//		Patient.resetSerialnumCounter();
 	}
 	
 	/**
