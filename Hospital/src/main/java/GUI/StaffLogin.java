@@ -159,7 +159,8 @@ public class StaffLogin extends JFrame {
 							dispose();
 						}
 				} catch (Exception e1) {
-					;
+					InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
+					invalid.setVisible(true);
 					}
 				}
 			}
@@ -170,6 +171,7 @@ public class StaffLogin extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				try {
 				@SuppressWarnings("deprecation")
 				int serialNumber = Integer.parseInt(SerialNumber.getText());
 				
@@ -186,6 +188,10 @@ public class StaffLogin extends JFrame {
 				} else {
 						dispose();
 					}
+			} catch (Exception e) {
+				InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
+				invalid.setVisible(true);
+			}
 			}
 		});
 		
