@@ -160,23 +160,13 @@ public class StaffMenu extends JFrame {
 				btnAddStaff.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						RegisterStaff AddStaffPage = new RegisterStaff(StaffReg);
+						RegisterStaff AddStaffPage = new RegisterStaff(StaffReg, DepartReg);
 						AddStaffPage.setVisible(true);
 					}
 				});
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
-		
-		btnAddStaffToDept = new JButton("Add Staff to Department");
-		btnAddStaffToDept.setVisible(false);
-		btnAddStaffToDept.setFont(new Font("Times New Roman", Font.PLAIN, 28));
-		btnAddStaffToDept.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new AddStaffToDept(dr, sr).setVisible(true);
-			}
-		});
-		contentPane.add(btnAddStaffToDept);
 
 		JButton btnMoveStaff = new JButton("Move Staff");
 		btnMoveStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -208,6 +198,9 @@ public class StaffMenu extends JFrame {
 		});
 		contentPane.add(btnDischargeStaff);
 		btnDischargeStaff.setVisible(false);
+		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 28));
+		contentPane.add(btnIctOfficerMenu);
+		btnIctOfficerMenu.setVisible(false);
 		
 		
 		JButton btnGoBack = new JButton("Go Back");
@@ -218,9 +211,9 @@ public class StaffMenu extends JFrame {
 			}
 		});
 		contentPane.add(btnGoBack);
-		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 28));
-		contentPane.add(btnIctOfficerMenu);
-		btnIctOfficerMenu.setVisible(false);
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -242,15 +235,14 @@ public class StaffMenu extends JFrame {
 		if (staff.hasWriteAccessTo(PatientReg)) {
 			btnRemovePatient.setVisible(true);
 		}
-		if (staff.canMoveStaff()) {
-			btnMoveStaff.setVisible(true);
-			btnAddStaffToDept.setVisible(true);
-		}
 		if (staff.hasViewAccessTo(StaffReg)) {
 			btnSearch.setVisible(true);
 		}
 		if (staff.canEditDepartmentRegister(DepartReg)) {
 			btnIctOfficerMenu.setVisible(true);
+		}
+		if (staff.canMoveStaff()) {
+			btnMoveStaff.setVisible(true);
 		}
 	}
 }
