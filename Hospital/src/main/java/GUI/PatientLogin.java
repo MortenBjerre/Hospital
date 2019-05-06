@@ -166,24 +166,30 @@ public class PatientLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnLogin.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				
-				@SuppressWarnings("deprecation")
-				int serialNumber = Integer.parseInt(SerialNumber.getText());
-				
-				if (attempts != 0) {
-				
-					if (PatientReg.findSerialnum(serialNumber) != null) {
-						PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
-						menu.setVisible(true);
-						dispose();
+				try  {
+					int serialNumber = Integer.parseInt(SerialNumber.getText());	
+					if (attempts != 0) {
+						
+						if (PatientReg.findSerialnum(serialNumber) != null) {
+							PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
+							menu.setVisible(true);
+							dispose();
+						} else {
+							invalidLogin.setVisible(true);
+							attempts--;
+						}
 					} else {
-						invalidLogin.setVisible(true);
-						attempts--;
-					}
-				} else {
-						dispose();
-					}
+							dispose();
+						}
+				} catch (Exception e) {
+					InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
+					invalid.setVisible(true);
+				}
+				
+
 			}
 		});
 		

@@ -45,7 +45,7 @@ public class Dischargepatient extends JFrame {
 	
 	public Dischargepatient(final PatientRegister pr, final DepartmentRegister dr) {		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 667, 585);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
