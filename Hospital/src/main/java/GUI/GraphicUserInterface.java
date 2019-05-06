@@ -18,7 +18,7 @@ import Hospital.PatientRegister;
 import Hospital.StaffRegister;
 
 public class GraphicUserInterface {
-
+//
 	private JFrame frame;
 
 	/**
