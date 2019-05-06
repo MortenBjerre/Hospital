@@ -7,15 +7,19 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
 import Hospital.StaffRegister;
+import GUI.StaffMenu;
 import Hospital.*;
 import javax.xml.bind.*;
 import java.io.File;
@@ -138,11 +142,32 @@ public class GraphicUserInterface {
 		final PatientRegister PatientReg = loadPatientRegister();
 		final StaffRegister StaffReg = loadStaffRegister();
 		final DepartmentRegister DepartReg = loadDepartmentRegister();
-
+		
+		
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				int answer = JOptionPane.showConfirmDialog(frame, "Do you wish to save the program?","Close Program",JOptionPane.YES_NO_CANCEL_OPTION);
+				if (answer == JOptionPane.YES_OPTION) {
+//					saveStaffRegister(StaffReg);
+//					savePatientRegister(PatientReg);
+//					saveDepartmentRegister(DepartReg);
+					
+					System.exit(0);
+				}
+				if (answer == JOptionPane.NO_OPTION) {
+					System.exit(0);
+				} else {
+					; // do nothing 
+				}
+			}
+		});
+
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(1000,670);
