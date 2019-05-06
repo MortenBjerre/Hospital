@@ -21,6 +21,7 @@ import Hospital.Staff;
 import Hospital.StaffRegister;
 import javax.swing.JComboBox;
 
+@SuppressWarnings("serial")
 public class MoveStaff extends JFrame {
 
 	private JPanel contentPane;
@@ -43,9 +44,9 @@ public class MoveStaff extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
@@ -62,7 +63,7 @@ public class MoveStaff extends JFrame {
 		serialNumber = new JTextField();
 		serialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_serialNumber = new GridBagConstraints();
-		gbc_serialNumber.insets = new Insets(0, 0, 5, 0);
+		gbc_serialNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_serialNumber.fill = GridBagConstraints.HORIZONTAL;
 		gbc_serialNumber.gridx = 1;
 		gbc_serialNumber.gridy = 2;
@@ -80,10 +81,10 @@ public class MoveStaff extends JFrame {
 		contentPane.add(lblPatientIsIn, gbc_lblPatientIsIn);
 		lblPatientIsIn.setVisible(false);
 		
-		lblShouldShowDepartment = new JLabel("should show department");
+		lblShouldShowDepartment = new JLabel();
 		lblShouldShowDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblShouldShowDepartment = new GridBagConstraints();
-		gbc_lblShouldShowDepartment.insets = new Insets(0, 0, 5, 0);
+		gbc_lblShouldShowDepartment.insets = new Insets(0, 0, 5, 5);
 		gbc_lblShouldShowDepartment.gridx = 1;
 		gbc_lblShouldShowDepartment.gridy = 5;
 		contentPane.add(lblShouldShowDepartment, gbc_lblShouldShowDepartment);
@@ -99,18 +100,6 @@ public class MoveStaff extends JFrame {
 		contentPane.add(lblWhatDepartmentShould, gbc_lblWhatDepartmentShould);
 		lblWhatDepartmentShould.setVisible(false);
 		
-		JButton btnGoBack = new JButton("Go Back");
-		btnGoBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
-		gbc_btnGoBack.anchor = GridBagConstraints.EAST;
-		gbc_btnGoBack.gridx = 1;
-		gbc_btnGoBack.gridy = 16;
-		contentPane.add(btnGoBack, gbc_btnGoBack);
-		
 		
 		@SuppressWarnings("rawtypes")
 		final JComboBox comboBox = new JComboBox();
@@ -118,11 +107,44 @@ public class MoveStaff extends JFrame {
 			comboBox.addItem(dept);
 		}
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 8;
 		contentPane.add(comboBox, gbc_comboBox);
+		
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		JButton btnMoveStaff = new JButton("Move Staff");
+		btnMoveStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DepartReg.moveStaff(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), StaffReg);
+					SuccesfulOperation window = new SuccesfulOperation("Staff has succesfully been moved");
+					window.setVisible(true);
+					dispose();
+				} catch (Exception IllegalArgumentException) {
+					InvalidInput invalid = new InvalidInput("Staff has not been admitted to a department");
+					invalid.setVisible(true);
+				}
+			}
+		});
+		GridBagConstraints gbc_btnMoveStaff = new GridBagConstraints();
+		gbc_btnMoveStaff.insets = new Insets(0, 0, 5, 5);
+		gbc_btnMoveStaff.gridx = 1;
+		gbc_btnMoveStaff.gridy = 11;
+		contentPane.add(btnMoveStaff, gbc_btnMoveStaff);
+		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
+		gbc_btnGoBack.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGoBack.anchor = GridBagConstraints.EAST;
+		gbc_btnGoBack.gridx = 2;
+		gbc_btnGoBack.gridy = 11;
+		contentPane.add(btnGoBack, gbc_btnGoBack);
 		comboBox.setVisible(false);
 		
 		serialNumber.addKeyListener(new KeyAdapter() {
@@ -138,6 +160,7 @@ public class MoveStaff extends JFrame {
 							lblShouldShowDepartment.setVisible(true);
 							lblWhatDepartmentShould.setVisible(true);
 							comboBox.setVisible(true);
+							lblShouldShowDepartment.setText(DepartReg.getDeptOfStaff(serialnum));
 						}
 					} catch (Exception e1) {
 						;
@@ -145,6 +168,8 @@ public class MoveStaff extends JFrame {
 				}
 			}
 		});
+		
+		
 		
 	}
 }

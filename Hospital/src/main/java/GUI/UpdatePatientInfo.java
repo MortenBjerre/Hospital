@@ -50,6 +50,7 @@ public class UpdatePatientInfo extends JFrame {
 	private JLabel lblEditBirthday;
 	private JButton btnUpdate;
 	private SimpleDateFormat format;
+	private JButton btnGoBack;
 	
 	/**
 	 * Create the frame.
@@ -62,9 +63,9 @@ public class UpdatePatientInfo extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{403, 348, 91, 0};
-		gbl_contentPane.rowHeights = new int[]{56, 33, 39, 41, 0, 0, 0, 0, 43, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{56, 33, 39, 41, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 		
@@ -325,7 +326,7 @@ public class UpdatePatientInfo extends JFrame {
 		lblAlive.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_lblAlive = new GridBagConstraints();
 		gbc_lblAlive.anchor = GridBagConstraints.EAST;
-		gbc_lblAlive.insets = new Insets(0, 0, 0, 5);
+		gbc_lblAlive.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAlive.gridx = 0;
 		gbc_lblAlive.gridy = 11;
 		contentPane.add(lblAlive, gbc_lblAlive);
@@ -357,11 +358,22 @@ public class UpdatePatientInfo extends JFrame {
 		aliveStatus.addItem("Alive");
 		aliveStatus.addItem("Dead");
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 11;
 		contentPane.add(aliveStatus, gbc_comboBox);
+		
+		btnGoBack = new JButton("Go back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
+		gbc_btnGoBack.gridx = 2;
+		gbc_btnGoBack.gridy = 12;
+		contentPane.add(btnGoBack, gbc_btnGoBack);
 		
 		SerialNumber.addKeyListener(new KeyAdapter() {
 			@Override
