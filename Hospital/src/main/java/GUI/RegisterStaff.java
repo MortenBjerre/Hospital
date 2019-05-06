@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Hospital.DepartmentRegister;
 import Hospital.StaffRegister;
 import com.toedter.calendar.JDateChooser;
 
@@ -32,7 +33,7 @@ public class RegisterStaff extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("unchecked")
-	public RegisterStaff(StaffRegister StaffReg) {
+	public RegisterStaff(StaffRegister StaffReg, DepartmentRegister DepartReg) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Add Staff Menu");
 		
@@ -174,6 +175,18 @@ public class RegisterStaff extends JFrame {
 		getContentPane().add(lblBirthday, gbc_lblBirthday);
 		surname.setColumns(10);
 		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setSelectedIndex(-1);
+		comboBox_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		for (String dept : DepartReg.getAllDepartments()) {
+			comboBox_1.addItem(dept);
+		}
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.gridx = 4;
+		gbc_comboBox_1.gridy = 9;
+		getContentPane().add(comboBox_1, gbc_comboBox_1);
 		
 		JButton btnAdd = new JButton("Register");
 		btnAdd.addActionListener(new ActionListener() {
@@ -196,15 +209,20 @@ public class RegisterStaff extends JFrame {
 					String Gender = gender.getText();
 					
 					if (staffType == "Clerk") {
-						StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
+						int serialnum = StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
+						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else if (staffType == "Doctor"){
-						StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
+						int serialnum = StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
+						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else if (staffType == "Nurse") {
-						StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
+						int serialnum = StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
+						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else if (staffType == "ICT Officer") {
-						StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
+						int serialnum = StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
+						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else {
-						StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
+						int serialnum = StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
+						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					}
 				}
 				new SuccesfulOperation(Name + " was registered as a(n) " + staffType).setVisible(true);
@@ -220,6 +238,16 @@ public class RegisterStaff extends JFrame {
 		gbc_dateChooser.gridx = 4;
 		gbc_dateChooser.gridy = 8;
 		getContentPane().add(dateChooser, gbc_dateChooser);
+		
+		JLabel lblDepartment = new JLabel("Department : ");
+		lblDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		GridBagConstraints gbc_lblDepartment = new GridBagConstraints();
+		gbc_lblDepartment.anchor = GridBagConstraints.EAST;
+		gbc_lblDepartment.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDepartment.gridx = 2;
+		gbc_lblDepartment.gridy = 9;
+		getContentPane().add(lblDepartment, gbc_lblDepartment);
+		
 		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.insets = new Insets(0, 0, 5, 5);
