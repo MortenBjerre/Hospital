@@ -176,6 +176,11 @@ public class DischargeStaff extends JFrame {
 					dr.dischargeStaff(serialnum, sr);
 					new SuccesfulOperation("Staff member has been fired.").setVisible(true);
 					serialnumberInput.setText("");
+					lblShowDepartment.setText("");
+					lblShowEmail.setText("");
+					lblShowGender.setText("");
+					lblShowSurname.setText("");
+					lblShowName.setText("");
 				} catch (Exception error) {
 //					new InvalidInput("No such staff member").setVisible(true);;
 					new InvalidInput(error.getMessage()).setVisible(true);;
