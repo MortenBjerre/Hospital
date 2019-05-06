@@ -22,7 +22,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class RegisterStaff extends JFrame {
 
-	static StaffRegister StaffReg;
+	static StaffRegister sr;
 	private JTextField email;
 	private JTextField name;
 	private JTextField surname;
@@ -62,31 +62,31 @@ public class RegisterStaff extends JFrame {
 		gbc_panel.gridy = 1;
 		getContentPane().add(panel, gbc_panel);
 		
-		JLabel lblWhatRoleDoes = new JLabel("Choose staff role");
-		lblWhatRoleDoes.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		JLabel lblChooseStaffRole = new JLabel("Choose staff role");
+		lblChooseStaffRole.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblWhatRoleDoes = new GridBagConstraints();
 		gbc_lblWhatRoleDoes.anchor = GridBagConstraints.EAST;
 		gbc_lblWhatRoleDoes.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWhatRoleDoes.gridx = 2;
 		gbc_lblWhatRoleDoes.gridy = 1;
-		getContentPane().add(lblWhatRoleDoes, gbc_lblWhatRoleDoes);
+		getContentPane().add(lblChooseStaffRole, gbc_lblWhatRoleDoes);
 		
 		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		comboBox.setPreferredSize(new Dimension(200,50));
-		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		comboBox.addItem("Clerk");
-		comboBox.addItem("Doctor");
-		comboBox.addItem("Nurse");
-		comboBox.addItem("ICT Officer");
-		comboBox.addItem("Other");
-		comboBox.setSelectedIndex(-1);
+		JComboBox staffRoleChoice = new JComboBox();
+		staffRoleChoice.setPreferredSize(new Dimension(200,50));
+		staffRoleChoice.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		staffRoleChoice.addItem("Clerk");
+		staffRoleChoice.addItem("Doctor");
+		staffRoleChoice.addItem("Nurse");
+		staffRoleChoice.addItem("ICT Officer");
+		staffRoleChoice.addItem("Other");
+		staffRoleChoice.setSelectedIndex(-1);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 4;
 		gbc_comboBox.gridy = 1;
-		getContentPane().add(comboBox, gbc_comboBox);
+		getContentPane().add(staffRoleChoice, gbc_comboBox);
 		
 		
 		JLabel lblEmail = new JLabel("Email : ");
@@ -191,12 +191,13 @@ public class RegisterStaff extends JFrame {
 		JButton btnAdd = new JButton("Register");
 		btnAdd.addActionListener(new ActionListener() {
 			private String Name;
+			private int serialnum;
 
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String staffType = null;
 				try {
-					staffType = comboBox.getSelectedItem().toString();
+					staffType = staffRoleChoice.getSelectedItem().toString();
 				} catch (Exception e) {
 					;
 				}
@@ -209,23 +210,23 @@ public class RegisterStaff extends JFrame {
 					String Gender = gender.getText();
 					
 					if (staffType == "Clerk") {
-						int serialnum = StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
+						serialnum = StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
 						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else if (staffType == "Doctor"){
-						int serialnum = StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
+						serialnum = StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
 						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else if (staffType == "Nurse") {
-						int serialnum = StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
+						serialnum = StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
 						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else if (staffType == "ICT Officer") {
-						int serialnum = StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
+						serialnum = StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
 						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					} else {
 						int serialnum = StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
 						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
 					}
 				}
-				new SuccesfulOperation(Name + " was registered as a(n) " + staffType).setVisible(true);
+				new SuccesfulOperation(Name + " was registered as a(n) " + staffType + ". Their serial number is " + serialnum).setVisible(true);
 				dispose();
 			}
 			
