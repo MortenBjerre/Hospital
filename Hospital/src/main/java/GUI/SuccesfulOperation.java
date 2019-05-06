@@ -63,7 +63,7 @@ public class SuccesfulOperation extends JFrame {
 		messageDisplay.setBackground(Color.WHITE);
 		messageDisplay.setLineWrap(true);
 		messageDisplay.setWrapStyleWord(true);
-		messageDisplay.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+		messageDisplay.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		messageDisplay.setEditable(false);
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);

@@ -63,7 +63,7 @@ public class InvalidInput extends JFrame {
 		errorMessage.setLineWrap(true);
 		errorMessage.setWrapStyleWord(true);
 		errorMessage.setEditable(false);
-		errorMessage.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		errorMessage.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
