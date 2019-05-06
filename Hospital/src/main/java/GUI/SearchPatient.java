@@ -202,7 +202,7 @@ public class SearchPatient extends JFrame {
 		});
 		
 		// Table - table initially shows all patients
-		tableData = makeFullTable(pr);
+		tableData = makeFullTable(pr,dr);
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.fill = GridBagConstraints.HORIZONTAL;
 		gbc_button.insets = new Insets(0, 0, 5, 0);
@@ -249,8 +249,8 @@ public class SearchPatient extends JFrame {
 		return data;
 	}
 	
-	private Object[][] makeFullTable(PatientRegister pr) {
-		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Alive"};
+	private Object[][] makeFullTable(PatientRegister pr, DepartmentRegister dr) {
+		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Department","Alive"};
 		this.columnNames = columnNames;
 		Object[][] data = new Object[pr.NumberOfUsersInRegister()][columnNames.length];
 		for (int i = 0; i < pr.NumberOfUsersInRegister();i++) {
@@ -263,7 +263,8 @@ public class SearchPatient extends JFrame {
 				data[i][5] = pr.findSerialnum(i).getGender();
 				data[i][6] = pr.findSerialnum(i).getAddress();
 				data[i][7] = pr.findSerialnum(i).getPhoneNumber();
-				data[i][8] = pr.findSerialnum(i).getAlive();	
+				data[i][8] = dr.getDeptOfPatient(pr.findSerialnum(i).getSerialnum());
+				data[i][9] = pr.findSerialnum(i).getAlive();	
 		}
 		return data;
 		
