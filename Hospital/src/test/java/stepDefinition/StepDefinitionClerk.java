@@ -70,7 +70,6 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_search_for_a_patient() {
 		if (s.hasWriteAccessTo(pr)) {
 			String[] result = pr.searchGender("female");
-			System.out.println(result[0]);
 			assertTrue(result[0].equals(pr.findSerialnum(1).toString()));
 			// The result of the search gave us the female in the register.
 		}
@@ -153,7 +152,7 @@ public class StepDefinitionClerk {
 		if (s.hasHealthDataAccess()) {
 			String healthData = "Patient needs a colonoscopy";
 			pr.editHealthData(1,healthData);
-			assertTrue(pr.viewHealthData(1).equals(healthData));
+			assertTrue(pr.viewHealthData(1).contains(healthData)); //Adding health data also puts in the date
 		}
 	}
 	
@@ -426,7 +425,6 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to search for a patient by birthday$")
 	public void i_should_be_able_to_search_for_a_patient_by_birthday() {
 		Date a = new Date(2002,1,1);
-//		System.out.println(pr.searchBirthday(a)[0]);
 	    assertEquals("Serialnum: 3; Patient name: Philtwo Taylor ; Gender: male ; "
 	    		+ "Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com"
 				,(pr.searchBirthday(new Date(2002,1,1))[0]));
