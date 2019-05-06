@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JTextArea;
@@ -215,6 +216,7 @@ public class RegisterPatient extends JFrame {
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String name = Name.getText();
@@ -230,10 +232,28 @@ public class RegisterPatient extends JFrame {
 					boolean alive = true;
 					if (aliveStatus.getSelectedItem() != "Alive") {
 						alive = false;
-					}
+					}					
+					if (Name.getText().equals("") || Surname.getText().equals("") || 
+						Address.getText().equals("") || Email.getText().equals("") || 
+						Gender.getText().equals("")) {
+				        int input = JOptionPane.showConfirmDialog(null, "One or more fields are empty. Would you like to continue?");
+				        if (input == 0) {
+				        	PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
+									gender, address, phoneNumber, alive, healthData);
+							dispose();
+							new SuccesfulOperation("Patient has been registered").setVisible(true);
+							dispose();
+				        } else if (input == 1) {
+				        	;
+				        } else {
+				        	dispose();
+				        }
+					} else {
 					PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
 							gender, address, phoneNumber, alive, healthData);
+					new SuccesfulOperation("Patient has been registered 2").setVisible(true);
 					dispose();
+					}
 				} catch (Exception er) {
 					InvalidInput invalidInput = new InvalidInput("Please enter valid input."); 
 					invalidInput.setVisible(true);

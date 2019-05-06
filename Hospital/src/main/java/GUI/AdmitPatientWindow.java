@@ -31,6 +31,7 @@ public class AdmitPatientWindow extends JFrame {
 	private JButton btnSearchPatients;
 	private JButton btnGoBack;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AdmitPatientWindow(PatientRegister pr, DepartmentRegister dr) {
 		this.dr = dr;
 		setTitle("Admit a patient");
@@ -85,17 +86,25 @@ public class AdmitPatientWindow extends JFrame {
 		contentPane.add(lblAdmitToDepartment, gbc_lblAdmitToDepartment);
 		
 		btnAdmit = new JButton("Admit");
-		btnAdmit.addActionListener(new ActionListener() {
+		btnAdmit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int serialnum = Integer.parseInt(serialnumberTextField.getText());
+					if (pr.findSerialnum(serialnum) ==  null) {
+						throw new NullPointerException();
+					}
 					String deptName = (String) departmentNames.getSelectedItem();
 					dr.admit(serialnum, deptName, pr);
 					dispose();
 					new SuccesfulOperation("Patient was admitted to " + deptName).setVisible(true);			
 				} catch (Exception error) {
+					if (error instanceof NullPointerException) {
+						InvalidInput invalid = new InvalidInput("No such patient");
+						invalid.setVisible(true);
+					} else {
 					InvalidInput invalidInput = new InvalidInput(error.getMessage());
 					invalidInput.setVisible(true);
+					}
 				}
 				
 			}
