@@ -38,14 +38,14 @@ public class DepartmentManager extends JFrame {
 		this.dr = dr;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 662, 311);
+		setBounds(100, 100, 949, 449);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{150, 139, 0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{218, 163, 164, 180, 166, 0};
 		gbl_contentPane.rowHeights = new int[]{44, 79, 135, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
@@ -61,21 +61,26 @@ public class DepartmentManager extends JFrame {
 					InvalidInput invalid = new InvalidInput(deptName + " is already an existing department");
 					invalid.setVisible(true);
 					clearText();					
-					invalid.setSize(new Dimension(550,250));
+				} else if (deptName.equals("")) {
+					new InvalidInput("Department needs a name").setVisible(true);
 				} else {
-					try {
-						int beds = Integer.parseInt(numberOfBeds);
-						dr.createDepartment(deptName, beds);
-						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " with " + numberOfBeds + " beds was created");
-						clearText();
-						updateTable();
-						success.setVisible(true);
-					} catch (Exception error) {
+					if (numberOfBeds.equals("")) {
 						dr.createDepartment(deptName);
 						updateTable();
-						SuccesfulOperation success = new SuccesfulOperation("Department " + deptName + " was created");
+						SuccesfulOperation success = new SuccesfulOperation("Outpatient Department " + deptName + " was created");
 						clearText();
 						success.setVisible(true);
+					} else {
+						try {
+							int beds = Integer.parseInt(numberOfBeds);
+							dr.createDepartment(deptName, beds);
+							SuccesfulOperation success = new SuccesfulOperation("Inpatient Department " + deptName + " with " + numberOfBeds + " beds was created");
+							clearText();
+							updateTable();
+							success.setVisible(true);
+						} catch (Exception error) {
+							new InvalidInput("Invalid number of beds").setVisible(true);
+						}
 					}
 				}
 				
@@ -113,7 +118,7 @@ public class DepartmentManager extends JFrame {
 		numberOfBedsTextField = new JTextField();
 		numberOfBedsTextField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 3;
 		gbc_textField_1.gridy = 0;
@@ -212,15 +217,34 @@ public class DepartmentManager extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnRemoveBedsFrom = new GridBagConstraints();
-		gbc_btnRemoveBedsFrom.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRemoveBedsFrom.insets = new Insets(0, 0, 5, 5);
 		gbc_btnRemoveBedsFrom.fill = GridBagConstraints.BOTH;
 		gbc_btnRemoveBedsFrom.gridx = 3;
 		gbc_btnRemoveBedsFrom.gridy = 1;
 		contentPane.add(btnRemoveBedsFrom, gbc_btnRemoveBedsFrom);
 		
+		JButton btnInspect = new JButton("Inspect Department");
+		btnInspect.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnInspect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String deptName = departmentNameTextField.getText();
+				if (!deptName.equals("") && dr.containsDept(deptName)) {
+					new InspectDepartment(dr, deptName).setVisible(true);
+				} else {
+					new InvalidInput("Enter a valid department name").setVisible(true);
+				}
+			}
+		});
+		GridBagConstraints gbc_btnInspect = new GridBagConstraints();
+		gbc_btnInspect.fill = GridBagConstraints.BOTH;
+		gbc_btnInspect.insets = new Insets(0, 0, 5, 0);
+		gbc_btnInspect.gridx = 4;
+		gbc_btnInspect.gridy = 1;
+		contentPane.add(btnInspect, gbc_btnInspect);
+		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 4;
+		gbc_scrollPane.gridwidth = 5;
 		gbc_scrollPane.fill = GridBagConstraints.HORIZONTAL;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
