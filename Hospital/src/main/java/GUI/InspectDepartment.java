@@ -92,8 +92,8 @@ public class InspectDepartment extends JFrame {
 	
 	private Object[][] makeStaffTable(DepartmentRegister dr, String deptName) {
 		ArrayList<Staff> staffInDept = dr.getStaffFrom(deptName);
-		Object [][] data = new Object[staffInDept.size()][6];
-		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender"};
+		Object [][] data = new Object[staffInDept.size()][7];
+		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender", "Role"};
 		this.staffColumnNames = columnNames;
 		for (int i = 0; i < staffInDept.size(); i++) {
 			Staff s = staffInDept.get(i);
@@ -104,6 +104,7 @@ public class InspectDepartment extends JFrame {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			data[i][4] = format.format(s.getBirthday());
 			data[i][5] = s.getGender();
+			data[i][6] = s.getRole();
 		}
 		return data;
 	}

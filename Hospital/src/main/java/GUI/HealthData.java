@@ -198,9 +198,14 @@ public class HealthData extends JFrame {
 		btnAddNewHealth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				healthData = updatedHealthDataField.getText();
-				pr.editHealthData(serialnum, healthData);
-				lblgetHealthdata.setText(pr.findSerialnum(serialnum).getHealthData());		// + healthData
-				updatedHealthDataField.setText("");
+				if (!healthData.equals("")) {
+					pr.editHealthData(serialnum, healthData);
+					lblgetHealthdata.setText(pr.findSerialnum(serialnum).getHealthData());		// + healthData
+					updatedHealthDataField.setText("");
+				} else {
+					new InvalidInput("Please enter the patient's health data").setVisible(true);;
+				}
+
 								
 			}
 		});

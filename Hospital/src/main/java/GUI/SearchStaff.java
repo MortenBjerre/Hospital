@@ -186,19 +186,24 @@ public class SearchStaff extends JFrame {
 		return data;
 	}
 	
-	private Object[][] makeFullTable(StaffRegister staffReg, DepartmentRegister DepartReg) {
-		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Department"};
+	private Object[][] makeFullTable(StaffRegister sr, DepartmentRegister DepartReg) {
+		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Role", "Department"};
 		this.columnNames = columnNames;
-		Object[][] data = new Object[staffReg.NumberOfUsersInRegister()][columnNames.length];
-		for (int i = 0; i < staffReg.NumberOfUsersInRegister();i++) {
-				data[i][0] = staffReg.findSerialnum(i).getSerialnum();
-				data[i][1] = staffReg.findSerialnum(i).getName();
-				data[i][2] = staffReg.findSerialnum(i).getSurname();
-				data[i][3] = staffReg.findSerialnum(i).getEmail();
+		Object[][] data = new Object[sr.NumberOfUsersInRegister()][columnNames.length];
+		int counter = 0;
+		for (int serialnum = 0; counter < sr.NumberOfUsersInRegister();serialnum++) {
+			if (sr.findSerialnum(serialnum) != null) {
+				data[counter][0] = sr.findSerialnum(serialnum).getSerialnum();
+				data[counter][1] = sr.findSerialnum(serialnum).getName();
+				data[counter][2] = sr.findSerialnum(serialnum).getSurname();
+				data[counter][3] = sr.findSerialnum(serialnum).getEmail();
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				data[i][4] = format.format(staffReg.findSerialnum(i).getBirthday());
-				data[i][5] = staffReg.findSerialnum(i).getGender();
-				data[i][6] = DepartReg.getDeptOfStaff(staffReg.findSerialnum(i).getSerialnum());
+				data[counter][4] = format.format(sr.findSerialnum(serialnum).getBirthday());
+				data[counter][5] = sr.findSerialnum(serialnum).getGender();
+				data[counter][6] = sr.findSerialnum(serialnum).getRole();
+				data[counter][7] = DepartReg.getDeptOfStaff(sr.findSerialnum(serialnum).getSerialnum());
+				counter++;
+			}
 		}
 		return data;
 		
