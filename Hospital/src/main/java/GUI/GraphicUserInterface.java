@@ -7,15 +7,19 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
 import Hospital.StaffRegister;
+import GUI.StaffMenu;
 import Hospital.*;
 import javax.xml.bind.*;
 import java.io.File;
@@ -27,16 +31,16 @@ public class GraphicUserInterface {
 
 	public static DepartmentRegister DepartmentRegisterXMLtoObject(String fileName) {
         File xmlFile = new File(fileName);
-        DepartmentRegister depRegSaving = new DepartmentRegister();
+        DepartmentRegister drSaving = new DepartmentRegister();
         JAXBContext jaxbContext;
         try
         {
             jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            DepartmentRegister depRegSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            DepartmentRegister drSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
             System.out.println("Loaded File");
-            return depRegSaving2;
+            return drSaving2;
         }
         catch (JAXBException e)
         {
@@ -45,22 +49,22 @@ public class GraphicUserInterface {
         }
         finally {
         }
-        return depRegSaving;
+        return drSaving;
     }
 	
 	public static StaffRegister StaffRegisterXMLtoObject(String fileName) {
         File xmlFile = new File(fileName);
-        StaffRegister staffRegSaving = new StaffRegister();
-        staffRegSaving.addICTOfficer("admin", "admin", "admin", new Date(), "Apache Attack Helicopter");
+        StaffRegister srSaving = new StaffRegister();
+        srSaving.addICTOfficer("admin", "admin", "admin", new Date(), "Apache Attack Helicopter");
         JAXBContext jaxbContext;
         try
         {
             jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            StaffRegister staffRegSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            StaffRegister srSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
             System.out.println("Loaded File");
-            return staffRegSaving2;
+            return srSaving2;
         }
         catch (JAXBException e)
         {
@@ -68,21 +72,21 @@ public class GraphicUserInterface {
         }
         finally {
         }
-        return staffRegSaving;
+        return srSaving;
     }
 	
 	public static PatientRegister PatientRegisterXMLtoObject(String fileName) {
         File xmlFile = new File(fileName);
-        PatientRegister patientRegSaving = new PatientRegister();
+        PatientRegister prSaving = new PatientRegister();
         JAXBContext jaxbContext;
         try
         {
             jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            PatientRegister patientRegSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
+            PatientRegister prSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
             System.out.println("Loaded File");
-            return patientRegSaving2;
+            return prSaving2;
         }
         catch (JAXBException e)
         {
@@ -90,7 +94,7 @@ public class GraphicUserInterface {
         }
         finally {
         }
-        return patientRegSaving;
+        return prSaving;
     }
 	
 	public static PatientRegister loadPatientRegister() {
@@ -135,14 +139,34 @@ public class GraphicUserInterface {
 	 */
 	private void initialize() {
 		
-		final PatientRegister PatientReg = loadPatientRegister();
-		final StaffRegister StaffReg = loadStaffRegister();
-		final DepartmentRegister DepartReg = loadDepartmentRegister();
-
+		final PatientRegister pr = loadPatientRegister();
+		final StaffRegister sr = loadStaffRegister();
+		final DepartmentRegister dr = loadDepartmentRegister();
+		
+		
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				int answer = JOptionPane.showConfirmDialog(frame, "Do you wish to save the program?","Close Program",JOptionPane.YES_NO_CANCEL_OPTION);
+				if (answer == JOptionPane.YES_OPTION) {
+					StaffMenu.savePatientRegister(pr);
+					StaffMenu.saveStaffRegister(sr);
+					StaffMenu.saveDepartmentRegister(dr);
+					System.exit(0);
+				}
+				if (answer == JOptionPane.NO_OPTION) {
+					System.exit(0);
+				} else {
+					; // do nothing 
+				}
+			}
+		});
+
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(1000,670);
@@ -166,7 +190,7 @@ public class GraphicUserInterface {
 					btnPatient.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
-							PatientLogin loginPage2 = new PatientLogin(PatientReg, DepartReg);
+							PatientLogin loginPage2 = new PatientLogin(pr, dr);
 							loginPage2.setVisible(true);
 						}
 					});
@@ -177,7 +201,7 @@ public class GraphicUserInterface {
 					btnStaff.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
-							StaffLogin loginPage = new StaffLogin(StaffReg, PatientReg, DepartReg);
+							StaffLogin loginPage = new StaffLogin(sr, pr, dr);
 							loginPage.setVisible(true);
 						}
 					});
