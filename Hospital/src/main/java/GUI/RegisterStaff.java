@@ -28,6 +28,7 @@ public class RegisterStaff extends JFrame {
 	private JTextField surname;
 	private JTextField gender;
 	private JDateChooser dateChooser;
+	private JComboBox staffTypes;
 
 	/**
 	 * Create the frame.
@@ -79,7 +80,7 @@ public class RegisterStaff extends JFrame {
 		staffRoleChoice.addItem("Doctor");
 		staffRoleChoice.addItem("Nurse");
 		staffRoleChoice.addItem("ICT Officer");
-		staffRoleChoice.addItem("Other");
+		staffRoleChoice.addItem("Staff");
 		staffRoleChoice.setSelectedIndex(-1);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -175,59 +176,70 @@ public class RegisterStaff extends JFrame {
 		getContentPane().add(lblBirthday, gbc_lblBirthday);
 		surname.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setSelectedIndex(-1);
-		comboBox_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		staffTypes = new JComboBox();
+		staffTypes.setSelectedIndex(-1);
+		staffTypes.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		for (String dept : DepartReg.getAllDepartments()) {
-			comboBox_1.addItem(dept);
+			staffTypes.addItem(dept);
 		}
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox_1.gridx = 4;
 		gbc_comboBox_1.gridy = 9;
-		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		getContentPane().add(staffTypes, gbc_comboBox_1);
 		
 		JButton btnAdd = new JButton("Register");
 		btnAdd.addActionListener(new ActionListener() {
 			private String Name;
 			private int serialnum;
+			private String Email;
+			private String Surname;
+			private String Gender;
+			private Date birthday;
 
 			public void actionPerformed(ActionEvent arg0) {
+				
+				Email = email.getText();
+				Name = name.getText();
+				Surname = surname.getText();
+				Gender = gender.getText();
 				
 				String staffType = null;
 				try {
 					staffType = staffRoleChoice.getSelectedItem().toString();
+					dateChooser.getDate();
 				} catch (Exception e) {
-					;
+					new InvalidInput("Please fill in all the boxes").setVisible(true);
 				}
-				if (staffType != null) {	
-					String Email = email.getText();
-					Name = name.getText();
-					String Surname = surname.getText();
-					@SuppressWarnings("deprecation")
-					Date birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
-					String Gender = gender.getText();
-					
-					if (staffType == "Clerk") {
-						serialnum = StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else if (staffType == "Doctor"){
-						serialnum = StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else if (staffType == "Nurse") {
-						serialnum = StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else if (staffType == "ICT Officer") {
-						serialnum = StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else {
-						int serialnum = StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
+				if (staffType != null && (Email != "") && (Name != "") && (Surname != "") && (Gender != "")) {
+					try {
+						birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
+						if (staffType == "Clerk") {
+							serialnum = StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else if (staffType == "Doctor"){
+							serialnum = StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else if (staffType == "Nurse") {
+							serialnum = StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else if (staffType == "ICT Officer") {
+							serialnum = StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else {
+							int serialnum = StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						}
+						new SuccesfulOperation(Name + " was registered as a(n) " + staffType + ". Their serial number is " + serialnum).setVisible(true);
+						dispose();
+					} catch (Exception e) {
+						new InvalidInput("Select birthday of staff member").setVisible(true);
 					}
+					
+					
 				}
-				new SuccesfulOperation(Name + " was registered as a(n) " + staffType + ". Their serial number is " + serialnum).setVisible(true);
-				dispose();
+				
 			}
 			
 		});
