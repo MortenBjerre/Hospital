@@ -487,4 +487,20 @@ public class DepartmentRegister {
 	public int numberOfStaff(String deptName) {
 		return departments.get(deptName).staff.size();
 	}
+	
+	public ArrayList<Staff> getStaffFrom(String deptName) {
+		if (departments.containsKey(deptName)) {
+			return departments.get(deptName).staff;
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+	}
+	
+	public ArrayList<Patient> getPatientsFrom(String deptName) {
+		if (departments.containsKey(deptName)) {
+			return departments.get(deptName).patients;
+		} else {
+			throw new IllegalArgumentException("No such department");
+		}
+	}
 }
