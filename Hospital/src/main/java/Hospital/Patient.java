@@ -2,20 +2,11 @@ package Hospital;
 
 import java.util.Date;
 
-
-
-
-//methods: 
-//- make a new Patient
-//- an edit method to each value (that are not a part of HospitalUser)
-
-
 public class Patient extends HospitalUser {
 	private String address;
 	private int phoneNumber;
 	private boolean alive;
 	private static int serialnumCounter = 0;
-	private int serialnum;
 	private String healthData = "";
 
 	//This is protected so that there can't be free floating patients. Can only make one in a register
@@ -42,28 +33,6 @@ public class Patient extends HospitalUser {
 		serialnumCounter++;
 	}
 	
-//	/**
-//	 * Edit all the patient fields at once
-//	 * @param email
-//	 * @param name
-//	 * @param surname
-//	 * @param birthday
-//	 * @param gender
-//	 * @param address
-//	 * @param phoneNumber
-//	 * @param alive
-//	 * @param healthData
-//	 */
-//	public void setPatient(String email, String name, String surname, Date birthday,
-//			String gender, String address, int phoneNumber, boolean alive, String healthData) {
-//		set(email, name, surname, birthday, gender);
-//		setAddress(address);
-//		setPhoneNumber(phoneNumber);
-//		setAlive(alive);
-//		setHealthData(healthData);
-//		//need to add department
-//	}
-	
 	/**
 	 * Set alive status
 	 * @param alive
@@ -73,6 +42,9 @@ public class Patient extends HospitalUser {
 	}
 	
 	public void setPhoneNumber(int phoneNumber) {
+		if (Integer.toString(phoneNumber).length() < 6) {
+			throw new IllegalArgumentException("Phone number too short");
+		}
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -119,12 +91,21 @@ public class Patient extends HospitalUser {
 		return hash;
 	}
 
+	/**
+	 * Returns the health data of a patient
+	 * @return string of health data
+	 */
 	public String getHealthData() {
 		return healthData;
 	}
 
+	/**
+	 * Adds health data to the patients existing health data.
+	 * @param healthData String of health data
+	 */
 	public void setHealthData(String healthData) {
-		this.healthData += healthData;
+		Date d = new Date();
+		this.healthData += "Health data updated on the " + d.toString() + ".\n" + healthData +"\n\n";
 		// healthData is added but never deleted
 	}
 	
@@ -137,16 +118,11 @@ public class Patient extends HospitalUser {
 	
 	@Override
 	public boolean hasViewAccessTo(Register r) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean hasHealthDataAccess() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }
-
-
-

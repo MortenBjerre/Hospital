@@ -1,3 +1,4 @@
+package stepDefinition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -42,14 +43,14 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to add the patient to the patient register$")
 	public void i_should_be_able_to_add_the_patient_to_the_patient_register() {
 		if (s.hasWriteAccessTo(pr)) {
-			serialnum1 = pr.add("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true,"");
+			serialnum1 = pr.register("patient@0.com", "Bob", "Kelso", new Date(), "male", "Hollywood", 90239103, true,"");
 		}
 	}
 
 	@Then("^assign him a unique serialnumber$")
 	public void assign_him_a_unique_serialnumber() {
 		if (s.hasWriteAccessTo(pr)) {
-			serialnum2 = pr.add("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true,"");
+			serialnum2 = pr.register("p@gmail.com", "Carlton", "Banks", new Date(), "male", "Bel Air", 12355590, true,"");
 		}
 		assertFalse(serialnum1 == serialnum2);
 	}
@@ -58,10 +59,10 @@ public class StepDefinitionClerk {
 	@Given("^the patient register contains several patients$")
 	public void the_patient_register_contains_several_patients() {
 		if (s.hasWriteAccessTo(pr)) {
-			pr.add("g@gmail.com", "Phil", "Banks", new Date(2000,12,1), "male", "Bel Air", 44329082, true,"");
-			pr.add("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true,"");
-			pr.add("p@hotmail.com", "Phil", "Taylor", new Date(2000,12,2), "male", "California", 12355590, true,"");
-			pr.add("pp@hotmail.com", "Philtwo", "Taylor", new Date(2002,1,1), "male", "California", 12355591, false,"");
+			pr.register("g@gmail.com", "Phil", "Banks", new Date(2000,12,1), "male", "Bel Air", 44329082, true,"");
+			pr.register("p@ofir.dk", "Emilia", "Clarke", new Date(2000,12,1), "female", "USA", 12355590, true,"");
+			pr.register("p@hotmail.com", "Phil", "Taylor", new Date(2000,12,2), "male", "California", 12355590, true,"");
+			pr.register("pp@hotmail.com", "Philtwo", "Taylor", new Date(2002,1,1), "male", "California", 12355591, false,"");
 		}
 	}
 
@@ -69,7 +70,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_search_for_a_patient() {
 		if (s.hasWriteAccessTo(pr)) {
 			String[] result = pr.searchGender("female");
-			assertTrue(result[0].equals(("Serialnum: 1; Patient name: Emilia Clarke ; Gender: female ; Birthday: Tue Jan 01 00:00:00 CET 3901 ; Email: p@ofir.dk")));
+			assertTrue(result[0].equals(pr.findSerialnum(1).toString()));
 			// The result of the search gave us the female in the register.
 		}
 		
@@ -151,7 +152,7 @@ public class StepDefinitionClerk {
 		if (s.hasHealthDataAccess()) {
 			String healthData = "Patient needs a colonoscopy";
 			pr.editHealthData(1,healthData);
-			assertTrue(pr.viewHealthData(1).equals(healthData));
+			assertTrue(pr.viewHealthData(1).contains(healthData)); //Adding health data also puts in the date
 		}
 	}
 	
@@ -204,11 +205,13 @@ public class StepDefinitionClerk {
 	@Given("^I have a patient admitted to the ER$")
 	public void i_have_a_patient_admitted_to_the_ER() {
 		dr.admit(1, "ER", pr);
+		pr.editName(1, "Lloyd");
 	}
 
 	@Then("^I should be able to find that patient's department$")
 	public void i_should_be_able_to_find_that_patient_s_department() {
-		assertTrue(dr.getDeptOfPatient(1).equals("ER")); 
+		assertTrue(dr.getDeptOfPatient(1).equals("ER"));
+		
 	}
 	
 	@Then("^I should know patient two is not admitted$")
@@ -261,7 +264,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_discharge_that_patient() {
 		dr.dischargePatient(1, pr);
 		try {
-			dr.searchSerialNum(1, pr);
+			dr.searchSerialNum(1);
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getMessage().equals("No such patient admitted"));
 		}
@@ -323,7 +326,7 @@ public class StepDefinitionClerk {
 	public void patient_zero_is_in_the_ER() {
 		dr.admit(0, "ER", pr);
 		assertEquals(dr.getDeptOfPatient(0), "ER");
-		assertTrue(dr.searchSerialNum(0, pr).equals(pr.findSerialnum(0).toString()));
+		assertTrue(dr.searchSerialNum(0).equals(pr.findSerialnum(0).toString()));
 	}
 
 	@Then("^I should be able to move patient zero from the ER to surgery$")
@@ -422,7 +425,6 @@ public class StepDefinitionClerk {
 	@Then("^I should be able to search for a patient by birthday$")
 	public void i_should_be_able_to_search_for_a_patient_by_birthday() {
 		Date a = new Date(2002,1,1);
-//		System.out.println(pr.searchBirthday(a)[0]);
 	    assertEquals("Serialnum: 3; Patient name: Philtwo Taylor ; Gender: male ; "
 	    		+ "Birthday: Sat Feb 01 00:00:00 CET 3902 ; Email: pp@hotmail.com"
 				,(pr.searchBirthday(new Date(2002,1,1))[0]));
@@ -579,7 +581,7 @@ public class StepDefinitionClerk {
 	public void i_should_be_able_to_discharge_the_patient() {
 		dr.dischargePatient(0, pr);
 		try {
-			dr.searchSerialNum(0, pr);
+			dr.searchSerialNum(0);
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getMessage().equals("No such patient admitted"));
 		}

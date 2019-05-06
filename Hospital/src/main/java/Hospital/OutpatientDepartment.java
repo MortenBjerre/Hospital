@@ -163,6 +163,12 @@ public class OutpatientDepartment {
 		return null;
 	}
 
+	/**
+	 * Gets the staff member with a matching serialnumb.
+	 * returns null if there is no matching patietnt
+	 * @param serialnum 
+	 * @return matching Staff
+	 */
 	protected Staff getStaff(int serialnum) {
 		for (Staff staff : staff) {
 			if (staff.getSerialnum() == serialnum) {
@@ -171,6 +177,4 @@ public class OutpatientDepartment {
 		}
 		throw new IllegalArgumentException("No such staff");
 	}
-
-
 }

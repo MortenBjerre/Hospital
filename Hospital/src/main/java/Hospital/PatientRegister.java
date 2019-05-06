@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class PatientRegister extends Register<Patient> {
-		
+	
+	/**
+	 * When creating a patient register the serialnum counter is reset
+	 */
 	public PatientRegister() {
 		Patient.resetSerialnumCounter();
 	}
@@ -23,7 +26,7 @@ public class PatientRegister extends Register<Patient> {
 	 * @param healthData
 	 * @return Returns the serial number of the patient added
 	 */
-	public int add(String email, String name, String surname, Date birthday,
+	public int register(String email, String name, String surname, Date birthday,
 			String gender, String address, int phoneNumber, boolean alive, 
 			String healthData) {
 		Patient patient = new Patient(email, name, surname, birthday, gender, address, 
@@ -56,7 +59,7 @@ public class PatientRegister extends Register<Patient> {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
 		for (Integer serialnum : users.keySet()) {
 			Patient patient = users.get(serialnum);
-			if (patient.getAddress() == address) {
+			if (patient.getAddress().equals(address)) {
 				matches.add(patient);
 			}
 		}
@@ -116,7 +119,7 @@ public class PatientRegister extends Register<Patient> {
 		ArrayList<Patient> matches = new ArrayList<Patient>();
 		for (Integer serialnum : users.keySet()) {
 			Patient patient = users.get(serialnum);
-			if (patient.getAlive() == alive) {
+			if (patient.getAlive() == (alive)) {
 				matches.add(patient);
 			}
 		}
@@ -181,4 +184,17 @@ public class PatientRegister extends Register<Patient> {
 	public String viewHealthData(int serialnum) {
 		return findSerialnum(serialnum).getHealthData();	
 	}
+	
+	public String toString() {
+		String a = "";
+		for(int i = 0; i < NumberOfUsersInRegister();i++) {
+			a += this.findSerialnum(i) + "\n";
+		}
+		return a;
+		
+	}
+	
+	
+	
+	
 }

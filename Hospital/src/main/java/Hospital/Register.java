@@ -17,6 +17,14 @@ public abstract class Register<T extends HospitalUser> {
 	}
 	
 	/**
+	 * Number of users in the register
+	 * @return number of users
+	 */
+	public int NumberOfUsersInRegister() {
+		return users.size();
+	}
+	
+	/**
 	 * Searches for HospitalUsers with a matching serial number
 	 * @param serialnum
 	 * @return matching HospitalUser, or null if none exists
@@ -58,7 +66,7 @@ public abstract class Register<T extends HospitalUser> {
 		ArrayList<T> matches = new ArrayList<T>();
 		for (Integer serialnum : users.keySet()) {
 			T user = users.get(serialnum);
-			if (user.getEmail() == email) {
+			if (user.getEmail().equals(email)) {
 				matches.add(user);
 			}
 		}
@@ -88,7 +96,7 @@ public abstract class Register<T extends HospitalUser> {
 		ArrayList<T> matches = new ArrayList<T>();
 		for (Integer serialnum : users.keySet()) {
 			T user = users.get(serialnum);
-			if (user.getName() == name) {
+			if (user.getName().equals(name)) {
 				matches.add(user);
 			}
 		}
@@ -149,7 +157,7 @@ public abstract class Register<T extends HospitalUser> {
 		ArrayList<T> matches = new ArrayList<T>();
 		for (Integer serialnum : users.keySet()) {
 			T user = users.get(serialnum);
-			if (user.getSurname() == surname) {
+			if (user.getSurname().equals(surname)) {
 				matches.add(user);
 			}
 		}
@@ -179,7 +187,7 @@ public abstract class Register<T extends HospitalUser> {
 		ArrayList<T> matches = new ArrayList<T>();
 		for (Integer serialnum : users.keySet()) {
 			T user = users.get(serialnum);
-			if (user.getGender() == Gender) {
+			if (user.getGender().equals(Gender)) {
 				matches.add(user);
 			}
 		}
