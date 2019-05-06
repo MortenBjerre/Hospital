@@ -8,11 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Hospital.Staff;
-import Hospital.StaffRegister;
-import Hospital.Clerk;
-import Hospital.DepartmentRegister;
-import Hospital.PatientRegister;
+import Hospital.*;
+import java.io.File;
+import javax.xml.bind.*;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,7 +29,76 @@ public class StaffMenu extends JFrame {
 	private DepartmentRegister dr;
 	private int serialnum;
 	private JButton btnAddStaffToDept;
+	
+	private static void StaffRegistertoXML(StaffRegister staffRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
+            jaxbMarshaller.marshal(staffRegister, System.out);
+            File file = new File("staffRegister.xml");
+            jaxbMarshaller.marshal(staffRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void PatientRegistertoXML(PatientRegister patientRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            jaxbMarshaller.marshal(patientRegister, System.out);
+            File file = new File("patientRegister.xml");
+            jaxbMarshaller.marshal(patientRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	private static void DepartmentRegistertoXML(DepartmentRegister departmentRegister)
+    {
+        try
+        {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DepartmentRegister.class,OutpatientDepartment.class, InpatientDepartment.class, HospitalUser.class, Staff.class, Clerk.class,ICTOfficer.class,Doctor.class,Nurse.class,
+            		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+  
+            jaxbMarshaller.marshal(departmentRegister, System.out);
+            File file = new File("departmentRegister.xml");
+            jaxbMarshaller.marshal(departmentRegister, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
+	public static void savePatientRegister(PatientRegister p) {
+		PatientRegistertoXML(p);
+	}
+	
+	public static void saveStaffRegister(StaffRegister s) {
+		StaffRegistertoXML(s);
+	}
+	
+	public static void saveDepartmentRegister(DepartmentRegister d) {
+		DepartmentRegistertoXML(d);
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -225,7 +292,13 @@ public class StaffMenu extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSave);
-		
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				saveStaffRegister(StaffReg);
+				savePatientRegister(PatientReg);
+				saveDepartmentRegister(DepartReg);
+			}
+		});
 	
 		
 		

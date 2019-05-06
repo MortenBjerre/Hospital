@@ -1,9 +1,12 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name ="Nurse")
 public class Nurse extends Staff {
 	
+	public Nurse() {}
 	/**
 	 * Constructor for nurse object. Calls Staff constructor.
 	 * @param email

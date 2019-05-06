@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.*;
 
 public abstract class Register<T extends HospitalUser> {
+	@XmlElementWrapper(name ="users")
 	protected Map<Integer, T> users = new HashMap<Integer, T>();
 		
 	public String toString() {

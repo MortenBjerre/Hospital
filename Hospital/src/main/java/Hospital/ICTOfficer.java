@@ -1,9 +1,11 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name = "ICTOfficer")
 public class ICTOfficer extends Staff {
-	
+	public ICTOfficer() {}
 	/**
 	 * Constructor of ICTOfficer. Calls Staff constructor.
 	 * @param email

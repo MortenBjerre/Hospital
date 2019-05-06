@@ -1,10 +1,16 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+
+@XmlRootElement(name="Staff")
 public class Staff extends HospitalUser {
-
+	
+	@XmlElement(name="serialnumCounter")
 	private static int serialnumCounter = 0;
+	public Staff() {}
 	
 	/**
 	 * Staff constructor. Takes all fields and sets them. Increments serialnumCounter every time it's called

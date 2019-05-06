@@ -3,13 +3,17 @@ package Hospital;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name="InpatientDepartment")
 public class InpatientDepartment extends OutpatientDepartment {
-
+	
+	@XmlElement(name = "beds")
 	private int beds;
+	@XmlElementWrapper(name="patients")
 	protected HashMap<Integer, Patient> patients = new HashMap<Integer, Patient>();
 	
-
+	protected InpatientDepartment() {}
 	protected InpatientDepartment(String deptName, int beds) {
 		super(deptName);
 		this.beds = beds;
