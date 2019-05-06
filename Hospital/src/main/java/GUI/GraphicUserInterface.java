@@ -61,7 +61,7 @@ public class GraphicUserInterface {
 		StaffReg.addDoctor("email@gmail.com", "Doc", "First", new Date(),"Female");
 		StaffReg.addNurse("kakuu@dtu.dk", "Kati" ,"Kuusinen", new Date(92,1,1), "Female");
 		PatientReg.register("alexfc@live.dk", "Alexander", "Christensen", new Date(), "gender", "Nybrovej", 69696969, true, "Patient needs to be admitted.");
-		PatientReg.register("Sammy@hotmail.com", "Sammy", "Ben Omar", new Date(97,11,28), "gender", "Lungbyvej", 42042069, true, "Still alive");
+		PatientReg.register("Sammy@hotmail.com", "Sammy", "BenOmar", new Date(97,11,28), "gender", "Lungbyvej", 42042069, true, "Still alive");
 		PatientReg.register("Benjy@hotmail.com", "Benjamin", "Jepsen", new Date(), "Male", "Italy", 42042069, true, "");
 		PatientReg.register("daniel@gmail.com", "Daniel", "Aisen", new Date(94,04,13), "Male", "jagtvej 111", 22711994, true, "he think that 12 is a nice number");
 		
