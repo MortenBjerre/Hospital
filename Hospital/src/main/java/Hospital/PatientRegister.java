@@ -8,12 +8,14 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="PatientRegister")
 
 public class PatientRegister extends Register<Patient> {
+	@XmlElement(name = "savedSerial")
+	private int savedSerial;
 	
 	/**
 	 * When creating a patient register the serialnum counter is reset
 	 */
 	public PatientRegister() {
-//		Patient.resetSerialnumCounter();
+//		Patient.setSerialnumCounter(savedSerial);
 	}
 	
 	/**
@@ -35,7 +37,7 @@ public class PatientRegister extends Register<Patient> {
 		Patient patient = new Patient(email, name, surname, birthday, gender, address, 
 								phoneNumber, alive, healthData);
 		users.put(patient.getSerialnum(), patient);
-		
+		this.savedSerial = patient.getSerialnum();
 		return patient.getSerialnum();
 	}
 	
@@ -197,6 +199,9 @@ public class PatientRegister extends Register<Patient> {
 		
 	}
 	
+	public void loadSerial() {
+	Patient.setSerialnumCounter(savedSerial+1);
+	}
 	
 	
 	

@@ -6,9 +6,11 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "StaffRegister")
 public class StaffRegister extends Register<Staff> {
+	@XmlElement(name = "savedSerial")
+	private int savedSerial;
 	
 	public StaffRegister() {
-		Staff.resetSerialnumCounter();
+//		Staff.resetSerialnumCounter();
 	}
 	
 	/**
@@ -23,6 +25,7 @@ public class StaffRegister extends Register<Staff> {
 	public int addStaff(String email, String name, String surname, Date birthday, String gender) {
 		Staff staff = new Staff(email, name, surname, birthday, gender);
 		users.put(staff.getSerialnum(), staff);
+		this.savedSerial = staff.getSerialnum();
 		return staff.getSerialnum();
 	}
 	
@@ -90,5 +93,8 @@ public class StaffRegister extends Register<Staff> {
 		int serialnum = s.getSerialnum();
 		users.remove(serialnum);
 		
+	}
+	public void loadSerial() {
+	Patient.setSerialnumCounter(savedSerial+1);
 	}
 }

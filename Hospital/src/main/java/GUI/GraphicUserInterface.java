@@ -64,6 +64,7 @@ public class GraphicUserInterface {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             StaffRegister srSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
             System.out.println("Loaded File");
+            srSaving2.loadSerial();
             return srSaving2;
         }
         catch (JAXBException e)
@@ -86,6 +87,7 @@ public class GraphicUserInterface {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             PatientRegister prSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
             System.out.println("Loaded File");
+            prSaving2.loadSerial();
             return prSaving2;
         }
         catch (JAXBException e)

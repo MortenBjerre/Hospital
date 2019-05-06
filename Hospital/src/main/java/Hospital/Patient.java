@@ -1,5 +1,8 @@
 package Hospital;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 import javax.xml.bind.annotation.*;
 
@@ -13,11 +16,11 @@ public class Patient extends HospitalUser {
 	private int phoneNumber;
 	@XmlElement(name="alive")
 	private boolean alive;
-	@XmlElement(name="serialnumCounter")
 	private static int serialnumCounter = 0;
 	@XmlElement(name="healthData")
 	private String healthData = "";
-
+	
+	
 	protected Patient() {}
 	//This is protected so that there can't be free floating patients. Can only make one in a register
 	/**
@@ -39,12 +42,8 @@ public class Patient extends HospitalUser {
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setHealthData(healthData);
-		System.out.println("counter: " + serialnumCounter);
 		serialnum = serialnumCounter;
-		System.out.println("serialnum: " + serialnum);
 		serialnumCounter++;
-		System.out.println("counter++: " + serialnumCounter);
-		System.out.println("========================");
 
 	}
 	
@@ -67,6 +66,7 @@ public class Patient extends HospitalUser {
 		this.address = address;
 	}
 
+	
 	public String getAddress() {
 		return address;
 	}

@@ -1,5 +1,8 @@
 package Hospital;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 import javax.xml.bind.annotation.*;
 
@@ -8,7 +11,8 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement(name="Staff")
 public class Staff extends HospitalUser {
 	
-	@XmlElement(name="serialnumCounter")
+	@XmlElement(name="savedserialnumCounter")
+	private int savedserialnumCounter;
 	private static int serialnumCounter = 0;
 	
 	public Staff() {}
@@ -129,5 +133,9 @@ public class Staff extends HospitalUser {
 	 */
 	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
 		return false;
+	}
+	
+	public void saveSerialnum() {
+		this.savedserialnumCounter=this.serialnumCounter;
 	}
 }
