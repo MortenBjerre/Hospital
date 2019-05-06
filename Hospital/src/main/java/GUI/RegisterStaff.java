@@ -22,12 +22,13 @@ import com.toedter.calendar.JDateChooser;
 
 public class RegisterStaff extends JFrame {
 
-	static StaffRegister StaffReg;
-	private JTextField email;
-	private JTextField name;
-	private JTextField surname;
-	private JTextField gender;
+	static StaffRegister sr;
+	private JTextField emailTextField;
+	private JTextField nameTextField;
+	private JTextField surnameTextField;
+	private JTextField genderTextField;
 	private JDateChooser dateChooser;
+	private JComboBox staffTypes;
 
 	/**
 	 * Create the frame.
@@ -62,31 +63,31 @@ public class RegisterStaff extends JFrame {
 		gbc_panel.gridy = 1;
 		getContentPane().add(panel, gbc_panel);
 		
-		JLabel lblWhatRoleDoes = new JLabel("Choose staff role");
-		lblWhatRoleDoes.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		JLabel lblChooseStaffRole = new JLabel("Choose staff role");
+		lblChooseStaffRole.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_lblWhatRoleDoes = new GridBagConstraints();
 		gbc_lblWhatRoleDoes.anchor = GridBagConstraints.EAST;
 		gbc_lblWhatRoleDoes.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWhatRoleDoes.gridx = 2;
 		gbc_lblWhatRoleDoes.gridy = 1;
-		getContentPane().add(lblWhatRoleDoes, gbc_lblWhatRoleDoes);
+		getContentPane().add(lblChooseStaffRole, gbc_lblWhatRoleDoes);
 		
 		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		comboBox.setPreferredSize(new Dimension(200,50));
-		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		comboBox.addItem("Clerk");
-		comboBox.addItem("Doctor");
-		comboBox.addItem("Nurse");
-		comboBox.addItem("ICT Officer");
-		comboBox.addItem("Other");
-		comboBox.setSelectedIndex(-1);
+		JComboBox staffRoleChoice = new JComboBox();
+		staffRoleChoice.setPreferredSize(new Dimension(200,50));
+		staffRoleChoice.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		staffRoleChoice.addItem("Clerk");
+		staffRoleChoice.addItem("Doctor");
+		staffRoleChoice.addItem("Nurse");
+		staffRoleChoice.addItem("ICT Officer");
+		staffRoleChoice.addItem("Staff");
+		staffRoleChoice.setSelectedIndex(-1);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 4;
 		gbc_comboBox.gridy = 1;
-		getContentPane().add(comboBox, gbc_comboBox);
+		getContentPane().add(staffRoleChoice, gbc_comboBox);
 		
 		
 		JLabel lblEmail = new JLabel("Email : ");
@@ -98,15 +99,15 @@ public class RegisterStaff extends JFrame {
 		gbc_lblEmail.gridy = 4;
 		getContentPane().add(lblEmail, gbc_lblEmail);
 		
-		email = new JTextField();
-		email.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		emailTextField = new JTextField();
+		emailTextField.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_email = new GridBagConstraints();
 		gbc_email.insets = new Insets(0, 0, 5, 5);
 		gbc_email.fill = GridBagConstraints.HORIZONTAL;
 		gbc_email.gridx = 4;
 		gbc_email.gridy = 4;
-		getContentPane().add(email, gbc_email);
-		email.setColumns(10);
+		getContentPane().add(emailTextField, gbc_email);
+		emailTextField.setColumns(10);
 		
 		JLabel lblName = new JLabel("Name : ");
 		lblName.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -117,15 +118,15 @@ public class RegisterStaff extends JFrame {
 		gbc_lblName.gridy = 5;
 		getContentPane().add(lblName, gbc_lblName);
 		
-		name = new JTextField();
-		name.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		nameTextField = new JTextField();
+		nameTextField.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_name = new GridBagConstraints();
 		gbc_name.insets = new Insets(0, 0, 5, 5);
 		gbc_name.fill = GridBagConstraints.HORIZONTAL;
 		gbc_name.gridx = 4;
 		gbc_name.gridy = 5;
-		getContentPane().add(name, gbc_name);
-		name.setColumns(10);
+		getContentPane().add(nameTextField, gbc_name);
+		nameTextField.setColumns(10);
 		
 		JLabel lblSurname = new JLabel("Surname : ");
 		lblSurname.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -136,14 +137,14 @@ public class RegisterStaff extends JFrame {
 		gbc_lblSurname.gridy = 6;
 		getContentPane().add(lblSurname, gbc_lblSurname);
 		
-		surname = new JTextField();
-		surname.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		surnameTextField = new JTextField();
+		surnameTextField.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_surname = new GridBagConstraints();
 		gbc_surname.insets = new Insets(0, 0, 5, 5);
 		gbc_surname.fill = GridBagConstraints.HORIZONTAL;
 		gbc_surname.gridx = 4;
 		gbc_surname.gridy = 6;
-		getContentPane().add(surname, gbc_surname);
+		getContentPane().add(surnameTextField, gbc_surname);
 		
 		JLabel lblGender = new JLabel("Gender : ");
 		lblGender.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -155,15 +156,15 @@ public class RegisterStaff extends JFrame {
 		getContentPane().add(lblGender, gbc_lblGender);
 		
 		
-		gender = new JTextField();
-		gender.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		genderTextField = new JTextField();
+		genderTextField.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		GridBagConstraints gbc_gender = new GridBagConstraints();
 		gbc_gender.insets = new Insets(0, 0, 5, 5);
 		gbc_gender.fill = GridBagConstraints.HORIZONTAL;
 		gbc_gender.gridx = 4;
 		gbc_gender.gridy = 7;
-		getContentPane().add(gender, gbc_gender);
-		gender.setColumns(10);
+		getContentPane().add(genderTextField, gbc_gender);
+		genderTextField.setColumns(10);
 		
 		JLabel lblBirthday = new JLabel("Birthday : ");
 		lblBirthday.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -173,62 +174,70 @@ public class RegisterStaff extends JFrame {
 		gbc_lblBirthday.gridx = 2;
 		gbc_lblBirthday.gridy = 8;
 		getContentPane().add(lblBirthday, gbc_lblBirthday);
-		surname.setColumns(10);
+		surnameTextField.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setSelectedIndex(-1);
-		comboBox_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		staffTypes = new JComboBox();
+		staffTypes.setSelectedIndex(-1);
+		staffTypes.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		for (String dept : DepartReg.getAllDepartments()) {
-			comboBox_1.addItem(dept);
+			staffTypes.addItem(dept);
 		}
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox_1.gridx = 4;
 		gbc_comboBox_1.gridy = 9;
-		getContentPane().add(comboBox_1, gbc_comboBox_1);
+		getContentPane().add(staffTypes, gbc_comboBox_1);
 		
 		JButton btnAdd = new JButton("Register");
 		btnAdd.addActionListener(new ActionListener() {
-			private String Name;
+			private String name;
+			private int serialnum;
+			private String email;
+			private String surname;
+			private String gender;
+			private Date birthday;
 
 			public void actionPerformed(ActionEvent arg0) {
 				
+				email = emailTextField.getText();
+				name = nameTextField.getText();
+				surname = surnameTextField.getText();
+				gender = genderTextField.getText();
+				
 				String staffType = null;
 				try {
-					staffType = comboBox.getSelectedItem().toString();
+					staffType = staffRoleChoice.getSelectedItem().toString();
+					dateChooser.getDate();
 				} catch (Exception e) {
-					;
+					new InvalidInput("Please fill in all the boxes").setVisible(true);
 				}
-				if (staffType != null) {	
-					String Email = email.getText();
-					Name = name.getText();
-					String Surname = surname.getText();
-					@SuppressWarnings("deprecation")
-					Date birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
-					String Gender = gender.getText();
-					
-					if (staffType == "Clerk") {
-						int serialnum = StaffReg.addClerk(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else if (staffType == "Doctor"){
-						int serialnum = StaffReg.addDoctor(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else if (staffType == "Nurse") {
-						int serialnum = StaffReg.addNurse(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else if (staffType == "ICT Officer") {
-						int serialnum = StaffReg.addICTOfficer(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
-					} else {
-						int serialnum = StaffReg.addStaff(Email, Name, Surname, birthday, Gender);
-						DepartReg.addStaffTo(serialnum, comboBox_1.getSelectedItem().toString(), StaffReg);
+				if (staffType != null && (email != "") && (name != "") && (surname != "") && (gender != "")) {
+					try {
+						birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
+						if (staffType == "Clerk") {
+							serialnum = StaffReg.addClerk(email, name, surname, birthday, gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else if (staffType == "Doctor"){
+							serialnum = StaffReg.addDoctor(email, name, surname, birthday, gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else if (staffType == "Nurse") {
+							serialnum = StaffReg.addNurse(email, name, surname, birthday, gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else if (staffType == "ICT Officer") {
+							serialnum = StaffReg.addICTOfficer(email, name, surname, birthday, gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						} else {
+							int serialnum = StaffReg.addStaff(email, name, surname, birthday, gender);
+							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+						}
+						new SuccesfulOperation(name + " was registered as a(n) " + staffType + ". Their serial number is " + serialnum).setVisible(true);
+						dispose();
+					} catch (Exception e) {
+						new InvalidInput("Select birthday of staff member").setVisible(true);
 					}
 				}
-				new SuccesfulOperation(Name + " was registered as a(n) " + staffType).setVisible(true);
-				dispose();
 			}
-			
 		});
 		
 		dateChooser = new JDateChooser();
@@ -270,8 +279,5 @@ public class RegisterStaff extends JFrame {
 		gbc_panel_2.gridx = 6;
 		gbc_panel_2.gridy = 14;
 		getContentPane().add(panel_2, gbc_panel_2);
-
 	}
-	
-
 }

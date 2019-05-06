@@ -83,4 +83,10 @@ public class StaffRegister extends Register<Staff> {
 		users.put(clerk.getSerialnum(), clerk);
 		return clerk.getSerialnum();
 	}
+
+	public void deleteStaff(Staff s) {
+		int serialnum = s.getSerialnum();
+		users.remove(serialnum);
+		
+	}
 }

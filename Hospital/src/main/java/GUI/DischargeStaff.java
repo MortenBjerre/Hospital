@@ -80,9 +80,11 @@ public class DischargeStaff extends JFrame {
 						lblShowName.setText(sr.findSerialnum(serialnum).getName());
 						if (dr.getDeptOfStaff(serialnum).equals("")) {
 							lblDepartment.setVisible(false);
-							lblShowDepartment.setText(dr.getDeptOfStaff(serialnum));
+							lblShowDepartment.setVisible(false);
 						} else {
 							lblDepartment.setVisible(true);
+							lblShowDepartment.setVisible(true);
+							lblShowDepartment.setText(dr.getDeptOfStaff(serialnum));
 						}
 						lblShowEmail.setText(sr.findSerialnum(serialnum).getEmail());
 						lblShowGender.setText(sr.findSerialnum(serialnum).getGender());
@@ -172,8 +174,13 @@ public class DischargeStaff extends JFrame {
 				System.out.println(sr);
 				try {
 					dr.dischargeStaff(serialnum, sr);
-					System.out.println(serialnum);
 					new SuccesfulOperation("Staff member has been fired.").setVisible(true);
+					serialnumberInput.setText("");
+					lblShowDepartment.setText("");
+					lblShowEmail.setText("");
+					lblShowGender.setText("");
+					lblShowSurname.setText("");
+					lblShowName.setText("");
 				} catch (Exception error) {
 //					new InvalidInput("No such staff member").setVisible(true);;
 					new InvalidInput(error.getMessage()).setVisible(true);;
