@@ -251,7 +251,7 @@ public class RegisterPatient extends JFrame {
 					} else {
 					PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
 							gender, address, phoneNumber, alive, healthData);
-					new SuccesfulOperation("Patient has been registered 2").setVisible(true);
+					new SuccesfulOperation("Patient has been registered").setVisible(true);
 					dispose();
 					}
 				} catch (Exception er) {
