@@ -35,6 +35,7 @@ public class DischargeStaff extends JFrame {
 	private JLabel lblDepartment;
 	
 	public DischargeStaff(StaffRegister sr, DepartmentRegister dr) {
+		setTitle("Discharge a staff member");
 		this.sr = sr;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
