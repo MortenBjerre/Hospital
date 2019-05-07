@@ -45,7 +45,27 @@
                 </staff>
                 <deptName>Surgery</deptName>
                 <beds>5</beds>
-                <patientss/>
+                <patientss>
+                    <entry>
+                        <key>0</key>
+                        <value>
+                            <email>five</email>
+                            <name>five</name>
+                            <surname>five</surname>
+                            <birthday>2019-04-30T00:00:00+02:00</birthday>
+                            <gender>five</gender>
+                            <serialnum>0</serialnum>
+                            <address>five</address>
+                            <phoneNumber>55555555</phoneNumber>
+                            <alive>true</alive>
+                            <serialnumCounter>4</serialnumCounter>
+                            <healthData>Health data updated on the Tue May 07 09:37:38 CEST 2019.
+
+
+</healthData>
+                        </value>
+                    </entry>
+                </patientss>
             </value>
         </entry>
         <entry>

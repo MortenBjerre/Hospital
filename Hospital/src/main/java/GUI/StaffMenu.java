@@ -34,6 +34,7 @@ public class StaffMenu extends JFrame {
 	private DepartmentRegister dr;
 	private int serialnum;
 	private JButton btnAddStaffToDept;
+	private Staff staff;
 	
 	private static void StaffRegistertoXML(StaffRegister staffRegister)
     {
@@ -108,11 +109,11 @@ public class StaffMenu extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("static-access")
-	public StaffMenu(final StaffRegister StaffReg, int serialNumber, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
-		this.sr = StaffReg;
-		this.pr = PatientReg;
-		this.serialnum = serialNumber;
-		Staff staff = StaffReg.findSerialnum(serialNumber);
+	public StaffMenu(StaffRegister sr, int serialnum, PatientRegister pr, DepartmentRegister dr) {
+		this.sr = sr;
+		this.pr = pr;
+		this.serialnum = serialnum;
+		staff = sr.findSerialnum(serialnum);
 
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -127,13 +128,13 @@ public class StaffMenu extends JFrame {
 		btnChangeInfo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnChangeInfo);
 		btnChangeInfo.setVisible(false);
-		if (staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(pr)) {
 			btnChangeInfo.setVisible(true);
 		}
 		btnChangeInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				UpdatePatientInfo loginPage2 = new UpdatePatientInfo(PatientReg);
+				UpdatePatientInfo loginPage2 = new UpdatePatientInfo(pr);
 				loginPage2.setVisible(true);
 			}
 		});
@@ -145,7 +146,7 @@ public class StaffMenu extends JFrame {
 		btnRemovePatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DischargePatient loginPage = new DischargePatient(PatientReg,DepartReg);
+				DischargePatient loginPage = new DischargePatient(pr,dr);
 				loginPage.setVisible(true);
 			}
 		});
@@ -157,7 +158,7 @@ public class StaffMenu extends JFrame {
 		btnMovePatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MovePatient loginPage = new MovePatient(PatientReg,DepartReg);
+				MovePatient loginPage = new MovePatient(pr,dr);
 				loginPage.setVisible(true);
 			}
 		});
@@ -166,7 +167,7 @@ public class StaffMenu extends JFrame {
 		btnSearchPatients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				SearchPatient searchPatients = new SearchPatient(PatientReg, DepartReg);
+				SearchPatient searchPatients = new SearchPatient(pr, dr);
 				searchPatients.setVisible(true);
 				
 			}
@@ -174,7 +175,7 @@ public class StaffMenu extends JFrame {
 		btnSearchPatients.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearchPatients);
 		btnSearchPatients.setVisible(false);
-		if (staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(pr)) {
 			btnSearchPatients.setVisible(true);
 		}
 		
@@ -182,7 +183,7 @@ public class StaffMenu extends JFrame {
 		btnAdmitPatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnAdmitPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AdmitPatientWindow(PatientReg, DepartReg).setVisible(true);
+				new AdmitPatientWindow(pr, dr).setVisible(true);
 			}
 		});
 		btnAdmitPatient.setVisible(false);
@@ -195,7 +196,7 @@ public class StaffMenu extends JFrame {
 		btnRegisterPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				RegisterPatient RegisterPage = new RegisterPatient(PatientReg,DepartReg);
+				RegisterPatient RegisterPage = new RegisterPatient(pr,dr);
 				RegisterPage.setVisible(true);
 			}
 		});
@@ -204,7 +205,7 @@ public class StaffMenu extends JFrame {
 		btnHealthData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				HealthData healthDataMenu = new HealthData(PatientReg, DepartReg);
+				HealthData healthDataMenu = new HealthData(pr, dr);
 				healthDataMenu.setVisible(true);
 				
 			}
@@ -219,7 +220,7 @@ public class StaffMenu extends JFrame {
 		JButton btnSearch = new JButton("Search Staff");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SearchStaff searchStaff = new SearchStaff(StaffReg, DepartReg);
+				SearchStaff searchStaff = new SearchStaff(sr, dr);
 				searchStaff.setVisible(true);
 			}
 		});
@@ -232,7 +233,7 @@ public class StaffMenu extends JFrame {
 				btnAddStaff.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						RegisterStaff AddStaffPage = new RegisterStaff(StaffReg, DepartReg);
+						RegisterStaff AddStaffPage = new RegisterStaff(sr, dr);
 						AddStaffPage.setVisible(true);
 					}
 				});
@@ -247,7 +248,7 @@ public class StaffMenu extends JFrame {
 		btnMoveStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MoveStaff MoveStaffPage = new MoveStaff(StaffReg,DepartReg);
+				MoveStaff MoveStaffPage = new MoveStaff(sr,dr);
 				MoveStaffPage.setVisible(true);
 			}
 		});
@@ -256,7 +257,7 @@ public class StaffMenu extends JFrame {
 		JButton btnDepartmentManager = new JButton("Department Manager");
 		btnDepartmentManager.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				DepartmentManager departmentManger = new DepartmentManager(DepartReg);
+				DepartmentManager departmentManger = new DepartmentManager(dr, staff, sr);
 				departmentManger.setVisible(true);
 			}
 		});
@@ -265,7 +266,7 @@ public class StaffMenu extends JFrame {
 		btnDischargeStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnDischargeStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new DischargeStaff(StaffReg, DepartReg).setVisible(true);
+				new DischargeStaff(sr, dr).setVisible(true);
 			}
 		});
 		contentPane.add(btnDischargeStaff);
@@ -299,34 +300,34 @@ public class StaffMenu extends JFrame {
 		contentPane.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				saveStaffRegister(StaffReg);
-				savePatientRegister(PatientReg);
-				saveDepartmentRegister(DepartReg);
+				saveStaffRegister(sr);
+				savePatientRegister(pr);
+				saveDepartmentRegister(dr);
 			}
 		});
 	
 		
 		
-		if (staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(pr)) {
 			btnRegisterPatient.setVisible(true);
 			btnAdmitPatient.setVisible(true);
 		}
-		if (staff.hasWriteAccessTo(StaffReg)) {
+		if (staff.hasWriteAccessTo(sr)) {
 			btnAddStaff.setVisible(true);
 			btnDischargeStaff.setVisible(true);
+			btnEditStaffInfo.setVisible(true);
 		}
 		if (staff.canMovePatients()) {
 			btnMovePatient.setVisible(true);
 		}
-		if (staff.hasWriteAccessTo(PatientReg)) {
+		if (staff.hasWriteAccessTo(pr)) {
 			btnRemovePatient.setVisible(true);
 		}
-		if (staff.hasViewAccessTo(StaffReg)) {
+		if (staff.hasViewAccessTo(sr)) {
 			btnSearch.setVisible(true);
 		}
-		if (staff.canEditDepartmentRegister(DepartReg)) {
+		if (staff.canViewDepartmentRegister()) {
 			btnDepartmentManager.setVisible(true);
-			btnEditStaffInfo.setVisible(true);
 		}
 		if (staff.canMoveStaff()) {
 			btnMoveStaff.setVisible(true);
