@@ -20,7 +20,7 @@ import Hospital.DepartmentRegister;
 import Hospital.Patient;
 import Hospital.PatientRegister;
 
-public class Dischargepatient extends JFrame {
+public class DischargePatient extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField SerialNumber;
@@ -43,7 +43,7 @@ public class Dischargepatient extends JFrame {
 	private JLabel departmentShow;
 
 	
-	public Dischargepatient(final PatientRegister pr, final DepartmentRegister dr) {		
+	public DischargePatient(final PatientRegister pr, final DepartmentRegister dr) {		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 667, 585);
 		contentPane = new JPanel();
