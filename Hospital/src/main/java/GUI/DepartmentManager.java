@@ -36,7 +36,7 @@ public class DepartmentManager extends JFrame {
 
 	public DepartmentManager(DepartmentRegister dr) {
 		this.dr = dr;
-		
+		setTitle("Department Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 949, 449);
 		contentPane = new JPanel();
