@@ -34,7 +34,7 @@ public class RegisterStaff extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("unchecked")
-	public RegisterStaff(StaffRegister StaffReg, DepartmentRegister DepartReg) {
+	public RegisterStaff(StaffRegister sr, DepartmentRegister dr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Add Staff Menu");
 		
@@ -179,7 +179,7 @@ public class RegisterStaff extends JFrame {
 		staffTypes = new JComboBox();
 		staffTypes.setSelectedIndex(-1);
 		staffTypes.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		for (String dept : DepartReg.getAllDepartments()) {
+		for (String dept : dr.getAllDepartments()) {
 			staffTypes.addItem(dept);
 		}
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
@@ -216,20 +216,20 @@ public class RegisterStaff extends JFrame {
 					try {
 						birthday = new Date(dateChooser.getDate().getYear(),dateChooser.getDate().getMonth(),dateChooser.getDate().getDay());
 						if (staffType == "Clerk") {
-							serialnum = StaffReg.addClerk(email, name, surname, birthday, gender);
-							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+							serialnum = sr.addClerk(email, name, surname, birthday, gender);
+							dr.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), sr);
 						} else if (staffType == "Doctor"){
-							serialnum = StaffReg.addDoctor(email, name, surname, birthday, gender);
-							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+							serialnum = sr.addDoctor(email, name, surname, birthday, gender);
+							dr.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), sr);
 						} else if (staffType == "Nurse") {
-							serialnum = StaffReg.addNurse(email, name, surname, birthday, gender);
-							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+							serialnum = sr.addNurse(email, name, surname, birthday, gender);
+							dr.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), sr);
 						} else if (staffType == "ICT Officer") {
-							serialnum = StaffReg.addICTOfficer(email, name, surname, birthday, gender);
-							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+							serialnum = sr.addICTOfficer(email, name, surname, birthday, gender);
+							dr.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), sr);
 						} else {
-							serialnum = StaffReg.addStaff(email, name, surname, birthday, gender);
-							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
+							serialnum = sr.addStaff(email, name, surname, birthday, gender);
+							dr.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), sr);
 						}
 						new SuccesfulOperation(name + " was registered as a(n) " + staffType + ". Their serial number is " + serialnum).setVisible(true);
 						dispose();
