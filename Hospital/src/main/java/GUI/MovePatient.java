@@ -187,9 +187,7 @@ public class MovePatient extends JFrame {
 							comboBox.setVisible(false);
 						}
 					} catch (Exception e1) {
-						lblShowDepartmentPatient.setText("");
-						new InvalidInput("User with this serial number does not exist!").setVisible(true);
-						comboBox.setVisible(false);
+						;
 					}
 				}
 			}

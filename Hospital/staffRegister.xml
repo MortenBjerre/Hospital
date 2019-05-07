@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StaffRegister>
+    <users>
+        <entry>
+            <key>0</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ictOfficer">
+                <email>admin</email>
+                <name>admin</name>
+                <surname>admin</surname>
+                <birthday>2019-05-07T13:26:17.297+02:00</birthday>
+                <gender>Apache Attack Helicopter</gender>
+                <serialnum>0</serialnum>
+                <serialnumCounter>3</serialnumCounter>
+            </value>
+        </entry>
+        <entry>
+            <key>1</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="clerk">
+                <email>in</email>
+                <name>in</name>
+                <surname>in</surname>
+                <birthday>2019-05-03T00:00:00+02:00</birthday>
+                <gender>in</gender>
+                <serialnum>1</serialnum>
+                <serialnumCounter>3</serialnumCounter>
+            </value>
+        </entry>
+        <entry>
+            <key>2</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="doctor">
+                <email>out</email>
+                <name>out</name>
+                <surname>out</surname>
+                <birthday>2019-05-03T00:00:00+02:00</birthday>
+                <gender>out</gender>
+                <serialnum>2</serialnum>
+                <serialnumCounter>3</serialnumCounter>
+            </value>
+        </entry>
+    </users>
+</StaffRegister>
