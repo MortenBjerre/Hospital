@@ -192,9 +192,10 @@ public class InpatientDepartment extends OutpatientDepartment {
 	}
 	
 	public ArrayList<Patient> getAllPatients() {
-		ArrayList<Patient> allPatients = new ArrayList<Patient>
+		ArrayList<Patient> allPatients = new ArrayList<Patient>();
 		for(int bednum : patientss.keySet()) {
-			
+			allPatients.add(patientss.get(bednum));
 		}
+		return allPatients;
 	}
 }

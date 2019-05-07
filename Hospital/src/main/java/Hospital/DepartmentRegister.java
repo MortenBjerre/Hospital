@@ -133,7 +133,7 @@ public class DepartmentRegister implements Serializable{
 		for (String dep : departments.keySet()) {
 			OutpatientDepartment department = departments.get(dep);
 			System.out.println(department.getDeptName());
-			System.out.println(department);
+			System.out.println(department.getAllPatients());
 			if (department.containsPatient(p.getSerialnum())) {
 				department.deletePatient(p);
 				return true;
