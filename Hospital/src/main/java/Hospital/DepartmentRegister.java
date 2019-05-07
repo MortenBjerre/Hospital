@@ -489,7 +489,13 @@ public class DepartmentRegister implements Serializable{
 	 * @return number of patients
 	 */
 	public int numberOfPatient(String deptName) {
-		return departments.get(deptName).patients.size();
+		if (departments.get(deptName) instanceof InpatientDepartment) {
+			InpatientDepartment inp = (InpatientDepartment) departments.get(deptName);
+			return inp.patientss.size();
+		}else {
+			return departments.get(deptName).patients.size();
+		}
+		
 		
 	}
 
