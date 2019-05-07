@@ -29,10 +29,9 @@ import java.awt.event.KeyEvent;
 public class StaffLogin extends JFrame {
 
 	private JPanel contentPane;
-	static StaffRegister StaffReg;
-	static PatientRegister PatientReg;
-	static DepartmentRegister DepartReg;
-	private int attempts = 2;
+	static StaffRegister sr;
+	static PatientRegister pr;
+	static DepartmentRegister dr;
 	private JPasswordField SerialNumber;
 	private JPasswordField passwordField;
 
@@ -40,10 +39,10 @@ public class StaffLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StaffLogin(final StaffRegister StaffReg, final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
-		StaffLogin.StaffReg = StaffReg;
-		StaffLogin.PatientReg = PatientReg;
-		StaffLogin.DepartReg = DepartReg;
+	public StaffLogin(final StaffRegister sr, final PatientRegister pr, final DepartmentRegister dr) {
+		StaffLogin.sr = sr;
+		StaffLogin.pr = pr;
+		StaffLogin.dr = dr;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Staff Login Page");
@@ -144,8 +143,8 @@ public class StaffLogin extends JFrame {
 					try {
 						@SuppressWarnings("deprecation")
 						int serialNumber = Integer.parseInt(SerialNumber.getText());					
-						if (StaffReg.findSerialnum(serialNumber) != null) {
-							StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
+						if (sr.findSerialnum(serialNumber) != null) {
+							StaffMenu menu = new StaffMenu(sr, serialNumber, pr, dr);
 							menu.setVisible(true);
 							dispose();
 						} else {
@@ -163,28 +162,20 @@ public class StaffLogin extends JFrame {
 		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				try {
-				@SuppressWarnings("deprecation")
-				int serialNumber = Integer.parseInt(SerialNumber.getText());
-				
-				if (attempts != 0) {
-				
-					if (StaffReg.findSerialnum(serialNumber) != null) {
-						StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
-						menu.setVisible(true);
-						dispose();
-					} else {
-						invalidLogin.setVisible(true);
-						attempts--;
-					}
-				} else {
-						dispose();
-					}
-			} catch (Exception e) {
-				InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
-				invalid.setVisible(true);
-			}
+					@SuppressWarnings("deprecation")
+					int serialNumber = Integer.parseInt(SerialNumber.getText());
+						if (sr.findSerialnum(serialNumber) != null) {
+							StaffMenu menu = new StaffMenu(sr, serialNumber, pr, dr);
+							menu.setVisible(true);
+							dispose();
+						} else {
+							invalidLogin.setVisible(true);
+						}
+				} catch (Exception e) {
+					InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
+					invalid.setVisible(true);
+				}
 			}
 		});
 		

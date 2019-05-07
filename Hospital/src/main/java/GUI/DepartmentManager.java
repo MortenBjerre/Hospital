@@ -253,7 +253,6 @@ public class DepartmentManager extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (numberOfBedsTextField.getText().equals("")) {
 					deptName = departmentNameTextField.getText();
-					System.out.println(deptName);
 					if (dr.containsDept(deptName)) {
 						new ChangeNameOfDept(deptName, dr, staff, sr).setVisible(true);
 						dispose();
