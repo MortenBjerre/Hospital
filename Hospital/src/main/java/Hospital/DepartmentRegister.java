@@ -67,9 +67,19 @@ public class DepartmentRegister implements Serializable{
 	 * @param deptName
 	 * @param pr PatientRegister
 	 */
-	public void movePatient(int serialnum, String deptName, PatientRegister pr) {
+	public boolean movePatient(int serialnum, String deptName, PatientRegister pr) {
 		Patient p = pr.findSerialnum(serialnum);
-		movePatient(p, deptName);
+		for (String dep : departments.keySet()) {
+			OutpatientDepartment department = departments.get(dep);
+			System.out.println(dep);
+			if (department.containsPatient(serialnum)) {
+				System.out.println(dep + "contains patient");
+				department.deletePatient(serialnum);
+				departments.get(deptName).addPatient(p);
+				return true;
+			}
+		} 
+		throw new IllegalArgumentException("No such department");
 	}
 	
 	/**
