@@ -178,7 +178,7 @@ public class DischargePatient extends JFrame {
 					SuccesfulOperation discharged = new SuccesfulOperation("Patient has been discharged");
 					discharged.setVisible(true);
 				} catch (Exception e1) {
-					InvalidInput invalid = new InvalidInput("Patient has not been admitted");
+					InvalidInput invalid = new InvalidInput(e1.getMessage());
 					invalid.setVisible(true);
 				}
 			}

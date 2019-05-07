@@ -58,6 +58,14 @@ public class InpatientDepartment extends OutpatientDepartment {
 		}
 	}
 	
+	protected void deletePatient(int serialnum) {
+		for (int bednum : patientss.keySet()) {
+			if (patientss.get(bednum).getSerialnum() == serialnum) {
+				patientss.remove(bednum);
+			}
+		}
+	}
+	
 	
 	/**
 	 * Gives the patients in department 

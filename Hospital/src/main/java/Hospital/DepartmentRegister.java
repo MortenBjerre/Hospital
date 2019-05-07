@@ -148,8 +148,12 @@ public class DepartmentRegister implements Serializable{
 	 * @param pr PatientRegister
 	 */
 	public void dischargePatient(int serialnum, PatientRegister pr) {
-		Patient p = pr.findSerialnum(serialnum);
-		dischargePatient(p);		
+		for (String dep : departments.keySet()) {
+			OutpatientDepartment department = departments.get(dep);
+			if (department.containsPatient(serialnum)) {
+				department.deletePatient(serialnum);
+			}
+		}
 	}
 	
 	/**
