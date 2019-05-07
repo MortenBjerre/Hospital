@@ -200,6 +200,7 @@ public class RegisterStaff extends JFrame {
 
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
 				email = emailTextField.getText();
 				name = nameTextField.getText();
 				surname = surnameTextField.getText();
