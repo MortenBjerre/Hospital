@@ -93,12 +93,16 @@ public class StaffRegister extends Register<Staff> {
 	}
 	
 	public void setSerialnumCounter() {
-		int max = 0;
-		for (int serialnum : users.keySet()) {
-			if (serialnum > max) {
-				max = serialnum;
+		if (users.size() == 0) {
+			Staff.setSerialnumCounter(0);
+		} else {
+			int max = 0;
+			for (int serialnum : users.keySet()) {
+				if (serialnum > max) {
+					max = serialnum;
+				}
 			}
+			Staff.setSerialnumCounter(max+1);
 		}
-		Staff.setSerialnumCounter(max+1);
 	}
 }

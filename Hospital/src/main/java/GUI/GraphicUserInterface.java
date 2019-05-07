@@ -43,6 +43,7 @@ public class GraphicUserInterface {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             DepartmentRegister drSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
             System.out.println("Loaded File");
+      
             return drSaving2;
         }
         catch (JAXBException e)

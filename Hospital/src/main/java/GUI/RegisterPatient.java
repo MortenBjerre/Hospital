@@ -47,7 +47,7 @@ public class RegisterPatient extends JFrame {
 	private JTextField txtHealthDataInput;
 	private JComboBox aliveStatus;
 	
-	public RegisterPatient(final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
+	public RegisterPatient(PatientRegister PatientReg, DepartmentRegister DepartReg) {
 		
 		setTitle("Register a patient");
 		this.PatientReg = PatientReg;

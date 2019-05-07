@@ -198,13 +198,17 @@ public class PatientRegister extends Register<Patient> {
 	}
 
 	public void setSerialnumCounter() {
-		int max = 0;
-		for (int serialnum : users.keySet()) {
-			if (serialnum > max) {
-				max = serialnum;
+		if (users.size() == 0) {
+			Patient.setSerialnumCounter(0);
+		} else {
+			int max = 0;
+			for (int serialnum : users.keySet()) {
+				if (serialnum > max) {
+					max = serialnum;
+				}
 			}
+			Patient.setSerialnumCounter(max+1);
 		}
-		Patient.setSerialnumCounter(max+1);
 	}
 	
 	
