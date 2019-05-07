@@ -28,8 +28,8 @@ public class Staff extends HospitalUser {
 	 */
 	public Staff(String email, String name, String surname, Date birthday, String gender) {
 		set(email, name, surname, birthday, gender);
-		serialnum = serialnumCounter;
-		serialnumCounter++;
+		serialnum = Staff.serialnumCounter;
+		Staff.serialnumCounter++;
 
 		//need to add department
 	}
@@ -135,7 +135,7 @@ public class Staff extends HospitalUser {
 		return false;
 	}
 	
-	public void saveSerialnum() {
-		this.savedserialnumCounter=this.serialnumCounter;
+	public static void setSerialnumCounter(int counter) {
+		Staff.serialnumCounter = counter;
 	}
 }

@@ -37,7 +37,7 @@ public class PatientRegister extends Register<Patient> {
 		Patient patient = new Patient(email, name, surname, birthday, gender, address, 
 								phoneNumber, alive, healthData);
 		users.put(patient.getSerialnum(), patient);
-		this.savedSerial = patient.getSerialnum();
+		this.savedSerial = patient.getSerialnum()+1;
 		return patient.getSerialnum();
 	}
 	
@@ -200,7 +200,7 @@ public class PatientRegister extends Register<Patient> {
 	}
 	
 	public void loadSerial() {
-	Patient.setSerialnumCounter(savedSerial+1);
+	Patient.setSerialnumCounter(savedSerial);
 	}
 	
 	

@@ -42,8 +42,8 @@ public class Patient extends HospitalUser {
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setHealthData(healthData);
-		serialnum = serialnumCounter;
-		serialnumCounter++;
+		serialnum = Patient.serialnumCounter;
+		Patient.serialnumCounter++;
 
 	}
 	
@@ -93,7 +93,7 @@ public class Patient extends HospitalUser {
 	}
 	
 	public static void setSerialnumCounter(int counter) {
-		serialnumCounter = counter;
+		Patient.serialnumCounter = counter;
 	}
 	
 	public static int getSerialnumCounter() {

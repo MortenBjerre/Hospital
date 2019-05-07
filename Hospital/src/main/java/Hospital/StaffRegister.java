@@ -25,7 +25,7 @@ public class StaffRegister extends Register<Staff> {
 	public int addStaff(String email, String name, String surname, Date birthday, String gender) {
 		Staff staff = new Staff(email, name, surname, birthday, gender);
 		users.put(staff.getSerialnum(), staff);
-		this.savedSerial = staff.getSerialnum();
+		this.savedSerial = staff.getSerialnum()+1;
 		return staff.getSerialnum();
 	}
 	
@@ -95,6 +95,6 @@ public class StaffRegister extends Register<Staff> {
 		
 	}
 	public void loadSerial() {
-	Patient.setSerialnumCounter(savedSerial+1);
+	Staff.setSerialnumCounter(savedSerial);
 	}
 }
