@@ -44,7 +44,6 @@ public class StaffMenu extends JFrame {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-            jaxbMarshaller.marshal(staffRegister, System.out);
             File file = new File("staffRegister.xml");
             jaxbMarshaller.marshal(staffRegister, file);
         }
@@ -62,8 +61,6 @@ public class StaffMenu extends JFrame {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            jaxbMarshaller.marshal(patientRegister, System.out);
             File file = new File("patientRegister.xml");
             jaxbMarshaller.marshal(patientRegister, file);
         }
@@ -81,8 +78,6 @@ public class StaffMenu extends JFrame {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-  
-            jaxbMarshaller.marshal(departmentRegister, System.out);
             File file = new File("departmentRegister.xml");
             jaxbMarshaller.marshal(departmentRegister, file);
         }
