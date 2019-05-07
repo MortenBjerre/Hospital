@@ -36,6 +36,7 @@ public class MoveStaff extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public MoveStaff(final StaffRegister StaffReg, DepartmentRegister DepartReg) {
+		setTitle("Move staff member to other department");
 		MoveStaff.StaffReg = StaffReg;
 		MoveStaff.DepartReg = DepartReg;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
