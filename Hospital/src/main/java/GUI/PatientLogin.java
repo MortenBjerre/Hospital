@@ -141,7 +141,7 @@ public class PatientLogin extends JFrame {
 								invalidLogin.setVisible(true);
 							}
 					} catch (Exception e1) {
-						;
+						invalidLogin.setVisible(true);
 					}
 				}
 			}
@@ -160,7 +160,9 @@ public class PatientLogin extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				try  {
+				try {
+					@SuppressWarnings("deprecation")
+					int serialNumber = Integer.parseInt(SerialNumber.getText());
 						if (pr.findSerialnum(serialNumber) != null) {
 							PatientMenu menu = new PatientMenu(pr, dr, serialNumber);
 							menu.setVisible(true);
@@ -168,9 +170,8 @@ public class PatientLogin extends JFrame {
 						} else {
 							invalidLogin.setVisible(true);
 						}
-				} catch (Exception e) {
-					InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
-					invalid.setVisible(true);
+				} catch (Exception e1) {
+					invalidLogin.setVisible(true);
 				}
 			}
 		});
