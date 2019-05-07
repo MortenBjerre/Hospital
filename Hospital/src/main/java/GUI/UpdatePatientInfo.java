@@ -55,6 +55,7 @@ public class UpdatePatientInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public UpdatePatientInfo(PatientRegister pr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Update patient info");

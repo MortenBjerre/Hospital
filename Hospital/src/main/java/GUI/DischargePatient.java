@@ -173,13 +173,19 @@ public class DischargePatient extends JFrame {
 		btnDischarge.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnDischarge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					dr.dischargePatient(serialnum, pr);
-					SuccesfulOperation discharged = new SuccesfulOperation("Patient has been discharged");
-					discharged.setVisible(true);
-				} catch (Exception e1) {
-					InvalidInput invalid = new InvalidInput(e1.getMessage());
-					invalid.setVisible(true);
+				if (dr.getDeptOfPatient(serialnum).equals("")) {
+					new InvalidInput("Patient has not been admitted").setVisible(true);;
+				} else {
+					try {
+						dr.dischargePatient(serialnum, pr);
+						SuccesfulOperation discharged = new SuccesfulOperation("Patient has been discharged");
+						discharged.setVisible(true);
+						departmentShow.setText("");
+						
+					} catch (Exception e1) {
+						InvalidInput invalid = new InvalidInput(e1.getMessage());
+						invalid.setVisible(true);
+					}
 				}
 			}
 		});
