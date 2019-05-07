@@ -50,6 +50,7 @@ public class SearchPatient extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public SearchPatient(PatientRegister pr, DepartmentRegister departReg) {
+		setTitle("Search patients");
 		dr = departReg;		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 400);

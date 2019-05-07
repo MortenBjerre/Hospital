@@ -74,7 +74,7 @@ public class StaffMenu extends JFrame {
 		btnRemovePatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Dischargepatient loginPage = new Dischargepatient(PatientReg,DepartReg);
+				DischargePatient loginPage = new DischargePatient(PatientReg,DepartReg);
 				loginPage.setVisible(true);
 			}
 		});

@@ -53,12 +53,12 @@ public class PatientMenu extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Patient Menu ");
-		setBounds(100, 100, 636, 467);
+		setBounds(100, 100, 639, 429);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{94, 479, 0};
-		gridBagLayout.rowHeights = new int[]{26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{26, 0, 0, 0, 0, 0, 0, 135, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE, 0.0};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		JLabel lblWelcome = new JLabel("Welcome, " + patient.getName() + " " + patient.getSurname());
@@ -219,11 +219,11 @@ public class PatientMenu extends JFrame {
 		gbc_lblHealthData.anchor = GridBagConstraints.EAST;
 		gbc_lblHealthData.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHealthData.gridx = 0;
-		gbc_lblHealthData.gridy = 11;
+		gbc_lblHealthData.gridy = 7;
 		getContentPane().add(lblHealthData, gbc_lblHealthData);
 		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
 		gbc_btnGoBack.gridx = 2;
-		gbc_btnGoBack.gridy = 12;
+		gbc_btnGoBack.gridy = 9;
 		getContentPane().add(btnGoBack, gbc_btnGoBack);
 		
 		lblgetHealthdata = new JTextArea(pr.findSerialnum(serialnum).getHealthData());
@@ -236,10 +236,10 @@ public class PatientMenu extends JFrame {
 		scrollPane.setVisible(true);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 11;
+		gbc_scrollPane.gridy = 7;
 		getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		

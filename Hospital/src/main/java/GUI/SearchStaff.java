@@ -36,7 +36,7 @@ public class SearchStaff extends JFrame {
 	private DepartmentRegister dr;
 	
 	public SearchStaff(StaffRegister staffReg, DepartmentRegister dr) {
-		
+		setTitle("Search staff members");
 		this.dr = dr;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 756, 338);

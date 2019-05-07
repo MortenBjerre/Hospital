@@ -57,6 +57,7 @@ public class UpdatePatientInfo extends JFrame {
 	 */
 	public UpdatePatientInfo(final PatientRegister pr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Update patient info");
 		setBounds(100, 100, 796, 690);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
