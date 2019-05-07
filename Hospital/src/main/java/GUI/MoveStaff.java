@@ -129,8 +129,8 @@ public class MoveStaff extends JFrame {
 					SuccesfulOperation window = new SuccesfulOperation("Staff has succesfully been moved");
 					window.setVisible(true);
 					dispose();
-				} catch (Exception IllegalArgumentException) {
-					InvalidInput invalid = new InvalidInput("Staff has not been admitted to a department");
+				} catch (Exception error) {
+					InvalidInput invalid = new InvalidInput(error.getMessage());
 					invalid.setVisible(true);
 				}
 			}

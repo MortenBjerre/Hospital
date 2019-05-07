@@ -76,6 +76,15 @@ public class OutpatientDepartment implements Serializable{
 		this.staff.remove(staff);
 	}
 	
+	protected void deleteStaff(int serialnum) {
+		for (int i = 0; i < staff.size(); i++) {
+			Staff s = staff.get(i);
+			if (s.getSerialnum() == serialnum) {
+				staff.remove(i);
+			}
+		}
+	}
+	
 	/**
 	 * Gives the patients in department 
 	 * @return string array of patients in department

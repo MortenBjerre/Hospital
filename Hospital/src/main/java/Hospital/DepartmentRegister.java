@@ -99,11 +99,18 @@ public class DepartmentRegister implements Serializable{
 	 * @param deptName
 	 * @param sr StaffRegister
 	 */
-	public void moveStaff(int serialnum, String deptName, StaffRegister sr) {
+	public boolean moveStaff(int serialnum, String deptName, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
-		moveStaff(s, deptName);
+		for (String dep : departments.keySet()) {
+			OutpatientDepartment department = departments.get(dep);
+			if (department.containsStaff(serialnum)) {
+				department.deleteStaff(serialnum);
+				this.addStaffTo(serialnum, deptName, sr);				
+				return true;
+			}
+		}
+		throw new IllegalArgumentException("No such department");
 	}
-	
 	/**
 	 * Moves staff member from current department to specified department by serialnum.
 	 * Throws IllegalArgumentException if specified department exists.
@@ -290,10 +297,14 @@ public class DepartmentRegister implements Serializable{
 		} else {
 			try {
 				this.dischargeStaff(staff, sr);
+				System.out.println(304);
 			} catch (IllegalArgumentException e) {
+				System.out.println(307);
 				; //pass
 			}
+			System.out.println(310);
 			this.findDepartment(deptName).addStaff(staff);
+			System.out.println(312);
 		}
 	}
 	
