@@ -143,14 +143,7 @@ public class InpatientDepartment extends OutpatientDepartment {
 	protected int getFreeBeds(){
 		return (beds - patientss.size());
 	}
-	
-	/**
-	 * returns the number of occupied beds in a department
-	 * @return returns an int representing the number of occupied beds in a department
-	 */
-	protected int getOccupiedBeds() {
-		return patientss.size();
-	}
+
 	
 	/**
 	 * Adds beds to a department
