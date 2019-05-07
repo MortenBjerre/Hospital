@@ -92,8 +92,8 @@ public class Patient extends HospitalUser {
 		serialnumCounter = 0;
 	}
 	
-	public static void setSerialnumCounter(int counter) {
-		serialnumCounter = counter;
+	public static void setSerialnumCounter(int newSerialnumCounter) {
+		serialnumCounter = newSerialnumCounter;
 	}
 	
 	public static int getSerialnumCounter() {

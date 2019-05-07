@@ -130,4 +130,8 @@ public class Staff extends HospitalUser {
 	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
 		return false;
 	}
+	
+	public static void setSerialnumCounter(int newSerialnumCounter) {
+		serialnumCounter = newSerialnumCounter;
+	}
 }

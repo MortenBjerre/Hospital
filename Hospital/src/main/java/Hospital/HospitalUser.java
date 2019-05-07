@@ -21,6 +21,7 @@ public abstract class HospitalUser implements Serializable {
 	private String gender;
 	@XmlElement(name ="serialnum")
 	protected int serialnum;
+	protected static int serialnumCounter;
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof HospitalUser) {
@@ -42,6 +43,10 @@ public abstract class HospitalUser implements Serializable {
 		hash = 31 * hash + birthday.hashCode();
 		hash = 31 * hash + gender.hashCode();
 		return hash;
+	}
+	
+	public static void setSerialnumCounter(int newSerialnumCounter) {
+		serialnumCounter = newSerialnumCounter;
 	}
 	
 	public void set(String email, String name, String surname, Date birthday, String gender) {

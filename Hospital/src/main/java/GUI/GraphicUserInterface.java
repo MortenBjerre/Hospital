@@ -28,6 +28,9 @@ import java.io.FileNotFoundException;
 public class GraphicUserInterface {
 //
 	private JFrame frame;
+	private PatientRegister pr;
+	private StaffRegister sr;
+	private DepartmentRegister dr;
 
 	public static DepartmentRegister DepartmentRegisterXMLtoObject(String fileName) {
         File xmlFile = new File(fileName);
@@ -139,11 +142,11 @@ public class GraphicUserInterface {
 	 */
 	private void initialize() {
 		
-		final PatientRegister pr = loadPatientRegister();
-		final StaffRegister sr = loadStaffRegister();
-		final DepartmentRegister dr = loadDepartmentRegister();
-		
-		
+		pr = loadPatientRegister();
+		sr = loadStaffRegister();
+		dr = loadDepartmentRegister();
+		pr.setSerialnumCounter();
+		sr.setSerialnumCounter();
 		
 		frame = new JFrame();
 		frame.setTitle("Main Menu");

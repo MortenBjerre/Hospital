@@ -13,7 +13,7 @@ public class PatientRegister extends Register<Patient> {
 	 * When creating a patient register the serialnum counter is reset
 	 */
 	public PatientRegister() {
-//		Patient.resetSerialnumCounter();
+		setSerialnumCounter();
 	}
 	
 	/**
@@ -195,6 +195,16 @@ public class PatientRegister extends Register<Patient> {
 		}
 		return a;
 		
+	}
+
+	public void setSerialnumCounter() {
+		int max = 0;
+		for (int serialnum : users.keySet()) {
+			if (serialnum > max) {
+				max = serialnum;
+			}
+		}
+		Patient.setSerialnumCounter(max+1);
 	}
 	
 	

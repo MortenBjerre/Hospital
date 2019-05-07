@@ -17,7 +17,7 @@ public abstract class Register<T extends HospitalUser> {
 		}
 		return a;
 	}
-	
+		
 	/**
 	 * Number of users in the register
 	 * @return number of users

@@ -91,4 +91,14 @@ public class StaffRegister extends Register<Staff> {
 		users.remove(serialnum);
 		
 	}
+	
+	public void setSerialnumCounter() {
+		int max = 0;
+		for (int serialnum : users.keySet()) {
+			if (serialnum > max) {
+				max = serialnum;
+			}
+		}
+		Staff.setSerialnumCounter(max+1);
+	}
 }
