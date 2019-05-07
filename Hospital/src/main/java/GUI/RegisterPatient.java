@@ -47,15 +47,9 @@ public class RegisterPatient extends JFrame {
 	private JTextField txtHealthDataInput;
 	private JComboBox aliveStatus;
 	
-	
-
-
-	/**
-	 * Create the frame.
-	 */
-	public RegisterPatient(final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
+	public RegisterPatient(PatientRegister PatientReg, DepartmentRegister DepartReg) {
 		
-		
+		setTitle("Register a patient");
 		this.PatientReg = PatientReg;
 		this.DepartReg = DepartReg;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

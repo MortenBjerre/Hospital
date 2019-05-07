@@ -1,9 +1,11 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name = "ICTOfficer")
 public class ICTOfficer extends Staff {
-	
+	public ICTOfficer() {}
 	/**
 	 * Constructor of ICTOfficer. Calls Staff constructor.
 	 * @param email
@@ -34,15 +36,19 @@ public class ICTOfficer extends Staff {
 		return true;
 	}
 	
-	public boolean canMovePatients() {
-		return true;
-	}
-	
 	public String getRole() {
 		return "ICT Officer";
 	}
 	
 	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
+		return true;
+	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	public boolean canViewDepartmentRegister() {
 		return true;
 	}
 

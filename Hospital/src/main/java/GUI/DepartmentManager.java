@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Hospital.DepartmentRegister;
+import Hospital.Staff;
+import Hospital.StaffRegister;
+
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -33,24 +36,25 @@ public class DepartmentManager extends JFrame {
 	private JScrollPane scrollPane;
 	private Object[] columnNames;
 	private DepartmentRegister dr;
+	private Staff staff;
 
-	public DepartmentManager(DepartmentRegister dr) {
+	public DepartmentManager(DepartmentRegister dr, Staff staff, StaffRegister sr) {
+		this.staff = staff;
 		this.dr = dr;
-		
+		setTitle("Department Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 949, 449);
+		setBounds(100, 100, 1150, 449);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{218, 163, 164, 180, 166, 0};
+		gbl_contentPane.columnWidths = new int[]{218, 163, 164, 180, 166, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{44, 79, 135, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 
-		
 		JButton btnCreateDepartment = new JButton("Create Department");
 		btnCreateDepartment.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCreateDepartment.addActionListener(new ActionListener() {
@@ -229,7 +233,7 @@ public class DepartmentManager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String deptName = departmentNameTextField.getText();
 				if (!deptName.equals("") && dr.containsDept(deptName)) {
-					new InspectDepartment(dr, deptName).setVisible(true);
+					new InspectDepartment(dr, deptName, staff, sr).setVisible(true);
 				} else {
 					new InvalidInput("Enter a valid department name").setVisible(true);
 				}
@@ -237,14 +241,41 @@ public class DepartmentManager extends JFrame {
 		});
 		GridBagConstraints gbc_btnInspect = new GridBagConstraints();
 		gbc_btnInspect.fill = GridBagConstraints.BOTH;
-		gbc_btnInspect.insets = new Insets(0, 0, 5, 0);
+		gbc_btnInspect.insets = new Insets(0, 0, 5, 5);
 		gbc_btnInspect.gridx = 4;
 		gbc_btnInspect.gridy = 1;
 		contentPane.add(btnInspect, gbc_btnInspect);
 		
+		JButton btnEditDepartmentName = new JButton("Edit Department Name");
+		btnEditDepartmentName.addActionListener(new ActionListener() {
+			private String deptName;
+
+			public void actionPerformed(ActionEvent arg0) {
+				if (numberOfBedsTextField.getText().equals("")) {
+					deptName = departmentNameTextField.getText();
+					System.out.println(deptName);
+					if (dr.containsDept(deptName)) {
+						new ChangeNameOfDept(deptName, dr, staff, sr).setVisible(true);
+						dispose();
+					} else {
+						new InvalidInput("No such department").setVisible(true);
+					}
+				} else {
+					new InvalidInput("Only declare a department name").setVisible(true);
+				}
+			}
+		}); 
+		btnEditDepartmentName.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_btnEditDepartmentName = new GridBagConstraints();
+		gbc_btnEditDepartmentName.fill = GridBagConstraints.VERTICAL;
+		gbc_btnEditDepartmentName.insets = new Insets(0, 0, 5, 0);
+		gbc_btnEditDepartmentName.gridx = 5;
+		gbc_btnEditDepartmentName.gridy = 1;
+		contentPane.add(btnEditDepartmentName, gbc_btnEditDepartmentName);
+		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 5;
+		gbc_scrollPane.gridwidth = 6;
 		gbc_scrollPane.fill = GridBagConstraints.HORIZONTAL;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
@@ -258,6 +289,17 @@ public class DepartmentManager extends JFrame {
 		table = new JTable(tableData, columnNames);
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
+		
+		if (!staff.canEditDepartmentRegister(dr)) {
+			btnAddBedsTo.setVisible(false);
+			btnCreateDepartment.setVisible(false);
+			btnDeleteDepartment.setVisible(false);
+			btnEditDepartmentName.setVisible(false);
+			btnRemoveBedsFrom.setVisible(false);
+			lblOptionalNumberOf.setVisible(false);
+			numberOfBedsTextField.setVisible(false);
+			
+		}
 	}
 	
 	private Object[][] makeDepartmentTable(DepartmentRegister dr) {
@@ -282,7 +324,7 @@ public class DepartmentManager extends JFrame {
 		numberOfBedsTextField.setText("");
 	}
 	
-	private void updateTable() {
+	protected void updateTable() {
 		tableData = makeDepartmentTable(dr);
 		table = new JTable(tableData,columnNames);
 		table.setEnabled(false); // un-editable

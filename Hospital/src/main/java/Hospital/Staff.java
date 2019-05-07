@@ -1,11 +1,17 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+
+@XmlRootElement(name="Staff")
 public class Staff extends HospitalUser {
-
+	
+	@XmlElement(name="serialnumCounter")
 	private static int serialnumCounter = 0;
 	
+	public Staff() {}
 	/**
 	 * Staff constructor. Takes all fields and sets them. Increments serialnumCounter every time it's called
 	 * so every serialnum is unique between staff members
@@ -87,7 +93,7 @@ public class Staff extends HospitalUser {
 	 * @return true if they have permission
 	 */
 	public boolean canMovePatients() {
-		return true;
+		return false;
 	}
 	
 	/**
@@ -105,7 +111,7 @@ public class Staff extends HospitalUser {
 	 * @return true if they have permission
 	 */
 	public boolean canViewDepartmentRegister() {
-		return true;
+		return false;
 	}
 	
 	/**
@@ -123,5 +129,9 @@ public class Staff extends HospitalUser {
 	 */
 	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
 		return false;
+	}
+	
+	public static void setSerialnumCounter(int newSerialnumCounter) {
+		serialnumCounter = newSerialnumCounter;
 	}
 }

@@ -44,7 +44,7 @@ public class UpdatePatientInfo extends JFrame {
 	private JTextField Gender;
 	private JTextField Number;
 	int serialnum;
-	static PatientRegister PatientReg;
+	static PatientRegister pr;
 	private JComboBox aliveStatus;
 	private JDateChooser dateChooser;
 	private JLabel lblEditBirthday;
@@ -55,8 +55,9 @@ public class UpdatePatientInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UpdatePatientInfo(final PatientRegister pr) {
+	public UpdatePatientInfo(PatientRegister pr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Update patient info");
 		setBounds(100, 100, 796, 690);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

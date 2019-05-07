@@ -2,7 +2,9 @@ package Hospital;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.xml.bind.annotation.*;
 
+@XmlRootElement(name = "StaffRegister")
 public class StaffRegister extends Register<Staff> {
 	
 	public StaffRegister() {
@@ -88,5 +90,19 @@ public class StaffRegister extends Register<Staff> {
 		int serialnum = s.getSerialnum();
 		users.remove(serialnum);
 		
+	}
+	
+	public void setSerialnumCounter() {
+		if (users.size() == 0) {
+			Staff.setSerialnumCounter(0);
+		} else {
+			int max = 0;
+			for (int serialnum : users.keySet()) {
+				if (serialnum > max) {
+					max = serialnum;
+				}
+			}
+			Staff.setSerialnumCounter(max+1);
+		}
 	}
 }

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.*;
 
 public abstract class Register<T extends HospitalUser> {
+	@XmlElementWrapper(name ="users")
 	protected Map<Integer, T> users = new HashMap<Integer, T>();
 		
 	public String toString() {
@@ -15,7 +17,7 @@ public abstract class Register<T extends HospitalUser> {
 		}
 		return a;
 	}
-	
+		
 	/**
 	 * Number of users in the register
 	 * @return number of users
@@ -214,6 +216,16 @@ public abstract class Register<T extends HospitalUser> {
 		T user = this.findSerialnum(serialnum);
 		user.setSurname(surname);
 		users.put(serialnum, user);	
+	}
+	
+	/**
+	 * Changes the birthday of a given user, identified by their serialnum
+	 * @param serialnum
+	 * @param birthday
+	 */
+	public void editBirthday(int serialnum, Date birthday) {
+		T user = this.findSerialnum(serialnum);
+		user.setBirthday(birthday);		
 	}
 	
 	/**

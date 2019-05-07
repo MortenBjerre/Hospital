@@ -1,12 +1,20 @@
 package Hospital;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
-public class OutpatientDepartment {
-	
+@XmlRootElement(name="OutpatientDepartment")
+public class OutpatientDepartment implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@XmlElementWrapper(name="patients")
 	protected ArrayList<Patient> patients;
+	@XmlElementWrapper(name="staff")
 	protected ArrayList<Staff> staff;
+	@XmlElement(name ="deptName")
 	protected String deptName;
+	
+	protected OutpatientDepartment() {}
 	
 	protected OutpatientDepartment(String deptName) {
 		this.deptName = deptName;
@@ -52,12 +60,29 @@ public class OutpatientDepartment {
 		patients.remove(patient);
 	}
 	
+	protected void deletePatient(int serialnum) {
+		for (int i = 0; i < patients.size(); i++) {
+			if (patients.get(i).getSerialnum() == serialnum) {
+				patients.remove(i);
+			}
+		}
+	}
+	
 	/**
 	 * remove a staff member from the arraylist of staff in a department
 	 * @param staff staff to be removed
 	 */
 	protected void deleteStaff(Staff staff) {
 		this.staff.remove(staff);
+	}
+	
+	protected void deleteStaff(int serialnum) {
+		for (int i = 0; i < staff.size(); i++) {
+			Staff s = staff.get(i);
+			if (s.getSerialnum() == serialnum) {
+				staff.remove(i);
+			}
+		}
 	}
 	
 	/**
@@ -176,5 +201,9 @@ public class OutpatientDepartment {
 			}
 		}
 		throw new IllegalArgumentException("No such staff");
+	}
+
+	public ArrayList<Patient> getAllPatients() {
+		return patients;
 	}
 }

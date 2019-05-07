@@ -38,7 +38,7 @@ public class MovePatient extends JFrame {
 	public MovePatient(final PatientRegister PatientReg, DepartmentRegister DepartReg) {
 		MovePatient.PatientReg = PatientReg;
 		MovePatient.DepartReg = DepartReg;
-		
+		setTitle("Move a patient to other department");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 842, 658);
 		contentPane = new JPanel();

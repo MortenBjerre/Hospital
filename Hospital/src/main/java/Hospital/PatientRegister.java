@@ -3,6 +3,9 @@ package Hospital;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name="PatientRegister")
 
 public class PatientRegister extends Register<Patient> {
 	
@@ -10,7 +13,7 @@ public class PatientRegister extends Register<Patient> {
 	 * When creating a patient register the serialnum counter is reset
 	 */
 	public PatientRegister() {
-		Patient.resetSerialnumCounter();
+		setSerialnumCounter();
 	}
 	
 	/**
@@ -127,16 +130,6 @@ public class PatientRegister extends Register<Patient> {
 	}
 	
 	/**
-	 * Changes the birthday of a given patient, identified by their serialnum
-	 * @param serialnum
-	 * @param birthday
-	 */
-	public void editBirthday(int serialnum, Date birthday) {
-		Patient patient = this.findSerialnum(serialnum);
-		patient.setBirthday(birthday);		
-	}
-	
-	/**
 	 * Changes the phone number of a given patient, identified by their serialnum
 	 * @param serialnum
 	 * @param phoneNumber
@@ -192,6 +185,20 @@ public class PatientRegister extends Register<Patient> {
 		}
 		return a;
 		
+	}
+
+	public void setSerialnumCounter() {
+		if (users.size() == 0) {
+			Patient.setSerialnumCounter(0);
+		} else {
+			int max = 0;
+			for (int serialnum : users.keySet()) {
+				if (serialnum > max) {
+					max = serialnum;
+				}
+			}
+			Patient.setSerialnumCounter(max+1);
+		}
 	}
 	
 	

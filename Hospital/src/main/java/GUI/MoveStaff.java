@@ -36,6 +36,7 @@ public class MoveStaff extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public MoveStaff(final StaffRegister StaffReg, DepartmentRegister DepartReg) {
+		setTitle("Move staff member to other department");
 		MoveStaff.StaffReg = StaffReg;
 		MoveStaff.DepartReg = DepartReg;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -128,8 +129,8 @@ public class MoveStaff extends JFrame {
 					SuccesfulOperation window = new SuccesfulOperation("Staff has succesfully been moved");
 					window.setVisible(true);
 					dispose();
-				} catch (Exception IllegalArgumentException) {
-					InvalidInput invalid = new InvalidInput("Staff has not been admitted to a department");
+				} catch (Exception error) {
+					InvalidInput invalid = new InvalidInput(error.getMessage());
 					invalid.setVisible(true);
 				}
 			}

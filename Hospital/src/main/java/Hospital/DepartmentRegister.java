@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
-public class DepartmentRegister {
-	
+@XmlRootElement(name="DepartmentRegister")
+public class DepartmentRegister implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//departments is a map mapping string department names to objects of department
+	@XmlElementWrapper(name="departments")
 	private Map<String, OutpatientDepartment> departments;
 	
 	public DepartmentRegister() {
@@ -95,11 +99,18 @@ public class DepartmentRegister {
 	 * @param deptName
 	 * @param sr StaffRegister
 	 */
-	public void moveStaff(int serialnum, String deptName, StaffRegister sr) {
+	public boolean moveStaff(int serialnum, String deptName, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
-		moveStaff(s, deptName);
+		for (String dep : departments.keySet()) {
+			OutpatientDepartment department = departments.get(dep);
+			if (department.containsStaff(serialnum)) {
+				department.deleteStaff(serialnum);
+				this.addStaffTo(serialnum, deptName, sr);				
+				return true;
+			}
+		}
+		throw new IllegalArgumentException("No such department");
 	}
-	
 	/**
 	 * Moves staff member from current department to specified department by serialnum.
 	 * Throws IllegalArgumentException if specified department exists.
@@ -128,7 +139,9 @@ public class DepartmentRegister {
 	private boolean dischargePatient(Patient p) {
 		for (String dep : departments.keySet()) {
 			OutpatientDepartment department = departments.get(dep);
-			if (department.containsPatient(p)) {
+			System.out.println(department.getDeptName());
+			System.out.println(department.getAllPatients());
+			if (department.containsPatient(p.getSerialnum())) {
 				department.deletePatient(p);
 				return true;
 			}
@@ -142,8 +155,12 @@ public class DepartmentRegister {
 	 * @param pr PatientRegister
 	 */
 	public void dischargePatient(int serialnum, PatientRegister pr) {
-		Patient p = pr.findSerialnum(serialnum);
-		dischargePatient(p);		
+		for (String dep : departments.keySet()) {
+			OutpatientDepartment department = departments.get(dep);
+			if (department.containsPatient(serialnum)) {
+				department.deletePatient(serialnum);
+			}
+		}
 	}
 	
 	/**
@@ -156,7 +173,10 @@ public class DepartmentRegister {
 	private boolean dischargeStaff(Staff s, StaffRegister sr) {
 		for (String dep : departments.keySet()) {
 			OutpatientDepartment department = departments.get(dep);
-			if (department.containsStaff(s)) {
+			for(int i = 0; i < department.getAllStaff().length; i++) {
+				//System.out.println(department.getAllStaff()[i]);
+			}
+			if (department.containsStaff(s.getSerialnum())) {
 				department.deleteStaff(s);
 				sr.deleteStaff(s);
 				return true;
@@ -172,7 +192,7 @@ public class DepartmentRegister {
 	 */
 	public void dischargeStaff(int serialnum, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
-		dischargeStaff(s, sr);		
+		dischargeStaff(s, sr);
 	}
 	
 	/**
@@ -208,6 +228,7 @@ public class DepartmentRegister {
 				throw new IllegalArgumentException("No such department");
 			} else {
 				if (department.getFreeBeds() > 0) {
+					System.out.println("added patient");
 					department.addPatient(patient);
 				} else {
 					throw new IllegalArgumentException("Department is full");
@@ -276,10 +297,14 @@ public class DepartmentRegister {
 		} else {
 			try {
 				this.dischargeStaff(staff, sr);
+				System.out.println(304);
 			} catch (IllegalArgumentException e) {
+				System.out.println(307);
 				; //pass
 			}
+			System.out.println(310);
 			this.findDepartment(deptName).addStaff(staff);
+			System.out.println(312);
 		}
 	}
 	
@@ -475,7 +500,13 @@ public class DepartmentRegister {
 	 * @return number of patients
 	 */
 	public int numberOfPatient(String deptName) {
-		return departments.get(deptName).patients.size();
+		if (departments.get(deptName) instanceof InpatientDepartment) {
+			InpatientDepartment inp = (InpatientDepartment) departments.get(deptName);
+			return inp.patientss.size();
+		}else {
+			return departments.get(deptName).patients.size();
+		}
+		
 		
 	}
 
@@ -498,7 +529,7 @@ public class DepartmentRegister {
 	
 	public ArrayList<Patient> getPatientsFrom(String deptName) {
 		if (departments.containsKey(deptName)) {
-			return departments.get(deptName).patients;
+			return departments.get(deptName).getAllPatients();
 		} else {
 			throw new IllegalArgumentException("No such department");
 		}
