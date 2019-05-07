@@ -190,4 +190,11 @@ public class InpatientDepartment extends OutpatientDepartment {
 	protected Patient getPatientIn(int bedNumber) {
 		return patientss.get(bedNumber);
 	}
+	
+	public ArrayList<Patient> getAllPatients() {
+		ArrayList<Patient> allPatients = new ArrayList<Patient>
+		for(int bednum : patientss.keySet()) {
+			
+		}
+	}
 }

@@ -185,4 +185,8 @@ public class OutpatientDepartment implements Serializable{
 		}
 		throw new IllegalArgumentException("No such staff");
 	}
+
+	public ArrayList<Patient> getAllPatients() {
+		return patients;
+	}
 }
