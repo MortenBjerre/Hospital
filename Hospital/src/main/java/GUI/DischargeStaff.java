@@ -171,8 +171,6 @@ public class DischargeStaff extends JFrame {
 		JButton btnFireEmployee = new JButton("Fire Employee");
 		btnFireEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Serialnum is :" + serialnum);
-				System.out.println(sr);
 				try {
 					dr.dischargeStaff(serialnum, sr);
 					new SuccesfulOperation("Staff member has been fired.").setVisible(true);
@@ -183,7 +181,6 @@ public class DischargeStaff extends JFrame {
 					lblShowSurname.setText("");
 					lblShowName.setText("");
 				} catch (Exception error) {
-//					new InvalidInput("No such staff member").setVisible(true);;
 					new InvalidInput(error.getMessage()).setVisible(true);;
 				}
 			}

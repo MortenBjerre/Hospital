@@ -240,14 +240,11 @@ public class UpdatePatientInfo extends JFrame {
 		btnUpdate.setVisible(false);
 		btnUpdate.addActionListener(new ActionListener() {
 			
-
 			public void actionPerformed(ActionEvent e) {
-				
 				format = new SimpleDateFormat("yyyy-MM-dd");
 				Date birthday = dateChooser.getDate();
 				Birthday.setText(format.format(birthday));
 				pr.editBirthday(serialnum, birthday);
-				
 			}
 		});
 		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
@@ -347,13 +344,18 @@ public class UpdatePatientInfo extends JFrame {
 		aliveStatus = new JComboBox();
 		aliveStatus.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				if (aliveStatus.getSelectedItem().equals("Alive")) {
-					pr.editAlive(serialnum, true);
-				} else {
-					pr.editAlive(serialnum, false);
+				try {
+					if (aliveStatus.getSelectedItem().equals("Alive")) {
+						pr.editAlive(serialnum, true);
+					} else {
+						pr.editAlive(serialnum, false);
+					}
+					}
+				catch (Exception e) {
+					;
 				}
 			}
-		});
+		});	
 		
 		aliveStatus.setVisible(false);
 		aliveStatus.addItem("Alive");

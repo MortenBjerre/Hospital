@@ -65,8 +65,6 @@ public class SearchStaff extends JFrame {
 		searchOptions.addItem("Surname");
 		searchOptions.addItem("Email");
 		searchOptions.addItem("Gender");
-
-
 		
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
@@ -161,7 +159,7 @@ public class SearchStaff extends JFrame {
 	
 	private void updateTable() {
 		table = new JTable(tableData,columnNames);
-		table.setEnabled(false); // un-editable
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 	}
@@ -203,7 +201,5 @@ public class SearchStaff extends JFrame {
 			}
 		}
 		return data;
-		
 	}
-
 }

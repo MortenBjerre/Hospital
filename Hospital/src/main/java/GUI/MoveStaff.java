@@ -27,18 +27,18 @@ public class MoveStaff extends JFrame {
 	private JPanel contentPane;
 	private JTextField serialNumber;
 	private JLabel lblShouldShowDepartment;
-	static DepartmentRegister DepartReg;
-	static StaffRegister StaffReg;
+	static DepartmentRegister dr;
+	static StaffRegister sr;
 	
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings("unchecked")
-	public MoveStaff(final StaffRegister StaffReg, DepartmentRegister DepartReg) {
+	public MoveStaff(final StaffRegister sr, DepartmentRegister dr) {
 		setTitle("Move staff member to other department");
-		MoveStaff.StaffReg = StaffReg;
-		MoveStaff.DepartReg = DepartReg;
+		MoveStaff.sr = sr;
+		MoveStaff.dr = dr;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 842, 658);
 		contentPane = new JPanel();
@@ -103,8 +103,8 @@ public class MoveStaff extends JFrame {
 		
 		
 		@SuppressWarnings("rawtypes")
-		final JComboBox comboBox = new JComboBox();
-		for (String dept : DepartReg.getAllDepartments()) {
+		JComboBox comboBox = new JComboBox();
+		for (String dept : dr.getAllDepartments()) {
 			comboBox.addItem(dept);
 		}
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -125,7 +125,7 @@ public class MoveStaff extends JFrame {
 		btnMoveStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					DepartReg.moveStaff(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), StaffReg);
+					dr.moveStaff(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), sr);
 					SuccesfulOperation window = new SuccesfulOperation("Staff has succesfully been moved");
 					window.setVisible(true);
 					dispose();
@@ -155,13 +155,17 @@ public class MoveStaff extends JFrame {
 					int serialnum;
 					try {
 						serialnum = Integer.parseInt(serialNumber.getText());
-						Staff p = StaffReg.findSerialnum(serialnum);
+						Staff p = sr.findSerialnum(serialnum);
 						if (p != null) {
 							lblPatientIsIn.setVisible(true);
 							lblShouldShowDepartment.setVisible(true);
 							lblWhatDepartmentShould.setVisible(true);
 							comboBox.setVisible(true);
-							lblShouldShowDepartment.setText(DepartReg.getDeptOfStaff(serialnum));
+							lblShouldShowDepartment.setText(dr.getDeptOfStaff(serialnum));
+						} else {
+							lblShouldShowDepartment.setText("");
+							new InvalidInput("User with this serial number does not exist!").setVisible(true);
+							comboBox.setVisible(false);
 						}
 					} catch (Exception e1) {
 						;

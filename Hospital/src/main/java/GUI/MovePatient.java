@@ -28,16 +28,16 @@ public class MovePatient extends JFrame {
 	private JPanel contentPane;
 	private JTextField serialNumber;
 	private JLabel lblShowDepartmentPatient;
-	static PatientRegister PatientReg;
-	static DepartmentRegister DepartReg;
+	static PatientRegister pr;
+	static DepartmentRegister sr;
 
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public MovePatient(final PatientRegister PatientReg, DepartmentRegister DepartReg) {
-		MovePatient.PatientReg = PatientReg;
-		MovePatient.DepartReg = DepartReg;
+	public MovePatient(final PatientRegister pr, DepartmentRegister dr) {
+		MovePatient.pr = pr;
+		MovePatient.sr = dr;
 		setTitle("Move a patient to other department");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 842, 658);
@@ -112,7 +112,7 @@ public class MovePatient extends JFrame {
 		
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		for (String dept : DepartReg.getAllDepartments()) {
+		for (String dept : dr.getAllDepartments()) {
 			comboBox.addItem(dept);
 		}
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -127,7 +127,7 @@ public class MovePatient extends JFrame {
 		btnMovePatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					DepartReg.movePatient(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), PatientReg);
+					dr.movePatient(Integer.parseInt(serialNumber.getText()), comboBox.getSelectedItem().toString(), pr);
 					SuccesfulOperation window = new SuccesfulOperation("Patient has succesfully been moved");
 					window.setVisible(true);
 					dispose();
@@ -174,13 +174,17 @@ public class MovePatient extends JFrame {
 					int serialnum;
 					try {
 						serialnum = Integer.parseInt(serialNumber.getText());
-						Patient p = PatientReg.findSerialnum(serialnum);
+						Patient p = pr.findSerialnum(serialnum);
 						if (p != null) {
 							lblPatientIsIn.setVisible(true);
 							lblShowDepartmentPatient.setVisible(true);
 							lblWhatDepartmentShould.setVisible(true);
 							comboBox.setVisible(true);
-							lblShowDepartmentPatient.setText(DepartReg.getDeptOfPatient(serialnum));
+							lblShowDepartmentPatient.setText(dr.getDeptOfPatient(serialnum));
+						} else {
+							lblShowDepartmentPatient.setText("");
+							new InvalidInput("User with this serial number does not exist!").setVisible(true);
+							comboBox.setVisible(false);
 						}
 					} catch (Exception e1) {
 						;

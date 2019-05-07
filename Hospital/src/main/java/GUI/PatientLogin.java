@@ -29,18 +29,17 @@ import java.awt.Insets;
 public class PatientLogin extends JFrame {
 
 	private JPanel contentPane;
-	static PatientRegister PatientReg;
-	static DepartmentRegister DepartReg;
-	private int attempts = 2;
+	static PatientRegister pr;
+	static DepartmentRegister dr;
 	private int serialNumber;
 	private JPasswordField SerialNumber;
 
 	/**
 	 * Create the frame.
 	 */
-	public PatientLogin(final PatientRegister PatientReg, final DepartmentRegister DepartReg) {
-		PatientLogin.PatientReg = PatientReg;
-		PatientLogin.DepartReg = DepartReg;
+	public PatientLogin(final PatientRegister pr, final DepartmentRegister dr) {
+		PatientLogin.pr = pr;
+		PatientLogin.dr = dr;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Patient Login Page");
@@ -132,24 +131,17 @@ public class PatientLogin extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
 					try {
-					@SuppressWarnings("deprecation")
-					int serialNumber = Integer.parseInt(SerialNumber.getText());
-					
-					if (attempts != 0) {
-					
-						if (PatientReg.findSerialnum(serialNumber) != null) {
-							PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
-							menu.setVisible(true);
-							dispose();
-						} else {
-							invalidLogin.setVisible(true);
-							attempts--;
-						}
-					} else {
-							dispose();
-						}
-				} catch (Exception e1) {
-					;
+						@SuppressWarnings("deprecation")
+						int serialNumber = Integer.parseInt(SerialNumber.getText());
+							if (pr.findSerialnum(serialNumber) != null) {
+								PatientMenu menu = new PatientMenu(pr, dr, serialNumber);
+								menu.setVisible(true);
+								dispose();
+							} else {
+								invalidLogin.setVisible(true);
+							}
+					} catch (Exception e1) {
+						;
 					}
 				}
 			}
@@ -168,28 +160,18 @@ public class PatientLogin extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				
 				try  {
-					int serialNumber = Integer.parseInt(SerialNumber.getText());	
-					if (attempts != 0) {
-						
-						if (PatientReg.findSerialnum(serialNumber) != null) {
-							PatientMenu menu = new PatientMenu(PatientReg, DepartReg, serialNumber);
+						if (pr.findSerialnum(serialNumber) != null) {
+							PatientMenu menu = new PatientMenu(pr, dr, serialNumber);
 							menu.setVisible(true);
 							dispose();
 						} else {
 							invalidLogin.setVisible(true);
-							attempts--;
-						}
-					} else {
-							dispose();
 						}
 				} catch (Exception e) {
 					InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
 					invalid.setVisible(true);
 				}
-				
-
 			}
 		});
 		

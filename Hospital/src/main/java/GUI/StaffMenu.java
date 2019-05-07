@@ -36,7 +36,7 @@ public class StaffMenu extends JFrame {
 	private JButton btnAddStaffToDept;
 	private Staff staff;
 	
-	private static void StaffRegistertoXML(StaffRegister staffRegister)
+	private static void StaffRegistertoXML(StaffRegister sr)
     {
         try
         {
@@ -46,7 +46,7 @@ public class StaffMenu extends JFrame {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
             File file = new File("staffRegister.xml");
-            jaxbMarshaller.marshal(staffRegister, file);
+            jaxbMarshaller.marshal(sr, file);
         }
         catch (JAXBException e)
         {
@@ -54,7 +54,7 @@ public class StaffMenu extends JFrame {
         }
     }
 	
-	private static void PatientRegistertoXML(PatientRegister patientRegister)
+	private static void PatientRegistertoXML(PatientRegister pr)
     {
         try
         {
@@ -63,7 +63,7 @@ public class StaffMenu extends JFrame {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             File file = new File("patientRegister.xml");
-            jaxbMarshaller.marshal(patientRegister, file);
+            jaxbMarshaller.marshal(pr, file);
         }
         catch (JAXBException e)
         {
@@ -71,7 +71,7 @@ public class StaffMenu extends JFrame {
         }
     }
 	
-	private static void DepartmentRegistertoXML(DepartmentRegister departmentRegister)
+	private static void DepartmentRegistertoXML(DepartmentRegister dr)
     {
         try
         {
@@ -80,7 +80,7 @@ public class StaffMenu extends JFrame {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             File file = new File("departmentRegister.xml");
-            jaxbMarshaller.marshal(departmentRegister, file);
+            jaxbMarshaller.marshal(dr, file);
         }
         catch (JAXBException e)
         {
@@ -88,16 +88,16 @@ public class StaffMenu extends JFrame {
         }
     }
 	
-	public static void savePatientRegister(PatientRegister p) {
-		PatientRegistertoXML(p);
+	public static void savePatientRegister(PatientRegister pr) {
+		PatientRegistertoXML(pr);
 	}
 	
-	public static void saveStaffRegister(StaffRegister s) {
-		StaffRegistertoXML(s);
+	public static void saveStaffRegister(StaffRegister sr) {
+		StaffRegistertoXML(sr);
 	}
 	
-	public static void saveDepartmentRegister(DepartmentRegister d) {
-		DepartmentRegistertoXML(d);
+	public static void saveDepartmentRegister(DepartmentRegister dr) {
+		DepartmentRegistertoXML(dr);
 	}
 	
 	/**
@@ -128,7 +128,6 @@ public class StaffMenu extends JFrame {
 		}
 		btnChangeInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				UpdatePatientInfo loginPage2 = new UpdatePatientInfo(pr);
 				loginPage2.setVisible(true);
 			}
@@ -140,7 +139,6 @@ public class StaffMenu extends JFrame {
 		btnRemovePatient.setVisible(false);
 		btnRemovePatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				DischargePatient loginPage = new DischargePatient(pr,dr);
 				loginPage.setVisible(true);
 			}
@@ -152,7 +150,6 @@ public class StaffMenu extends JFrame {
 		btnMovePatient.setVisible(false);
 		btnMovePatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				MovePatient loginPage = new MovePatient(pr,dr);
 				loginPage.setVisible(true);
 			}
@@ -161,10 +158,8 @@ public class StaffMenu extends JFrame {
 		JButton btnSearchPatients = new JButton("Search Patients");
 		btnSearchPatients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				SearchPatient searchPatients = new SearchPatient(pr, dr);
 				searchPatients.setVisible(true);
-				
 			}
 		});
 		btnSearchPatients.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -190,7 +185,6 @@ public class StaffMenu extends JFrame {
 		btnRegisterPatient.setVisible(false);
 		btnRegisterPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				RegisterPatient RegisterPage = new RegisterPatient(pr,dr);
 				RegisterPage.setVisible(true);
 			}
@@ -199,10 +193,8 @@ public class StaffMenu extends JFrame {
 		JButton btnHealthData = new JButton("Health data");
 		btnHealthData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				HealthData healthDataMenu = new HealthData(pr, dr);
 				healthDataMenu.setVisible(true);
-				
 			}
 		});
 		btnHealthData.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -220,18 +212,17 @@ public class StaffMenu extends JFrame {
 			}
 		});
 		
-				
-				JButton btnAddStaff = new JButton("Register Staff");
-				btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-				contentPane.add(btnAddStaff);
-				btnAddStaff.setVisible(false);
-				btnAddStaff.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						RegisterStaff AddStaffPage = new RegisterStaff(sr, dr);
-						AddStaffPage.setVisible(true);
-					}
-				});
+		JButton btnAddStaff = new JButton("Register Staff");
+		btnAddStaff.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		contentPane.add(btnAddStaff);
+		btnAddStaff.setVisible(false);
+		btnAddStaff.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisterStaff AddStaffPage = new RegisterStaff(sr, dr);
+				AddStaffPage.setVisible(true);
+			}
+		});
+		
 		btnSearch.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		contentPane.add(btnSearch);
 		btnSearch.setVisible(false);
@@ -242,12 +233,10 @@ public class StaffMenu extends JFrame {
 		btnMoveStaff.setVisible(false);
 		btnMoveStaff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				MoveStaff MoveStaffPage = new MoveStaff(sr,dr);
 				MoveStaffPage.setVisible(true);
 			}
 		});
-		
 		
 		JButton btnDepartmentManager = new JButton("Department Manager");
 		btnDepartmentManager.addActionListener(new ActionListener() {
@@ -285,7 +274,7 @@ public class StaffMenu extends JFrame {
 		btnEditStaffInfo.setVisible(false);
 		btnEditStaffInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new UpdateStaffInfo(sr).setVisible(true);
+				new UpdateStaffInfo(sr, dr, staff).setVisible(true);
 			}
 		});
 		contentPane.add(btnEditStaffInfo);
@@ -300,9 +289,7 @@ public class StaffMenu extends JFrame {
 				saveDepartmentRegister(dr);
 			}
 		});
-	
-		
-		
+
 		if (staff.hasWriteAccessTo(pr)) {
 			btnRegisterPatient.setVisible(true);
 			btnAdmitPatient.setVisible(true);

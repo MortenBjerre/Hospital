@@ -1,32 +1,25 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Button;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import Hospital.DepartmentRegister;
 import Hospital.PatientRegister;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import javax.swing.JComboBox;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JTable;
-import java.awt.ScrollPane;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.awt.event.ActionEvent;
-import java.awt.Button;
-import javax.swing.JButton;
 
 
 public class SearchPatient extends JFrame {
@@ -188,8 +181,6 @@ public class SearchPatient extends JFrame {
 				}
 			}			
 		});
-		
-		// Table - table initially shows all patients
 		tableData = makeFullTable(pr,dr);
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.insets = new Insets(0, 0, 5, 0);
@@ -209,7 +200,7 @@ public class SearchPatient extends JFrame {
 	}
 	private void updateTable() {
 		table = new JTable(tableData,columnNames);
-		table.setEnabled(false); // un-editable
+		table.setEnabled(false);
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 	}
@@ -251,7 +242,5 @@ public class SearchPatient extends JFrame {
 				data[i][9] = pr.findSerialnum(i).getAlive();	
 		}
 		return data;
-		
 	}
-
 }

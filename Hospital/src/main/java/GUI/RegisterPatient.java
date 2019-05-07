@@ -41,17 +41,17 @@ public class RegisterPatient extends JFrame {
 	private JTextField Number;
 	private JTextField Gender;
 	private JTextArea txtrHealthdatafield;
-	PatientRegister PatientReg;
-	DepartmentRegister DepartReg;
+	PatientRegister pr;
+	DepartmentRegister dr;
 	private Date DayOfBirth;
 	private JTextField txtHealthDataInput;
 	private JComboBox aliveStatus;
 	
-	public RegisterPatient(PatientRegister PatientReg, DepartmentRegister DepartReg) {
+	public RegisterPatient(PatientRegister pr, DepartmentRegister dr) {
 		
 		setTitle("Register a patient");
-		this.PatientReg = PatientReg;
-		this.DepartReg = DepartReg;
+		this.pr = pr;
+		this.dr = dr;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 600);
 		contentPane = new JPanel();
@@ -142,28 +142,12 @@ public class RegisterPatient extends JFrame {
 		contentPane.add(lblBirthday, gbc_lblBirthday);
 		
 		JDateChooser dateChooser = new JDateChooser();
-//		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent arg0) {
-//				DayOfBirth = dateChooser.getDate();
-//
-//			}
-//		});
 		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
 		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
 		gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
 		gbc_dateChooser.gridx = 3;
 		gbc_dateChooser.gridy = 5;
 		contentPane.add(dateChooser, gbc_dateChooser);
-		
-//		textField_4 = new JTextField();
-//		textField_4.setColumns(10);
-//		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-//		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-//		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textField_4.gridx = 3;
-//		gbc_textField_4.gridy = 7;
-//		contentPane.add(textField_4, gbc_textField_4);
 		
 		JLabel lblGender = new JLabel("Gender: ");
 		GridBagConstraints gbc_lblGender = new GridBagConstraints();
@@ -232,7 +216,7 @@ public class RegisterPatient extends JFrame {
 						Gender.getText().equals("")) {
 				        int input = JOptionPane.showConfirmDialog(null, "One or more fields are empty. Would you like to continue?");
 				        if (input == 0) {
-				        	PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
+				        	pr.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
 									gender, address, phoneNumber, alive, healthData);
 							dispose();
 							new SuccesfulOperation("Patient has been registered").setVisible(true);
@@ -243,7 +227,7 @@ public class RegisterPatient extends JFrame {
 				        	dispose();
 				        }
 					} else {
-					PatientReg.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
+					pr.register(email, name, surname, new Date(birthYear, birthMonth, birthday), 
 							gender, address, phoneNumber, alive, healthData);
 					new SuccesfulOperation("Patient has been registered").setVisible(true);
 					dispose();
@@ -294,9 +278,6 @@ public class RegisterPatient extends JFrame {
 		gbc_btnRegister.insets = new Insets(0, 0, 0, 5);
 		gbc_btnRegister.gridx = 3;
 		gbc_btnRegister.gridy = 10;
-		contentPane.add(btnRegister, gbc_btnRegister);
-		
-		
-		
+		contentPane.add(btnRegister, gbc_btnRegister);	
 	}
 }

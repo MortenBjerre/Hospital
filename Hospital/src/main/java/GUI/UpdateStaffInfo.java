@@ -16,8 +16,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -25,7 +27,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
-
+import Hospital.DepartmentRegister;
 import Hospital.Staff;
 import Hospital.StaffRegister;
 
@@ -44,10 +46,15 @@ public class UpdateStaffInfo extends JFrame {
 	private JButton btnGoBack;
 	private int serialnum;
 	private SimpleDateFormat format;
+	private JComboBox roleChoice;
+	private JButton btnUpdateStaffRole;
+	private JTextField showRole;
+	private Staff s;
 
-	public UpdateStaffInfo(StaffRegister sr) {
+	public UpdateStaffInfo(StaffRegister sr, DepartmentRegister dr, Staff staff) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 799, 473);
+		setTitle("Update staff member's information");
+		setBounds(100, 100, 850, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -61,7 +68,7 @@ public class UpdateStaffInfo extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 		
-		JLabel lblPleaseEnterThe = new JLabel("Enter Patient Serial Number: ");
+		JLabel lblPleaseEnterThe = new JLabel("Enter Staff Serial Number: ");
 		lblPleaseEnterThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_lblPleaseEnterThe = new GridBagConstraints();
 		gbc_lblPleaseEnterThe.anchor = GridBagConstraints.EAST;
@@ -198,17 +205,15 @@ public class UpdateStaffInfo extends JFrame {
 		gbc_dateChooser.gridy = 6;
 		contentPane.add(dateChooser, gbc_dateChooser);
 		
-		btnUpdate = new JButton("Update");
+		btnUpdate = new JButton("Update birthday");
 		btnUpdate.setVisible(false);
 		btnUpdate.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
 				format = new SimpleDateFormat("yyyy-MM-dd");
 				Date birthday = dateChooser.getDate();
 				Birthday.setText(format.format(birthday));
 				sr.editBirthday(serialnum, birthday);
-				
 			}
 		});
 		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
@@ -226,6 +231,29 @@ public class UpdateStaffInfo extends JFrame {
 		gbc_lblGender.gridy = 7;
 		contentPane.add(lblGender, gbc_lblGender);
 		lblGender.setVisible(false);
+		
+		JLabel lblCurrentRole = new JLabel("Current role: ");
+		lblCurrentRole.setVisible(false);
+		lblCurrentRole.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		GridBagConstraints gbc_lblCurrentRole = new GridBagConstraints();
+		gbc_lblCurrentRole.anchor = GridBagConstraints.EAST;
+		gbc_lblCurrentRole.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCurrentRole.gridx = 0;
+		gbc_lblCurrentRole.gridy = 8;
+		contentPane.add(lblCurrentRole, gbc_lblCurrentRole);
+		lblCurrentRole.setVisible(false);
+		
+		showRole = new JTextField(staff.getRole());
+		showRole.setEditable(false);
+		showRole.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		GridBagConstraints gbc_showRole = new GridBagConstraints();
+		gbc_showRole.insets = new Insets(0, 0, 5, 5);
+		gbc_showRole.fill = GridBagConstraints.HORIZONTAL;
+		gbc_showRole.gridx = 1;
+		gbc_showRole.gridy = 8;
+		contentPane.add(showRole, gbc_showRole);
+		showRole.setColumns(10);
+		showRole.setVisible(false);
 		
 		Gender = new JTextField();
 		Gender.addKeyListener(new KeyAdapter() {
@@ -245,6 +273,92 @@ public class UpdateStaffInfo extends JFrame {
 		Gender.setColumns(10);
 		Gender.setVisible(false);
 		
+		JLabel lblChangeRole = new JLabel("Change role:");
+		lblChangeRole.setVisible(false);
+		lblChangeRole.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		GridBagConstraints gbc_lblRole = new GridBagConstraints();
+		gbc_lblRole.anchor = GridBagConstraints.EAST;
+		gbc_lblRole.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRole.gridx = 0;
+		gbc_lblRole.gridy = 9;
+		contentPane.add(lblChangeRole, gbc_lblRole);
+
+		btnUpdateStaffRole = new JButton("Update staff role");
+		btnUpdateStaffRole.setVisible(false);
+		btnUpdateStaffRole.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!(staff.getSerialnum() == Integer.parseInt(SerialNumber.getText()))) {
+					try {
+						String selectedRole = roleChoice.getSelectedItem().toString();
+						String oldDept = dr.getDeptOfStaff(s.getSerialnum());
+						if (selectedRole.equals(s.getRole())) {
+							new InvalidInput("Select a new job role").setVisible(true);
+						}
+						else if (selectedRole.equals("Clerk")) {
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addClerk(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
+						}
+						else if (selectedRole.equals("Nurse")) {
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addNurse(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
+						}
+						else if (selectedRole.equals("Doctor")) {
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addDoctor(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum,oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
+						}
+						else if (selectedRole.equals("Staff")) {
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addStaff(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
+						}
+						else {
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addICTOfficer(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
+						}
+					} catch (Exception error) {
+						new InvalidInput(error.getMessage()).setVisible(true);
+					}
+					
+				} else {
+					new InvalidInput("You cannot change your own job role").setVisible(true);
+				}
+			}
+
+			private void succesfulJobTransfer(StaffRegister sr, int newSerialnum) {
+				new SuccesfulOperation(s.getName() + " " + s.getSurname() + " is now a(n) " + sr.findSerialnum(newSerialnum).getRole()).setVisible(true);
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnUpdateStaffRole = new GridBagConstraints();
+		gbc_btnUpdateStaffRole.gridx = 2;
+		gbc_btnUpdateStaffRole.gridy = 9;
+		
+		contentPane.add(btnUpdateStaffRole, gbc_btnUpdateStaffRole);
+		
+		roleChoice = new JComboBox();	
+		roleChoice.setFont(new Font("Times New Roman", Font.PLAIN, 27));
+		roleChoice.setVisible(false);
+		roleChoice.addItem("Staff");
+		roleChoice.addItem("Nurse");
+		roleChoice.addItem("Doctor");
+		roleChoice.addItem("Clerk");
+		roleChoice.addItem("ICT Officer");
+		
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 9;
+		contentPane.add(roleChoice, gbc_comboBox);
 		
 		SerialNumber = new JTextField();
 		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
@@ -256,8 +370,6 @@ public class UpdateStaffInfo extends JFrame {
 		gbc_SerialNumber.gridy = 1;
 		contentPane.add(SerialNumber, gbc_SerialNumber);
 		SerialNumber.setColumns(10);
-
-	
 		
 		btnGoBack = new JButton("Go back");
 		btnGoBack.addActionListener(new ActionListener() {
@@ -267,19 +379,23 @@ public class UpdateStaffInfo extends JFrame {
 		});
 		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
 		gbc_btnGoBack.gridx = 2;
-		gbc_btnGoBack.gridy = 12;
+		gbc_btnGoBack.gridy = 11;
 		contentPane.add(btnGoBack, gbc_btnGoBack);
 		
 		SerialNumber.addKeyListener(new KeyAdapter() {
-
-
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
-						Staff s = sr.findSerialnum(serialnum);
+						s = sr.findSerialnum(serialnum);
 						if (s != null) {
+							showRole.setVisible(true);
+							showRole.setText(s.getRole());
+							lblCurrentRole.setVisible(true);
+							lblChangeRole.setVisible(true);
+							roleChoice.setVisible(true);
+							btnUpdateStaffRole.setVisible(true);
 							lblEnterPatientsName.setVisible(true);
 							Name.setVisible(true);
 							Name.setText(s.getName());

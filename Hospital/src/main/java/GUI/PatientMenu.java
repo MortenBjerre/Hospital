@@ -31,8 +31,8 @@ import java.awt.Insets;
 
 @SuppressWarnings({ "unused", "serial" })
 public class PatientMenu extends JFrame {
-	static PatientRegister PatientReg;
-	static DepartmentRegister DepartReg;
+	static PatientRegister pr;
+	static DepartmentRegister dr;
 	private int serialnum;
 	private Patient patient;
 	private String deptName;
@@ -44,8 +44,8 @@ public class PatientMenu extends JFrame {
 	 */
 	@SuppressWarnings("static-access")
 	public PatientMenu(PatientRegister pr, DepartmentRegister dr, int serialnum) {
-		PatientMenu.PatientReg = pr;
-		PatientMenu.DepartReg = dr;
+		PatientMenu.pr = pr;
+		PatientMenu.dr = dr;
 		this.serialnum = serialnum;
 		patient = pr.findSerialnum(serialnum);
 
