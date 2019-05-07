@@ -210,12 +210,10 @@ public class UpdateStaffInfo extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
 				format = new SimpleDateFormat("yyyy-MM-dd");
 				Date birthday = dateChooser.getDate();
 				Birthday.setText(format.format(birthday));
 				sr.editBirthday(serialnum, birthday);
-				
 			}
 		});
 		GridBagConstraints gbc_btnUpdate = new GridBagConstraints();
@@ -320,7 +318,7 @@ public class UpdateStaffInfo extends JFrame {
 							dr.addStaffTo(newSerialnum, oldDept, sr);
 							succesfulJobTransfer(sr, newSerialnum);
 						}
-						else {//if (selectedRole.equals("ICT Officer")) {
+						else {
 							dr.dischargeStaff(s.getSerialnum(), sr);
 							int newSerialnum = sr.addICTOfficer(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
 							dr.addStaffTo(newSerialnum, oldDept, sr);
@@ -362,7 +360,6 @@ public class UpdateStaffInfo extends JFrame {
 		gbc_comboBox.gridy = 9;
 		contentPane.add(roleChoice, gbc_comboBox);
 		
-		
 		SerialNumber = new JTextField();
 		SerialNumber.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_SerialNumber = new GridBagConstraints();
@@ -373,8 +370,6 @@ public class UpdateStaffInfo extends JFrame {
 		gbc_SerialNumber.gridy = 1;
 		contentPane.add(SerialNumber, gbc_SerialNumber);
 		SerialNumber.setColumns(10);
-
-	
 		
 		btnGoBack = new JButton("Go back");
 		btnGoBack.addActionListener(new ActionListener() {
