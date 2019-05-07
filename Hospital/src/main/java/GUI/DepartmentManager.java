@@ -50,7 +50,6 @@ public class DepartmentManager extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 
-		
 		JButton btnCreateDepartment = new JButton("Create Department");
 		btnCreateDepartment.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCreateDepartment.addActionListener(new ActionListener() {
