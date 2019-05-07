@@ -228,7 +228,7 @@ public class RegisterStaff extends JFrame {
 							serialnum = StaffReg.addICTOfficer(email, name, surname, birthday, gender);
 							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
 						} else {
-							int serialnum = StaffReg.addStaff(email, name, surname, birthday, gender);
+							serialnum = StaffReg.addStaff(email, name, surname, birthday, gender);
 							DepartReg.addStaffTo(serialnum, staffTypes.getSelectedItem().toString(), StaffReg);
 						}
 						new SuccesfulOperation(name + " was registered as a(n) " + staffType + ". Their serial number is " + serialnum).setVisible(true);
