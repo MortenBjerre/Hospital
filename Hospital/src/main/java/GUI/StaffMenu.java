@@ -253,8 +253,8 @@ public class StaffMenu extends JFrame {
 		});
 		
 		
-		JButton btnIctOfficerMenu = new JButton("Department Manager");
-		btnIctOfficerMenu.addActionListener(new ActionListener() {
+		JButton btnDepartmentManager = new JButton("Department Manager");
+		btnDepartmentManager.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DepartmentManager departmentManger = new DepartmentManager(DepartReg);
 				departmentManger.setVisible(true);
@@ -270,9 +270,9 @@ public class StaffMenu extends JFrame {
 		});
 		contentPane.add(btnDischargeStaff);
 		btnDischargeStaff.setVisible(false);
-		btnIctOfficerMenu.setFont(new Font("Times New Roman", Font.PLAIN, 28));
-		contentPane.add(btnIctOfficerMenu);
-		btnIctOfficerMenu.setVisible(false);
+		btnDepartmentManager.setFont(new Font("Times New Roman", Font.PLAIN, 28));
+		contentPane.add(btnDepartmentManager);
+		btnDepartmentManager.setVisible(false);
 		
 		
 		JButton btnGoBack = new JButton("Go Back");
@@ -325,7 +325,7 @@ public class StaffMenu extends JFrame {
 			btnSearch.setVisible(true);
 		}
 		if (staff.canEditDepartmentRegister(DepartReg)) {
-			btnIctOfficerMenu.setVisible(true);
+			btnDepartmentManager.setVisible(true);
 			btnEditStaffInfo.setVisible(true);
 		}
 		if (staff.canMoveStaff()) {
