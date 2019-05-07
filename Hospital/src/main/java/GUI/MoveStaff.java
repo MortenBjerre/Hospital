@@ -72,15 +72,15 @@ public class MoveStaff extends JFrame {
 		serialNumber.setColumns(10);
 		
 		
-		final JLabel lblStaffIsIn = new JLabel("Staff is in Department: ");
-		lblStaffIsIn.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		GridBagConstraints gbc_lblStaffIsIn = new GridBagConstraints();
-		gbc_lblStaffIsIn.anchor = GridBagConstraints.EAST;
-		gbc_lblStaffIsIn.insets = new Insets(0, 0, 5, 5);
-		gbc_lblStaffIsIn.gridx = 0;
-		gbc_lblStaffIsIn.gridy = 5;
-		contentPane.add(lblStaffIsIn, gbc_lblStaffIsIn);
-		lblStaffIsIn.setVisible(false);
+		final JLabel lblPatientIsIn = new JLabel("Staff is in Department: ");
+		lblPatientIsIn.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+		GridBagConstraints gbc_lblPatientIsIn = new GridBagConstraints();
+		gbc_lblPatientIsIn.anchor = GridBagConstraints.EAST;
+		gbc_lblPatientIsIn.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPatientIsIn.gridx = 0;
+		gbc_lblPatientIsIn.gridy = 5;
+		contentPane.add(lblPatientIsIn, gbc_lblPatientIsIn);
+		lblPatientIsIn.setVisible(false);
 		
 		lblShouldShowDepartment = new JLabel();
 		lblShouldShowDepartment.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -103,7 +103,7 @@ public class MoveStaff extends JFrame {
 		
 		
 		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
+		final JComboBox comboBox = new JComboBox();
 		for (String dept : DepartReg.getAllDepartments()) {
 			comboBox.addItem(dept);
 		}
@@ -157,20 +157,14 @@ public class MoveStaff extends JFrame {
 						serialnum = Integer.parseInt(serialNumber.getText());
 						Staff p = StaffReg.findSerialnum(serialnum);
 						if (p != null) {
-							lblStaffIsIn.setVisible(true);
+							lblPatientIsIn.setVisible(true);
 							lblShouldShowDepartment.setVisible(true);
 							lblWhatDepartmentShould.setVisible(true);
 							comboBox.setVisible(true);
 							lblShouldShowDepartment.setText(DepartReg.getDeptOfStaff(serialnum));
-						} else {
-							lblShouldShowDepartment.setText("");
-							new InvalidInput("User with this serial number does not exist!").setVisible(true);
-							comboBox.setVisible(false);
 						}
 					} catch (Exception e1) {
-						lblShouldShowDepartment.setText("");
-						new InvalidInput("User with this serial number does not exist!").setVisible(true);
-						comboBox.setVisible(false);
+						;
 					}
 				}
 			}
