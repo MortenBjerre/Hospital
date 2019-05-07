@@ -128,28 +128,19 @@ public class SearchPatient extends JFrame {
 							int serialnum = Integer.parseInt(searchParameter);
 							String[] result1 = pr.searchSerialnum(serialnum);
 							tableData = makePartialTable(pr, result1);
-							System.out.println(Arrays.toString(result1));
 							// table needs to be updated
 							updateTable();
 							break;
 						} catch (Exception e) {
-							System.out.println("Error");
 							break;
 						}
 					case ("First Name"):
-						System.out.print(searchParameter);
-						System.out.println(searchParameter.equals("Alexander"));
-						System.out.println(pr);
 						String[] result2 = pr.searchName(searchParameter);
-						System.out.println(Arrays.toString(result2));
-						System.out.println(Arrays.toString(pr.searchName(searchParameter)));
 						tableData = makePartialTable(pr, result2);	
 						updateTable();
 						break;
 					case("Surname"):
 						String[] result3 = pr.searchSurname(searchParameter);
-						System.out.println(Arrays.toString(pr.searchSurname("Christensen")));
-						
 						tableData = makePartialTable(pr, result3);
 						updateTable();
 						break;
@@ -166,7 +157,6 @@ public class SearchPatient extends JFrame {
 							updateTable();
 							break;
 						} catch(Exception e) {
-							System.out.println("Error");
 							break;
 						}
 						
@@ -192,7 +182,6 @@ public class SearchPatient extends JFrame {
 							updateTable();
 							break;
 						} else {
-							System.out.println("Error");
 							break;
 						}			
 					}
@@ -228,11 +217,8 @@ public class SearchPatient extends JFrame {
 		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Alive"};
 		this.columnNames = columnNames;
 		Object[][] data = new Object[result.length][columnNames.length];
-		System.out.println("Method:");
-		System.out.println(Arrays.toString(result));
 		for (int i = 0; i < result.length; i++) {
 			int serialnum = result[i].split(" ")[1].charAt(0) - 48;
-			System.out.println(serialnum);
 			data[i][0] = pr.findSerialnum(serialnum).getSerialnum();
 			data[i][1] = pr.findSerialnum(serialnum).getName();
 			data[i][2] = pr.findSerialnum(serialnum).getSurname();

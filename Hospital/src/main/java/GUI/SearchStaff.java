@@ -171,7 +171,6 @@ public class SearchStaff extends JFrame {
 		Object[][] data = new Object[result.length][columnNames.length];
 		for (int i = 0; i < result.length; i++) {
 			int serialnum = result[i].split(" ")[1].charAt(0) - 48;
-			System.out.println(serialnum);
 			data[i][0] = sr.findSerialnum(serialnum).getSerialnum();
 			data[i][1] = sr.findSerialnum(serialnum).getName();
 			data[i][2] = sr.findSerialnum(serialnum).getSurname();
