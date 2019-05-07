@@ -38,14 +38,14 @@ public class DepartmentManager extends JFrame {
 		this.dr = dr;
 		setTitle("Department Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 949, 449);
+		setBounds(100, 100, 1150, 449);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{218, 163, 164, 180, 166, 0};
+		gbl_contentPane.columnWidths = new int[]{218, 163, 164, 180, 166, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{44, 79, 135, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
@@ -236,14 +236,41 @@ public class DepartmentManager extends JFrame {
 		});
 		GridBagConstraints gbc_btnInspect = new GridBagConstraints();
 		gbc_btnInspect.fill = GridBagConstraints.BOTH;
-		gbc_btnInspect.insets = new Insets(0, 0, 5, 0);
+		gbc_btnInspect.insets = new Insets(0, 0, 5, 5);
 		gbc_btnInspect.gridx = 4;
 		gbc_btnInspect.gridy = 1;
 		contentPane.add(btnInspect, gbc_btnInspect);
 		
+		JButton btnEditDepartmentName = new JButton("Edit Department Name");
+		btnEditDepartmentName.addActionListener(new ActionListener() {
+			private String deptName;
+
+			public void actionPerformed(ActionEvent arg0) {
+				if (numberOfBedsTextField.getText().equals("")) {
+					deptName = departmentNameTextField.getText();
+					System.out.println(deptName);
+					if (dr.containsDept(deptName)) {
+						new ChangeNameOfDept(deptName, dr).setVisible(true);
+						dispose();
+					} else {
+						new InvalidInput("No such department").setVisible(true);
+					}
+				} else {
+					new InvalidInput("Only declare a department name").setVisible(true);
+				}
+			}
+		}); 
+		btnEditDepartmentName.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GridBagConstraints gbc_btnEditDepartmentName = new GridBagConstraints();
+		gbc_btnEditDepartmentName.fill = GridBagConstraints.VERTICAL;
+		gbc_btnEditDepartmentName.insets = new Insets(0, 0, 5, 0);
+		gbc_btnEditDepartmentName.gridx = 5;
+		gbc_btnEditDepartmentName.gridy = 1;
+		contentPane.add(btnEditDepartmentName, gbc_btnEditDepartmentName);
+		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridwidth = 5;
+		gbc_scrollPane.gridwidth = 6;
 		gbc_scrollPane.fill = GridBagConstraints.HORIZONTAL;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
@@ -281,7 +308,7 @@ public class DepartmentManager extends JFrame {
 		numberOfBedsTextField.setText("");
 	}
 	
-	private void updateTable() {
+	protected void updateTable() {
 		tableData = makeDepartmentTable(dr);
 		table = new JTable(tableData,columnNames);
 		table.setEnabled(false); // un-editable
