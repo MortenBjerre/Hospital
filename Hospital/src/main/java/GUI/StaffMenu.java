@@ -285,7 +285,7 @@ public class StaffMenu extends JFrame {
 		btnEditStaffInfo.setVisible(false);
 		btnEditStaffInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new UpdateStaffInfo(sr).setVisible(true);
+				new UpdateStaffInfo(sr, dr, staff).setVisible(true);
 			}
 		});
 		contentPane.add(btnEditStaffInfo);

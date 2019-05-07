@@ -335,10 +335,12 @@ public class StepDefinitionClerk {
 		assertEquals(dr.getDeptOfPatient(0), "surgery");
 	}
 	
-	@Then("^I should have permission to move staff$")
-	public void i_should_have_permission_to_move_staff() {
-	    assertTrue(s.canMoveStaff());
+	@Then("^I should not have permission to move patients$")
+	public void i_should_not_have_permission_to_move_patients() {
+		assertFalse(s.canMoveStaff());
 	}
+
+
 
 	@Then("^I should have permission to move patients$")
 	public void i_should_have_permission_to_move_patients() {

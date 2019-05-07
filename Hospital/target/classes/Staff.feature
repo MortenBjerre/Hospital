@@ -25,7 +25,7 @@ Feature: Checking permission of a staff member
   	Then I should not have write access to the patient register
   	And I should not have write access to the staff register
   	And I should not have view access to the health data
-  	And I should have permission to move patients
+  	And I should not have permission to move patients
   	And I should not have permission to move staff
   	
   Scenario: Hash code check 
