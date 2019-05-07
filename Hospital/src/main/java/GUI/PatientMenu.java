@@ -139,7 +139,7 @@ public class PatientMenu extends JFrame {
 			gbc_lblDepartment.anchor = GridBagConstraints.EAST;
 			gbc_lblDepartment.insets = new Insets(0, 0, 5, 5);
 			gbc_lblDepartment.gridx = 0;
-			gbc_lblDepartment.gridy = 7;
+			gbc_lblDepartment.gridy = 8;
 			getContentPane().add(lblDepartment, gbc_lblDepartment);
 			
 			deptName = dr.getDeptOfPatient(serialnum);
@@ -148,7 +148,7 @@ public class PatientMenu extends JFrame {
 			gbc_lblDynamicDepartment.insets = new Insets(0, 0, 5, 5);
 			gbc_lblDynamicDepartment.anchor = GridBagConstraints.WEST;
 			gbc_lblDynamicDepartment.gridx = 1;
-			gbc_lblDynamicDepartment.gridy = 7;
+			gbc_lblDynamicDepartment.gridy = 8;
 			getContentPane().add(lblDynamicDepartment, gbc_lblDynamicDepartment);
 			
 			try {
@@ -158,7 +158,7 @@ public class PatientMenu extends JFrame {
 				gbc_lblBedNumber.anchor = GridBagConstraints.EAST;
 				gbc_lblBedNumber.insets = new Insets(0, 0, 5, 5);
 				gbc_lblBedNumber.gridx = 0;
-				gbc_lblBedNumber.gridy = 8;
+				gbc_lblBedNumber.gridy = 9;
 				getContentPane().add(lblBedNumber, gbc_lblBedNumber);
 				
 				JLabel lblDynamicBedNumber = new JLabel(Integer.toString(bednumber));
@@ -166,7 +166,7 @@ public class PatientMenu extends JFrame {
 				gbc_lblDynamicBedNumber.insets = new Insets(0, 0, 5, 5);
 				gbc_lblDynamicBedNumber.anchor = GridBagConstraints.WEST;
 				gbc_lblDynamicBedNumber.gridx = 1;
-				gbc_lblDynamicBedNumber.gridy = 8;
+				gbc_lblDynamicBedNumber.gridy = 9;
 				getContentPane().add(lblDynamicBedNumber, gbc_lblDynamicBedNumber);
 
 			} catch (Exception e) {
