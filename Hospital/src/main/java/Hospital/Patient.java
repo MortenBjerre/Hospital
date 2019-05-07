@@ -39,12 +39,8 @@ public class Patient extends HospitalUser {
 		setPhoneNumber(phoneNumber);
 		setAlive(alive);
 		setHealthData(healthData);
-		System.out.println("counter: " + serialnumCounter);
 		serialnum = serialnumCounter;
-		System.out.println("serialnum: " + serialnum);
 		serialnumCounter++;
-		System.out.println("counter++: " + serialnumCounter);
-		System.out.println("========================");
 
 	}
 	
