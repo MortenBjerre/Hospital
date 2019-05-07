@@ -49,6 +49,7 @@ public class UpdateStaffInfo extends JFrame {
 	private JComboBox roleChoice;
 	private JButton btnUpdateStaffRole;
 	private JTextField showRole;
+	private Staff s;
 
 	public UpdateStaffInfo(StaffRegister sr, DepartmentRegister dr, Staff staff) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -245,6 +246,7 @@ public class UpdateStaffInfo extends JFrame {
 		lblCurrentRole.setVisible(false);
 		
 		showRole = new JTextField(staff.getRole());
+		showRole.setEditable(false);
 		showRole.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_showRole = new GridBagConstraints();
 		gbc_showRole.insets = new Insets(0, 0, 5, 5);
@@ -254,7 +256,6 @@ public class UpdateStaffInfo extends JFrame {
 		contentPane.add(showRole, gbc_showRole);
 		showRole.setColumns(10);
 		showRole.setVisible(false);
-		showRole.setEnabled(false);
 		
 		Gender = new JTextField();
 		Gender.addKeyListener(new KeyAdapter() {
@@ -290,25 +291,40 @@ public class UpdateStaffInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (!(staff.getSerialnum() == Integer.parseInt(SerialNumber.getText()))) {
 					try {
-						dr.dischargeStaff(serialnum, sr);
 						String selectedRole = roleChoice.getSelectedItem().toString();
-						if (selectedRole.equals(staff.getRole())) {
+						String oldDept = dr.getDeptOfStaff(s.getSerialnum());
+						if (selectedRole.equals(s.getRole())) {
 							new InvalidInput("Select a new job role").setVisible(true);
 						}
 						else if (selectedRole.equals("Clerk")) {
-							
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addClerk(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
 						}
 						else if (selectedRole.equals("Nurse")) {
-							
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addNurse(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
 						}
 						else if (selectedRole.equals("Doctor")) {
-							
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addDoctor(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum,oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
 						}
 						else if (selectedRole.equals("Staff")) {
-							
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addStaff(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
 						}
-						else if (selectedRole.equals("ICT Officer")) {
-							
+						else {//if (selectedRole.equals("ICT Officer")) {
+							dr.dischargeStaff(s.getSerialnum(), sr);
+							int newSerialnum = sr.addICTOfficer(s.getEmail(), s.getName(), s.getSurname(), s.getBirthday(), s.getGender());
+							dr.addStaffTo(newSerialnum, oldDept, sr);
+							succesfulJobTransfer(sr, newSerialnum);
 						}
 					} catch (Exception error) {
 						new InvalidInput(error.getMessage()).setVisible(true);
@@ -317,6 +333,11 @@ public class UpdateStaffInfo extends JFrame {
 				} else {
 					new InvalidInput("You cannot change your own job role").setVisible(true);
 				}
+			}
+
+			private void succesfulJobTransfer(StaffRegister sr, int newSerialnum) {
+				new SuccesfulOperation(s.getName() + " " + s.getSurname() + " is now a(n) " + sr.findSerialnum(newSerialnum).getRole()).setVisible(true);
+				dispose();
 			}
 		});
 		GridBagConstraints gbc_btnUpdateStaffRole = new GridBagConstraints();
@@ -367,16 +388,15 @@ public class UpdateStaffInfo extends JFrame {
 		contentPane.add(btnGoBack, gbc_btnGoBack);
 		
 		SerialNumber.addKeyListener(new KeyAdapter() {
-
-
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					try {
 						serialnum = Integer.parseInt(SerialNumber.getText());
-						Staff s = sr.findSerialnum(serialnum);
+						s = sr.findSerialnum(serialnum);
 						if (s != null) {
 							showRole.setVisible(true);
+							showRole.setText(s.getRole());
 							lblCurrentRole.setVisible(true);
 							lblChangeRole.setVisible(true);
 							roleChoice.setVisible(true);
