@@ -205,6 +205,7 @@ public class RegisterStaff extends JFrame {
 				surname = surnameTextField.getText();
 				gender = genderTextField.getText();
 				
+				//
 				String staffType = null;
 				try {
 					staffType = staffRoleChoice.getSelectedItem().toString();
