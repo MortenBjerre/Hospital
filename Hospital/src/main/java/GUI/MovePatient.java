@@ -131,11 +131,10 @@ public class MovePatient extends JFrame {
 					SuccesfulOperation window = new SuccesfulOperation("Patient has succesfully been moved");
 					window.setVisible(true);
 					dispose();
-				} catch (Exception IllegalArgumentException) {
-					InvalidInput invalid = new InvalidInput("Patient has not been admitted to a department");
+				} catch (Exception error1) {
+					InvalidInput invalid = new InvalidInput(error1.getMessage());
 					invalid.setVisible(true);
 				}
-			
 			}
 		});
 		btnMovePatient.setFont(new Font("Times New Roman", Font.PLAIN, 35));
