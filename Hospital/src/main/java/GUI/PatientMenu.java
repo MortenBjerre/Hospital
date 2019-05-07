@@ -170,6 +170,7 @@ public class PatientMenu extends JFrame {
 				getContentPane().add(lblDynamicBedNumber, gbc_lblDynamicBedNumber);
 
 				
+				
 			} catch (Exception e) {
 				;
 			}
