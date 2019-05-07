@@ -25,8 +25,8 @@ public class DischargePatient extends JFrame {
 	private JPanel contentPane;
 	private JTextField SerialNumber;
 	private int serialnum;
-	static PatientRegister PatientReg;
-	static DepartmentRegister DepartReg;
+	private PatientRegister pr;
+	private DepartmentRegister dr;
 	private JLabel lblName;
 	private JLabel lblSurname;
 	private JLabel lblEmail;
@@ -43,7 +43,7 @@ public class DischargePatient extends JFrame {
 	private JLabel departmentShow;
 
 	
-	public DischargePatient(final PatientRegister pr, final DepartmentRegister dr) {
+	public DischargePatient(PatientRegister pr, DepartmentRegister dr) {
 		setTitle("Discharge a patient");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 667, 585);
@@ -178,7 +178,7 @@ public class DischargePatient extends JFrame {
 					SuccesfulOperation discharged = new SuccesfulOperation("Patient has been discharged");
 					discharged.setVisible(true);
 				} catch (Exception e1) {
-					InvalidInput invalid = new InvalidInput("Patient has not been admitted");
+					InvalidInput invalid = new InvalidInput(e1.getMessage());
 					invalid.setVisible(true);
 				}
 			}

@@ -13,7 +13,7 @@
                 <address>five</address>
                 <phoneNumber>55555555</phoneNumber>
                 <alive>true</alive>
-                <serialnumCounter>3</serialnumCounter>
+                <serialnumCounter>4</serialnumCounter>
                 <healthData>Health data updated on the Tue May 07 09:37:38 CEST 2019.
 
 
@@ -32,7 +32,7 @@
                 <address>new</address>
                 <phoneNumber>123123</phoneNumber>
                 <alive>true</alive>
-                <serialnumCounter>3</serialnumCounter>
+                <serialnumCounter>4</serialnumCounter>
                 <healthData>Health data updated on the Tue May 07 09:43:54 CEST 2019.
 
 
@@ -51,8 +51,27 @@
                 <address>e</address>
                 <phoneNumber>123123</phoneNumber>
                 <alive>true</alive>
-                <serialnumCounter>3</serialnumCounter>
+                <serialnumCounter>4</serialnumCounter>
                 <healthData>Health data updated on the Tue May 07 09:44:39 CEST 2019.
+
+
+</healthData>
+            </value>
+        </entry>
+        <entry>
+            <key>3</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="patient">
+                <email>2</email>
+                <name>2</name>
+                <surname>2</surname>
+                <birthday>2019-05-03T00:00:00+02:00</birthday>
+                <gender>2</gender>
+                <serialnum>3</serialnum>
+                <address>2</address>
+                <phoneNumber>222222</phoneNumber>
+                <alive>true</alive>
+                <serialnumCounter>4</serialnumCounter>
+                <healthData>Health data updated on the Tue May 07 10:12:24 CEST 2019.
 
 
 </healthData>

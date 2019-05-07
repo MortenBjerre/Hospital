@@ -58,6 +58,14 @@ public class InpatientDepartment extends OutpatientDepartment {
 		}
 	}
 	
+	protected void deletePatient(int serialnum) {
+		for (int bednum : patientss.keySet()) {
+			if (patientss.get(bednum).getSerialnum() == serialnum) {
+				patientss.remove(bednum);
+			}
+		}
+	}
+	
 	
 	/**
 	 * Gives the patients in department 
@@ -189,5 +197,13 @@ public class InpatientDepartment extends OutpatientDepartment {
 	 */
 	protected Patient getPatientIn(int bedNumber) {
 		return patientss.get(bedNumber);
+	}
+	
+	public ArrayList<Patient> getAllPatients() {
+		ArrayList<Patient> allPatients = new ArrayList<Patient>();
+		for(int bednum : patientss.keySet()) {
+			allPatients.add(patientss.get(bednum));
+		}
+		return allPatients;
 	}
 }

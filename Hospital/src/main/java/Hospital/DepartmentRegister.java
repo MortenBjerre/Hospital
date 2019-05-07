@@ -132,7 +132,9 @@ public class DepartmentRegister implements Serializable{
 	private boolean dischargePatient(Patient p) {
 		for (String dep : departments.keySet()) {
 			OutpatientDepartment department = departments.get(dep);
-			if (department.containsPatient(p)) {
+			System.out.println(department.getDeptName());
+			System.out.println(department.getAllPatients());
+			if (department.containsPatient(p.getSerialnum())) {
 				department.deletePatient(p);
 				return true;
 			}
@@ -146,8 +148,12 @@ public class DepartmentRegister implements Serializable{
 	 * @param pr PatientRegister
 	 */
 	public void dischargePatient(int serialnum, PatientRegister pr) {
-		Patient p = pr.findSerialnum(serialnum);
-		dischargePatient(p);		
+		for (String dep : departments.keySet()) {
+			OutpatientDepartment department = departments.get(dep);
+			if (department.containsPatient(serialnum)) {
+				department.deletePatient(serialnum);
+			}
+		}
 	}
 	
 	/**
@@ -160,7 +166,10 @@ public class DepartmentRegister implements Serializable{
 	private boolean dischargeStaff(Staff s, StaffRegister sr) {
 		for (String dep : departments.keySet()) {
 			OutpatientDepartment department = departments.get(dep);
-			if (department.containsStaff(s)) {
+			for(int i = 0; i < department.getAllStaff().length; i++) {
+				//System.out.println(department.getAllStaff()[i]);
+			}
+			if (department.containsStaff(s.getSerialnum())) {
 				department.deleteStaff(s);
 				sr.deleteStaff(s);
 				return true;
@@ -176,7 +185,7 @@ public class DepartmentRegister implements Serializable{
 	 */
 	public void dischargeStaff(int serialnum, StaffRegister sr) {
 		Staff s = sr.findSerialnum(serialnum);
-		dischargeStaff(s, sr);		
+		dischargeStaff(s, sr);
 	}
 	
 	/**
@@ -212,6 +221,7 @@ public class DepartmentRegister implements Serializable{
 				throw new IllegalArgumentException("No such department");
 			} else {
 				if (department.getFreeBeds() > 0) {
+					System.out.println("added patient");
 					department.addPatient(patient);
 				} else {
 					throw new IllegalArgumentException("Department is full");
@@ -502,7 +512,7 @@ public class DepartmentRegister implements Serializable{
 	
 	public ArrayList<Patient> getPatientsFrom(String deptName) {
 		if (departments.containsKey(deptName)) {
-			return departments.get(deptName).patients;
+			return departments.get(deptName).getAllPatients();
 		} else {
 			throw new IllegalArgumentException("No such department");
 		}

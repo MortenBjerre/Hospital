@@ -60,6 +60,14 @@ public class OutpatientDepartment implements Serializable{
 		patients.remove(patient);
 	}
 	
+	protected void deletePatient(int serialnum) {
+		for (int i = 0; i < patients.size(); i++) {
+			if (patients.get(i).getSerialnum() == serialnum) {
+				patients.remove(i);
+			}
+		}
+	}
+	
 	/**
 	 * remove a staff member from the arraylist of staff in a department
 	 * @param staff staff to be removed
@@ -184,5 +192,9 @@ public class OutpatientDepartment implements Serializable{
 			}
 		}
 		throw new IllegalArgumentException("No such staff");
+	}
+
+	public ArrayList<Patient> getAllPatients() {
+		return patients;
 	}
 }

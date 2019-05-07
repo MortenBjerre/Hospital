@@ -13,7 +13,7 @@
                         <birthday>2019-05-04T00:00:00+02:00</birthday>
                         <gender>e</gender>
                         <serialnum>1</serialnum>
-                        <serialnumCounter>4</serialnumCounter>
+                        <serialnumCounter>5</serialnumCounter>
                     </staff>
                     <staff>
                         <email>f</email>
@@ -22,7 +22,7 @@
                         <birthday>2019-05-04T00:00:00+02:00</birthday>
                         <gender>f</gender>
                         <serialnum>2</serialnum>
-                        <serialnumCounter>4</serialnumCounter>
+                        <serialnumCounter>5</serialnumCounter>
                     </staff>
                     <staff xsi:type="ictOfficer">
                         <email>;</email>
@@ -31,12 +31,29 @@
                         <birthday>2019-05-03T00:00:00+02:00</birthday>
                         <gender>;</gender>
                         <serialnum>3</serialnum>
-                        <serialnumCounter>4</serialnumCounter>
+                        <serialnumCounter>5</serialnumCounter>
+                    </staff>
+                    <staff xsi:type="doctor">
+                        <email>e44</email>
+                        <name>e</name>
+                        <surname>e</surname>
+                        <birthday>2019-05-06T00:00:00+02:00</birthday>
+                        <gender>e</gender>
+                        <serialnum>4</serialnum>
+                        <serialnumCounter>5</serialnumCounter>
                     </staff>
                 </staff>
                 <deptName>Surgery</deptName>
                 <beds>5</beds>
                 <patientss/>
+            </value>
+        </entry>
+        <entry>
+            <key>out</key>
+            <value>
+                <patients/>
+                <staff/>
+                <deptName>out</deptName>
             </value>
         </entry>
     </departments>
