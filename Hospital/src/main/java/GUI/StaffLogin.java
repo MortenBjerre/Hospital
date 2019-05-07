@@ -142,25 +142,18 @@ public class StaffLogin extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER){
 					try {
-					@SuppressWarnings("deprecation")
-					int serialNumber = Integer.parseInt(SerialNumber.getText());
-					
-					if (attempts != 0) {
-					
+						@SuppressWarnings("deprecation")
+						int serialNumber = Integer.parseInt(SerialNumber.getText());					
 						if (StaffReg.findSerialnum(serialNumber) != null) {
 							StaffMenu menu = new StaffMenu(StaffReg, serialNumber, PatientReg, DepartReg);
 							menu.setVisible(true);
 							dispose();
 						} else {
 							invalidLogin.setVisible(true);
-							attempts--;
 						}
-					} else {
-							dispose();
-						}
-				} catch (Exception e1) {
-					InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
-					invalid.setVisible(true);
+					} catch (Exception e1) {
+							InvalidInput invalid = new InvalidInput("Wrong Input, Try Again!");
+							invalid.setVisible(true);
 					}
 				}
 			}

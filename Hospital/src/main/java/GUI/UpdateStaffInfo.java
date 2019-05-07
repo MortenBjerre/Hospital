@@ -68,7 +68,7 @@ public class UpdateStaffInfo extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		this.setLocationRelativeTo(null);
 		
-		JLabel lblPleaseEnterThe = new JLabel("Enter Patient Serial Number: ");
+		JLabel lblPleaseEnterThe = new JLabel("Enter Staff Serial Number: ");
 		lblPleaseEnterThe.setFont(new Font("Times New Roman", Font.PLAIN, 27));
 		GridBagConstraints gbc_lblPleaseEnterThe = new GridBagConstraints();
 		gbc_lblPleaseEnterThe.anchor = GridBagConstraints.EAST;
