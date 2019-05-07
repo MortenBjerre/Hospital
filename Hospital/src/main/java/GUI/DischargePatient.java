@@ -43,7 +43,8 @@ public class DischargePatient extends JFrame {
 	private JLabel departmentShow;
 
 	
-	public DischargePatient(final PatientRegister pr, final DepartmentRegister dr) {		
+	public DischargePatient(final PatientRegister pr, final DepartmentRegister dr) {
+		setTitle("Discharge a patient");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 667, 585);
 		contentPane = new JPanel();
