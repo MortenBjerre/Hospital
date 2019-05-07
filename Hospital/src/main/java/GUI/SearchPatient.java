@@ -46,12 +46,12 @@ public class SearchPatient extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param departReg 
+	 * @param dr 
 	 */
 	@SuppressWarnings("unchecked")
-	public SearchPatient(PatientRegister pr, DepartmentRegister departReg) {
+	public SearchPatient(PatientRegister pr, DepartmentRegister dr) {
 		setTitle("Search patients");
-		dr = departReg;		
+		this.dr = dr;		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1000, 400);
 		contentPane = new JPanel();
@@ -73,13 +73,9 @@ public class SearchPatient extends JFrame {
 		gbc_lblSearchBy.gridy = 0;
 		contentPane.add(lblSearchBy, gbc_lblSearchBy);
 		
-		
-		
-		
 		dropDownMenu = new JComboBox();
 		dropDownMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-								
 			}
 		});
 		dropDownMenu.addItem("Serial Number");
@@ -117,39 +113,34 @@ public class SearchPatient extends JFrame {
 		contentPane.add(userInput, gbc_textField);
 		userInput.setColumns(10);
 		
-		button = new Button("Search");
+		JButton button = new JButton("Search");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String choice = dropDownMenu.getSelectedItem().toString();
 				searchParameter = userInput.getText();
+				if (searchParameter.equals("")) {
+					tableData = makeFullTable(pr, dr);
+					updateTable();
+				} else {
 				switch(choice) {
 					case ("Serial Number"):
 						try {
 							int serialnum = Integer.parseInt(searchParameter);
 							String[] result1 = pr.searchSerialnum(serialnum);
 							tableData = makePartialTable(pr, result1);
-							System.out.println(Arrays.toString(result1));
 							// table needs to be updated
 							updateTable();
 							break;
 						} catch (Exception e) {
-							System.out.println("Error");
 							break;
 						}
 					case ("First Name"):
-						System.out.print(searchParameter);
-						System.out.println(searchParameter.equals("Alexander"));
-						System.out.println(pr);
 						String[] result2 = pr.searchName(searchParameter);
-						System.out.println(Arrays.toString(result2));
-						System.out.println(Arrays.toString(pr.searchName(searchParameter)));
 						tableData = makePartialTable(pr, result2);	
 						updateTable();
 						break;
 					case("Surname"):
 						String[] result3 = pr.searchSurname(searchParameter);
-						System.out.println(Arrays.toString(pr.searchSurname("Christensen")));
-						
 						tableData = makePartialTable(pr, result3);
 						updateTable();
 						break;
@@ -166,7 +157,6 @@ public class SearchPatient extends JFrame {
 							updateTable();
 							break;
 						} catch(Exception e) {
-							System.out.println("Error");
 							break;
 						}
 						
@@ -192,20 +182,16 @@ public class SearchPatient extends JFrame {
 							updateTable();
 							break;
 						} else {
-							System.out.println("Error");
 							break;
-						}
-										
+						}			
+					}
 				}
-			}
-
-			
+			}			
 		});
 		
 		// Table - table initially shows all patients
 		tableData = makeFullTable(pr,dr);
 		GridBagConstraints gbc_button = new GridBagConstraints();
-		gbc_button.fill = GridBagConstraints.HORIZONTAL;
 		gbc_button.insets = new Insets(0, 0, 5, 0);
 		gbc_button.gridx = 1;
 		gbc_button.gridy = 2;
@@ -231,11 +217,8 @@ public class SearchPatient extends JFrame {
 		String[] columnNames = {"Serial num","First name","Surname","E-mail","Date of birth","Gender","Address","Phone Number","Alive"};
 		this.columnNames = columnNames;
 		Object[][] data = new Object[result.length][columnNames.length];
-		System.out.println("Method:");
-		System.out.println(Arrays.toString(result));
 		for (int i = 0; i < result.length; i++) {
 			int serialnum = result[i].split(" ")[1].charAt(0) - 48;
-			System.out.println(serialnum);
 			data[i][0] = pr.findSerialnum(serialnum).getSerialnum();
 			data[i][1] = pr.findSerialnum(serialnum).getName();
 			data[i][2] = pr.findSerialnum(serialnum).getSurname();
