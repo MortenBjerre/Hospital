@@ -29,4 +29,13 @@ public class Clerk extends Staff {
 	public String getRole() {
 		return "Clerk";
 	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	public boolean canViewDepartmentRegister() {
+		return true;
+	}
+	
 }

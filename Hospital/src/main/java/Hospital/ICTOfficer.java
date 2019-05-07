@@ -36,15 +36,19 @@ public class ICTOfficer extends Staff {
 		return true;
 	}
 	
-	public boolean canMovePatients() {
-		return true;
-	}
-	
 	public String getRole() {
 		return "ICT Officer";
 	}
 	
 	public boolean canEditDepartmentRegister(DepartmentRegister dr) {
+		return true;
+	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	public boolean canViewDepartmentRegister() {
 		return true;
 	}
 

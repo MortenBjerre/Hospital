@@ -33,5 +33,13 @@ public class Doctor extends Staff {
 	public String getRole() {
 		return "Doctor";
 	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	public boolean canViewDepartmentRegister() {
+		return true;
+	}
 
 }

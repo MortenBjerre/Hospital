@@ -93,7 +93,7 @@ public class Staff extends HospitalUser {
 	 * @return true if they have permission
 	 */
 	public boolean canMovePatients() {
-		return true;
+		return false;
 	}
 	
 	/**
@@ -111,7 +111,7 @@ public class Staff extends HospitalUser {
 	 * @return true if they have permission
 	 */
 	public boolean canViewDepartmentRegister() {
-		return true;
+		return false;
 	}
 	
 	/**

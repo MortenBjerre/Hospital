@@ -219,6 +219,16 @@ public abstract class Register<T extends HospitalUser> {
 	}
 	
 	/**
+	 * Changes the birthday of a given user, identified by their serialnum
+	 * @param serialnum
+	 * @param birthday
+	 */
+	public void editBirthday(int serialnum, Date birthday) {
+		T user = this.findSerialnum(serialnum);
+		user.setBirthday(birthday);		
+	}
+	
+	/**
 	 * Changes the email of a given HospitalUser, identified by their serialnum
 	 * @param serialnum
 	 * @param email

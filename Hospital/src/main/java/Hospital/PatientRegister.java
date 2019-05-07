@@ -130,16 +130,6 @@ public class PatientRegister extends Register<Patient> {
 	}
 	
 	/**
-	 * Changes the birthday of a given patient, identified by their serialnum
-	 * @param serialnum
-	 * @param birthday
-	 */
-	public void editBirthday(int serialnum, Date birthday) {
-		Patient patient = this.findSerialnum(serialnum);
-		patient.setBirthday(birthday);		
-	}
-	
-	/**
 	 * Changes the phone number of a given patient, identified by their serialnum
 	 * @param serialnum
 	 * @param phoneNumber
