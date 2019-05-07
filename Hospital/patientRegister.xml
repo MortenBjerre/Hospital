@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PatientRegister>
+    <users>
+        <entry>
+            <key>0</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="patient">
+                <email>five</email>
+                <name>five</name>
+                <surname>five</surname>
+                <birthday>2019-04-30T00:00:00+02:00</birthday>
+                <gender>five</gender>
+                <serialnum>0</serialnum>
+                <address>five</address>
+                <phoneNumber>55555555</phoneNumber>
+                <alive>true</alive>
+                <serialnumCounter>3</serialnumCounter>
+                <healthData>Health data updated on the Tue May 07 09:37:38 CEST 2019.
+
+
+</healthData>
+            </value>
+        </entry>
+        <entry>
+            <key>1</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="patient">
+                <email>new</email>
+                <name>new</name>
+                <surname>new</surname>
+                <birthday>2019-05-03T00:00:00+02:00</birthday>
+                <gender>new</gender>
+                <serialnum>1</serialnum>
+                <address>new</address>
+                <phoneNumber>123123</phoneNumber>
+                <alive>true</alive>
+                <serialnumCounter>3</serialnumCounter>
+                <healthData>Health data updated on the Tue May 07 09:43:54 CEST 2019.
+
+
+</healthData>
+            </value>
+        </entry>
+        <entry>
+            <key>2</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="patient">
+                <email>e</email>
+                <name>this better work</name>
+                <surname>bjerre</surname>
+                <birthday>2019-05-04T00:00:00+02:00</birthday>
+                <gender>e</gender>
+                <serialnum>2</serialnum>
+                <address>e</address>
+                <phoneNumber>123123</phoneNumber>
+                <alive>true</alive>
+                <serialnumCounter>3</serialnumCounter>
+                <healthData>Health data updated on the Tue May 07 09:44:39 CEST 2019.
+
+
+</healthData>
+            </value>
+        </entry>
+    </users>
+</PatientRegister>

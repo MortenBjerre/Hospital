@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DepartmentRegister>
+    <departments>
+        <entry>
+            <key>Surgery</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="inpatientDepartment">
+                <patients/>
+                <staff>
+                    <staff xsi:type="clerk">
+                        <email>e</email>
+                        <name>e</name>
+                        <surname>e</surname>
+                        <birthday>2019-05-04T00:00:00+02:00</birthday>
+                        <gender>e</gender>
+                        <serialnum>1</serialnum>
+                        <serialnumCounter>4</serialnumCounter>
+                    </staff>
+                    <staff>
+                        <email>f</email>
+                        <name>f</name>
+                        <surname>f</surname>
+                        <birthday>2019-05-04T00:00:00+02:00</birthday>
+                        <gender>f</gender>
+                        <serialnum>2</serialnum>
+                        <serialnumCounter>4</serialnumCounter>
+                    </staff>
+                    <staff xsi:type="ictOfficer">
+                        <email>;</email>
+                        <name>;</name>
+                        <surname>;</surname>
+                        <birthday>2019-05-03T00:00:00+02:00</birthday>
+                        <gender>;</gender>
+                        <serialnum>3</serialnum>
+                        <serialnumCounter>4</serialnumCounter>
+                    </staff>
+                </staff>
+                <deptName>Surgery</deptName>
+                <beds>5</beds>
+                <patientss/>
+            </value>
+        </entry>
+    </departments>
+</DepartmentRegister>

@@ -1,14 +1,27 @@
 package Hospital;
 
 import java.util.Date;
+import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
-public abstract class HospitalUser {
+@XmlAccessorType(XmlAccessType.FIELD)
+
+@XmlRootElement(name = "HospitalUser")
+public abstract class HospitalUser implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@XmlElement(name ="email")
 	private String email;
+	@XmlElement(name ="name")
 	private String name;
+	@XmlElement(name ="surname")
 	private String surname;
+	@XmlElement(name ="birthday")
 	private Date birthday;
+	@XmlElement(name ="gender")
 	private String gender;
+	@XmlElement(name ="serialnum")
 	protected int serialnum;
+	protected static int serialnumCounter;
 	
 	public boolean equals(Object obj) {
 		if (obj instanceof HospitalUser) {
@@ -30,6 +43,10 @@ public abstract class HospitalUser {
 		hash = 31 * hash + birthday.hashCode();
 		hash = 31 * hash + gender.hashCode();
 		return hash;
+	}
+	
+	public static void setSerialnumCounter(int newSerialnumCounter) {
+		serialnumCounter = newSerialnumCounter;
 	}
 	
 	public void set(String email, String name, String surname, Date birthday, String gender) {
