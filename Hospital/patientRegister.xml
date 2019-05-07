@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PatientRegister>
-    <users/>
+    <users>
+        <entry>
+            <key>0</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="patient">
+                <email>in</email>
+                <name>in</name>
+                <surname>in</surname>
+                <birthday>2019-05-04T00:00:00+02:00</birthday>
+                <gender>in</gender>
+                <serialnum>0</serialnum>
+                <address>iin</address>
+                <phoneNumber>123123</phoneNumber>
+                <alive>true</alive>
+                <serialnumCounter>2</serialnumCounter>
+                <healthData>Health data updated on the Tue May 07 12:56:35 CEST 2019.
+
+
+</healthData>
+            </value>
+        </entry>
+        <entry>
+            <key>1</key>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="patient">
+                <email>out</email>
+                <name>out</name>
+                <surname>out</surname>
+                <birthday>2019-05-04T00:00:00+02:00</birthday>
+                <gender>out</gender>
+                <serialnum>1</serialnum>
+                <address>out</address>
+                <phoneNumber>123123</phoneNumber>
+                <alive>true</alive>
+                <serialnumCounter>2</serialnumCounter>
+                <healthData>Health data updated on the Tue May 07 13:01:14 CEST 2019.
+
+
+</healthData>
+            </value>
+        </entry>
+    </users>
 </PatientRegister>

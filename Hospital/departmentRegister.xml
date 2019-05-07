@@ -18,13 +18,50 @@
                 </staff>
                 <deptName>Surgery</deptName>
                 <beds>100</beds>
-                <patientss/>
+                <patientss>
+                    <entry>
+                        <key>0</key>
+                        <value>
+                            <email>in</email>
+                            <name>in</name>
+                            <surname>in</surname>
+                            <birthday>2019-05-04T00:00:00+02:00</birthday>
+                            <gender>in</gender>
+                            <serialnum>0</serialnum>
+                            <address>iin</address>
+                            <phoneNumber>123123</phoneNumber>
+                            <alive>true</alive>
+                            <serialnumCounter>2</serialnumCounter>
+                            <healthData>Health data updated on the Tue May 07 12:56:35 CEST 2019.
+
+
+</healthData>
+                        </value>
+                    </entry>
+                </patientss>
             </value>
         </entry>
         <entry>
             <key>HR</key>
             <value>
-                <patients/>
+                <patients>
+                    <patients>
+                        <email>out</email>
+                        <name>out</name>
+                        <surname>out</surname>
+                        <birthday>2019-05-04T00:00:00+02:00</birthday>
+                        <gender>out</gender>
+                        <serialnum>1</serialnum>
+                        <address>out</address>
+                        <phoneNumber>123123</phoneNumber>
+                        <alive>true</alive>
+                        <serialnumCounter>2</serialnumCounter>
+                        <healthData>Health data updated on the Tue May 07 13:01:14 CEST 2019.
+
+
+</healthData>
+                    </patients>
+                </patients>
                 <staff>
                     <staff>
                         <email>Staff</email>
