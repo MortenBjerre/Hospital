@@ -73,9 +73,7 @@ public class DepartmentRegister implements Serializable{
 			OutpatientDepartment department = departments.get(dep);
 			System.out.println(dep);
 			if (department.containsPatient(serialnum)) {
-				System.out.println(dep + "contains patient");
 				department.deletePatient(serialnum);
-				departments.get(deptName).addPatient(p);
 				return true;
 			}
 		} 
