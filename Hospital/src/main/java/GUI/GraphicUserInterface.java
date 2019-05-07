@@ -42,14 +42,12 @@ public class GraphicUserInterface {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             DepartmentRegister drSaving2 = (DepartmentRegister) jaxbUnmarshaller.unmarshal(xmlFile);
-            System.out.println("Loaded File");
       
             return drSaving2;
         }
         catch (JAXBException e)
         {
 //        	Patient.resetSerialnumCounter;
-            System.out.println("No Department Register file found - creating new file");
         }
         finally {
         }
@@ -67,12 +65,10 @@ public class GraphicUserInterface {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             StaffRegister srSaving2 = (StaffRegister) jaxbUnmarshaller.unmarshal(xmlFile);
-            System.out.println("Loaded File");
             return srSaving2;
         }
         catch (JAXBException e)
         {
-            System.out.println("No Staff Register file found - creating new file");
         }
         finally {
         }
@@ -89,12 +85,10 @@ public class GraphicUserInterface {
             		Patient.class, Register.class, PatientRegister.class,StaffRegister.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             PatientRegister prSaving2 = (PatientRegister) jaxbUnmarshaller.unmarshal(xmlFile);
-            System.out.println("Loaded File");
             return prSaving2;
         }
         catch (JAXBException e)
         {
-            System.out.println("No Patient Register file found - creating new file");
         }
         finally {
         }
