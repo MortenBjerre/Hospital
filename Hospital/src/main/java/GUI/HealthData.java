@@ -48,13 +48,10 @@ public class HealthData extends JFrame {
 	private JScrollPane scrollPane;
 	private JTextField serialnumTextField;
 	
-	/**
-	 * Create the frame.
-	 * @param dr 
-	 * @param pr 
-	 */
+
 	public HealthData(PatientRegister pr, DepartmentRegister dr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("View patient health data");
 		setBounds(100, 100, 756, 723);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
