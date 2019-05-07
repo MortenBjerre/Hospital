@@ -53,10 +53,10 @@ public class PatientMenu extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Patient Menu ");
-		setBounds(100, 100, 636, 467);
+		setBounds(100, 100, 639, 429);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{94, 479, 0};
-		gridBagLayout.rowHeights = new int[]{26, 0, 0, 0, 0, 0, 0, 109, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{26, 0, 0, 0, 0, 0, 0, 135, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
