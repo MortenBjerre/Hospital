@@ -30,7 +30,7 @@ public class InspectDepartment extends JFrame {
 	private Object[][] patientTableData;
 	
 	
-	public InspectDepartment(DepartmentRegister dr, String deptName) {
+	public InspectDepartment(DepartmentRegister dr, String deptName, Staff staff, StaffRegister sr) {
 		this.setTitle(deptName + " details");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 714, 366);
@@ -62,12 +62,13 @@ public class InspectDepartment extends JFrame {
 		contentPane.add(lblDynamicDeptName, gbc_lblDynamicDeptName);
 		
 		JScrollPane StaffScrollPane = new JScrollPane();
+		StaffScrollPane.setVisible(false);
 		GridBagConstraints gbc_StaffScrollPane = new GridBagConstraints();
 		gbc_StaffScrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_StaffScrollPane.gridwidth = 2;
 		gbc_StaffScrollPane.fill = GridBagConstraints.BOTH;
 		gbc_StaffScrollPane.gridx = 0;
-		gbc_StaffScrollPane.gridy = 1;
+		gbc_StaffScrollPane.gridy = 2;
 		contentPane.add(StaffScrollPane, gbc_StaffScrollPane);
 		staffTableData = makeStaffTable(dr, deptName);
 		StaffTable = new JTable(staffTableData,staffColumnNames);
@@ -80,12 +81,16 @@ public class InspectDepartment extends JFrame {
 		gbc_PatientScrollPane.fill = GridBagConstraints.BOTH;
 		gbc_PatientScrollPane.insets = new Insets(0, 0, 0, 5);
 		gbc_PatientScrollPane.gridx = 0;
-		gbc_PatientScrollPane.gridy = 2;
+		gbc_PatientScrollPane.gridy = 1;
 		contentPane.add(PatientScrollPane, gbc_PatientScrollPane);
 		patientTableData = makePatientTable(dr, deptName);
 		PatientTable = new JTable(patientTableData, patientColumnNames);
 		PatientTable.setEnabled(false);
 		PatientScrollPane.setViewportView(PatientTable);
+		
+		if (staff.hasViewAccessTo(sr)) {
+			StaffScrollPane.setVisible(true);
+		}
 		
 		
 	}

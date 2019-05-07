@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Hospital.DepartmentRegister;
+import Hospital.Staff;
+import Hospital.StaffRegister;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -24,15 +27,8 @@ public class ChangeNameOfDept extends JFrame {
 	private JPanel contentPane;
 	private JTextField newDeptNametextField;
 
+	public ChangeNameOfDept(String deptName, DepartmentRegister dr, Staff staff, StaffRegister sr) {
 
-
-	/**
-	 * Create the frame.
-	 * @param dr 
-	 * @param deptName 
-	 */
-	public ChangeNameOfDept(String deptName, DepartmentRegister dr) {
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 461, 220);
 		contentPane = new JPanel();
@@ -87,7 +83,7 @@ public class ChangeNameOfDept extends JFrame {
 				if (!newDeptName.equals("")) {
 					dr.changeNameOf(deptName, newDeptName);
 					dispose();
-					new DepartmentManager(dr).setVisible(true);
+					new DepartmentManager(dr, staff, sr).setVisible(true);
 				} else {
 					new InvalidInput("Please enter new department name");
 				}
@@ -105,7 +101,7 @@ public class ChangeNameOfDept extends JFrame {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				new DepartmentManager(dr).setVisible(true);
+				new DepartmentManager(dr, staff, sr).setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnCancel = new GridBagConstraints();

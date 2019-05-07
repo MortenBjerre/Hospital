@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Hospital.DepartmentRegister;
+import Hospital.Staff;
+import Hospital.StaffRegister;
+
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -33,8 +36,10 @@ public class DepartmentManager extends JFrame {
 	private JScrollPane scrollPane;
 	private Object[] columnNames;
 	private DepartmentRegister dr;
+	private Staff staff;
 
-	public DepartmentManager(DepartmentRegister dr) {
+	public DepartmentManager(DepartmentRegister dr, Staff staff, StaffRegister sr) {
+		this.staff = staff;
 		this.dr = dr;
 		setTitle("Department Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -228,7 +233,7 @@ public class DepartmentManager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String deptName = departmentNameTextField.getText();
 				if (!deptName.equals("") && dr.containsDept(deptName)) {
-					new InspectDepartment(dr, deptName).setVisible(true);
+					new InspectDepartment(dr, deptName, staff, sr).setVisible(true);
 				} else {
 					new InvalidInput("Enter a valid department name").setVisible(true);
 				}
@@ -250,7 +255,7 @@ public class DepartmentManager extends JFrame {
 					deptName = departmentNameTextField.getText();
 					System.out.println(deptName);
 					if (dr.containsDept(deptName)) {
-						new ChangeNameOfDept(deptName, dr).setVisible(true);
+						new ChangeNameOfDept(deptName, dr, staff, sr).setVisible(true);
 						dispose();
 					} else {
 						new InvalidInput("No such department").setVisible(true);
@@ -284,6 +289,17 @@ public class DepartmentManager extends JFrame {
 		table = new JTable(tableData, columnNames);
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
+		
+		if (!staff.canEditDepartmentRegister(dr)) {
+			btnAddBedsTo.setVisible(false);
+			btnCreateDepartment.setVisible(false);
+			btnDeleteDepartment.setVisible(false);
+			btnEditDepartmentName.setVisible(false);
+			btnRemoveBedsFrom.setVisible(false);
+			lblOptionalNumberOf.setVisible(false);
+			numberOfBedsTextField.setVisible(false);
+			
+		}
 	}
 	
 	private Object[][] makeDepartmentTable(DepartmentRegister dr) {

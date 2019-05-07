@@ -32,4 +32,12 @@ public class Nurse extends Staff {
 	public String getRole() {
 		return "Nurse";
 	}
+	
+	public boolean canMovePatients() {
+		return true;
+	}
+	
+	public boolean canViewDepartmentRegister() {
+		return true;
+	}
 }
