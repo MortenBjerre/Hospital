@@ -55,7 +55,6 @@ public class UpdatePatientInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked")
 	public UpdatePatientInfo(PatientRegister pr) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Update patient info");
@@ -348,13 +347,18 @@ public class UpdatePatientInfo extends JFrame {
 		aliveStatus = new JComboBox();
 		aliveStatus.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
+				try {
 				if (aliveStatus.getSelectedItem().equals("Alive")) {
 					pr.editAlive(serialnum, true);
 				} else {
 					pr.editAlive(serialnum, false);
 				}
-			}
-		});
+				}
+				catch (Exception e) {
+					;
+				}
+				}
+		});	
 		
 		aliveStatus.setVisible(false);
 		aliveStatus.addItem("Alive");
