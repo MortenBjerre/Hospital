@@ -126,6 +126,7 @@ public class StaffMenu extends JFrame {
 		if (staff.hasWriteAccessTo(pr)) {
 			btnChangeInfo.setVisible(true);
 		}
+		
 		btnChangeInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UpdatePatientInfo loginPage2 = new UpdatePatientInfo(pr);
